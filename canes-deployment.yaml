@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  web:
+    image: gcr.io/canes-268220/canes
+    ports:
+     - "80:8080"
+
+  words:
+    image: gcr.io/canes-268220/canes
+    deploy:
+      replicas: 3
+      endpoint_mode: dnsrr
+      resources:
+        limits:
+          memory: 50M
+        reservations:
+          memory: 50M
+
+  db:
+    image: gcr.io/canes-268220/canes

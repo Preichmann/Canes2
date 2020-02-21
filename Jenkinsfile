@@ -49,5 +49,14 @@ pipeline {
                         }
                     }
                 }
+
+                stage('Publish') {
+                        steps {
+                        script {
+				println(env.BRANCH_NUMBER)
+                        }
+                    }
+                }
+
         }
 }

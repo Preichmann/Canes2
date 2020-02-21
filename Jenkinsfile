@@ -52,8 +52,12 @@ pipeline {
 	             stage('Publish') {
                         steps {
                         script {
-                        sh "sed -i 's/###BUILDNO###/${env.BUILD_NUMBER}/' /var/lib/jenkins/workspace/Canes\\\ Deploy/canes-deployment.yaml"
-                        sh "kubectl apply -f canes-deployment.yaml"
+                        sh "sed -i 's/###BUILDNO###/${env.BUILD_NUMBER}/' /var/lib/jenkins/workspace/Canes\\ Deploy/canes-deployment.yaml"
+                       	sh "gcloud config set project canes-268220"
+			sh "gcloud config set compute/region southamerica-east1-a"
+			sh "gcloud config set compute/zone southamerica-east1-a"
+			sh "gcloud container clusters get-credentials canes-k8s"
+			sh "kubectl apply -f canes-deployment.yaml"
                         sh "sleep 5"
                         sh "kubectl get pods -n canes"
                         }

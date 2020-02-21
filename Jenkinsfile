@@ -14,29 +14,32 @@ pipeline {
 		}
 
     		stage('Build image') {
-	        /* build da imagem */
-	        app = docker.build("gcr.io/canes-268220/canes")
+			script {
+		        	/* build da imagem */
+		        	app = docker.build("gcr.io/canes-268220/canes")
+			}
    		 }
 
 		stage('Test image') {
-	        /* Ainda sem testes, implementacao em breve */
-
-	        	app.inside {
-        	   	 sh 'echo "Tests passed"'
+			script {
+		        	/* Ainda sem testes, implementacao em breve */
+	        		app.inside {
+	        	   	sh 'echo "Tests passed"'
+				}
 			}
 		}
 
 		stage('Push image') {
-	        /* Finally, we'll push the image with two tags:
-	         * First, the incremental build number from Jenkins
-	         * Second, the 'latest' tag.
-	         * Pushing multiple tags is cheap, as all the layers are reused. */
-		docker.withRegistry('https://gcr.io', "gcr:${GCLOUD_CRED}") {
-        		app.push("${env.BUILD_NUMBER}")
-	         	app.push("latest")
-        		}
-    	
+			script {
+			        /* Finally, we'll push the image with two tags:
+	        		 * First, the incremental build number from Jenkins
+			         * Second, the 'latest' tag.
+			         * Pushing multiple tags is cheap, as all the layers are reused. */
+				docker.withRegistry('https://gcr.io', "gcr:${GCLOUD_CRED}") {
+        				app.push("${env.BUILD_NUMBER}")
+			         	app.push("latest")
+        				}
+    			}
 		}
-
 	}
 }

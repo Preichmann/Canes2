@@ -1,10 +1,12 @@
 
-enviroment {
-	GCLOUD_CRED = "canes-268220"
-}
-
 node {
     def app
+
+environmentVariables {
+        env('GCLOUD_CRED', 'canes-268220')
+        propertiesFile('env.properties')
+        keepBuildVariables(true)
+    }
 
     stage('Clone repository') {
         /* atualiza o repo */

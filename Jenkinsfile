@@ -52,7 +52,7 @@ pipeline {
 	             stage('Publish') {
                         steps {
                         script {
-                        sh "sed -i 's/###BUILDNO###/${env.BUILD_NUMBER}/' /var/lib/jenkins/workspace/Canes\ Deploy/canes-deployment.yaml"
+                        sh "sed -i 's/###BUILDNO###/${env.BUILD_NUMBER}/' /var/lib/jenkins/workspace/Canes\\ Deploy/canes-deployment.yaml"
                         sh "kubectl apply -f canes-deployment.yaml"
                         sh "sleep 5"
                         sh "kubectl get pods -n canes"

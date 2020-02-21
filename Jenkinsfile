@@ -2,12 +2,6 @@
 node {
     def app
 
-environmentVariables {
-        env('GCLOUD_CRED', 'canes-268220')
-        propertiesFile('env.properties')
-        keepBuildVariables(true)
-    }
-
     stage('Clone repository') {
         /* atualiza o repo */
 
@@ -29,6 +23,9 @@ environmentVariables {
     }
 
     stage('Push image') {
+	environment {
+                GCLOUD_CRED = 'canes-268220'
+            }
         /* Finally, we'll push the image with two tags:
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.

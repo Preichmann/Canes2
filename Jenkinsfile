@@ -1,8 +1,14 @@
+pipeline { 
+	agent {
+		label 'any'
+	}
 
-node {
-    def app
+	environment {
+	GCLOUD_CRED = 'canes-268220'
+	}
 
-    stage('Clone repository') {
+	stages{
+		stage('Clone repository') {
         /* atualiza o repo */
 
         checkout scm
@@ -23,9 +29,6 @@ node {
     }
 
     stage('Push image') {
-	environment {
-                GCLOUD_CRED = 'canes-268220'
-            }
         /* Finally, we'll push the image with two tags:
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
@@ -34,5 +37,7 @@ node {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }
-    }
+    	
+	}
+
 }

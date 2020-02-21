@@ -1,7 +1,5 @@
 pipeline {
-        agent {
-                label 'linux'
-        }
+        agent any
 
         environment {
         GCLOUD_CRED = 'canes-268220'

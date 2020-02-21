@@ -49,11 +49,13 @@ pipeline {
                         }
                     }
                 }
-
-                stage('Publish') {
+	             stage('Publish') {
                         steps {
                         script {
-				println(env.BUILD_NUMBER)
+                        sh "sed -i 's/###BUILDNO###/29/' canes-deployment.yaml"
+                        sh "kubectl apply -f canes-deployment.yaml"
+                        sh "sleep 5"
+                        sh "kubectl get pods -n canes"
                         }
                     }
                 }

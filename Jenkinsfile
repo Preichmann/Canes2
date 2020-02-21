@@ -53,7 +53,7 @@ pipeline {
                 stage('Publish') {
                         steps {
                         script {
-				println(env.BRANCH_NUMBER)
+				println(env.BUILD_NUMBER)
                         }
                     }
                 }

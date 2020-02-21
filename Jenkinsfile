@@ -53,7 +53,8 @@ pipeline {
                         steps {
                         script {
                         sh "sed -i 's/###BUILDNO###/${env.BUILD_NUMBER}/' /var/lib/jenkins/workspace/Canes\\ Deploy/canes-deployment.yaml"
-                       	sh "gcloud config set project canes-268220"
+                       	sh "gcloud config set account $GCLOUD_CRED"
+			sh "gcloud config set project canes-268220"
 			sh "gcloud config set compute/region southamerica-east1-a"
 			sh "gcloud config set compute/zone southamerica-east1-a"
 			sh "gcloud container clusters get-credentials canes-k8s"

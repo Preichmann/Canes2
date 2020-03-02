@@ -25,7 +25,7 @@ spec:
         app: canes-deployment
     spec:
       containers:
-      - image: gcr.io/canes-268220/canes:28
+      - image: gcr.io/canes-268220/canes:###BUILDNO###
         imagePullPolicy: Always
         name: canes
         resources: {}

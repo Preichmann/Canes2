@@ -3,6 +3,9 @@ pipeline {
 
         environment {
         GCLOUD_CRED = 'canes-268220'
+        PROJECT_ID = 'canes-268220'
+        CLUSTER_NAME = 'canes-k8s'
+        LOCATION = 'southamerica-east1-a'
         }
 
         stages{
@@ -53,14 +56,7 @@ pipeline {
                         steps {
                         script {
                         sh "sed -i 's/###BUILDNO###/${env.BUILD_NUMBER}/' /var/lib/jenkins/workspace/Canes\\ Deploy/canes-deployment.yaml"
-                       	sh "gcloud config set account $GCLOUD_CRED"
-			sh "gcloud config set project canes-268220"
-			sh "gcloud config set compute/region southamerica-east1-a"
-			sh "gcloud config set compute/zone southamerica-east1-a"
-			sh "gcloud container clusters get-credentials canes-k8s"
-			sh "kubectl apply -f canes-deployment.yaml"
-                        sh "sleep 5"
-                        sh "kubectl get pods -n canes"
+			step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'canes-deployment.yaml', credentialsId: env.GCLOUD_CRED, verifyDeployments: true])
                         }
                     }
                 }

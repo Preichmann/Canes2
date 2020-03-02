@@ -3,7 +3,8 @@ pipeline {
 
         environment {
         GCLOUD_CRED = 'canes-268220'
-        PROJECT_ID = 'canes-268220'
+        NS = 'canes'
+	PROJECT_ID = 'canes-268220'
         CLUSTER_NAME = 'canes-k8s'
         LOCATION = 'southamerica-east1-a'
         }
@@ -56,7 +57,7 @@ pipeline {
                         steps {
                         script {
                         sh "sed -i 's/###BUILDNO###/${env.BUILD_NUMBER}/' /var/lib/jenkins/workspace/Canes\\ Deploy/canes-deployment.yaml"
-			step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'canes-deployment.yaml', credentialsId: env.GCLOUD_CRED, verifyDeployments: true])
+			step([$class: 'KubernetesEngineBuilder', namespace: env.NS, projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'canes-deployment.yaml', credentialsId: env.GCLOUD_CRED, verifyDeployments: true])
                         }
                     }
                 }

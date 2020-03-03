@@ -5,22 +5,22 @@
  */
 package Controller;
 
-import Classes.Beneficios;
+import Classes.Categorias;
 import Classes.ImagemProduto;
 import Classes.Produto;
 import java.util.ArrayList;
 
 /**
  *
- * @author nik_r
+ * @author Gabriel Vital
  */
 public class Controller_Produto {
-    public boolean cadastrarProduto(int idProd, String nome, double preco, String descricao, int quantidade, boolean status, ArrayList<Beneficios> befenicios, int idObjetivo, String descricaoObj,ArrayList<ImagemProduto> imagens){
+    public boolean cadastrarProduto(int idProd, String nome, double preco, String descricao, int quantidade, boolean status, ArrayList<Categorias> befenicios, int idObjetivo, String descricaoObj,ArrayList<ImagemProduto> imagens){
         boolean salvaProd = false;
         boolean salvarBene = false;
         boolean salvarImg = false;
         
-        Produto produto = new Produto(idProd, nome, preco, descricao, quantidade, status, befenicios);
+        Produto produto = new Produto(idProd, nome, preco, descricao, quantidade, status);
         
         salvaProd = new DAO.DAO_Produto().daoSalvarProduto(produto);
         int idProd1 =  new DAO.DAO_Produto().UltimoID();

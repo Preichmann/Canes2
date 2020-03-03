@@ -18,16 +18,14 @@ public class Produto{
     private String descricao;
     private int quantidade;
     private boolean status;
-    private ArrayList<Beneficios> beneficios;
 
-    public Produto(int idProd, String nome, double preco, String descricao, int quantidade, boolean status, ArrayList<Beneficios> befenicios) {
+    public Produto(int idProd, String nome, double preco, String descricao, int quantidade, boolean status) {
         this.idProd = idProd;
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
         this.quantidade = quantidade;
         this.status = status;
-        this.beneficios = befenicios;
     }
 
     public int getIdProd() {
@@ -36,14 +34,6 @@ public class Produto{
 
     public void setIdProd(int idProd) {
         this.idProd = idProd;
-    }
-
-    public ArrayList<Beneficios> getBeneficios() {
-        return beneficios;
-    }
-
-    public void setBeneficios(ArrayList<Beneficios> beneficios) {
-        this.beneficios = beneficios;
     }
 
     public String getNome() {

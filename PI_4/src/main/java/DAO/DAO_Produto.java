@@ -5,10 +5,9 @@
  */
 package DAO;
 
-import Classes.Beneficios;
+import Classes.Categorias;
 import Classes.ImagemProduto;
 import Classes.Produto;
-import Controller.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,7 +47,7 @@ public class DAO_Produto {
         return retorno;
     }
 
-    public boolean salvarBeneficios(ArrayList<Beneficios> bene, int idProd) {
+    public boolean salvarBeneficios(ArrayList<Categorias> bene, int idProd) {
         boolean retorno = false;
 
         Conexao conec = new Conexao();
@@ -57,7 +56,7 @@ public class DAO_Produto {
 
             PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO CANESSUPLEMENTO.BENEFICIO(NOME,ID_PRODUTO)\n"
                     + "VALUES (?,?)");
-            for(Beneficios ben : bene){
+            for(Categorias ben : bene){
             comandoSQL.setString(1, ben.getNome());
             comandoSQL.setInt(2, idProd);
             }

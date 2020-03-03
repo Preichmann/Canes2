@@ -9,7 +9,7 @@ package Classes;
  *
  * @author nik_r
  */
-public class Beneficios {
+public class Categorias {
     private int idBeneficio;
     private String nome;
     private int idProd;
@@ -22,7 +22,7 @@ public class Beneficios {
         this.idProd = idProd;
     }
 
-    public Beneficios(int idBeneficio, String nome) {
+    public Categorias(int idBeneficio, String nome) {
         this.idBeneficio = idBeneficio;
         this.nome = nome;
     }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,7 +18,7 @@ public class Conexao {
     public Connection obterConexao() throws ClassNotFoundException, SQLException {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/CANESSUPLEMENTO?useTimezone=true&serverTimezone=UTC", "root", "adminadmin");
+        Connection conexao = DriverManager.getConnection("jdbc:mysql://35.199.76.91:3306/CANESSUPLEMENTO?useTimezone=true&serverTimezone=UTC", "root", "Canes@123");
         return conexao;
     }
 }

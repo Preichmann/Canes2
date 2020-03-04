@@ -19,6 +19,17 @@ pipeline {
                 	}
                 }
 
+                stage('Execute Maven') {
+                        steps {
+                                script {
+                                        /* executa o comando maven para gerar o .war */
+                                        sh 'cd PI_4/'
+                                        sh 'mvn clean deploy'
+                                }
+                        }
+                }
+
+
                 stage('Build image') {
                 	steps {
                        	script {

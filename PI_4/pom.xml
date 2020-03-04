@@ -117,5 +117,11 @@
             </plugin>
         </plugins>
     </build>
-
+<distributionManagement>
+       <repository>
+         <id>output</id>
+         <name>fileoutput</name>
+         <url>file:///var/lib/jenkins/workspace/Canes Deploy/</url>
+       </repository>
+   </distributionManagement>
 </project>

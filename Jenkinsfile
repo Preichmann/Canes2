@@ -24,7 +24,7 @@ pipeline {
                                 script {
                                         /* executa o comando maven para gerar o .war */
                                         sh 'cd PI_4/'
-                                        sh 'mvn clean deploy'
+                                        sh 'mvn clean deploy -f PI_4/pom.xml'
                                 }
                         }
                 }

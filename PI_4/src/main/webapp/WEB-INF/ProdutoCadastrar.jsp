@@ -99,7 +99,26 @@
                         <label class="custom-control-label" for="produtoDisponivel">Disponível</label>
                     </div>
                 </div>
-
+                <c:forEach items="${ListaPerguntaAtt}" var="listaPergunta" varStatus="theCount">
+                    <h4>${listaPergunta.getPergunta()}</h4>
+                    <textarea class="form-control" id="resposta${theCount.index}" rows="3"></textarea>
+                </c:forEach>
+                <fieldset>
+                    <legend>Objetivos</legend>
+                    <c:forEach items="${ListaObjetivoAtt}" var="listaObjetivo" varStatus="theCounter">
+                        <p><input type="checkbox" name="Objetivo" id="Objetivo${theCounter.index}">
+                            <label for="Objetivo${theCounter.index}">${listaObjetivo.getDescricaoObj()}</label>
+                        </p>
+                    </c:forEach>
+                </fieldset>
+                <fieldset>
+                    <legend>Categorias</legend>
+                    <c:forEach items="${ListaCategoriaAtt}" var="listaCategoria" varStatus="theCounters">
+                        <p><input type="checkbox" name="Categoria" id="Categoria${theCounters.index}">
+                            <label for="Categoria${theCounters.index}">${listaCategoria.getNome()}</label>
+                        </p>
+                    </c:forEach>
+                </fieldset>
                 <input type="submit" value="Salvar" class="btn btn-success col-2" />
             </form>
 
@@ -116,11 +135,8 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
                     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
-            <c:forEach items="${ListaPerguntaAtt}" var="listaPergunta" varStatus="theCount">
-                <td id="IDtable"><c:out value="${produto.getID()}" /></td>
-                <h4>${listaPergunta.getPergunta()}</h4>
-                <textarea class="form-control" id="resposta${theCount.index}" rows="3"></textarea>
-            </c:forEach>
+
+
     </body>
 
 </html>

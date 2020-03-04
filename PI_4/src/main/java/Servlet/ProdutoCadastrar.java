@@ -33,6 +33,8 @@ public class ProdutoCadastrar extends HttpServlet {
         ArrayList<Categorias> listaCategoria = new Controller.Controller_Produto().getCategoria();
         
         request.setAttribute("ListaPerguntaAtt", listaPergunta);
+        request.setAttribute("ListaObjetivoAtt", listaObjetivo);
+        request.setAttribute("ListaCategoriaAtt", listaCategoria);
         
         request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
                 .forward(request, response);

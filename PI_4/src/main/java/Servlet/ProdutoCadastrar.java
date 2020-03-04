@@ -8,6 +8,7 @@ package Servlet;
 import Classes.Categorias;
 import Classes.Objetivo;
 import Classes.Pergunta;
+import Classes.Produto;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -38,16 +39,25 @@ public class ProdutoCadastrar extends HttpServlet {
         
         request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
                 .forward(request, response);
-     //*   RequestDispatcher dispatcher
-                //= request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp");
- //       dispatcher.forward(request, response);
+    
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<Pergunta> listaPergunta = new Controller.Controller_Produto().getPergunta();
         
+        request.setCharacterEncoding("UTF-8");
+        String produtoNom = request.getParameter("produtoNome");
+        String produtoPreco = request.getParameter("produtoValorUnitario");
+        String produtoDesc = request.getParameter("produtoDescricao");
+        String quantidadeStr = request.getParameter("produtoQuantidadeEstoque");
+        String produtoDisp = request.getParameter("produtoDisponivel");
+        
+        double precoProduto = Double.parseDouble(produtoPreco);
+        int quantidadeProduto = Integer.parseInt(quantidadeStr);
+        boolean validador = Boolean.parseBoolean(produtoDisp);
+        
+        Produto P = new Produto(produtoNom, precoProduto, produtoDesc, quantidadeProduto, validador);
          request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
                 .forward(request, response);
     }

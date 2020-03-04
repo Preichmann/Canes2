@@ -62,22 +62,22 @@
             <hr>
 
             <form id="ProdutoCadastrar" name="ProdutoCadastrar" method="post"
-                  action="${pageContext.request.contextPath}/formularioProduto" novalidate>
+                  action="${pageContext.request.contextPath}/ProdutoCadastrar" novalidate>
 
                 <div class="form-group">
                     <label for="produtoNome">Produto</label>
-                    <input type="text" class="form-control" id="produtoNome" placeholder="Produto">
+                    <input type="text" class="form-control" name="produtoNome" id="produtoNome" placeholder="Produto">
                 </div>
 
                 <div class="form-group">
                     <label for="produtoDescricao">Descrição</label>
-                    <textarea class="form-control" id="produtoDescricao" rows="3"></textarea>
+                    <textarea class="form-control" name="produtoDescricao" id="produtoDescricao" rows="3"></textarea>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="produtoValorUnitario">Valor Unitário</label>
-                        <input type="text" class="form-control" id="produtoValorUnitario" placeholder="">
+                        <input type="text" class="form-control" name="produtoValorUnitario" id="produtoValorUnitario" placeholder="">
                     </div>
                     <!--
                         <div class="input-group mb-3">
@@ -91,22 +91,22 @@
 
                     <div class="form-group col-md-4">
                         <label for="produtoQuantidadeEstoque">Quantidade em Estoque</label>
-                        <input type="text" class="form-control" id="produtoQuantidadeEstoque" placeholder="">
+                        <input type="text" class="form-control" name="produtoQuantidadeEstoque" id="produtoQuantidadeEstoque" placeholder="">
                     </div>
 
                     <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="produtoDisponivel">
+                        <input type="checkbox" class="custom-control-input" name="produtoDisponivel" id="produtoDisponivel">
                         <label class="custom-control-label" for="produtoDisponivel">Disponível</label>
                     </div>
                 </div>
                 <c:forEach items="${ListaPerguntaAtt}" var="listaPergunta" varStatus="theCount">
                     <h4>${listaPergunta.getPergunta()}</h4>
-                    <textarea class="form-control" id="resposta${theCount.index}" rows="3"></textarea>
+                    <textarea class="form-control" name="resposta${theCount.index}" id="resposta${theCount.index}" rows="3"></textarea>
                 </c:forEach>
                 <fieldset>
                     <legend>Objetivos</legend>
                     <c:forEach items="${ListaObjetivoAtt}" var="listaObjetivo" varStatus="theCounter">
-                        <p><input type="checkbox" name="Objetivo" id="Objetivo${theCounter.index}">
+                        <p><input type="checkbox" name="Objetivo${theCounter.index}" id="Objetivo${theCounter.index}">
                             <label for="Objetivo${theCounter.index}">${listaObjetivo.getDescricaoObj()}</label>
                         </p>
                     </c:forEach>
@@ -114,7 +114,7 @@
                 <fieldset>
                     <legend>Categorias</legend>
                     <c:forEach items="${ListaCategoriaAtt}" var="listaCategoria" varStatus="theCounters">
-                        <p><input type="checkbox" name="Categoria" id="Categoria${theCounters.index}">
+                        <p><input type="checkbox" name="Categoria${theCounters.index}" id="Categoria${theCounters.index}">
                             <label for="Categoria${theCounters.index}">${listaCategoria.getNome()}</label>
                         </p>
                     </c:forEach>

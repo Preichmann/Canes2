@@ -19,6 +19,14 @@ public class Produto{
     private int quantidade;
     private boolean status;
 
+    public Produto(String nome, double preco, String descricao, int quantidade, boolean status) {
+        this.nome = nome;
+        this.preco = preco;
+        this.descricao = descricao;
+        this.quantidade = quantidade;
+        this.status = status;
+    }
+
     public Produto(int idProd, String nome, double preco, String descricao, int quantidade, boolean status) {
         this.idProd = idProd;
         this.nome = nome;

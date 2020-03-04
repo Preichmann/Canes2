@@ -7,6 +7,7 @@ package Controller;
 
 import Classes.Categorias;
 import Classes.ImagemProduto;
+import Classes.Objetivo;
 import Classes.Pergunta;
 import Classes.Produto;
 import java.util.ArrayList;
@@ -35,6 +36,12 @@ public class Controller_Produto {
     }
     public ArrayList<Pergunta> getPergunta (){
         return new DAO.DAO_Produto().getPergunta();
+    }
+    public ArrayList<Objetivo> getObjetivo (){
+        return new DAO.DAO_Produto().getObjetivo();
+    }
+    public ArrayList<Categorias> getCategoria (){
+        return new DAO.DAO_Produto().getCategoria();
     }
     
 }

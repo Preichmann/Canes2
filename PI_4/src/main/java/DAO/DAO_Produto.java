@@ -7,6 +7,7 @@ package DAO;
 
 import Classes.Categorias;
 import Classes.ImagemProduto;
+import Classes.Objetivo;
 import Classes.Pergunta;
 import Classes.Produto;
 import java.sql.Connection;
@@ -143,5 +144,51 @@ public class DAO_Produto {
             ex.printStackTrace();
         }
         return listaPergunta;
+    }
+    public ArrayList<Objetivo> getObjetivo(){
+        Conexao conec = new Conexao();
+        ArrayList<Objetivo> listaObjetivo = new ArrayList<Objetivo>();
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("select ID_OBJETIVO, NOME from SUPLEMENTOS.OBJETIVO;");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Objetivo o = new Objetivo();
+                    o.setIdObjetivo(rs.getInt("ID_OBJETIVO"));
+                    o.setDescricaoObj(rs.getString("NOME"));
+                    listaObjetivo.add(o);
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaObjetivo;
+    }
+    public ArrayList<Categorias> getCategoria(){
+        Conexao conec = new Conexao();
+        ArrayList<Categorias> listaCategorias = new ArrayList<Categorias>();
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("select ID_CATEGORIA, NOME  from SUPLEMENTOS.CATEGORIA;");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Categorias c = new Categorias();
+                    c.setIdCategoria(rs.getInt("ID_CATEGORIA"));
+                    c.setNome(rs.getString("NOME"));
+                    listaCategorias.add(c);
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaCategorias;
     }
 }

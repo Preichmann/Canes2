@@ -5,6 +5,8 @@
  */
 package Servlet;
 
+import Classes.Categorias;
+import Classes.Objetivo;
 import Classes.Pergunta;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,6 +29,8 @@ public class ProdutoCadastrar extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ArrayList<Pergunta> listaPergunta = new Controller.Controller_Produto().getPergunta();
+        ArrayList<Objetivo> listaObjetivo = new Controller.Controller_Produto().getObjetivo();
+        ArrayList<Categorias> listaCategoria = new Controller.Controller_Produto().getCategoria();
         
         request.setAttribute("ListaPerguntaAtt", listaPergunta);
         
@@ -41,8 +45,6 @@ public class ProdutoCadastrar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ArrayList<Pergunta> listaPergunta = new Controller.Controller_Produto().getPergunta();
-        
-        request.setAttribute("ListaPerguntaAtt", listaPergunta);
         
          request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
                 .forward(request, response);

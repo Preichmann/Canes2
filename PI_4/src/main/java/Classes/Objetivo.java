@@ -12,20 +12,13 @@ package Classes;
 public class Objetivo {
     private int idObjetivo;
     private String descricaoObj;
-    private int idProd;
 
-    public Objetivo(int idObjetivo, String descricaoObj, int idProd) {
+    public Objetivo() {
+    }
+
+    public Objetivo(int idObjetivo, String descricaoObj) {
         this.idObjetivo = idObjetivo;
         this.descricaoObj = descricaoObj;
-        this.idProd = idProd;
-    }
-
-    public int getIdProd() {
-        return idProd;
-    }
-
-    public void setIdProd(int idProd) {
-        this.idProd = idProd;
     }
 
     public int getIdObjetivo() {

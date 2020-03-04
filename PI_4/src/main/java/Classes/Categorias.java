@@ -10,29 +10,23 @@ package Classes;
  * @author nik_r
  */
 public class Categorias {
-    private int idBeneficio;
+    private int idCategoria;
     private String nome;
-    private int idProd;
 
-    public int getIdProd() {
-        return idProd;
-    }
-
-    public void setIdProd(int idProd) {
-        this.idProd = idProd;
+    public Categorias() {
     }
 
     public Categorias(int idBeneficio, String nome) {
-        this.idBeneficio = idBeneficio;
+        this.idCategoria = idBeneficio;
         this.nome = nome;
     }
 
-    public int getIdBeneficio() {
-        return idBeneficio;
+    public int getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setIdBeneficio(int idBeneficio) {
-        this.idBeneficio = idBeneficio;
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     public String getNome() {
@@ -42,5 +36,7 @@ public class Categorias {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+   
     
 }

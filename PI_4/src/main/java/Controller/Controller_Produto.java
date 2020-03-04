@@ -10,6 +10,7 @@ import Classes.ImagemProduto;
 import Classes.Objetivo;
 import Classes.Pergunta;
 import Classes.Produto;
+import Classes.Resposta;
 import java.util.ArrayList;
 
 /**
@@ -17,31 +18,40 @@ import java.util.ArrayList;
  * @author Gabriel Vital
  */
 public class Controller_Produto {
-    public boolean cadastrarProduto(int idProd, String nome, double preco, String descricao, int quantidade, boolean status, ArrayList<Categorias> befenicios, int idObjetivo, String descricaoObj,ArrayList<ImagemProduto> imagens){
+
+    public boolean cadastrarProduto(Produto p, ArrayList<Resposta> Respostas, ArrayList<Categorias> Categoria) {
         boolean salvaProd = false;
-        boolean salvarBene = false;
+        boolean salvarCategoria = false;
         boolean salvarImg = false;
-        
-        Produto produto = new Produto(idProd, nome, preco, descricao, quantidade, status);
-        
-        salvaProd = new DAO.DAO_Produto().daoSalvarProduto(produto);
-        int idProd1 =  new DAO.DAO_Produto().UltimoID();
-        salvarBene = new DAO.DAO_Produto().salvarBeneficios(befenicios, idProd1);
-        salvarImg = new DAO.DAO_Produto().salvarImgs(imagens,idProd1);
-        if(salvaProd && salvarBene && salvarImg){
+        boolean salvarRespostas = false;
+
+        salvaProd = new DAO.DAO_Produto().daoSalvarProduto(p);
+        int idProd1 = new DAO.DAO_Produto().UltimoID();
+        salvarRespostas = new DAO.DAO_Produto().salvarRespostas(Respostas,idProd1);
+        /**''
+         * salvarCategoria = new DAO.DAO_Produto().salvarCategorias(Categorias,
+         * idProd1); salvarImg = new DAO.DAO_Produto().salvarImgs(imagens,
+         * idProd1);
+         *
+         *
+         */
+        if (salvarRespostas) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    public ArrayList<Pergunta> getPergunta (){
+
+    public ArrayList<Pergunta> getPergunta() {
         return new DAO.DAO_Produto().getPergunta();
     }
-    public ArrayList<Objetivo> getObjetivo (){
+
+    public ArrayList<Objetivo> getObjetivo() {
         return new DAO.DAO_Produto().getObjetivo();
     }
-    public ArrayList<Categorias> getCategoria (){
+
+    public ArrayList<Categorias> getCategoria() {
         return new DAO.DAO_Produto().getCategoria();
     }
-    
+
 }

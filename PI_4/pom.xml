@@ -4,7 +4,7 @@
 
     <groupId>br.senac.tads.pi4</groupId>
     <artifactId>PI4</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>deploy</version>
     <packaging>war</packaging>
 
     <name>PI4</name>

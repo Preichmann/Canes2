@@ -18,7 +18,7 @@ public class Conexao {
     public Connection obterConexao() throws ClassNotFoundException, SQLException {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection conexao = DriverManager.getConnection("jdbc:mysql://35.199.76.91:3306/CANESSUPLEMENTO?useTimezone=true&serverTimezone=UTC", "root", "Canes@123");
+        Connection conexao = DriverManager.getConnection("jdbc:mysql://35.199.76.91:3306/SUPLEMENTOS?useTimezone=true&serverTimezone=UTC", "root", "Canes@123");
         return conexao;
     }
 }

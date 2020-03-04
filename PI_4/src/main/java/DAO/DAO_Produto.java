@@ -7,6 +7,7 @@ package DAO;
 
 import Classes.Categorias;
 import Classes.ImagemProduto;
+import Classes.Pergunta;
 import Classes.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -118,5 +119,29 @@ public class DAO_Produto {
             retorno = false;
         }
         return retorno;
+    }
+    
+    public ArrayList<Pergunta> getPergunta(){
+        Conexao conec = new Conexao();
+        ArrayList<Pergunta> listaPergunta = new ArrayList<Pergunta>();
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("select ID_PERGUNTA, PERGUNTA from SUPLEMENTOS.PERGUNTA;");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Pergunta p = new Pergunta();
+                    p.setIdPergunta(rs.getInt("ID_PERGUNTA"));
+                    p.setPergunta(rs.getString("PERGUNTA"));
+                    listaPergunta.add(p);
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaPergunta;
     }
 }

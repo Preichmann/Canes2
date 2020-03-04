@@ -1,0 +1,38 @@
+.imagem-carrossel {
+  object-fit: cover; 
+  object-position: 0 80%;
+  height: 400px;
+}
+
+.fonte-titulo {
+  font-family: 'Times New Roman'; 
+}
+
+.texto-cor-especial {
+  color: #8D0606!important;
+}
+
+.card-largura {
+  width: 18rem;
+}
+
+.card-imagem-posicao {
+  height:200px;
+  object-fit:cover;
+  object-position: 0 60%;
+}
+
+
+.borda-cor-especial {
+  border-color: #8D0606;
+}
+
+.btn-cor-especial {
+  background-color: #8D0606;
+  color: white;
+}
+
+.produto-detalhe{
+  width: 60%;
+  height: 90%;
+}

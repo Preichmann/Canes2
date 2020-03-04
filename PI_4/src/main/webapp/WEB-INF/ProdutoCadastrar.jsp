@@ -63,12 +63,6 @@
 
             <form id="ProdutoCadastrar" name="ProdutoCadastrar" method="post"
                   action="${pageContext.request.contextPath}/formularioProduto" novalidate>
-                <div class="form-row">
-                    <div class="form-group col-md-2">
-                        <label for="produtoId">ID</label>
-                        <input type="text" class="form-control" id="produtoId">
-                    </div>
-                </div>
 
                 <div class="form-group">
                     <label for="produtoNome">Produto</label>
@@ -122,6 +116,11 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
                     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
+            <c:forEach items="${ListaPerguntaAtt}" var="listaPergunta" varStatus="theCount">
+                <td id="IDtable"><c:out value="${produto.getID()}" /></td>
+                <h4>${listaPergunta.getPergunta()}</h4>
+                <textarea class="form-control" id="resposta${theCount.index}" rows="3"></textarea>
+            </c:forEach>
     </body>
 
 </html>

@@ -7,6 +7,7 @@ package Controller;
 
 import Classes.Categorias;
 import Classes.ImagemProduto;
+import Classes.Pergunta;
 import Classes.Produto;
 import java.util.ArrayList;
 
@@ -32,4 +33,8 @@ public class Controller_Produto {
             return false;
         }
     }
+    public ArrayList<Pergunta> getPergunta (){
+        return new DAO.DAO_Produto().getPergunta();
+    }
+    
 }

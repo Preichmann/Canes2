@@ -1,1 +1,9 @@
-Classes\ImagenProduto.class
+Servlet\ProdutoCadastrar.class
+Classes\Pergunta.class
+DAO\Conexao.class
+Classes\Categorias.class
+Classes\ImagemProduto.class
+Classes\Produto.class
+DAO\DAO_Produto.class
+Classes\Objetivo.class
+Controller\Controller_Produto.class

@@ -53,6 +53,7 @@ public class ProdutoCadastrar extends HttpServlet {
         ArrayList<Resposta> Objetivos = new ArrayList<>();
         ArrayList<Resposta> Categorias = new ArrayList<>();
         boolean validador = false;
+        
         request.setCharacterEncoding("UTF-8");
         String produtoNom = request.getParameter("produtoNome");
         String produtoPreco = request.getParameter("produtoValorUnitario");
@@ -83,7 +84,9 @@ public class ProdutoCadastrar extends HttpServlet {
 
         double precoProduto = Double.parseDouble(produtoPreco);
         int quantidadeProduto = Integer.parseInt(quantidadeStr);
-        if (produtoDisp.equals("on")) {
+        if (produtoDisp == null) {
+            validador = false;
+        }else{
             validador = true;
         }
 

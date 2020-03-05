@@ -21,6 +21,13 @@
     </head>
 
     <body>
+        <script>
+            if (${resultAtt} === true) {
+                alert('Produto Salvo Com sucesso!');
+            } else {
+                alert('Falha ao Salvar o Produto!');
+            }
+        </script> 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">
                 <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
@@ -116,6 +123,7 @@
                 <fieldset>
                     <legend>Categorias</legend>
                     <c:forEach items="${ListaCategoriaAtt}" var="listaCategoria" varStatus="theCounters">
+                        <input type="hidden" value="${listaCategoria.getIdCategoria()}" name="idCategoria${theCounters.index}" id="idCategoria${theCounters.index}" />
                         <p><input type="checkbox" name="Categoria${theCounters.index}" id="Categoria${theCounters.index}">
                             <label for="Categoria${theCounters.index}">${listaCategoria.getNome()}</label>
                         </p>

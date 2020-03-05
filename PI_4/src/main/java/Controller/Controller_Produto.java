@@ -19,11 +19,12 @@ import java.util.ArrayList;
  */
 public class Controller_Produto {
 
-    public boolean cadastrarProduto(Produto p, ArrayList<Resposta> Respostas) {
+    public boolean cadastrarProduto(Produto p, ArrayList<Resposta> Respostas, ArrayList<Objetivo> objetivos, ArrayList<Categorias> categoria) {
         int idProduto = 0;
         boolean salvarCategoria = false;
         boolean salvarImg = false;
         boolean salvarRespostas = false;
+        boolean salvarObjetivos = false;
 
         idProduto = new DAO.DAO_Produto().daoSalvarProduto(p);
         if (idProduto == 0) {
@@ -32,16 +33,15 @@ public class Controller_Produto {
             for (Resposta r : Respostas) {
                 salvarRespostas = new DAO.DAO_Produto().salvarRespostas(r, idProduto);
             }
+            for (Objetivo o : objetivos) {
+                salvarObjetivos = new DAO.DAO_Produto().salvarObjetivo(o.getIdObjetivo(),idProduto);
+            }
+            for(Categorias c : categoria){
+                salvarCategoria = new DAO.DAO_Produto().salvarCategorias(c.getIdCategoria(), idProduto);
+            }
         }
 
-        /**
-         * '' salvarCategoria = new
-         * DAO.DAO_Produto().salvarCategorias(Categorias, idProd1); salvarImg =
-         * new DAO.DAO_Produto().salvarImgs(imagens, idProd1);
-         *
-         *
-         */
-        if (salvarRespostas && idProduto > 0) {
+        if (idProduto > 0 && salvarRespostas && salvarObjetivos && salvarCategoria) {
             return true;
         } else {
             return false;

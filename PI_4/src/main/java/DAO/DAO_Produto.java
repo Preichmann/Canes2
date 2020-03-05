@@ -79,19 +79,42 @@ public class DAO_Produto {
         return retorno;
     }
 
-    public boolean salvarCategorias(ArrayList<Categorias> cate, int idProd) {
+    public boolean salvarObjetivo(int idObjetivo, int idProd) {
         boolean retorno = false;
 
         Conexao conec = new Conexao();
 
         try (Connection conexao = conec.obterConexao()) {
 
-            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO CANESSUPLEMENTO.BENEFICIO(NOME,ID_PRODUTO)\n"
+            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.PROD_OBJETIVO(FK_ID_OBJETIVO,FK_ID_PRODUTO)\n"
                     + "VALUES (?,?)");
-            for (Categorias ben : cate) {
-                comandoSQL.setString(1, ben.getNome());
-                comandoSQL.setInt(2, idProd);
-            }
+
+            comandoSQL.setInt(1, idObjetivo);
+            comandoSQL.setInt(2, idProd);
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            retorno = false;
+        }
+        return retorno;
+    }
+
+    public boolean salvarCategorias(int idCategoria, int idProd) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.PROD_CATEGORIA(FK_ID_CATEGORIA,FK_ID_PRODUTO)\n"
+                    + "VALUES (?,?)");
+
+            comandoSQL.setInt(1, idCategoria);
+            comandoSQL.setInt(2, idProd);
 
             int linhaAfetada = comandoSQL.executeUpdate();
 

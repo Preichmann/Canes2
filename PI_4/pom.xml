@@ -37,7 +37,7 @@
         </developer>
     </developers>
     <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir> 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     
@@ -117,11 +117,11 @@
             </plugin>
         </plugins>
     </build>
-<distributionManagement>
-       <repository>
-         <id>output</id>
-         <name>fileoutput</name>
-         <url>file:///var/lib/jenkins/workspace/Canes Deploy/</url>
-       </repository>
-   </distributionManagement>
+    <distributionManagement>
+        <repository>
+            <id>output</id>
+            <name>fileoutput</name>
+            <url>file:///var/lib/jenkins/workspace/Canes Deploy/</url>
+        </repository>
+    </distributionManagement>
 </project>

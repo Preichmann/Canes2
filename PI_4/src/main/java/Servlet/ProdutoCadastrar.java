@@ -50,10 +50,10 @@ public class ProdutoCadastrar extends HttpServlet {
         ArrayList<Objetivo> listaObjetivo = new Controller.Controller_Produto().getObjetivo();
         ArrayList<Categorias> listaCategoria = new Controller.Controller_Produto().getCategoria();
         ArrayList<Resposta> Resposta = new ArrayList<>();
-        ArrayList<Resposta> Objetivos = new ArrayList<>();
-        ArrayList<Resposta> Categorias = new ArrayList<>();
+        ArrayList<Objetivo> Objetivos = new ArrayList<>();
+        ArrayList<Categorias> Categoria = new ArrayList<>();
         boolean validador = false;
-        
+
         request.setCharacterEncoding("UTF-8");
         String produtoNom = request.getParameter("produtoNome");
         String produtoPreco = request.getParameter("produtoValorUnitario");
@@ -70,28 +70,44 @@ public class ProdutoCadastrar extends HttpServlet {
             Resposta.add(r);
             counterPergunta++;
         }
+
         int counterObjetivo = 0;
         for (Objetivo o : listaObjetivo) {
-            String idObj = request.getParameter("idObjetivo" + counterObjetivo);
-            int idObjetivo = Integer.parseInt(idObj);
-
+            String objetivo = request.getParameter("Objetivo" + counterObjetivo);
+            if (objetivo == null) {
+            } else {
+                String idObj = request.getParameter("idObjetivo" + counterObjetivo);
+                int idObjetivo = Integer.parseInt(idObj);
+                Objetivo obj = new Objetivo(idObjetivo);
+                Objetivos.add(obj);
+            }
             counterObjetivo++;
         }
-        int counterCategoria = 0;
-        for (Pergunta p : listaPergunta) {
 
+        int counterCategoria = 0;
+        for (Categorias c : listaCategoria) {
+            String categoria = request.getParameter("Categoria" + counterCategoria);
+            if (categoria == null) {
+            } else {
+                String idCate = request.getParameter("idCategoria" + counterCategoria);
+                int idCategoria = Integer.parseInt(idCate);
+                Categorias cat = new Categorias(idCategoria);
+                Categoria.add(cat);
+            }
+            counterCategoria++;
         }
 
         double precoProduto = Double.parseDouble(produtoPreco);
         int quantidadeProduto = Integer.parseInt(quantidadeStr);
         if (produtoDisp == null) {
             validador = false;
-        }else{
+        } else {
             validador = true;
         }
 
         Produto P = new Produto(produtoNom, precoProduto, produtoDesc, quantidadeProduto, validador);
-        boolean result = new Controller.Controller_Produto().cadastrarProduto(P, Resposta);
+        boolean result = new Controller.Controller_Produto().cadastrarProduto(P, Resposta,Objetivos,Categoria);
+        request.setAttribute("resultAtt", result);
         request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
                 .forward(request, response);
     }

@@ -16,6 +16,10 @@ public class Categorias {
     public Categorias() {
     }
 
+    public Categorias(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
     public Categorias(int idBeneficio, String nome) {
         this.idCategoria = idBeneficio;
         this.nome = nome;

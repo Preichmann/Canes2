@@ -16,6 +16,10 @@ public class Objetivo {
     public Objetivo() {
     }
 
+    public Objetivo(int idObjetivo) {
+        this.idObjetivo = idObjetivo;
+    }
+
     public Objetivo(int idObjetivo, String descricaoObj) {
         this.idObjetivo = idObjetivo;
         this.descricaoObj = descricaoObj;

@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -23,34 +24,37 @@ import java.util.ArrayList;
  */
 public class DAO_Produto {
 
-    public boolean daoSalvarProduto(Produto produto) {
-        boolean retorno = false;
+    public int daoSalvarProduto(Produto produto) {
+        int idProd = 0;
 
         Conexao conec = new Conexao();
 
         try (Connection conexao = conec.obterConexao()) {
 
-            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTO.PRODUTO(NOME,DESCRICAO,STATUS,VALOR_UNIT,QUANTIDADE)\n"
-                    + "VALUES (?,?,?,?,?)");
+            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.PRODUTO(NOME,DESCRICAO,STATUS,VALOR_UNIT,QUANTIDADE,FK_ID_USUARIO)\n"
+                    + "VALUES (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
             comandoSQL.setString(1, produto.getNome());
             comandoSQL.setString(2, produto.getDescricao());
             comandoSQL.setBoolean(3, produto.isStatus());
             comandoSQL.setDouble(4, produto.getPreco());
             comandoSQL.setInt(5, produto.getQuantidade());
+            comandoSQL.setInt(6, 1);
 
-            int linhaAfetada = comandoSQL.executeUpdate();
-
-            retorno = linhaAfetada > 0;
+            comandoSQL.executeUpdate();
+            ResultSet getId = comandoSQL.getGeneratedKeys();
+            while (getId.next()) {
+                idProd = Integer.parseInt(getId.getString(1));
+            }
 
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
-            retorno = false;
+            idProd = 0;
         }
-        return retorno;
+        return idProd;
     }
 
-    public boolean salvarRespostas(ArrayList<Resposta> resp, int idProd) {
+    public boolean salvarRespostas(Resposta r, int idProd) {
         boolean retorno = false;
 
         Conexao conec = new Conexao();
@@ -59,11 +63,10 @@ public class DAO_Produto {
 
             PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.RESPOSTA_PROD_PERG(RESPOSTA,FK_ID_PRODUTO,FK_ID_PERGUNTA)\n"
                     + "VALUES (?,?,?)");
-            for (Resposta re : resp) {
-                comandoSQL.setString(1, re.getResposta());
-                comandoSQL.setInt(2, idProd);
-                comandoSQL.setInt(3, re.getIdPergunta());
-            }
+
+            comandoSQL.setString(1, r.getResposta());
+            comandoSQL.setInt(2, idProd);
+            comandoSQL.setInt(3, r.getIdPergunta());
 
             int linhaAfetada = comandoSQL.executeUpdate();
 
@@ -99,27 +102,6 @@ public class DAO_Produto {
             retorno = false;
         }
         return retorno;
-    }
-
-    public int UltimoID() {
-        int idProd = 0;
-        Conexao conec = new Conexao();
-
-        try (Connection conexao = conec.obterConexao()) {
-
-            PreparedStatement comandoSQL = conexao.prepareStatement("select max(ID_PRODUTO) from SUPLEMENTO.PRODUTO;");
-
-            ResultSet rs = comandoSQL.executeQuery();
-
-            if (rs != null) {
-                idProd = rs.getInt("ID_PRODUTO");
-            }
-
-        } catch (ClassNotFoundException | SQLException ex) {
-            idProd = 0;
-            ex.printStackTrace();
-        }
-        return idProd;
     }
 
     public boolean salvarImgs(ArrayList<ImagemProduto> imagens, int idProd) {

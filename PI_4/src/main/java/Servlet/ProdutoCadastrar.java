@@ -26,54 +26,70 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ProdutoCadastrar", urlPatterns = {"/ProdutoCadastrar"})
 public class ProdutoCadastrar extends HttpServlet {
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ArrayList<Pergunta> listaPergunta = new Controller.Controller_Produto().getPergunta();
         ArrayList<Objetivo> listaObjetivo = new Controller.Controller_Produto().getObjetivo();
         ArrayList<Categorias> listaCategoria = new Controller.Controller_Produto().getCategoria();
-        
+
         request.setAttribute("ListaPerguntaAtt", listaPergunta);
         request.setAttribute("ListaObjetivoAtt", listaObjetivo);
         request.setAttribute("ListaCategoriaAtt", listaCategoria);
-        
+
         request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
                 .forward(request, response);
-    
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         ArrayList<Pergunta> listaPergunta = new Controller.Controller_Produto().getPergunta();
         ArrayList<Objetivo> listaObjetivo = new Controller.Controller_Produto().getObjetivo();
         ArrayList<Categorias> listaCategoria = new Controller.Controller_Produto().getCategoria();
-        ArrayList<Resposta> listaResposta = new ArrayList<>();
-        
-        
+        ArrayList<Resposta> Resposta = new ArrayList<>();
+        ArrayList<Resposta> Objetivos = new ArrayList<>();
+        ArrayList<Resposta> Categorias = new ArrayList<>();
+        boolean validador = false;
         request.setCharacterEncoding("UTF-8");
         String produtoNom = request.getParameter("produtoNome");
         String produtoPreco = request.getParameter("produtoValorUnitario");
         String produtoDesc = request.getParameter("produtoDescricao");
         String quantidadeStr = request.getParameter("produtoQuantidadeEstoque");
         String produtoDisp = request.getParameter("produtoDisponivel");
-        
-        int counterPergunta = 1;
-        for(Pergunta p : listaPergunta){
-            String resp = request.getParameter("resposta"+counterPergunta);
-            Resposta r = new Resposta(resp, counterPergunta);
-            listaResposta.add(r);
+
+        int counterPergunta = 0;
+        for (Pergunta p : listaPergunta) {
+            String resp = request.getParameter("resposta" + counterPergunta);
+            String idPergunta = request.getParameter("idPergunta" + counterPergunta);
+            int idPer = Integer.parseInt(idPergunta);
+            Resposta r = new Resposta(resp, idPer);
+            Resposta.add(r);
+            counterPergunta++;
         }
-        
+        int counterObjetivo = 0;
+        for (Objetivo o : listaObjetivo) {
+            String idObj = request.getParameter("idObjetivo" + counterObjetivo);
+            int idObjetivo = Integer.parseInt(idObj);
+
+            counterObjetivo++;
+        }
+        int counterCategoria = 0;
+        for (Pergunta p : listaPergunta) {
+
+        }
+
         double precoProduto = Double.parseDouble(produtoPreco);
         int quantidadeProduto = Integer.parseInt(quantidadeStr);
-        boolean validador = Boolean.parseBoolean(produtoDisp);
-        
+        if (produtoDisp.equals("on")) {
+            validador = true;
+        }
+
         Produto P = new Produto(produtoNom, precoProduto, produtoDesc, quantidadeProduto, validador);
-        
-         request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
+        boolean result = new Controller.Controller_Produto().cadastrarProduto(P, Resposta);
+        request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
                 .forward(request, response);
     }
 

@@ -100,12 +100,14 @@
                     </div>
                 </div>
                 <c:forEach items="${ListaPerguntaAtt}" var="listaPergunta" varStatus="theCount">
+                    <input type="hidden" value="${listaPergunta.getIdPergunta()}" name="idPergunta${theCount.index}" id="idPergunta${theCount.index}" />
                     <h4>${listaPergunta.getPergunta()}</h4>
                     <textarea class="form-control" name="resposta${theCount.index}" id="resposta${theCount.index}" rows="3"></textarea>
                 </c:forEach>
                 <fieldset>
                     <legend>Objetivos</legend>
                     <c:forEach items="${ListaObjetivoAtt}" var="listaObjetivo" varStatus="theCounter">
+                        <input type="hidden" value="${listaObjetivo.getIdObjetivo()}" name="idObjetivo${theCounter.index}" id="idObjetivo${theCounter.index}" />
                         <p><input type="checkbox" name="Objetivo${theCounter.index}" id="Objetivo${theCounter.index}">
                             <label for="Objetivo${theCounter.index}">${listaObjetivo.getDescricaoObj()}</label>
                         </p>

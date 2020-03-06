@@ -306,4 +306,113 @@ public class DAO_Produto {
         }
         return prod;
     }
+
+    public ArrayList<Resposta> getRespostas(int idProd) {
+        Conexao conec = new Conexao();
+        ArrayList<Resposta> listaResposta = new ArrayList<>();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT \n"
+                    + "    PERG.ID_PERGUNTA,\n"
+                    + "    PERG.PERGUNTA,\n"
+                    + "    RES.ID_RESPOSTA,\n"
+                    + "    RES.RESPOSTA\n"
+                    + "FROM\n"
+                    + "    SUPLEMENTOS.PRODUTO PRO\n"
+                    + "		LEFT JOIN\n"
+                    + "    SUPLEMENTOS.RESPOSTA_PROD_PERG RES ON RES.FK_ID_PRODUTO = PRO.ID_PRODUTO\n"
+                    + "        LEFT JOIN\n"
+                    + "    SUPLEMENTOS.PERGUNTA PERG ON PERG.ID_PERGUNTA = RES.FK_ID_PERGUNTA\n"
+                    + "WHERE\n"
+                    + "    PRO.ID_PRODUTO =" + idProd + " AND PRO.STATUS = 1;");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Resposta resp = new Resposta();
+                    resp.setIdPergunta(rs.getInt("ID_PERGUNTA"));
+                    resp.setPergunta(rs.getString("PERGUNTA"));
+                    resp.setIdResposta(rs.getInt("ID_RESPOSTA"));
+                    resp.setResposta(rs.getString("RESPOSTA"));
+                    listaResposta.add(resp);
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaResposta;
+    }
+
+    public ArrayList<Categorias> getCategoriaProduto(int idProd) {
+        Conexao conec = new Conexao();
+        ArrayList<Categorias> listaCategorias = new ArrayList<>();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT \n"
+                    + "    CATEG.ID_CATEGORIA,\n"
+                    + "    CATEG.NOME AS NOME_CATEGORIA\n"
+                    + "FROM\n"
+                    + "    SUPLEMENTOS.PRODUTO PRO\n"
+                    + "        LEFT JOIN\n"
+                    + "    SUPLEMENTOS.PROD_CATEGORIA CATPROD ON PRO.ID_PRODUTO = CATPROD.FK_ID_PRODUTO\n"
+                    + "        LEFT JOIN\n"
+                    + "    SUPLEMENTOS.CATEGORIA CATEG ON CATEG.ID_CATEGORIA = CATPROD.FK_ID_CATEGORIA\n"
+                    + "WHERE\n"
+                    + "    PRO.ID_PRODUTO " + idProd + "= AND PRO.STATUS = 1;");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Categorias cate = new Categorias();
+                    cate.setIdCategoria(rs.getInt("ID_CATEGORIA"));
+                    cate.setNome(rs.getString("NOME_CATEGORIA"));
+                    listaCategorias.add(cate);
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaCategorias;
+    }
+
+    public ArrayList<Objetivo> getObjetivoProduto(int idProd) {
+        Conexao conec = new Conexao();
+        ArrayList<Objetivo> listaObjetivo = new ArrayList<>();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT \n"
+                    + "    OBJ.ID_OBJETIVO,\n"
+                    + "    OBJ.NOME AS NOME_OBJETIVO\n"
+                    + " FROM\n"
+                    + "    SUPLEMENTOS.PRODUTO PRO\n"
+                    + "        LEFT JOIN\n"
+                    + "    SUPLEMENTOS.PROD_OBJETIVO OBJPRO ON PRO.ID_PRODUTO = OBJPRO.FK_ID_PRODUTO\n"
+                    + "        LEFT JOIN\n"
+                    + "    SUPLEMENTOS.OBJETIVO OBJ ON OBJ.ID_OBJETIVO = OBJPRO.FK_ID_OBJETIVO\n"
+                    + "WHERE\n"
+                    + "    PRO.ID_PRODUTO=" + idProd + " AND PRO.STATUS = 1;");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Objetivo obje = new Objetivo();
+                    obje.setIdObjetivo(rs.getInt("ID_OBJETIVO"));
+                    obje.setDescricaoObj(rs.getString("NOME_OBJETIVO"));
+                    listaObjetivo.add(obje);
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaObjetivo;
+    }
 }

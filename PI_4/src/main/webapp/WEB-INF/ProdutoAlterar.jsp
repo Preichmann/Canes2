@@ -21,13 +21,6 @@
     </head>
 
     <body>
-        <script>
-            if (${SalvarIMGAtt} === true) {
-                alert('Produto Salvo Com sucesso!');
-            } else {
-                alert('Falha ao Salvar o Produto!');
-            }
-        </script> 
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">
@@ -114,7 +107,7 @@
                 </c:forEach>
                 <fieldset>
                     <legend>Objetivos</legend>
-                    <c:forEach items="${ListaObjetivoAtt}" var="listaObjetivo" varStatus="theCounter">
+                    <c:forEach items="${listaObjetivoAtt}" var="listaObjetivo" varStatus="theCounter">
                         <input type="hidden" value="${listaObjetivo.getIdObjetivo()}" name="idObjetivo${theCounter.index}" id="idObjetivo${theCounter.index}" />
                         <p><input type="checkbox" name="Objetivo${theCounter.index}" id="Objetivo${theCounter.index}">
                             <label for="Objetivo${theCounter.index}">${listaObjetivo.getDescricaoObj()}</label>
@@ -123,7 +116,7 @@
                 </fieldset>
                 <fieldset>
                     <legend>Categorias</legend>
-                    <c:forEach items="${ListaCategoriaAtt}" var="listaCategoria" varStatus="theCounters">
+                    <c:forEach items="${listaCategoriaAtt}" var="listaCategoria" varStatus="theCounters">
                         <input type="hidden" value="${listaCategoria.getIdCategoria()}" name="idCategoria${theCounters.index}" id="idCategoria${theCounters.index}" />
                         <p><input type="checkbox" name="Categoria${theCounters.index}" id="Categoria${theCounters.index}">
                             <label for="Categoria${theCounters.index}">${listaCategoria.getNome()}</label>

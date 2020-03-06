@@ -15,6 +15,7 @@ public class Resposta {
     private String resposta;
     private int idProd;
     private int idPergunta;
+    private String pergunta;
 
     public Resposta() {
     }
@@ -22,6 +23,14 @@ public class Resposta {
     public Resposta(String resposta,int idPergunta) {
         this.resposta = resposta;
         this.idPergunta = idPergunta;
+    }
+
+    public String getPergunta() {
+        return pergunta;
+    }
+
+    public void setPergunta(String pergunta) {
+        this.pergunta = pergunta;
     }
 
     public int getIdResposta() {

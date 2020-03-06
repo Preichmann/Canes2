@@ -10,14 +10,20 @@ import Classes.Objetivo;
 import Classes.Pergunta;
 import Classes.Produto;
 import Classes.Resposta;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import Classes.Upload;
 
 /**
  *
@@ -107,6 +113,29 @@ public class ProdutoCadastrar extends HttpServlet {
 
         Produto P = new Produto(produtoNom, precoProduto, produtoDesc, quantidadeProduto, validador);
         boolean result = new Controller.Controller_Produto().cadastrarProduto(P, Resposta,Objetivos,Categoria);
+        
+
+            try {
+                List<FileItem> multiparts = new ServletFileUpload(
+                                         new DiskFileItemFactory()).parseRequest(request);
+               
+                for(FileItem item : multiparts){
+                    if(!item.isFormField()){
+                        
+                        String name = new File(item.getName()).getName();
+                        new Classes.Upload().uploadFile(name, item.get());
+                        //item.write( new File(UPLOAD_DIRECTORY + File.separator + name));
+                    }
+                }
+            
+               //File uploaded successfully
+               request.setAttribute("message", "File Uploaded Successfully");
+            } catch (Exception ex) {
+               request.setAttribute("message", "File Upload Failed due to " + ex);
+            }          
+          
+        
+        
         request.setAttribute("resultAtt", result);
         request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
                 .forward(request, response);

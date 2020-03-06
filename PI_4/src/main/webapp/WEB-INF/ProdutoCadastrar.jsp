@@ -129,6 +129,12 @@
                         </p>
                     </c:forEach>
                 </fieldset>
+                <div class="form-group">
+                    <label for="image">Imagem do Produto</label>
+                    <input type="file" name="file" id="file" class="form-control" />
+                </div>
+
+                
                 <input type="submit" value="Salvar" class="btn btn-success col-2" />
             </form>
 

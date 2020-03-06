@@ -249,4 +249,29 @@ public class DAO_Produto {
         }
         return retorno;
     }
+    
+    public ArrayList<Produto> getProdutos(){
+        Conexao conec = new Conexao();
+        ArrayList<Produto> listaProduto = new ArrayList<Produto>();
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT ID_PRODUTO, NOME, VALOR_UNIT  from SUPLEMENTOS.PRODUTO;");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Produto p = new Produto();
+                    p.setIdProd(rs.getInt("ID_PRODUTO"));
+                    p.setNome(rs.getString("NOME"));
+                    p.setPreco(rs.getDouble("VALOR_UNIT"));
+                    listaProduto.add(p);
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaProduto;
+    }
 }

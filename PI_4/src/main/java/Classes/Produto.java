@@ -36,6 +36,9 @@ public class Produto{
         this.status = status;
     }
 
+    public Produto() {
+    }
+
     public int getIdProd() {
         return idProd;
     }

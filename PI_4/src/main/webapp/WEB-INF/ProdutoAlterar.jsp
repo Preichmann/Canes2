@@ -66,11 +66,11 @@
         </nav>
 
         <div class="container">
-            <h3>Cadastrar Produto</h3>
+            <h3>Alterar Produto</h3>
             <hr>
 
-            <form id="SalvarImagem" name="ProdutoCadastrar" method="post"
-                  action="${pageContext.request.contextPath}/ProdutoCadastrar" novalidate>
+            <form id="SalvarImagem" name="AlterarProduto" method="post"
+                  action="${pageContext.request.contextPath}/AlterarProduto" novalidate>
 
                 <div class="form-group">
                     <label for="produtoNome">Produto</label>

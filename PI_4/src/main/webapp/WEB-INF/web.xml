@@ -7,6 +7,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>ProdutoCadastrar</welcome-file>
+        <welcome-file>ProdutoListar</welcome-file>
     </welcome-file-list>
 </web-app>

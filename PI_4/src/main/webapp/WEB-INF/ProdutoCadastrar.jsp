@@ -28,6 +28,13 @@
                 alert('Falha ao Salvar o Produto!');
             }
         </script> 
+        <script>
+            if (${SalvarIMGAtt} === true) {
+                alert('IMG Salvo Com sucesso!');
+            } else {
+                alert('Falha ao Salvar o IMG EU SEI È SO PRA VALIDARRRRRRRRRR!');
+            }
+        </script> 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">
                 <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
@@ -68,7 +75,7 @@
             <h3>Cadastrar Produto</h3>
             <hr>
 
-            <form id="ProdutoCadastrar" name="ProdutoCadastrar" method="post"
+            <form id="SalvarImagem" name="ProdutoCadastrar" method="post"
                   action="${pageContext.request.contextPath}/ProdutoCadastrar" novalidate>
 
                 <div class="form-group">

@@ -112,33 +112,17 @@ public class ProdutoCadastrar extends HttpServlet {
         }
 
         Produto P = new Produto(produtoNom, precoProduto, produtoDesc, quantidadeProduto, validador);
-        boolean result = new Controller.Controller_Produto().cadastrarProduto(P, Resposta,Objetivos,Categoria);
-        
+        int result = new Controller.Controller_Produto().cadastrarProduto(P, Resposta, Objetivos, Categoria);
+        if (result == 0) {
+            request.setAttribute("resultAtt", false);
+            request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
+                    .forward(request, response);
+        }else{
+            request.setAttribute("resultAtt", result);
+            request.getRequestDispatcher("/WEB-INF/SalvarImagemProd.jsp")
+                    .forward(request, response);
+        }
 
-            try {
-                List<FileItem> multiparts = new ServletFileUpload(
-                                         new DiskFileItemFactory()).parseRequest(request);
-               
-                for(FileItem item : multiparts){
-                    if(!item.isFormField()){
-                        
-                        String name = new File(item.getName()).getName();
-                        new Classes.Upload().uploadFile(name, item.get());
-                        //item.write( new File(UPLOAD_DIRECTORY + File.separator + name));
-                    }
-                }
-            
-               //File uploaded successfully
-               request.setAttribute("message", "File Uploaded Successfully");
-            } catch (Exception ex) {
-               request.setAttribute("message", "File Upload Failed due to " + ex);
-            }          
-          
-        
-        
-        request.setAttribute("resultAtt", result);
-        request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
-                .forward(request, response);
     }
 
 }

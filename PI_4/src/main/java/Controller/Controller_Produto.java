@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class Controller_Produto {
 
-    public boolean cadastrarProduto(Produto p, ArrayList<Resposta> Respostas, ArrayList<Objetivo> objetivos, ArrayList<Categorias> categoria) {
+    public int cadastrarProduto(Produto p, ArrayList<Resposta> Respostas, ArrayList<Objetivo> objetivos, ArrayList<Categorias> categoria) {
         int idProduto = 0;
         boolean salvarCategoria = false;
         boolean salvarImg = false;
@@ -28,23 +28,23 @@ public class Controller_Produto {
 
         idProduto = new DAO.DAO_Produto().daoSalvarProduto(p);
         if (idProduto == 0) {
-            return false;
+            return 0;
         } else {
             for (Resposta r : Respostas) {
                 salvarRespostas = new DAO.DAO_Produto().salvarRespostas(r, idProduto);
             }
             for (Objetivo o : objetivos) {
-                salvarObjetivos = new DAO.DAO_Produto().salvarObjetivo(o.getIdObjetivo(),idProduto);
+                salvarObjetivos = new DAO.DAO_Produto().salvarObjetivo(o.getIdObjetivo(), idProduto);
             }
-            for(Categorias c : categoria){
+            for (Categorias c : categoria) {
                 salvarCategoria = new DAO.DAO_Produto().salvarCategorias(c.getIdCategoria(), idProduto);
             }
         }
 
         if (idProduto > 0 && salvarRespostas && salvarObjetivos && salvarCategoria) {
-            return true;
+            return idProduto;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -58,6 +58,10 @@ public class Controller_Produto {
 
     public ArrayList<Categorias> getCategoria() {
         return new DAO.DAO_Produto().getCategoria();
+    }
+
+    public boolean SalvarImagem(String fileName, int idProd) {
+        return new DAO.DAO_Produto().salvarImagem(fileName,idProd);
     }
 
 }

@@ -225,4 +225,28 @@ public class DAO_Produto {
         }
         return listaCategorias;
     }
+
+    public boolean salvarImagem(String fileName, int idProd) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.PROD_IMG (FK_ID_PRODUTO,NOME)\n"
+                    + "VALUES (?,?)");
+            
+                comandoSQL.setInt(1, idProd);
+                comandoSQL.setString(2, fileName);
+            
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            retorno = false;
+        }
+        return retorno;
+    }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%-- Alterar o padrão para JSP --%>>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
     <head>
@@ -50,27 +51,32 @@
         </header>
 
         <main>
-            <c:forEach items="${ListaProdAtt}" var="listaProd">
-                <section id="produtos" class="bg-light pb-5">
-                    <div class="container d-flex flex-wrap justify-content-md-around justify-content-center">
 
-                        <form id="SalvarImagem" name="ProdutoAlterar" method="post"
-                              action="${pageContext.request.contextPath}/ProdutoAlterar" novalidate>
-                            <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
-                            <article class="card borda-cor-especial card-largura mt-5">
-                                <img src="src/img/wheyProtein.png" class="card-img-top card-imagem-posicao" alt="">
-                                <div class="card-body">
+            <section id="produtos" class="bg-light pb-5">
+                <div class="container d-flex flex-wrap justify-content-md-around justify-content-center">
+                    <c:forEach items="${ListaProdAtt}" var="listaProd">
+
+                        <article class="card borda-cor-especial card-largura mt-5">
+                            <img src="src/img/wheyProtein.png" class="card-img-top card-imagem-posicao" alt="">
+                            <div class="card-body">
+                                <form id="SalvarImagem" name="ProdutoListar" method="post"
+                                      action="${pageContext.request.contextPath}/ProdutoListar" novalidate>
+                                    <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
                                     <h5 class="card-title"><c:out value="${listaProd.getNome()}" /></h5>
                                     <p class="card-text"><c:out value="${listaProd.getPreco()}" /></p>
-                                    <a href="#" class="btn btn-cor-especial">Comprar</a>
                                     <input type="submit" value="Editar" class="btn btn-cor-especial">
-                                </div>
-                            </article>
-                        </form>
+                                </form>
+                                <form id="SalvarImagem" name="ProdutoAlterar" method="post"
+                                      action="${pageContext.request.contextPath}/ProdutoAlterar" novalidate>
+                                    <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
+                                    <input type="submit" value="Excluir" class="btn btn-cor-especial">
+                                </form>
+                            </div>
+                        </article>
+                    </c:forEach>
+                </div>
+            </section>
 
-                    </div>
-                </section>
-            </c:forEach>
         </main>
 
         <footer id="footer" class="bg-secondary py-3 mx-auto">

@@ -235,10 +235,10 @@ public class DAO_Produto {
 
             PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.PROD_IMG (FK_ID_PRODUTO,NOME)\n"
                     + "VALUES (?,?)");
-            
-                comandoSQL.setInt(1, idProd);
-                comandoSQL.setString(2, fileName);
-            
+
+            comandoSQL.setInt(1, idProd);
+            comandoSQL.setString(2, fileName);
+
             int linhaAfetada = comandoSQL.executeUpdate();
 
             retorno = linhaAfetada > 0;
@@ -249,8 +249,8 @@ public class DAO_Produto {
         }
         return retorno;
     }
-    
-    public ArrayList<Produto> getProdutos(){
+
+    public ArrayList<Produto> getProdutos() {
         Conexao conec = new Conexao();
         ArrayList<Produto> listaProduto = new ArrayList<Produto>();
         try (Connection conexao = conec.obterConexao()) {
@@ -273,5 +273,37 @@ public class DAO_Produto {
             ex.printStackTrace();
         }
         return listaProduto;
+    }
+
+    public Produto getProduto(int idProd) {
+        Conexao conec = new Conexao();
+        Produto prod = new Produto();
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT PROD.ID_PRODUTO, PROD.NOME AS NOME_PRODUTO, PROD.DESCRICAO, PROD.VALOR_UNIT, PROD.QUANTIDADE, PROD.FK_ID_USUARIO, PROD.STATUS, IMG.NOME AS NOME_IMG "
+                    + "FROM SUPLEMENTOS.PRODUTO PROD \n"
+                    + "LEFT JOIN SUPLEMENTOS.PROD_IMG IMG \n"
+                    + "ON PROD.ID_PRODUTO = IMG.FK_ID_PRODUTO \n"
+                    + "WHERE PROD.ID_PRODUTO = " + idProd + ";");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    prod.setIdProd(rs.getInt("ID_PRODUTO"));
+                    prod.setNome(rs.getString("NOME_PRODUTO"));
+                    prod.setDescricao(rs.getString("DESCRICAO"));
+                    prod.setPreco(rs.getDouble("VALOR_UNIT"));
+                    prod.setQuantidade(rs.getInt("QUANTIDADE"));
+                    prod.setIdUsuário(rs.getInt("FK_ID_USUARIO"));
+                    prod.setStatus(rs.getBoolean("STATUS"));
+                    prod.setNomeImg(rs.getString("NOME_IMG"));
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return prod;
     }
 }

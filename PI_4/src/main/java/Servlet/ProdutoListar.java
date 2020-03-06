@@ -27,7 +27,7 @@ public class ProdutoListar extends HttpServlet {
             throws ServletException, IOException {
         ArrayList<Produto> listaProd = new Controller.ControllerListarProduto().getProdutos();
         request.setAttribute("ListaProdAtt", listaProd);
-        
+
         request.getRequestDispatcher("/WEB-INF/ListaProdutoAlterar.jsp")
                 .forward(request, response);
 
@@ -35,7 +35,14 @@ public class ProdutoListar extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/ListaProdutoAlterar.jsp")
+        String idProd = request.getParameter("idProd");
+        int idProduto = Integer.parseInt(idProd);
+        Produto p = new Controller.ControllerAlterarProduto().getProduto(idProduto);
+        request.setAttribute("idProdAtt", idProduto);
+        request.setAttribute("ProdutoAtt", p);
+        
+        
+        request.getRequestDispatcher("/WEB-INF/ProdutoAlterar.jsp")
                 .forward(request, response);
 
     }

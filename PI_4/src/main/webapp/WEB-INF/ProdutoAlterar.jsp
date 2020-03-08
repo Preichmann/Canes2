@@ -67,18 +67,18 @@
 
                 <div class="form-group">
                     <label for="produtoNome">Produto</label>
-                    <input type="text" class="form-control" name="produtoNome" id="produtoNome" placeholder="Produto">
+                    <input type="text" class="form-control" name="produtoNome" id="produtoNome" value="${ProdutoAtt.getNome()}" placeholder="Produto">
                 </div>
 
                 <div class="form-group">
                     <label for="produtoDescricao">Descrição</label>
-                    <textarea class="form-control" name="produtoDescricao" id="produtoDescricao" rows="3"></textarea>
+                    <textarea class="form-control" name="produtoDescricao" id="produtoDescricao" rows="3">${ProdutoAtt.getDescricao()}</textarea>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="produtoValorUnitario">Valor Unitário</label>
-                        <input type="text" class="form-control" name="produtoValorUnitario" id="produtoValorUnitario" placeholder="">
+                        <input type="text" class="form-control" name="produtoValorUnitario" id="produtoValorUnitario" value="${ProdutoAtt.getPreco()}" placeholder="">
                     </div>
                     <!--
                         <div class="input-group mb-3">
@@ -92,13 +92,27 @@
 
                     <div class="form-group col-md-4">
                         <label for="produtoQuantidadeEstoque">Quantidade em Estoque</label>
-                        <input type="text" class="form-control" name="produtoQuantidadeEstoque" id="produtoQuantidadeEstoque" placeholder="">
+                        <input type="text" class="form-control" name="produtoQuantidadeEstoque" value="${ProdutoAtt.getQuantidade()}" id="produtoQuantidadeEstoque" placeholder="">
                     </div>
 
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" name="produtoDisponivel" id="produtoDisponivel">
                         <label class="custom-control-label" for="produtoDisponivel">Disponível</label>
                     </div>
+                    <script>
+                        function setDisponivel(valor) {
+                            try {
+                                if (valor) {
+                                    document.getElementById('produtoDisponivel').checked = true;
+                                } else {
+                                    document.getElementById('produtoDisponivel').checked = false;
+                                }
+                            } catch (err) {
+                                alert(err);
+                            }
+                        }
+                        setDisponivel(${ProdutoAtt.isStatus()});
+                    </script>
                 </div>
                 <c:forEach items="${ListaPerguntaAtt}" var="listaPergunta" varStatus="theCount">
                     <input type="hidden" value="${listaPergunta.getIdPergunta()}" name="idPergunta${theCount.index}" id="idPergunta${theCount.index}" />
@@ -128,7 +142,7 @@
                     <input type="file" name="file" id="file" class="form-control" />
                 </div>
 
-                
+
                 <input type="submit" value="Salvar" class="btn btn-success col-2" />
             </form>
 

@@ -55,11 +55,11 @@ public class ProdutoListar extends HttpServlet {
         request.setAttribute("listaCategoriaAtt", listaCategoria);
         request.setAttribute("idProdAtt", idProduto);
         request.setAttribute("ProdutoAtt", p);
-        /**
-         * request.setAttribute("ListaRespostaAtt", listaResposta);
-         * request.setAttribute("ListaCategoriasAtt", listaCategoria);
-         * request.setAttribute("ListaObjetivoAtt", listaObjetivo);
-         */
+
+        request.setAttribute("ListaRespostaAtt", listaResposta);
+        request.setAttribute("ListaCategoriasAtt", listaCategoria);
+        request.setAttribute("ListaObjetivoAtt", listaObjetivo);
+
         request.getRequestDispatcher("/WEB-INF/ProdutoAlterar.jsp")
                 .forward(request, response);
 

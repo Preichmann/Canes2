@@ -32,7 +32,7 @@ public class ProdutoListarBackoffice extends HttpServlet {
         ArrayList<Produto> listaProd = new Controller.ControllerListarProduto().getProdutos();
         request.setAttribute("ListaProdAtt", listaProd);
 
-        request.getRequestDispatcher("/WEB-INF/ListaProdutoAlterar.jsp")
+        request.getRequestDispatcher("/WEB-INF/ProdutoListarBackoffice.jsp")
                 .forward(request, response);
 
     }

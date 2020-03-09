@@ -90,7 +90,7 @@
     </main>
 
     <footer id="footer" class="bg-secondary py-3 mx-auto">
-        <p class="text-center m-0"><a href="#" class="text-light text-decoration-none">contato: email@canes.com.br</a>
+        <p class="text-center m-0"><a href="#" class="text-light text-decoration-none">contato: email@canes.com</a>
         </p>
     </footer>
 

@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author nik_r
  */
 @WebServlet(name = "ProdutoListar", urlPatterns = {"/ProdutoListar"})
-public class ProdutoListar extends HttpServlet {
+public class ProdutoListarBackoffice extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

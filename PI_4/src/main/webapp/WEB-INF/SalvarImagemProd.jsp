@@ -11,7 +11,7 @@
             <div class="form-group">
         <input type="hidden" value="${resultAtt}" name="idProd" id="idProd" />
                 <label for="image">Imagem do Produto</label>
-                <input type="file" name="file" id="file" class="form-control" />
+                <input type="file" name="file" id="file" class="form-control" multiple="multiple" />
             </div>
             <input type="submit" value="Salvar" class="btn btn-success col-2" />
         </form>

@@ -54,10 +54,10 @@ public class SalvarImagem extends HttpServlet {
 
                     name = new File(item.getName()).getName();
                     new Classes.Upload().uploadFile(name, item.get());
+                    int idProduto = Integer.parseInt(idProd);
+                    retorno = new Controller.Controller_Produto().SalvarImagem(name, idProduto);
                 }
             }
-            int idProduto = Integer.parseInt(idProd);
-            retorno = new Controller.Controller_Produto().SalvarImagem(name, idProduto);
 
             //File uploaded successfully
             request.setAttribute("message", "File Uploaded Successfully");
@@ -68,7 +68,7 @@ public class SalvarImagem extends HttpServlet {
             request.setAttribute("SalvarIMGAtt", retorno);
             request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
                     .forward(request, response);
-        }else{
+        } else {
             request.setAttribute("SalvarIMGAtt", retorno);
             request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
                     .forward(request, response);

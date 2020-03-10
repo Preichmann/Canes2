@@ -21,6 +21,7 @@
     </head>
 
     <body>
+    <header>
         <script>
             if (${SalvarIMGAtt} === true) {
                 alert('Produto Salvo Com sucesso!');
@@ -30,40 +31,27 @@
         </script> 
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">
-                <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
+        	<a class="navbar-brand" href="#">
+            	<img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <form method="get" action="${pageContext.request.contextPath}/top-10" class="nav-item active"
-                          novalidate>
-                        <input type="submit" value="Top 10" class="nav-link active">
-                    </form>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <form method="get" action="${pageContext.request.contextPath}/ProdutoCadastrar" class="nav-item active" novalidate>
+                            <input type="submit" value="Cadastrar Produto" class="nav-link active">
+                        </form>
 
-                    <form method="get" action="${pageContext.request.contextPath}/perdaDePeso" class="nav-item" novalidate>
-                        <input type="submit" value="Perda de Peso" class="nav-link">
-                    </form>
-
-                    <form method="get" action="${pageContext.request.contextPath}/preTreino" class="nav-item" novalidate>
-                        <input type="submit" value="Pré Treino" class="nav-link">
-                    </form>
-
-                    <form method="get" action="${pageContext.request.contextPath}/ganhoDeMassa" class="nav-item" novalidate>
-                        <input type="submit" value="Ganho de Massa" class="nav-link">
-                    </form>
-
-                    <form method="get" action="${pageContext.request.contextPath}/recuperacaoMuscular" class="nav-item"
-                          novalidate>
-                        <input type="submit" value="Recuperação Muscular" class="nav-link">
-                    </form>
-                </ul>
-            </div>
-        </nav>
+                        <form method="get" action="${pageContext.request.contextPath}/ProdutoListarBackoffice" class="nav-item" novalidate>
+                            <input type="submit" value="Listar Produtos" class="nav-link">
+                        </form>
+                    </ul>
+                </div>
+            </nav>
+</header>
 
         <div class="container">
             <h3>Cadastrar Produto</h3>
@@ -74,7 +62,7 @@
 
                 <div class="form-group">
                     <label for="produtoNome">Produto</label>
-                    <input type="text" class="form-control" name="produtoNome" id="produtoNome" placeholder="Produto">
+                    <input type="text" class="form-control" name="produtoNome" id="produtoNome" placeholder="Nome do Produto">
                 </div>
 
                 <div class="form-group">
@@ -109,7 +97,7 @@
                 </div>
                 <c:forEach items="${ListaPerguntaAtt}" var="listaPergunta" varStatus="theCount">
                     <input type="hidden" value="${listaPergunta.getIdPergunta()}" name="idPergunta${theCount.index}" id="idPergunta${theCount.index}" />
-                    <h4>${listaPergunta.getPergunta()}</h4>
+                    <label for="resposta${theCount.index}">${listaPergunta.getPergunta()}</label>
                     <textarea class="form-control" name="resposta${theCount.index}" id="resposta${theCount.index}" rows="3"></textarea>
                 </c:forEach>
                 <fieldset>
@@ -130,11 +118,6 @@
                         </p>
                     </c:forEach>
                 </fieldset>
-                <div class="form-group">
-                    <label for="image">Imagem do Produto</label>
-                    <input type="file" name="file" id="file" class="form-control" />
-                </div>
-
                 
                 <input type="submit" value="Salvar" class="btn btn-success col-2" />
             </form>
@@ -152,8 +135,5 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
                     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
-
-
     </body>
-
 </html>

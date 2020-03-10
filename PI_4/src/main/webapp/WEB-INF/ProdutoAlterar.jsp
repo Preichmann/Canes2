@@ -63,11 +63,12 @@
             <hr>
 
             <form id="SalvarImagem" name="AlterarProduto" method="post"
-                  action="${pageContext.request.contextPath}/AlterarProduto" novalidate>
+                  action="${pageContext.request.contextPath}/ProdutoAlterar" novalidate>
 
                 <div class="form-group">
                     <label for="produtoNome">Produto</label>
                     <input type="text" class="form-control" name="produtoNome" id="produtoNome" value="${ProdutoAtt.getNome()}" placeholder="Produto">
+                    <input type="hidden" value="${ProdutoAtt.getIdProd()}" name="idProd" id="idProd" />
                 </div>
 
                 <div class="form-group">

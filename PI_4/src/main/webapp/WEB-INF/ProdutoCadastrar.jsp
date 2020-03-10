@@ -28,6 +28,11 @@
             } else {
                 alert('Falha ao Salvar o Produto!');
             }
+            if (${result2Att} === true) {
+                alert('Produto Alterado Com sucesso!');
+            } else {
+                alert('Falha ao Alterar o Produto!');
+            }
         </script> 
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">

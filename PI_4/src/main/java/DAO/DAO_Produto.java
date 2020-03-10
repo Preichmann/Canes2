@@ -53,6 +53,34 @@ public class DAO_Produto {
         }
         return idProd;
     }
+    
+    public boolean daoAlterarProduto(Produto produto) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.PRODUTO\n"
+                    + "SET NOME = ?, DESCRICAO = ?, STATUS = ?, VALOR_UNIT = ?, QUANTIDADE = ?\n"
+                    + "WHERE ID_PRODUTO = ?");
+
+            comandoSQL.setString(1, produto.getNome());
+            comandoSQL.setString(2, produto.getDescricao());
+            comandoSQL.setBoolean(3, produto.isStatus());
+            comandoSQL.setDouble(4, produto.getPreco());
+            comandoSQL.setInt(5, produto.getQuantidade());
+            comandoSQL.setInt(6, produto.getIdProd());
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return retorno;
+    }
 
     public boolean salvarRespostas(Resposta r, int idProd) {
         boolean retorno = false;
@@ -63,6 +91,32 @@ public class DAO_Produto {
 
             PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.RESPOSTA_PROD_PERG(RESPOSTA,FK_ID_PRODUTO,FK_ID_PERGUNTA)\n"
                     + "VALUES (?,?,?)");
+
+            comandoSQL.setString(1, r.getResposta());
+            comandoSQL.setInt(2, idProd);
+            comandoSQL.setInt(3, r.getIdPergunta());
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            retorno = false;
+        }
+        return retorno;
+    }
+    
+    public boolean alterarRespostas(Resposta r, int idProd) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.RESPOSTA_PROD_PERG\n"
+                    + "SET RESPOSTA = ?\n"
+            		+ "WHERE FK_ID_PRODUTO = ? and FK_ID_PERGUNTA = ?;");
 
             comandoSQL.setString(1, r.getResposta());
             comandoSQL.setInt(2, idProd);
@@ -102,7 +156,31 @@ public class DAO_Produto {
         }
         return retorno;
     }
+    
+    public boolean deletarObjetivos(int idProd) {
+        boolean retorno = false;
 
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM SUPLEMENTOS.PROD_OBJETIVO\n"
+                    + "WHERE FK_ID_PRODUTO = ?");
+
+            comandoSQL.setInt(1, idProd);
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            retorno = false;
+        }
+        return retorno;
+    }
+    
+    
     public boolean salvarCategorias(int idCategoria, int idProd) {
         boolean retorno = false;
 
@@ -115,6 +193,29 @@ public class DAO_Produto {
 
             comandoSQL.setInt(1, idCategoria);
             comandoSQL.setInt(2, idProd);
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            retorno = false;
+        }
+        return retorno;
+    }
+    
+    public boolean deletarCategorias(int idProd) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM SUPLEMENTOS.PROD_CATEGORIA\n"
+                    + "WHERE FK_ID_PRODUTO = ?");
+
+            comandoSQL.setInt(1, idProd);
 
             int linhaAfetada = comandoSQL.executeUpdate();
 

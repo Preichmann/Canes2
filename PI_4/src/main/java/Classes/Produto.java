@@ -68,8 +68,19 @@ public class Produto{
     
     public Produto() {
     }
+    
+    public Produto(int idProd, String nome, double preco, String descricao, int quantidade, boolean status) {
+		super();
+		this.idProd = idProd;
+		this.nome = nome;
+		this.preco = preco;
+		this.descricao = descricao;
+		this.quantidade = quantidade;
+		this.status = status;
+	}
 
-    public int getIdProd() {
+
+	public int getIdProd() {
         return idProd;
     }
 

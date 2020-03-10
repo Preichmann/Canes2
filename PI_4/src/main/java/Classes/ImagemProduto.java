@@ -24,6 +24,10 @@ public class ImagemProduto {
         this.status = status;
     }
 
+    public ImagemProduto() {
+
+    }
+
     public int getIdImg() {
         return idImg;
     }

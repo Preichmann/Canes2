@@ -39,6 +39,7 @@ public class SalvarImagem extends HttpServlet {
         boolean retorno = false;
         String name = null;
         String idProd = null;
+        int counterImg = 1;
 
         try {
             List<FileItem> multiparts = new ServletFileUpload(
@@ -52,10 +53,11 @@ public class SalvarImagem extends HttpServlet {
 
                 } else {
 
-                    name = new File(item.getName()).getName();
-                    new Classes.Upload().uploadFile(name, item.get());
+                    //name = new File(item.getName()).getName();
                     int idProduto = Integer.parseInt(idProd);
-                    retorno = new Controller.Controller_Produto().SalvarImagem(name, idProduto);
+                    new Classes.Upload().uploadFile(idProduto + "_" + counterImg, item.get());
+                    retorno = new Controller.Controller_Produto().SalvarImagem(idProduto + "_" + counterImg, idProduto);
+                    counterImg++;
                 }
             }
 

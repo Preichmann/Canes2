@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Classes.ImagemProduto;
 import Classes.Produto;
 import java.util.ArrayList;
 
@@ -16,5 +17,9 @@ public class ControllerListarProduto {
 
     public ArrayList<Produto> getProdutos() {
         return new DAO.DAO_Produto().getProdutos();
+    }
+    
+    public ArrayList<ImagemProduto> getImagens(int idProduto) {
+        return new DAO.DAO_Produto().getImagem(idProduto);
     }
 }

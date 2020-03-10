@@ -44,7 +44,9 @@
                     <c:forEach items="${ListaProdAtt}" var="listaProd">
 
                         <article class="card borda-cor-especial card-largura mt-5">
-                            <img src="https://storage.cloud.google.com/imagedb/foto.png" class="card-img-top card-imagem-posicao" alt="">
+                            
+                            <img src="https://storage.cloud.google.com/imagedb/${listaProd.getIdProd()}_1" class="card-img-top card-imagem-posicao" alt="">
+                            
                             <div class="card-body">
                                 <form id="SalvarImagem" name="ProdutoListar" method="post"
                                       action="${pageContext.request.contextPath}/ProdutoListar" novalidate>

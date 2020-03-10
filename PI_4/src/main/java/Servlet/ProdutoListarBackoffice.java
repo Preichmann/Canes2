@@ -6,6 +6,7 @@
 package Servlet;
 
 import Classes.Categorias;
+import Classes.ImagemProduto;
 import Classes.Objetivo;
 import Classes.Pergunta;
 import Classes.Produto;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nik_r
  */
-@WebServlet(name = "ProdutoListar", urlPatterns = {"/ProdutoListar"})
+@WebServlet(name = "ProdutoListarBackoffice", urlPatterns = {"/ProdutoListarBackoffice"})
 public class ProdutoListarBackoffice extends HttpServlet {
 
     @Override

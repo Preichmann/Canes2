@@ -307,6 +307,32 @@ public class DAO_Produto {
         return prod;
     }
 
+    public ArrayList<ImagemProduto> getImagem(int idProd) {
+        Conexao conec = new Conexao();
+        ArrayList<ImagemProduto> img = new ArrayList<ImagemProduto>();
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT FK_ID_PROD, NOME "
+                    + "FROM SUPLEMENTOS.PROD_IMG PROD \n"
+                    + "WHERE FK_ID_PRODUTO = " + idProd + ";");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    ImagemProduto image = new ImagemProduto();
+                    image.setIdProd(rs.getInt("FK_ID_PRODUTO"));
+                    image.setNome(rs.getString("NOME"));
+                    img.add(image);
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return img;
+    }
+
     public ArrayList<Resposta> getRespostas(int idProd) {
         Conexao conec = new Conexao();
         ArrayList<Resposta> listaResposta = new ArrayList<>();

@@ -126,6 +126,26 @@
                         <p><input type="checkbox" name="Objetivo${theCounter.index}" id="Objetivo${theCounter.index}">
                             <label for="Objetivo${theCounter.index}">${listaObjetivo.getDescricaoObj()}</label>
                         </p>
+                        <c:forEach items="${ListaObjetivoProd}" var="listaObjetivoa" varStatus="theCounterProd">
+                            <input type="hidden" value="${listaObjetivoa.getIdObjetivo()}" name="idObjetivo${theCounterProd.index}" id="idObjetivo${theCounter.index}" />
+                            <script>
+                                var valor1 = document.getElementById("idObjetivo${theCounter.index}").value;
+                                alert(valor1);
+                                var valor2 = document.getElementById("idObjetivo${theCounterProd.index}").value;
+                                alert(valor2);
+                                setDisponivel(valor1, valor2);
+                                function setDisponivel(valor1, valor2) {
+                                    try {
+                                        if (valor1 === valor2) {
+                                            document.getElementById('Objetivo${theCounter.index}').checked = true;
+                                        }
+                                    } catch (err) {
+                                        alert(err);
+                                    }
+                                }
+
+                            </script>
+                        </c:forEach>
                     </c:forEach>
                 </fieldset>
                 <fieldset>

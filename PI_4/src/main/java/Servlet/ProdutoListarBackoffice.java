@@ -46,7 +46,7 @@ public class ProdutoListarBackoffice extends HttpServlet {
         ArrayList<Resposta> listaResposta = new Controller.ControllerAlterarProduto().getRespostasProduto(idProduto);
         ArrayList<Categorias> listaCategoriaa = new Controller.ControllerAlterarProduto().getCategoriasProduto(idProduto);
         ArrayList<Objetivo> listaObjetivoa = new Controller.ControllerAlterarProduto().getObjetivoProduto(idProduto);
-
+       // ArrayList<ImagemProduto> listaImg = new Controller.ControllerListarProduto().getImagens(idProduto);
         ArrayList<Pergunta> listaPergunta = new Controller.Controller_Produto().getPergunta();
         ArrayList<Objetivo> listaObjetivo = new Controller.Controller_Produto().getObjetivo();
         ArrayList<Categorias> listaCategoria = new Controller.Controller_Produto().getCategoria();
@@ -54,12 +54,13 @@ public class ProdutoListarBackoffice extends HttpServlet {
         request.setAttribute("ListaPerguntaAtt", listaPergunta);
         request.setAttribute("listaObjetivoAtt", listaObjetivo);
         request.setAttribute("listaCategoriaAtt", listaCategoria);
+       // request.setAttribute("listaImgAtt", listaImg);
         request.setAttribute("idProdAtt", idProduto);
         request.setAttribute("ProdutoAtt", p);
 
-        request.setAttribute("ListaRespostaAtt", listaResposta);
-        request.setAttribute("ListaCategoriasAtt", listaCategoria);
-        request.setAttribute("ListaObjetivoAtt", listaObjetivo);
+        request.setAttribute("ListaRespostaProd", listaResposta);
+        request.setAttribute("ListaCategoriasProd", listaCategoriaa);
+        request.setAttribute("ListaObjetivoProd", listaObjetivoa);
 
         request.getRequestDispatcher("/WEB-INF/ProdutoAlterar.jsp")
                 .forward(request, response);

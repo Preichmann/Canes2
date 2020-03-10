@@ -49,7 +49,7 @@
                             
                             <div class="card-body">
                                 <form id="SalvarImagem" name="ProdutoListar" method="post"
-                                      action="${pageContext.request.contextPath}/ProdutoListar" novalidate>
+                                      action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
                                     <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
                                     <h5 class="card-title"><c:out value="${listaProd.getNome()}" /></h5>
                                     <p class="card-text"><c:out value="${listaProd.getPreco()}" /></p>

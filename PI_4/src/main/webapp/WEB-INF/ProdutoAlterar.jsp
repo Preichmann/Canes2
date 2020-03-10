@@ -118,6 +118,23 @@
                     <input type="hidden" value="${listaPergunta.getIdPergunta()}" name="idPergunta${theCount.index}" id="idPergunta${theCount.index}" />
                     <h4>${listaPergunta.getPergunta()}</h4>
                     <textarea class="form-control" name="resposta${theCount.index}" id="resposta${theCount.index}" rows="3"></textarea>
+                    <c:forEach items="${ListaRespostaProd}" var="listaResposta" varStatus="theCountResp">
+                        <input type="hidden" value="${listaResposta.getIdPergunta()}" name="idPergunta${theCountResp.index}" id="idPergunta${theCountResp.index}" />
+                        <script>
+                            var r1 = document.getElementById("idPergunta${theCount.index}").value;
+                            var r2 = document.getElementById("idPergunta${theCountResp.index}").value;
+                            getResposta(r1, r2 );
+                            function getResposta(r1, r2) {
+                                try {
+                                    if (r1 === r2) {
+                                        document.getElementById("resposta${theCount.index}").value = "${listaResposta.getResposta()}";
+                                    }
+                                } catch (err) {
+                                    alert(err);
+                                }
+                            }
+                        </script>
+                    </c:forEach>
                 </c:forEach>
                 <fieldset>
                     <legend>Objetivos</legend>
@@ -162,8 +179,6 @@
                                 function getCategoria(valor3, valor4) {
                                     try {
                                         if (valor3 === valor4) {
-                                            alert("VALOR LISTA TOTAL : "+ valor3)
-                                            alert("VALOR RELCIONADO AO PRODUTO : "+ valor4)
                                             document.getElementById('Categoria${theCounters.index}').checked = true;
                                         }
                                     } catch (err) {
@@ -175,11 +190,6 @@
                         </c:forEach>
                     </c:forEach>
                 </fieldset>
-                <div class="form-group">
-                    <label for="image">Imagem do Produto</label>
-                    <input type="file" name="file" id="file" class="form-control" />
-                </div>
-
 
                 <input type="submit" value="Salvar" class="btn btn-success col-2" />
             </form>

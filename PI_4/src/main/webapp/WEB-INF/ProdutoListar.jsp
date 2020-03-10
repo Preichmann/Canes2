@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%-- Alterar o padrão para JSP --%>>
+<%-- Alterar o padrão para JSP --%>
 <html>
 
 <head>

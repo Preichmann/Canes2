@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%-- Alterar o padrão para JSP --%>>
+<%-- Alterar o padrão para JSP --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
@@ -25,25 +25,12 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <form method="get" action="${pageContext.request.contextPath}/top-10" class="nav-item active" novalidate>
-                            <input type="submit" value="Top 10" class="nav-link active">
+                        <form method="get" action="${pageContext.request.contextPath}/ProdutoCadastrar" class="nav-item active" novalidate>
+                            <input type="submit" value="Cadastrar Produto" class="nav-link active">
                         </form>
 
-                        <form method="get" action="${pageContext.request.contextPath}/perdaDePeso" class="nav-item" novalidate>
-                            <input type="submit" value="Perda de Peso" class="nav-link">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/preTreino" class="nav-item" novalidate>
-                            <input type="submit" value="Pré Treino" class="nav-link">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/ganhoDeMassa" class="nav-item" novalidate>
-                            <input type="submit" value="Ganho de Massa" class="nav-link">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/recuperacaoMuscular" class="nav-item"
-                              novalidate>
-                            <input type="submit" value="Recuperação Muscular" class="nav-link">
+                        <form method="get" action="${pageContext.request.contextPath}/ProdutoListarBackoffice" class="nav-item" novalidate>
+                            <input type="submit" value="Listar Produtos" class="nav-link">
                         </form>
                     </ul>
                 </div>

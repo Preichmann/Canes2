@@ -388,7 +388,7 @@ public class DAO_Produto {
                     + "        LEFT JOIN\n"
                     + "    SUPLEMENTOS.CATEGORIA CATEG ON CATEG.ID_CATEGORIA = CATPROD.FK_ID_CATEGORIA\n"
                     + "WHERE\n"
-                    + "    PRO.ID_PRODUTO " + idProd + "= AND PRO.STATUS = 1;");
+                    + "    PRO.ID_PRODUTO = " + idProd + " AND PRO.STATUS = 1;");
 
             ResultSet rs = comandoSQL.executeQuery();
 

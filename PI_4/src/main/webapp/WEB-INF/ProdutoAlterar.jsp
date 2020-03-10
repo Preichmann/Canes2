@@ -130,11 +130,9 @@
                             <input type="hidden" value="${listaObjetivoa.getIdObjetivo()}" name="idObjetivo${theCounterProd.index}" id="idObjetivo${theCounter.index}" />
                             <script>
                                 var valor1 = document.getElementById("idObjetivo${theCounter.index}").value;
-                                alert(valor1);
                                 var valor2 = document.getElementById("idObjetivo${theCounterProd.index}").value;
-                                alert(valor2);
-                                setDisponivel(valor1, valor2);
-                                function setDisponivel(valor1, valor2) {
+                                getObjetivo(valor1, valor2);
+                                function getObjetivo(valor1, valor2) {
                                     try {
                                         if (valor1 === valor2) {
                                             document.getElementById('Objetivo${theCounter.index}').checked = true;
@@ -155,6 +153,26 @@
                         <p><input type="checkbox" name="Categoria${theCounters.index}" id="Categoria${theCounters.index}">
                             <label for="Categoria${theCounters.index}">${listaCategoria.getNome()}</label>
                         </p>
+                        <c:forEach items="${ListaCategoriasProd}" var="listaCategoriaa" varStatus="theCounterProdCat">
+                            <input type="hidden" value="${listaCategoriaa.getIdCategoria()}" name="idCategoriaProd${theCounterProdCat.index}" id="idCategoriaProd${theCounterProdCat.index}" />
+                            <script>
+                                var valor3 = document.getElementById("idCategoria${theCounters.index}").value;
+                                var valor4 = document.getElementById("idCategoriaProd${theCounterProdCat.index}").value;
+                                getCategoria(valor3, valor4);
+                                function getCategoria(valor3, valor4) {
+                                    try {
+                                        if (valor3 === valor4) {
+                                            alert("VALOR LISTA TOTAL : "+ valor3)
+                                            alert("VALOR RELCIONADO AO PRODUTO : "+ valor4)
+                                            document.getElementById('Categoria${theCounters.index}').checked = true;
+                                        }
+                                    } catch (err) {
+                                        alert(err);
+                                    }
+                                }
+
+                            </script>
+                        </c:forEach>
                     </c:forEach>
                 </fieldset>
                 <div class="form-group">

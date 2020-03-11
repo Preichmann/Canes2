@@ -22,4 +22,7 @@ public class ControllerListarProduto {
     public ArrayList<ImagemProduto> getImagens(int idProduto) {
         return new DAO.DAO_Produto().getImagem(idProduto);
     }
+    public ArrayList<ImagemProduto> getImagensTotal() {
+        return new DAO.DAO_Produto().getImagensTotal();
+    }
 }

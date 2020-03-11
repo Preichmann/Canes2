@@ -6,6 +6,7 @@
 package Controller;
 
 import Classes.Categorias;
+import Classes.ImagemProduto;
 import Classes.Objetivo;
 import Classes.Produto;
 import Classes.Resposta;
@@ -31,5 +32,14 @@ public class ControllerAlterarProduto {
 
     public ArrayList<Objetivo> getObjetivoProduto(int idProd) {
         return new DAO.DAO_Produto().getObjetivoProduto(idProd);
+    }
+
+    public String getImagemName(int idProd) {
+        ArrayList<ImagemProduto> imagens = new DAO.DAO_Produto().getImagem(idProd);
+        String LastName = null;
+        for (ImagemProduto img : imagens) {
+            LastName = new DAO.DAO_Produto().getImagemLastName(img.getIdImg());
+        }
+        return LastName;
     }
 }

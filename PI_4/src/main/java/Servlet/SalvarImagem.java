@@ -5,9 +5,11 @@
  */
 package Servlet;
 
+import Classes.ImagemProduto;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,11 +55,18 @@ public class SalvarImagem extends HttpServlet {
 
                 } else {
 
-                    //name = new File(item.getName()).getName();
                     int idProduto = Integer.parseInt(idProd);
-                    new Classes.Upload().uploadFile(idProduto + "_" + counterImg, item.get());
-                    retorno = new Controller.Controller_Produto().SalvarImagem(idProduto + "_" + counterImg, idProduto);
-                    counterImg++;
+                    String lastName = new Controller.ControllerAlterarProduto().getImagemName(idProduto);
+                    if (lastName == null) {
+                        new Classes.Upload().uploadFile(idProduto + "_" + counterImg, item.get());
+                        retorno = new Controller.Controller_Produto().SalvarImagem(idProduto + "_" + counterImg, idProduto);
+                        counterImg++;
+                    } else {
+                        int ultimoId = Integer.parseInt(lastName);
+                        ultimoId++;
+                        new Classes.Upload().uploadFile(idProduto + "_" + ultimoId, item.get());
+                        retorno = new Controller.Controller_Produto().SalvarImagem(idProduto + "_" + ultimoId, idProduto);
+                    }
                 }
             }
 

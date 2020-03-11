@@ -124,7 +124,7 @@
                     </c:forEach>
                 </fieldset>
                 
-                <input type="submit" value="Salvar" class="btn btn-success col-2" />
+                <input type="submit" value="Adicionar Imagens" class="btn btn-success col-2" />
             </form>
 
             <form method="post" action="${pageContext.request.contextPath}/menu-principal" novalidate>

@@ -6,6 +6,7 @@
 package Servlet;
 
 import Classes.Categorias;
+import Classes.ImagemProduto;
 import Classes.Objetivo;
 import Classes.Pergunta;
 import Classes.Produto;
@@ -117,7 +118,9 @@ public class ProdutoAlterar extends HttpServlet {
         Produto P = new Produto(prodId, produtoNom, precoProduto, produtoDesc, quantidadeProduto, validador);
         boolean result = new Controller.Controller_Produto().alterarProduto(P, Resposta, Objetivos, Categoria);
         if (result) {
-            request.setAttribute("resultAtt", result);
+            ArrayList<ImagemProduto> imagens = new Controller.ControllerListarProduto().getImagens(prodId);
+            request.setAttribute("listaImagensAtt", imagens);
+            request.setAttribute("resultAtt", prodId);
             request.getRequestDispatcher("/WEB-INF/AlterarImagemProd.jsp")
                     .forward(request, response);
         }else{

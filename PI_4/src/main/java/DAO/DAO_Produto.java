@@ -53,7 +53,7 @@ public class DAO_Produto {
         }
         return idProd;
     }
-    
+
     public boolean daoAlterarProduto(Produto produto) {
         boolean retorno = false;
 
@@ -106,7 +106,7 @@ public class DAO_Produto {
         }
         return retorno;
     }
-    
+
     public boolean alterarRespostas(Resposta r, int idProd) {
         boolean retorno = false;
 
@@ -116,7 +116,7 @@ public class DAO_Produto {
 
             PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.RESPOSTA_PROD_PERG\n"
                     + "SET RESPOSTA = ?\n"
-            		+ "WHERE FK_ID_PRODUTO = ? and FK_ID_PERGUNTA = ?;");
+                    + "WHERE FK_ID_PRODUTO = ? and FK_ID_PERGUNTA = ?;");
 
             comandoSQL.setString(1, r.getResposta());
             comandoSQL.setInt(2, idProd);
@@ -156,7 +156,7 @@ public class DAO_Produto {
         }
         return retorno;
     }
-    
+
     public boolean deletarObjetivos(int idProd) {
         boolean retorno = false;
 
@@ -179,8 +179,7 @@ public class DAO_Produto {
         }
         return retorno;
     }
-    
-    
+
     public boolean salvarCategorias(int idCategoria, int idProd) {
         boolean retorno = false;
 
@@ -204,7 +203,7 @@ public class DAO_Produto {
         }
         return retorno;
     }
-    
+
     public boolean deletarCategorias(int idProd) {
         boolean retorno = false;
 
@@ -413,15 +412,40 @@ public class DAO_Produto {
         ArrayList<ImagemProduto> img = new ArrayList<ImagemProduto>();
         try (Connection conexao = conec.obterConexao()) {
 
-            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT FK_ID_PROD, NOME "
-                    + "FROM SUPLEMENTOS.PROD_IMG PROD \n"
-                    + "WHERE FK_ID_PRODUTO = " + idProd + ";");
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT ID_IMG, FK_ID_PRODUTO, NOME FROM SUPLEMENTOS.PROD_IMG PROD WHERE FK_ID_PRODUTO = " + idProd + ";");
 
             ResultSet rs = comandoSQL.executeQuery();
 
             if (rs != null) {
                 while (rs.next()) {
                     ImagemProduto image = new ImagemProduto();
+                    image.setIdImg(rs.getInt("ID_IMG"));
+                    image.setIdProd(rs.getInt("FK_ID_PRODUTO"));
+                    image.setNome(rs.getString("NOME"));
+                    img.add(image);
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return img;
+    }
+
+    public ArrayList<ImagemProduto> getImagensTotal() {
+        Conexao conec = new Conexao();
+        ArrayList<ImagemProduto> img = new ArrayList<ImagemProduto>();
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT ID_IMG, FK_ID_PROD, NOME "
+                    + "FROM SUPLEMENTOS.PROD_IMG PROD;");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    ImagemProduto image = new ImagemProduto();
+                    image.setIdImg(rs.getInt("ID_IMG"));
                     image.setIdProd(rs.getInt("FK_ID_PRODUTO"));
                     image.setNome(rs.getString("NOME"));
                     img.add(image);
@@ -541,5 +565,26 @@ public class DAO_Produto {
             ex.printStackTrace();
         }
         return listaObjetivo;
+    }
+
+    public String getImagemLastName(int idImagem) {
+        Conexao conec = new Conexao();
+        String imageName = null;
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT SUBSTRING(NOME, INSTR(NOME, '_') + 1, LENGTH(NOME)) AS LAST_NOME FROM SUPLEMENTOS.PROD_IMG WHERE ID_IMG = " + idImagem + ";");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    imageName = (rs.getString("LAST_NOME"));
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return imageName;
     }
 }

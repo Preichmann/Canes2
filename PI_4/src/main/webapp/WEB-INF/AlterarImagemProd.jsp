@@ -6,15 +6,27 @@
         <title>JSP Page</title>
     </head>
     <body>
+
+        <div class="form-group">
+            <fieldset>
+                <legend>Imagens</legend>
+                <c:forEach items="${listaImagensAtt}" var="imagens" varStatus="theCounter">
+                    <form id="SalvarImagem" name="SalvarImagem" method="post"
+                          action="${pageContext.request.contextPath}/SalvarImagem" novalidate enctype='multipart/form-data'>
+                        <input type="hidden" value="${resultAtt}" name="idProd" id="idProd" />
+                        <input type="hidden" value="${imagens.getIdImg()}" name="idImagem${theCounter.index}" id="idImagem${theCounter.index}" />
+                        <img src="https://storage.cloud.google.com/imagedb/${imagens.getNome()}" class="card-img-top card-imagem-posicao" alt="">
+                        <input type="submit" value="Excluir" class="btn btn-success col-2" />
+                    </form>
+                </c:forEach>
+            </fieldset>
+            <hr>
+        </div>
         <form id="SalvarImagem" name="SalvarImagem" method="post"
-              action="${pageContext.request.contextPath}/SalvarImagem" novalidate enctype='multipart/form-data'>
-            <div class="form-group">
-        <input type="hidden" value="${resultAtt}" name="idProd" id="idProd" />
-                <label for="image">Imagem do Produto</label>
-                <input type="file" name="file" id="file" class="form-control" multiple="multiple" />
-            </div>
+            action="${pageContext.request.contextPath}/SalvarImagem" novalidate enctype='multipart/form-data'>
+              <input type="hidden" value="${resultAtt}" name="idProd" id="idProd" />
+            <input type="file" name="file" id="file" class="form-control" multiple="multiple" />
             <input type="submit" value="Salvar" class="btn btn-success col-2" />
         </form>
-
     </body>
 </html>

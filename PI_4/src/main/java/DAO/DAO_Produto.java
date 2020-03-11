@@ -587,4 +587,22 @@ public class DAO_Produto {
         }
         return imageName;
     }
+
+    public boolean excluirImagem(int idImg) {
+        boolean retorno = false;
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM SUPLEMENTOS.PROD_IMG WHERE ID_IMG = " + idImg + ";");
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return retorno;
+    }
 }

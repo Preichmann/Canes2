@@ -10,6 +10,7 @@ import Classes.ImagemProduto;
 import Classes.Objetivo;
 import Classes.Produto;
 import Classes.Resposta;
+import Classes.Upload;
 import java.util.ArrayList;
 
 /**
@@ -41,5 +42,11 @@ public class ControllerAlterarProduto {
             LastName = new DAO.DAO_Produto().getImagemLastName(img.getIdImg());
         }
         return LastName;
+    }
+
+    public boolean excluirImagem(String nomeImg, int idImg) {
+        Upload delete = new Upload();
+        delete.deleteFile("https://storage.cloud.google.com/imagedb/"+nomeImg);
+        return new DAO.DAO_Produto().excluirImagem(idImg);
     }
 }

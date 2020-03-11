@@ -11,10 +11,11 @@
             <fieldset>
                 <legend>Imagens</legend>
                 <c:forEach items="${listaImagensAtt}" var="imagens" varStatus="theCounter">
-                    <form id="SalvarImagem" name="SalvarImagem" method="post"
-                          action="${pageContext.request.contextPath}/SalvarImagem" novalidate enctype='multipart/form-data'>
-                        <input type="hidden" value="${resultAtt}" name="idProd" id="idProd" />
+                    <form id="SalvarImagem" name="ExcluirImagem" method="post"
+                          action="${pageContext.request.contextPath}/ExcluirImagem" novalidate enctype='multipart/form-data'>
+                        <input type="hidden" value="${resultAtt}" name="idProd${theCounter.index}" id="idProd${theCounter.index}" />
                         <input type="hidden" value="${imagens.getIdImg()}" name="idImagem${theCounter.index}" id="idImagem${theCounter.index}" />
+                        <input type="hidden" value="${imagens.getNome()}" name="nomeImg${theCounter.index}" id="nomeImg${theCounter.index}" />
                         <img src="https://storage.cloud.google.com/imagedb/${imagens.getNome()}" class="card-img-top card-imagem-posicao" alt="">
                         <input type="submit" value="Excluir" class="btn btn-success col-2" />
                     </form>

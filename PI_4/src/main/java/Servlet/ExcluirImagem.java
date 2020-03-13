@@ -25,6 +25,11 @@ public class ExcluirImagem extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String idProd = request.getParameter("resultAtt");
+        int prodId = Integer.parseInt(idProd);
+        ArrayList<ImagemProduto> imagens = new Controller.ControllerListarProduto().getImagens(prodId);
+        request.setAttribute("listaImagensAtt", imagens);
+        request.setAttribute("resultAtt", prodId);
 
         request.getRequestDispatcher("/WEB-INF/ProdutoListarBackoffice.jsp")
                 .forward(request, response);
@@ -34,15 +39,14 @@ public class ExcluirImagem extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String aux = request.getParameter("aux");
-        int auxiliar = Integer.parseInt(aux);
-        String idProd = request.getParameter("idProd"+auxiliar);
-        String idImg = request.getParameter("idImagem"+auxiliar);
-        String nomeImg = request.getParameter("nomeImg"+auxiliar);
-        int idProduto = Integer.parseInt(idProd);
-        int idimagem = Integer.parseInt(idImg);
-        boolean retorno = new Controller.ControllerAlterarProduto().excluirImagem(nomeImg,idimagem);
-        request.getRequestDispatcher("/WEB-INF/ProdutoListarBackoffice.jsp")
+        String nameImagem = request.getParameter("nomeImg");
+        String idImagem = request.getParameter("idImagem");
+        String idProd = request.getParameter("idProd");
+        int idproduto = Integer.parseInt(idProd);
+        request.setAttribute("resultAtt", idproduto);
+        int idimagem = Integer.parseInt(idImagem);
+        boolean retorno = new Controller.ControllerAlterarProduto().excluirImagem(nameImagem, idimagem);
+        request.getRequestDispatcher("/WEB-INF/AlterarImagemProd.jsp")
                 .forward(request, response);
     }
 }

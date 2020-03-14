@@ -355,7 +355,7 @@ public class DAO_Produto {
         ArrayList<Produto> listaProduto = new ArrayList<Produto>();
         try (Connection conexao = conec.obterConexao()) {
 
-            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT ID_PRODUTO, NOME, VALOR_UNIT  from SUPLEMENTOS.PRODUTO;");
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT ID_PRODUTO, NOME, VALOR_UNIT FROM SUPLEMENTOS.PRODUTO WHERE STATUS = 1;");
 
             ResultSet rs = comandoSQL.executeQuery();
 

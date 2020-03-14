@@ -46,7 +46,7 @@ public class ControllerAlterarProduto {
 
     public boolean excluirImagem(String nomeImg, int idImg) {
         Upload delete = new Upload();
-        delete.deleteFile("https://storage.cloud.google.com/imagedb/"+nomeImg);
+        delete.deleteFile(nomeImg);
         return new DAO.DAO_Produto().excluirImagem(idImg);
     }
 }

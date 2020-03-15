@@ -24,21 +24,36 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
+                    <div class="navbar-nav mr-auto">
                         <form method="get" action="${pageContext.request.contextPath}/ProdutoCadastrar" class="nav-item active" novalidate>
                             <input type="submit" value="Cadastrar Produto" class="nav-link active">
                         </form>
 
                         <form method="get" action="${pageContext.request.contextPath}/ProdutoListarBackoffice" class="nav-item" novalidate>
                             <input type="submit" value="Listar Produtos" class="nav-link">
-                        </form>
-                    </ul>
+                        </form>	
+                    </div>
+                    
+                    <div class="d-flex justify-content-end">
+	                    <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
+	                    	<input type="submit" value="Carrinho" class="nav-link">
+	                    </form>
+	
+					    <div class="nav-item dropdown">
+						    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    	Nome do Usuário
+						    </a>
+						    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						    	<a class="dropdown-item" href="#">Trocar Senha</a>
+						        <a class="dropdown-item" href="#">Sair</a>
+						    </div>
+						</div>
+					</div>
                 </div>
             </nav>
         </header>
 
         <main>
-
             <section id="produtos" class="bg-light pb-5">
                 <div class="container d-flex flex-wrap justify-content-md-around justify-content-center">
                     <c:forEach items="${ListaProdAtt}" var="listaProd">
@@ -61,7 +76,6 @@
                     </c:forEach>
                 </div>
             </section>
-
         </main>
 
         <footer id="footer" class="bg-secondary py-3 mx-auto">

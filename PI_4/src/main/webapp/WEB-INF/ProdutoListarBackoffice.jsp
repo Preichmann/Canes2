@@ -33,22 +33,22 @@
                             <input type="submit" value="Listar Produtos" class="nav-link">
                         </form>	
                     </div>
-                    
+
                     <div class="d-flex justify-content-end">
-	                    <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
-	                    	<input type="submit" value="Carrinho" class="nav-link">
-	                    </form>
-	
-					    <div class="nav-item dropdown">
-						    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						    	Nome do Usuário
-						    </a>
-						    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						    	<a class="dropdown-item" href="#">Trocar Senha</a>
-						        <a class="dropdown-item" href="#">Sair</a>
-						    </div>
-						</div>
-					</div>
+                        <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
+                            <input type="submit" value="Carrinho" class="nav-link">
+                        </form>
+
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Nome do Usuário
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Trocar Senha</a>
+                                <a class="dropdown-item" href="#">Sair</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </header>
@@ -63,7 +63,7 @@
                                       action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
                                     <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
                                     <h5 class="card-title"><c:out value="${listaProd.getNome()}" /></h5>
-                                    <p class="card-text"><c:out value="${listaProd.getPreco()}" /></p>
+                                    <p class="card-text"><c:out value="R$ ${listaProd.getPreco()}" /></p>
                                     <input type="submit" value="Editar" class="btn btn-cor-especial">
                                 </form>
                                 <form id="SalvarImagem" name="ProdutoExcluir" method="post"

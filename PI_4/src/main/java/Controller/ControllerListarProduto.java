@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ControllerListarProduto {
 
     public ArrayList<Produto> getProdutos() {
-        return new DAO.DAO_Produto().getProdutos();
+        return new DAO.DAO_Produto().getProdutosTotal();
     }
     
     public ArrayList<ImagemProduto> getImagens(int idProduto) {

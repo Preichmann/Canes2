@@ -30,5 +30,8 @@
             <input type="file" name="file" id="file" class="form-control" multiple="multiple" />
             <input type="submit" value="Salvar" class="btn btn-success col-2" />
         </form>
+        <form method="get" action="${pageContext.request.contextPath}/ProdutoListarBackoffice" class="nav-item" novalidate>
+            <input type="submit" value="Sair" class="nav-link">
+        </form>
     </body>
 </html>

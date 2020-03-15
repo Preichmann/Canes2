@@ -21,42 +21,42 @@
     </head>
 
     <body>
+        <header>
+            <script>
+                if (${SalvarIMGAtt} === true) {
+                    alert('Produto Salvo Com sucesso!');
+                } else {
+                    alert('Falha ao Salvar o Produto!');
+                }
+                if (${result2Att} === true) {
+                    alert('Produto Alterado Com sucesso!');
+                } else {
+                    alert('Falha ao Alterar o Produto!');
+                }
+            </script> 
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">
-                <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">
+                    <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <form method="get" action="${pageContext.request.contextPath}/top-10" class="nav-item active"
-                          novalidate>
-                        <input type="submit" value="Top 10" class="nav-link active">
-                    </form>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <form method="get" action="${pageContext.request.contextPath}/ProdutoCadastrar" class="nav-item active" novalidate>
+                            <input type="submit" value="Cadastrar Produto" class="nav-link active">
+                        </form>
 
-                    <form method="get" action="${pageContext.request.contextPath}/perdaDePeso" class="nav-item" novalidate>
-                        <input type="submit" value="Perda de Peso" class="nav-link">
-                    </form>
-
-                    <form method="get" action="${pageContext.request.contextPath}/preTreino" class="nav-item" novalidate>
-                        <input type="submit" value="Pré Treino" class="nav-link">
-                    </form>
-
-                    <form method="get" action="${pageContext.request.contextPath}/ganhoDeMassa" class="nav-item" novalidate>
-                        <input type="submit" value="Ganho de Massa" class="nav-link">
-                    </form>
-
-                    <form method="get" action="${pageContext.request.contextPath}/recuperacaoMuscular" class="nav-item"
-                          novalidate>
-                        <input type="submit" value="Recuperação Muscular" class="nav-link">
-                    </form>
-                </ul>
-            </div>
-        </nav>
+                        <form method="get" action="${pageContext.request.contextPath}/ProdutoListarBackoffice" class="nav-item" novalidate>
+                            <input type="submit" value="Listar Produtos" class="nav-link">
+                        </form>
+                    </ul>
+                </div>
+            </nav>
+        </header>
 
         <div class="container">
             <h3>Alterar Produto</h3>
@@ -81,15 +81,6 @@
                         <label for="produtoValorUnitario">Valor Unitário</label>
                         <input type="text" class="form-control" name="produtoValorUnitario" id="produtoValorUnitario" value="${ProdutoAtt.getPreco()}" placeholder="">
                     </div>
-                    <!--
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text">R$</span>
-                              <span class="input-group-text">0.00</span>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Real amount (with dot and two decimal places)">
-                        </div>
-                    -->
 
                     <div class="form-group col-md-4">
                         <label for="produtoQuantidadeEstoque">Quantidade em Estoque</label>
@@ -117,14 +108,14 @@
                 </div>
                 <c:forEach items="${ListaPerguntaAtt}" var="listaPergunta" varStatus="theCount">
                     <input type="hidden" value="${listaPergunta.getIdPergunta()}" name="idPergunta${theCount.index}" id="idPergunta${theCount.index}" />
-                    <h4>${listaPergunta.getPergunta()}</h4>
+                    <label>${listaPergunta.getPergunta()}</label>
                     <textarea class="form-control" name="resposta${theCount.index}" id="resposta${theCount.index}" rows="3"></textarea>
                     <c:forEach items="${ListaRespostaProd}" var="listaResposta" varStatus="theCountResp">
                         <input type="hidden" value="${listaResposta.getIdPergunta()}" name="idPergunta${theCountResp.index}" id="idPergunta${theCountResp.index}" />
                         <script>
                             var r1 = document.getElementById("idPergunta${theCount.index}").value;
                             var r2 = document.getElementById("idPergunta${theCountResp.index}").value;
-                            getResposta(r1, r2 );
+                            getResposta(r1, r2);
                             function getResposta(r1, r2) {
                                 try {
                                     if (r1 === r2) {
@@ -192,7 +183,7 @@
                     </c:forEach>
                 </fieldset>
 
-                <input type="submit" value="Salvar" class="btn btn-success col-2" />
+                <input type="submit" value="Alterar Imagens" class="btn btn-success col-2" />
             </form>
 
             <form method="post" action="${pageContext.request.contextPath}/menu-principal" novalidate>

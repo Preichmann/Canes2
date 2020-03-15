@@ -66,8 +66,8 @@
                                     <p class="card-text"><c:out value="${listaProd.getPreco()}" /></p>
                                     <input type="submit" value="Editar" class="btn btn-cor-especial">
                                 </form>
-                                <form id="SalvarImagem" name="ProdutoAlterar" method="post"
-                                      action="${pageContext.request.contextPath}/ProdutoAlterar" novalidate>
+                                <form id="SalvarImagem" name="ProdutoExcluir" method="post"
+                                      action="${pageContext.request.contextPath}/ProdutoExcluir" novalidate>
                                     <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
                                     <input type="submit" value="Excluir" class="btn btn-cor-especial">
                                 </form>

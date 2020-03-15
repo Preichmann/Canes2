@@ -97,5 +97,8 @@ public class Controller_Produto {
     public boolean SalvarImagem(String fileName, int idProd) {
         return new DAO.DAO_Produto().salvarImagem(fileName,idProd);
     }
+    public boolean disableProduto(int idProd){
+        return new DAO.DAO_Produto().disableProduto(idProd);
+    }
 
 }

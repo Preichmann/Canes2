@@ -605,4 +605,28 @@ public class DAO_Produto {
         }
         return retorno;
     }
+
+    public boolean disableProduto(int idProd) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.PRODUTO \n"
+                    + " SET STATUS = ? \n"
+                    + " WHERE ID_PRODUTO = ?");
+
+            comandoSQL.setBoolean(1, false);
+            comandoSQL.setInt(2, idProd);
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return retorno;
+    }
 }

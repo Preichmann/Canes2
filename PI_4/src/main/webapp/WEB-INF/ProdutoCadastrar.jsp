@@ -21,24 +21,24 @@
     </head>
 
     <body>
-    <header>
-        <script>
-            if (${SalvarIMGAtt} === true) {
-                alert('Produto Salvo Com sucesso!');
-            } else {
-                alert('Falha ao Salvar o Produto!');
-            }
-            if (${result2Att} === true) {
-                alert('Produto Alterado Com sucesso!');
-            } else {
-                alert('Falha ao Alterar o Produto!');
-            }
-        </script> 
+        <header>
+            <script>
+                if (${SalvarIMGAtt} === true) {
+                    alert('Produto Salvo Com sucesso!');
+                } else {
+                    alert('Falha ao Salvar o Produto!');
+                }
+                if (${result2Att} === true) {
+                    alert('Produto Alterado Com sucesso!');
+                } else {
+                    alert('Falha ao Alterar o Produto!');
+                }
+            </script> 
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        	<a class="navbar-brand" href="#">
-            	<img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
-            </a>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">
+                    <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -56,7 +56,7 @@
                     </ul>
                 </div>
             </nav>
-</header>
+        </header>
 
         <div class="container">
             <h3>Cadastrar Produto</h3>
@@ -80,15 +80,6 @@
                         <label for="produtoValorUnitario">Valor Unitário</label>
                         <input type="text" class="form-control" name="produtoValorUnitario" id="produtoValorUnitario" placeholder="">
                     </div>
-                    <!--
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text">R$</span>
-                              <span class="input-group-text">0.00</span>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Real amount (with dot and two decimal places)">
-                        </div>
-                    -->
 
                     <div class="form-group col-md-4">
                         <label for="produtoQuantidadeEstoque">Quantidade em Estoque</label>
@@ -123,7 +114,7 @@
                         </p>
                     </c:forEach>
                 </fieldset>
-                
+
                 <input type="submit" value="Adicionar Imagens" class="btn btn-success col-2" />
             </form>
 

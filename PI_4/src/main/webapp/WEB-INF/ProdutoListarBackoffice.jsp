@@ -10,6 +10,39 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="src/style.css">
+        <style>
+        .navbar .nav-link {
+        	display: unset;
+        	color: black !important;
+        }
+        .navbar form input {
+        	padding: 0;
+    		background: none;
+    		border: none;
+   			margin: 0;
+        }
+        .navbar form input:hover {
+        	color: red;
+        }
+        .card-text {
+			min-width: 120px;
+			display: flex;
+			justify-content: space-around;
+		}
+		.card-text span {
+			color: green;
+			font-weight: 500;
+		}
+        @media (max-width: 992px){
+	         .navbar .nav-link {
+	        	padding: .5em;
+	        	
+	        }
+	        .navbar .user-options {
+	       		flex-direction: column;
+	     	}    		 
+        }
+        </style>
     </head>
 
     <body>
@@ -34,7 +67,7 @@
                         </form>	
                     </div>
 
-                    <div class="d-flex justify-content-end">
+                    <div class="d-flex user-options">
                         <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
                             <input type="submit" value="Carrinho" class="nav-link">
                         </form>
@@ -54,23 +87,25 @@
         </header>
 
         <main>
-            <section id="produtos" class="bg-light pb-5">
-                <div class="container d-flex flex-wrap justify-content-md-around justify-content-center">
+            <section id="produtos" class="pb-5">
+                <div class="container">
                     <c:forEach items="${ListaProdAtt}" var="listaProd">
-                        <article class="card borda-cor-especial card-largura mt-5">
-                            <div class="card-body">
-                                <form id="SalvarImagem" name="ProdutoListar" method="post"
-                                      action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
-                                    <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
-                                    <h5 class="card-title"><c:out value="${listaProd.getNome()}" /></h5>
-                                    <p class="card-text"><c:out value="R$ ${listaProd.getPreco()}" /></p>
-                                    <input type="submit" value="Editar" class="btn btn-cor-especial">
-                                </form>
-                                <form id="SalvarImagem" name="ProdutoExcluir" method="post"
-                                      action="${pageContext.request.contextPath}/ProdutoExcluir" novalidate>
-                                    <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
-                                    <input type="submit" value="Excluir" class="btn btn-cor-especial">
-                                </form>
+                        <article class="card mt-3">
+                            <div class="card-body justify-content-between">
+                            	<div class="d-flex flex-row">
+	                                <form class="d-flex flex-row justify-content-between" style="width: 100%;" id="SalvarImagem" name="ProdutoListar" method="post"
+	                                      action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
+	                                    <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
+	                                    <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaProd.getNome()}" /></h5>
+	                                    <p class="card-text" style="margin: 0;display: flex;align-items: center;"><span>R$</span><c:out value="${listaProd.getPreco()}" /></p>
+	                                    <input type="submit" class="btn btn-primary" value="Editar" class="btn btn-cor-especial">
+	                                </form>
+	                                <form class="d-flex ml-1" id="SalvarImagem" name="ProdutoExcluir" method="post"
+	                                      action="${pageContext.request.contextPath}/ProdutoExcluir" novalidate>
+	                                    <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
+	                                    <input type="submit" class="btn btn-danger" value="Excluir" class="btn btn-cor-especial">
+	                                </form>
+                                </div>
                             </div>
                         </article>
                     </c:forEach>

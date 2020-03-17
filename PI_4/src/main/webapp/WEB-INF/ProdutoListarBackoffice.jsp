@@ -10,39 +10,6 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="src/style.css">
-        <style>
-        .navbar .nav-link {
-        	display: unset;
-        	color: black !important;
-        }
-        .navbar form input {
-        	padding: 0;
-    		background: none;
-    		border: none;
-   			margin: 0;
-        }
-        .navbar form input:hover {
-        	color: red;
-        }
-        .card-text {
-			min-width: 120px;
-			display: flex;
-			justify-content: space-around;
-		}
-		.card-text span {
-			color: green;
-			font-weight: 500;
-		}
-        @media (max-width: 992px){
-	         .navbar .nav-link {
-	        	padding: .5em;
-	        	
-	        }
-	        .navbar .user-options {
-	       		flex-direction: column;
-	     	}    		 
-        }
-        </style>
     </head>
 
     <body>
@@ -93,7 +60,7 @@
                         <article class="card mt-3">
                             <div class="card-body justify-content-between">
                             	<div class="d-flex flex-row">
-	                                <form class="d-flex flex-row justify-content-between" style="width: 100%;" id="SalvarImagem" name="ProdutoListar" method="post"
+	                                <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="ProdutoListar" method="post"
 	                                      action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
 	                                    <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
 	                                    <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaProd.getNome()}" /></h5>

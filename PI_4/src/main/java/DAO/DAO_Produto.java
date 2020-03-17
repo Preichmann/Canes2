@@ -483,6 +483,7 @@ public class DAO_Produto {
         return img;
     }
 
+
     public ArrayList<Resposta> getRespostas(int idProd) {
         Conexao conec = new Conexao();
         ArrayList<Resposta> listaResposta = new ArrayList<>();

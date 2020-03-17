@@ -1,39 +1,76 @@
 .imagem-carrossel {
-  object-fit: cover; 
-  object-position: 0 80%;
-  height: 400px;
+    object-fit: cover; 
+    object-position: 0 80%;
+    height: 400px;
 }
 
 .fonte-titulo {
-  font-family: 'Times New Roman'; 
+    font-family: 'Times New Roman'; 
 }
 
 .texto-cor-especial {
-  color: #8D0606!important;
+    color: #8D0606!important;
 }
 
 .card-largura {
-  width: 18rem;
+    width: 18rem;
 }
 
 
 .card-imagem-posicao {
-  height:200px;
-  object-fit:cover;
-  object-position: 0 60%;
+    height:200px;
+    object-fit:cover;
+    object-position: 0 60%;
 }
 
 
 .borda-cor-especial {
-  border-color: #8D0606;
+    border-color: #8D0606;
 }
 
 .btn-cor-especial {
-  background-color: #8D0606;
-  color: white;
+    background-color: #8D0606;
+    color: white;
 }
 
 .produto-detalhe{
-  width: 60%;
-  height: 90%;
+    width: 60%;
+    height: 90%;
+}
+
+.navbar .nav-link {
+    display: unset;
+    color: black !important;
+}
+
+.navbar form input {
+    padding: 0;
+    background: none;
+    border: none;
+    margin: 0;
+}
+
+.navbar form input:hover {
+    color: red;
+}
+
+.card-text {
+    min-width: 120px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.card-text span {
+    color: green;
+    font-weight: 500;
+}
+
+@media (max-width: 992px){
+    .navbar .nav-link {
+        padding: .5em;
+
+    }
+    .navbar .user-options {
+        flex-direction: column;
+    }    		 
 }

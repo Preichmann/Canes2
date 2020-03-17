@@ -18,10 +18,15 @@ public class ControllerListarProduto {
     public ArrayList<Produto> getProdutos() {
         return new DAO.DAO_Produto().getProdutosTotal();
     }
-    
+
+    public ArrayList<Produto> getProdutosCliente() {
+        return new DAO.DAO_Produto().getProdutosDisponiveis();
+    }
+
     public ArrayList<ImagemProduto> getImagens(int idProduto) {
         return new DAO.DAO_Produto().getImagem(idProduto);
     }
+
     public ArrayList<ImagemProduto> getImagensTotal() {
         return new DAO.DAO_Produto().getImagensTotal();
     }

@@ -6,6 +6,7 @@
 package Servlet;
 
 import Classes.ImagemProduto;
+import Classes.Produto;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -77,11 +78,15 @@ public class SalvarImagem extends HttpServlet {
         }
         if (retorno) {
             request.setAttribute("SalvarIMGAtt", retorno);
-            request.getRequestDispatcher("/WEB-INF/AlterarImagemProd.jsp")
+            ArrayList<Produto> listaProd = new Controller.ControllerListarProduto().getProdutos();
+            request.setAttribute("ListaProdAtt", listaProd);
+            request.getRequestDispatcher("/WEB-INF/ProdutoListarBackoffice.jsp")
                     .forward(request, response);
         } else {
             request.setAttribute("SalvarIMGAtt", retorno);
-            request.getRequestDispatcher("/WEB-INF/AlterarImagemProd.jsp")
+            ArrayList<Produto> listaProd = new Controller.ControllerListarProduto().getProdutos();
+            request.setAttribute("ListaProdAtt", listaProd);
+            request.getRequestDispatcher("/WEB-INF/ProdutoListarBackoffice.jsp")
                     .forward(request, response);
         }
 

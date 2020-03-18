@@ -44,6 +44,8 @@ public class ExcluirImagem extends HttpServlet {
         String idProd = request.getParameter("idProd");
         int idproduto = Integer.parseInt(idProd);
         request.setAttribute("resultAtt", idproduto);
+        ArrayList<ImagemProduto> imagens = new Controller.ControllerListarProduto().getImagens(idproduto);
+        request.setAttribute("listaImagensAtt", imagens);
         int idimagem = Integer.parseInt(idImagem);
         boolean retorno = new Controller.ControllerAlterarProduto().excluirImagem(nameImagem, idimagem);
         request.getRequestDispatcher("/WEB-INF/AlterarImagemProd.jsp")

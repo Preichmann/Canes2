@@ -125,7 +125,7 @@ public class ProdutoAlterar extends HttpServlet {
                     .forward(request, response);
         }else{
             request.setAttribute("resul2Att", false);
-            request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
+            request.getRequestDispatcher("/WEB-INF/ProdutoListarBackoffice.jsp")
                     .forward(request, response);
         }
         

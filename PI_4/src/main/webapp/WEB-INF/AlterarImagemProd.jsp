@@ -18,7 +18,7 @@
                         <input type="hidden" value="${imagens.getIdImg()}" name="idImagem" id="idImagem${theCounter.index}" />
                         <input type="hidden" value="${imagens.getNome()}" name="nomeImg" id="nomeImg${theCounter.index}" />
                         <img src="https://storage.cloud.google.com/imagedb/${imagens.getNome()}" class="card-img-top card-imagem-posicao" alt="">
-                        <input type="submit" value="Excluir" class="btn btn-success col-2" onclick="getIdNameImg())("/>
+                        <input type="submit" value="Excluir" class="btn btn-success col-2"/>
                     </form>
                 </c:forEach>
             </fieldset>

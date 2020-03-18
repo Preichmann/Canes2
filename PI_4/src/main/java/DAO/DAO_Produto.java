@@ -462,7 +462,7 @@ public class DAO_Produto {
         ArrayList<ImagemProduto> img = new ArrayList<ImagemProduto>();
         try (Connection conexao = conec.obterConexao()) {
 
-            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT ID_IMG, FK_ID_PROD, NOME "
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT ID_IMG, FK_ID_PRODUTO, NOME "
                     + "FROM SUPLEMENTOS.PROD_IMG PROD;");
 
             ResultSet rs = comandoSQL.executeQuery();

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<%-- Alterar o padrão para JSP --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
@@ -93,67 +92,23 @@
 
             <section id="produtos" class="bg-light pb-5">
                 <div class="container d-flex flex-wrap justify-content-md-around justify-content-center">
-                    <c:forEach items="${ListaProdAtt}" var="listaProd" varStatus="theCounter">
+                    <c:forEach items="${listaProdutoAtt}" var="listaProd" varStatus="theCounter">
                         <article class="card borda-cor-especial card-largura mt-5">
-                            <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="ProdutoDetalhar" method="post"
-                                  action="${pageContext.request.contextPath}/ProdutoDetalhar" novalidate>
-                                <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd${theCounter.index}" />
-                                <c:forEach items="${listaImagensAtt}" var="listaPrimeiraImagem" varStatus="theCounterImg">
-                                    <input type="hidden" value="${listaPrimeiraImagem.getIdProd()}" name="idProdImg" id="idProdImg${theCounterImg.index}" />
-                                    <img src="" class="card-img-top card-imagem-posicao" alt="" id="imgProd${theCounterImg.index}">
-                                    <script>
-                                        var valor1 = document.getElementById("idProd${theCounter.index}").value;
-                                        var valor2 = document.getElementById("idProdImg${theCounterImg.index}").value;
-                                        getObjetivo(valor1, valor2);
-                                        function getObjetivo(valor1, valor2) {
-                                            try {
-                                                if (valor1 === valor2) {
-                                                    document.getElementById('imgProd${theCounterImg.index}').src = "https://storage.cloud.google.com/imagedb/";
-                                                }
-                                            } catch (err) {
-                                                alert(err);
-                                            }
-                                        }
+                            <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd${theCounter.index}" />
+                            <img src="${listaProd.getCaminho()}" class="card-img-top card-imagem-posicao" alt="" id="imgProd${theCounterImg.index}">
 
-                                    </script>
-                                </c:forEach>
-                                <div class="card-body">
+                            <div class="card-body">
+                                <form name="ProdutoDetalhar" method="post"
+                                      action="${pageContext.request.contextPath}/ProdutoDetalhar" novalidate>
                                     <h5 class="card-title">${listaProd.getNome()}</h5>
                                     <p class="card-text">R$ ${listaProd.getPreco()}</p>
                                     <input type="submit" class="btn btn-danger" value="Detalhes" class="btn btn-cor-especial">
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </article>
                     </c:forEach>
-
                 </div>
             </section>
-            <main>
-                <section id="produtos" class="pb-5">
-                    <div class="container">
-                        <c:forEach items="${ListaProdAtt}" var="listaProd">
-                            <article class="card mt-3">
-                                <div class="card-body justify-content-between">
-                                    <div class="d-flex flex-row">
-                                        <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="ProdutoListar" method="post"
-                                              action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
-                                            <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
-                                            <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaProd.getNome()}" /></h5>
-                                            <p class="card-text" style="margin: 0;display: flex;align-items: center;"><span>R$</span><c:out value="${listaProd.getPreco()}" /></p>
-                                            <input type="submit" class="btn btn-primary" value="Editar" class="btn btn-cor-especial">
-                                        </form>
-                                        <form class="d-flex ml-1" id="SalvarImagem" name="ProdutoExcluir" method="post"
-                                              action="${pageContext.request.contextPath}/ProdutoExcluir" novalidate>
-                                            <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
-                                            <input type="submit" class="btn btn-danger" value="Excluir" class="btn btn-cor-especial">
-                                        </form>
-                                    </div>
-                                </div>
-                            </article>
-                        </c:forEach>
-                    </div>
-                </section>
-            </main>
         </main>
 
         <footer id="footer" class="bg-secondary py-3 mx-auto">

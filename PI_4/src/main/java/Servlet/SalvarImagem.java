@@ -77,11 +77,11 @@ public class SalvarImagem extends HttpServlet {
         }
         if (retorno) {
             request.setAttribute("SalvarIMGAtt", retorno);
-            request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
+            request.getRequestDispatcher("/WEB-INF/AlterarImagemProd.jsp")
                     .forward(request, response);
         } else {
             request.setAttribute("SalvarIMGAtt", retorno);
-            request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
+            request.getRequestDispatcher("/WEB-INF/AlterarImagemProd.jsp")
                     .forward(request, response);
         }
 

@@ -21,6 +21,15 @@ public class Produto{
     private int quantidade;
     private int idUsuário;
     private boolean status;
+    private String Caminho;
+
+    public String getCaminho() {
+        return Caminho;
+    }
+
+    public void setCaminho(String Caminho) {
+        this.Caminho = Caminho;
+    }
 
     public Produto(String nome, double preco, String descricao, int quantidade, boolean status) {
         this.nome = nome;

@@ -100,6 +100,7 @@
                             <div class="card-body">
                                 <form name="ProdutoDetalhar" method="post"
                                       action="${pageContext.request.contextPath}/ProdutoDetalhar" novalidate>
+                                    <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd${theCounter.index}" />
                                     <h5 class="card-title">${listaProd.getNome()}</h5>
                                     <p class="card-text">R$ ${listaProd.getPreco()}</p>
                                     <input type="submit" class="btn btn-danger" value="Detalhes" class="btn btn-cor-especial">

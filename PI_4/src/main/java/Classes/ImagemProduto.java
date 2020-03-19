@@ -15,6 +15,7 @@ public class ImagemProduto {
     private String caminho;
     private int idProd;
     private boolean status;
+    
 
     public ImagemProduto(int idImg, String nome, String caminho, int idProd, boolean status) {
         this.idImg = idImg;

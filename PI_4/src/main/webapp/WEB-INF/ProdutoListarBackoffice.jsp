@@ -25,6 +25,27 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="navbar-nav mr-auto">
+                        <form method="get" action="${pageContext.request.contextPath}/top-10" class="nav-item active" novalidate>
+                            <input type="submit" value="Top 10" class="nav-link active">
+                        </form>
+
+                        <form method="get" action="${pageContext.request.contextPath}/perdaDePeso" class="nav-item" novalidate>
+                            <input type="submit" value="Perda de Peso" class="nav-link">
+                        </form>
+
+                        <form method="get" action="${pageContext.request.contextPath}/preTreino" class="nav-item" novalidate>
+                            <input type="submit" value="Pré Treino" class="nav-link">
+                        </form>
+
+                        <form method="get" action="${pageContext.request.contextPath}/ganhoDeMassa" class="nav-item" novalidate>
+                            <input type="submit" value="Ganho de Massa" class="nav-link">
+                        </form>
+
+                        <form method="get" action="${pageContext.request.contextPath}/recuperacaoMuscular" class="nav-item"
+                              novalidate>
+                            <input type="submit" value="Recuperação Muscular" class="nav-link">
+                        </form>
+                              
                         <form method="get" action="${pageContext.request.contextPath}/ProdutoCadastrar" class="nav-item active" novalidate>
                             <input type="submit" value="Cadastrar Produto" class="nav-link active">
                         </form>
@@ -33,7 +54,7 @@
                             <input type="submit" value="Listar Produtos" class="nav-link">
                         </form>	
                     </div>
-
+                              
                     <div class="d-flex user-options">
                         <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
                             <input type="submit" value="Carrinho" class="nav-link">
@@ -48,7 +69,7 @@
                                 <a class="dropdown-item" href="#">Sair</a>
                             </div>
                         </div>
-                    </div>
+                    </div>          
                 </div>
             </nav>
         </header>

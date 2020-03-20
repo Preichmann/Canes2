@@ -23,7 +23,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
+                    <div class="navbar-nav mr-auto">
                         <form method="get" action="${pageContext.request.contextPath}/top-10" class="nav-item active" novalidate>
                             <input type="submit" value="Top 10" class="nav-link active">
                         </form>
@@ -44,7 +44,31 @@
                               novalidate>
                             <input type="submit" value="Recuperação Muscular" class="nav-link">
                         </form>
-                    </ul>
+                              
+                        <form method="get" action="${pageContext.request.contextPath}/ProdutoCadastrar" class="nav-item active" novalidate>
+                            <input type="submit" value="Cadastrar Produto" class="nav-link active">
+                        </form>
+
+                        <form method="get" action="${pageContext.request.contextPath}/ProdutoListarBackoffice" class="nav-item" novalidate>
+                            <input type="submit" value="Listar Produtos" class="nav-link">
+                        </form>	
+                    </div>
+                              
+                    <div class="d-flex user-options">
+                        <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
+                            <input type="submit" value="Carrinho" class="nav-link">
+                        </form>
+
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Nome do Usuário
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Trocar Senha</a>
+                                <a class="dropdown-item" href="#">Sair</a>
+                            </div>
+                        </div>
+                    </div>          
                 </div>
             </nav>
         </header>
@@ -61,14 +85,14 @@
                             <img src="src/img/carrossel-img1.jpg" class="imagem-carrossel d-block w-100"
                                  alt="barraca de frutas e verduras em uma feira livre">
                             <div class="carousel-caption h-50 d-none d-md-block">
-                                <h2 class="fonte-titulo display-4">Frase 1</h2>
+                                <h2 class="fonte-titulo display-4"></h2> <!-- Frase 1 -->
                             </div>
                         </div>
                         <div class="carousel-item">
                             <img src="src/img/carrossel-img2.jpg" class="imagem-carrossel d-block w-100"
                                  alt="tigelas com ingredientes culinários sendo manuseadas por pessoas, vistas de cima">
                             <div class="carousel-caption h-50 d-none d-md-block">
-                                <h2 class="fonte-titulo display-4">Frase 2</h2>
+                                <h2 class="fonte-titulo display-4"></h2> <!-- Frase 2 -->
                             </div>
                         </div>
                     </div>
@@ -84,16 +108,19 @@
             </section>
 
             <section id="titulo">
-                <div class="text-center py-5 px-2">
+                <div class="bg-light text-center py-5 px-2 mb-4">
                     <h1 class="fonte-titulo texto-cor-especial">O suplemento ideal para seu esporte</h1>
-                    <p class="text-secondary">Frase secundária</p>
+                    <p class="text-secondary"></p> <!-- Frase secundária -->
                 </div>
             </section>
 
-            <section id="produtos" class="bg-light pb-5">
+            <section id="produtos" class="pb-5">
                 <div class="container d-flex flex-wrap justify-content-md-around justify-content-center">
                     <c:forEach items="${listaProdutoAtt}" var="listaProd" varStatus="theCounter">
-                        <article class="card borda-cor-especial card-largura mt-5">
+                        <article class="card borda-cor-especial card-largura p-0 m-2 col-12 col-md-3"> 
+                            
+                            <!-- card borda-cor-especial card-largura  -->
+                            
                             <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd${theCounter.index}" />
                             <img src="${listaProd.getCaminho()}" class="card-img-top card-imagem-posicao" alt="" id="imgProd${theCounterImg.index}">
 

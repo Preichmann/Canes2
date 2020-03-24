@@ -1,8 +1,3 @@
-<!--<%-- 
-    Document   : cadastroProduto
-    Created on : 01/03/2020, 12:48:05
-    Author     : Beatriz da Silva
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>-->
 <!DOCTYPE html>
@@ -35,7 +30,7 @@
                 }
             </script> 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">
                     <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
                 </a>
@@ -66,7 +61,7 @@
                               novalidate>
                             <input type="submit" value="Recuperação Muscular" class="nav-link">
                         </form>
-                              
+
                         <form method="get" action="${pageContext.request.contextPath}/ProdutoCadastrar" class="nav-item active" novalidate>
                             <input type="submit" value="Cadastrar Produto" class="nav-link active">
                         </form>
@@ -75,7 +70,7 @@
                             <input type="submit" value="Listar Produtos" class="nav-link">
                         </form>	
                     </div>
-                              
+
                     <div class="d-flex user-options">
                         <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
                             <input type="submit" value="Carrinho" class="nav-link">
@@ -226,6 +221,11 @@
             <form method="get" action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
+
+            <footer class="fixed-bottom text-center footer p-2">
+                <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
+                <p>2020 - Todos os direitos reservados</p>
+            </footer>
 
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
                     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

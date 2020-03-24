@@ -44,7 +44,7 @@
                               novalidate>
                             <input type="submit" value="Recuperação Muscular" class="nav-link">
                         </form>
-                              
+
                         <form method="get" action="${pageContext.request.contextPath}/ProdutoCadastrar" class="nav-item active" novalidate>
                             <input type="submit" value="Cadastrar Produto" class="nav-link active">
                         </form>
@@ -53,7 +53,7 @@
                             <input type="submit" value="Listar Produtos" class="nav-link">
                         </form>	
                     </div>
-                              
+
                     <div class="d-flex user-options">
                         <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
                             <input type="submit" value="Carrinho" class="nav-link">
@@ -79,19 +79,19 @@
                     <c:forEach items="${ListaProdAtt}" var="listaProd">
                         <article class="card mt-3">
                             <div class="card-body justify-content-between">
-                            	<div class="d-flex flex-row">
-	                                <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="ProdutoListar" method="post"
-	                                      action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
-	                                    <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
-	                                    <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaProd.getNome()}" /></h5>
-	                                    <p class="card-text" style="margin: 0;display: flex;align-items: center;"><span>R$</span><c:out value="${listaProd.getPreco()}" /></p>
-	                                    <input type="submit" class="btn btn-primary" value="Editar" class="btn btn-cor-especial">
-	                                </form>
-	                                <form class="d-flex ml-1" id="SalvarImagem" name="ProdutoExcluir" method="post"
-	                                      action="${pageContext.request.contextPath}/ProdutoExcluir" novalidate>
-	                                    <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
-	                                    <input type="submit" class="btn btn-danger" value="Excluir" class="btn btn-cor-especial">
-	                                </form>
+                                <div class="d-flex flex-row">
+                                    <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="ProdutoListar" method="post"
+                                          action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
+                                        <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
+                                        <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaProd.getNome()}" /></h5>
+                                        <p class="card-text" style="margin: 0;display: flex;align-items: center;"><span>R$</span><c:out value="${listaProd.getPreco()}" /></p>
+                                        <input type="submit" class="btn btn-primary" value="Editar" class="btn btn-cor-especial">
+                                    </form>
+                                    <form class="d-flex ml-1" id="SalvarImagem" name="ProdutoExcluir" method="post"
+                                          action="${pageContext.request.contextPath}/ProdutoExcluir" novalidate>
+                                        <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
+                                        <input type="submit" class="btn btn-danger" value="Excluir" class="btn btn-cor-especial">
+                                    </form>
                                 </div>
                             </div>
                         </article>
@@ -100,8 +100,9 @@
             </section>
         </main>
 
-        <footer id="footer" class="bg-secondary py-3 mx-auto">
-            <p class="text-center m-0"><a href="#" class="text-light text-decoration-none">contato: email@canes.com.br</a></p>
+        <footer class="fixed-bottom text-center footer p-2">
+            <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
+            <p>2020 - Todos os direitos reservados</p>
         </footer>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

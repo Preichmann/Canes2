@@ -139,8 +139,9 @@
             </section>
         </main>
 
-        <footer id="footer" class="bg-secondary py-3 mx-auto">
-            <p class="text-center m-0"><a href="#" class="text-light text-decoration-none">contato: email@canes.com.br</a></p>
+        <footer class="fixed-bottom text-center footer p-2">
+            <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
+            <p>2020 - Todos os direitos reservados</p>
         </footer>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

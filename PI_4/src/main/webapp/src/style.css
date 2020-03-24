@@ -78,6 +78,26 @@
     font-weight: 500;
 }
 
+.btn-padrao{
+    width: 130px !important;
+}
+
+.footer{
+    background-color: #000;
+    color: #7f796e;
+}
+
+footer a{
+    text-decoration: none;
+    font-size: 17px;
+    color: #7f796e;
+}
+
+footer a:hover{
+    text-decoration: none;
+    color: #7f796e;
+}
+
 @media (max-width: 992px){
     .navbar .nav-link {
         padding: .5em;

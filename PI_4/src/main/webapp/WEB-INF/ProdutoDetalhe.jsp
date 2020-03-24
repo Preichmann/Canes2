@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<%-- Alterar o padrão para JSP --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
@@ -152,45 +151,10 @@
             </div>
         </main>
 
-        <footer id="footer" class="bg-secondary py-3 mx-auto">
-            <p class="text-center m-0"><a href="#" class="text-light text-decoration-none">contato: email@canes.com</a>
-            </p>
+        <footer class="fixed-bottom text-center footer p-2">
+            <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
+            <p>2020 - Todos os direitos reservados</p>
         </footer>
-
-        <!-- modal -->
-        <div class="modal fade" id="modal-contato" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <dialog class="modal-content">
-                    <header class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Entre em contato</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </header>
-                    <article class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="exampleFormControlInput1"
-                                       placeholder="informe seu nome">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="exampleFormControlInput1"
-                                       placeholder="informe seu e-mail">
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" id="exampleFormControlTextarea1"
-                                          placeholder="deixe sua mensagem" rows="3"></textarea>
-                            </div>
-                        </form>
-                    </article>
-                    <footer class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn btn-cor-especial">Enviar</button>
-                    </footer>
-                </dialog>
-            </div>
-        </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

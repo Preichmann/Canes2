@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -43,5 +44,29 @@ public class DAO_Funcionario {
             retorno = false;
         }
         return retorno;
+    }
+
+    public ArrayList<Funcionario> getFuncionario() {
+        Conexao conec = new Conexao();
+        ArrayList<Funcionario> listaFuncionarios = new ArrayList<Funcionario>();
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT ID_FUNCIONARIO, NOME FROM SUPLEMENTOS.FUNCIONARIO WHERE STATUS = 1;");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Funcionario func = new Funcionario();
+                    func.setIdFuncionario(rs.getInt("ID_FUNCIONARIO"));
+                    func.setNome(rs.getString("NOME"));
+                    listaFuncionarios.add(func);
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaFuncionarios;
     }
 }

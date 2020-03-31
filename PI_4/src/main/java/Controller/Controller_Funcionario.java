@@ -6,6 +6,7 @@
 package Controller;
 
 import Classes.Funcionario;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,5 +16,8 @@ public class Controller_Funcionario {
 
     public boolean cadastrarFuncionario(Funcionario f) {
         return new DAO.DAO_Funcionario().CadastrarFuncionario(f);
+    }
+    public ArrayList<Funcionario> getFuncionario(){
+        return new DAO.DAO_Funcionario().getFuncionario();
     }
 }

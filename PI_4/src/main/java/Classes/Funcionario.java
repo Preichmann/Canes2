@@ -12,13 +12,16 @@ import org.mindrot.jbcrypt.BCrypt;
  * @author nik_r
  */
 public class Funcionario {
-
+    private int idFuncionario;
     private String usuario;
     private String senha;
     private String tipo;
     private String nome;
     private String email;
     private boolean status;
+
+    public Funcionario() {
+    }
 
     public Funcionario(String usuario, String senha, String tipo, String nome, String email, boolean status) {
         this.usuario = usuario;
@@ -27,6 +30,14 @@ public class Funcionario {
         this.nome = nome;
         this.email = email;
         this.status = status;
+    }
+
+    public int getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(int idFuncionario) {
+        this.idFuncionario = idFuncionario;
     }
 
     public boolean isStatus() {

@@ -44,7 +44,7 @@
                               novalidate>
                             <input type="submit" value="Recuperação Muscular" class="nav-link">
                         </form>
-                              
+
                         <form method="get" action="${pageContext.request.contextPath}/ProdutoCadastrar" class="nav-item active" novalidate>
                             <input type="submit" value="Cadastrar Produto" class="nav-link active">
                         </form>
@@ -52,8 +52,11 @@
                         <form method="get" action="${pageContext.request.contextPath}/ProdutoListarBackoffice" class="nav-item" novalidate>
                             <input type="submit" value="Listar Produtos" class="nav-link">
                         </form>	
+                        <form method="get" action="${pageContext.request.contextPath}/FuncionarioCadastrar" class="nav-item" novalidate>
+                            <input type="submit" value="Cadastrar Funcionario" class="nav-link">
+                        </form>
                     </div>
-                              
+
                     <div class="d-flex user-options">
                         <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
                             <input type="submit" value="Carrinho" class="nav-link">
@@ -118,9 +121,9 @@
                 <div class="container d-flex flex-wrap justify-content-md-around justify-content-center">
                     <c:forEach items="${listaProdutoAtt}" var="listaProd" varStatus="theCounter">
                         <article class="card borda-cor-especial card-largura p-0 m-2 col-12 col-md-3"> 
-                            
+
                             <!-- card borda-cor-especial card-largura  -->
-                            
+
                             <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd${theCounter.index}" />
                             <img src="${listaProd.getCaminho()}" class="card-img-top card-imagem-posicao" alt="" id="imgProd${theCounterImg.index}">
 

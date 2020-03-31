@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>-->
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -16,6 +16,41 @@
     </head>
 
     <body>
+
+        <script>
+            if (${retorno} === true) {
+                alert('Funcionario Salvo Com sucesso!');
+            } else {
+                alert('Falha ao Salvar o Funcionario!');
+            }
+        </script>
+        <script>
+            if (${NomeFalha} === false) {
+                alert('Nome com menos que 5 caracteres');
+            }
+        </script>
+        <script>
+            if (${EmailFalha} === false) {
+                alert('Formato do e-mail digitado está errado');
+            }
+        </script>
+        <script>
+            if (${UserFalha} === false) {
+                alert('Campo com usuário não foi preenchido');
+            }
+        </script>
+        <script>
+            if (${senhaFalha} === false) {
+                alert('Campo com Senha não foi preenchido');
+            }
+        </script>
+        <script>
+            if (${tipoFalha} === false) {
+                alert('Campo com tipo não foi Selecionado');
+            }
+        </script>
+
+
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">
@@ -96,9 +131,11 @@
                 <div class="form-group">
                     <label for="tipo">Tipo</label><span>*</span>
                     <br>
-                    <input type="radio" class="radio" name="tipo" id="radioAdministrador" value="Administrador" />&nbsp;Administrador
+                    <label for="radioAdministrador">Administrador</label>
+                    <input type="radio" class="radio" name="tipo" id="radioAdministrador" value="Administrador" />
                     <br>
-                    <input type="radio" class="radio" name="tipo" id="radioEstoquista" value="Estoquista" /> Estoquista
+                    <label for="radioEstoquista">Estoquista</label>
+                    <input type="radio" class="radio" name="tipo" id="radioEstoquista" value="Estoquista" />
                     <span class="error"><p id="sexo_error"></p></span>
                 </div>
 
@@ -112,7 +149,7 @@
                 </div>
 
                 <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" name="FuncionarioDisponivel" id="produtoDisponivel">
+                    <input type="checkbox" class="custom-control-input" name="FuncionarioDisponivel" id="FuncionarioDisponivel">
                     <label class="custom-control-label" for="FuncionarioDisponivel">Disponível</label>
                 </div>
 
@@ -121,12 +158,12 @@
             <form method="post" action="${pageContext.request.contextPath}/menu-principal" novalidate>
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
-
+            <%-- 
             <footer class="fixed-bottom text-center footer p-2">
                 <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
                 <p>2020 - Todos os direitos reservados</p>
             </footer>
-
+            --%>
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
                     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
             crossorigin="anonymous"></script>

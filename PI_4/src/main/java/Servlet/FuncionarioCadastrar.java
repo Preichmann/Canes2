@@ -6,6 +6,7 @@
 package Servlet;
 
 import Classes.Funcionario;
+import Classes.ValidarEmail;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,15 +34,54 @@ public class FuncionarioCadastrar extends HttpServlet {
         String userNome = request.getParameter("funcionarioNome");
         String userEmail = request.getParameter("funcionarioEmail");
         String userStatus = request.getParameter("FuncionarioDisponivel");
-        boolean validador = false;
-        if (userStatus == null) {
-            validador = false;
-        } else {
-            validador = true;
-        }
-        Funcionario func = new Funcionario(user, userSenha, userTipo, userNome, userEmail, validador);
-        request.getRequestDispatcher("/WEB-INF/FuncionarioCadastrar.jsp")
-                .forward(request, response);
-    }
+        int tamanhoUser = user.length();
+        int senha = userSenha.length();
+        
+        if (tamanhoUser == 0 || senha == 0 || userTipo == null) {
+            boolean falhaUser = false;
+            boolean falhaSenha = false;
+            boolean falhaTipo = false;
+            if (tamanhoUser == 0) {
+                request.setAttribute("UserFalha", falhaUser);
+            }
+            if (senha == 0) {
+                request.setAttribute("senhaFalha", falhaSenha);
+            }
+            if (userTipo == null) {
+                request.setAttribute("tipoFalha", falhaTipo);
+            }
 
+            request.getRequestDispatcher("/WEB-INF/FuncionarioCadastrar.jsp")
+                    .forward(request, response);
+        } else {
+            ValidarEmail validar = new ValidarEmail();
+            boolean emailValidar = validar.validarEmail(userEmail);
+            int tamanhoNome = userNome.length();
+            if (tamanhoNome < 5) {
+                boolean falhanome = false;
+                request.setAttribute("NomeFalha", falhanome);
+                request.getRequestDispatcher("/WEB-INF/FuncionarioCadastrar.jsp")
+                        .forward(request, response);
+            } else if (emailValidar) {
+
+                boolean validador = false;
+                if (userStatus == null) {
+                    validador = false;
+                } else {
+                    validador = true;
+                }
+                Funcionario func = new Funcionario(user, userSenha, userTipo, userNome, userEmail, validador);
+                boolean retorno = new Controller.Controller_Funcionario().cadastrarFuncionario(func);
+                request.setAttribute("retorno", retorno);
+                request.getRequestDispatcher("/WEB-INF/FuncionarioCadastrar.jsp")
+                        .forward(request, response);
+            } else {
+                boolean falhaEmail = false;
+                request.setAttribute("EmailFalha", falhaEmail);
+
+                request.getRequestDispatcher("/WEB-INF/FuncionarioCadastrar.jsp")
+                        .forward(request, response);
+            }
+        }
+    }
 }

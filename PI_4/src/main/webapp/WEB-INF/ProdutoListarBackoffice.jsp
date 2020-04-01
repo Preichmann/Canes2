@@ -10,6 +10,15 @@
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="src/style.css">
     </head>
+    <script>
+        function confirmaExclusao() {
+            if (confirm("Tem certeza que deseja deletar excluir esse produto?")) {
+                document.getElementById("idConfirma").value = 1;
+            } else {
+                document.getElementById("idConfirma").value = 0;
+            }
+        }
+    </script>
 
     <body>
         <header>
@@ -76,7 +85,8 @@
                                     <form class="d-flex ml-1" id="SalvarImagem" name="ProdutoExcluir" method="post"
                                           action="${pageContext.request.contextPath}/ProdutoExcluir" novalidate>
                                         <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
-                                        <input type="submit" class="btn btn-danger" value="Excluir" class="btn btn-cor-especial">
+                                        <input type="hidden" name="idConfirma" id="idConfirma" />
+                                        <input type="submit" class="btn btn-danger" value="Excluir" class="btn btn-cor-especial" onclick="confirmaExclusao()">
                                     </form>
                                 </div>
                             </div>

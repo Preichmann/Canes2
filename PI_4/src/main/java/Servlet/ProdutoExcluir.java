@@ -31,14 +31,21 @@ public class ProdutoExcluir extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String confirmaExclusao = request.getParameter("idConfirma");
+        int idConfirma = Integer.parseInt(confirmaExclusao);
         String prodId = request.getParameter("idProd");
         int idProd = Integer.parseInt(prodId);
-        boolean retorno = new Controller.Controller_Produto().disableProduto(idProd);
-        ArrayList<Produto> listaProd = new Controller.ControllerListarProduto().getProdutos();
-        request.setAttribute("ListaProdAtt", listaProd);
+        
+        if (idConfirma == 1) {
+            boolean retorno = new Controller.Controller_Produto().disableProduto(idProd);
+            ArrayList<Produto> listaProd = new Controller.ControllerListarProduto().getProdutos();
+            request.setAttribute("ListaProdAtt", listaProd);
 
-        request.getRequestDispatcher("/WEB-INF/ProdutoListarBackoffice.jsp")
-                .forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/ProdutoListarBackoffice.jsp")
+                    .forward(request, response);
+        } else {
+            request.getRequestDispatcher("/WEB-INF/ProdutoListarBackoffice.jsp")
+                    .forward(request, response);
+        }
     }
-
 }

@@ -18,12 +18,13 @@
             } else {
                 alert('Falha ao Alterar o Funcionario!');
             }
-            
+        </script>
+        <script>
             function confirmaExclusao(){
                 if(confirm("Tem certeza que deseja deletar excluir esse funcionario?")){
-                    document.getElementById(idConfirma).value = 1;
+                    document.getElementById("idConfirma").value = 1;
                 } else {
-                    document.getElementById(idConfirma).value = 0;
+                    document.getElementById("idConfirma").value = 0;
                 }                
             }
             

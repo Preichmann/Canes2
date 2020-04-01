@@ -12,6 +12,13 @@
     </head>
 
     <body>
+        <script>
+            if (${retornoAlterar} === true) {
+                alert('Funcionario Alterado Com sucesso!');
+            } else {
+                alert('Falha ao Alterar o Funcionario!');
+            }
+        </script>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">
@@ -80,8 +87,8 @@
                         <article class="card mt-3">
                             <div class="card-body justify-content-between">
                                 <div class="d-flex flex-row">
-                                    <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="ProdutoListar" method="post"
-                                          action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
+                                    <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="FuncionarioListar" method="post"
+                                          action="${pageContext.request.contextPath}/FuncionarioListar" novalidate>
                                         <input type="hidden" value="${listaFunc.getIdFuncionario()}" name="idFunc" id="idProd" />
                                         <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaFunc.getNome()}" /></h5>
                                         <input type="submit" class="btn btn-primary" value="Editar" class="btn btn-cor-especial">

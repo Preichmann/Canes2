@@ -69,4 +69,62 @@ public class DAO_Funcionario {
         }
         return listaFuncionarios;
     }
+
+    public Funcionario getFuncionarioId(int id) {
+        Conexao conec = new Conexao();
+        Funcionario func = new Funcionario();
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT FUNC.ID_FUNCIONARIO, FUNC.NOME AS NOME_FUNCIONARIO, FUNC.EMAIL, FUNC.USUARIO, FUNC.SENHA, FUNC.STATUS, FUNC.TIPO "
+                    + "FROM SUPLEMENTOS.FUNCIONARIO FUNC \n"
+                    + "WHERE FUNC.ID_FUNCIONARIO = " + id + ";");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    func.setIdFuncionario(rs.getInt("ID_FUNCIONARIO"));
+                    func.setNome(rs.getString("NOME_FUNCIONARIO"));
+                    func.setEmail(rs.getString("EMAIL"));
+                    func.setUsuario(rs.getString("USUARIO"));
+                    func.setSenha(rs.getString("SENHA"));
+                    func.setStatus(rs.getBoolean("STATUS"));
+                    func.setTipo(rs.getString("TIPO"));
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return func;
+    }
+
+    public boolean AlterarFuncionario(Funcionario func) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.FUNCIONARIO\n"
+                    + "SET NOME = ?, EMAIL = ?, USUARIO = ?, SENHA = ?, STATUS = ?, TIPO = ?\n"
+                    + "WHERE ID_FUNCIONARIO = ?");
+
+            comandoSQL.setString(1, func.getNome());
+            comandoSQL.setString(2, func.getEmail());
+            comandoSQL.setString(3, func.getUsuario());
+            comandoSQL.setString(4, func.getSenha());
+            comandoSQL.setBoolean(5, func.isStatus());
+            comandoSQL.setString(6, func.getTipo());
+            comandoSQL.setInt(7, func.getIdFuncionario());
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return retorno;
+    }
 }

@@ -38,7 +38,18 @@ public class FuncionarioListar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/FuncionarioListar.jsp")
+        String idFuncionario = request.getParameter("idFunc");
+        int idFunc = Integer.parseInt(idFuncionario);
+        request.setAttribute("idFunc", idFunc);
+        Funcionario func = new Controller.Controller_Funcionario().getFuncionarioId(idFunc);
+        request.setAttribute("FuncionarioAtt", func);
+        if(func.getTipo().equals("Administrador")){
+            request.setAttribute("TipoAtt", 0);
+        }else{
+            request.setAttribute("TipoAtt", 1);
+            
+        }
+        request.getRequestDispatcher("/WEB-INF/FuncionarioAlterar.jsp")
                 .forward(request, response);
     }
 

@@ -23,6 +23,16 @@ public class Funcionario {
     public Funcionario() {
     }
 
+    public Funcionario(int idFuncionario, String usuario, String senha, String tipo, String nome, String email, boolean status) {
+        this.idFuncionario = idFuncionario;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.tipo = tipo;
+        this.nome = nome;
+        this.email = email;
+        this.status = status;
+    }
+    
     public Funcionario(String usuario, String senha, String tipo, String nome, String email, boolean status) {
         this.usuario = usuario;
         this.senha = senha;

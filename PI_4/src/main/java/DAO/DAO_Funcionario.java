@@ -127,4 +127,24 @@ public class DAO_Funcionario {
         }
         return retorno;
     }
+
+    public boolean excluirFuncionario(int idIFuncionario) {
+        boolean retorno = false;
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.FUNCIONARIO SET STATUS = 0 WHERE ID_FUNCIONARIO = ?");
+
+            comandoSQL.setInt(1, idIFuncionario);
+            
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return retorno;
+    }
 }

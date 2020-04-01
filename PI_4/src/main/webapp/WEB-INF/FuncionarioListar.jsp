@@ -93,9 +93,9 @@
                                         <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaFunc.getNome()}" /></h5>
                                         <input type="submit" class="btn btn-primary" value="Editar" class="btn btn-cor-especial">
                                     </form>
-                                    <form class="d-flex ml-1" id="SalvarImagem" name="ProdutoExcluir" method="post"
-                                          action="${pageContext.request.contextPath}/ProdutoExcluir" novalidate>
-                                        <input type="hidden" value="${listaFunc.getIdFuncionario()}" name="idFunc" id="idProd" />
+                                    <form class="d-flex ml-1" id="SalvarImagem" name="FuncionarioExcluir" method="post"
+                                          action="${pageContext.request.contextPath}/FuncionarioExcluir" novalidate>
+                                        <input type="hidden" value="${listaFunc.getIdFuncionario()}" name="idFunc" id="idFunc" />
                                         <input type="submit" class="btn btn-danger" value="Excluir" class="btn btn-cor-especial">
                                     </form>
                                 </div>

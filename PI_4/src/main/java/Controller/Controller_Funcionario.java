@@ -29,4 +29,8 @@ public class Controller_Funcionario {
     public Boolean alterarFuncionario(Funcionario f){
         return new DAO.DAO_Funcionario().AlterarFuncionario(f);
     }
+    
+    public Boolean disableFuncionario(int idFuncionario){
+        return new DAO.DAO_Funcionario().excluirFuncionario(idFuncionario);
+    }
 }

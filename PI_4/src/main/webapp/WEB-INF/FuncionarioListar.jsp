@@ -18,6 +18,15 @@
             } else {
                 alert('Falha ao Alterar o Funcionario!');
             }
+            
+            function confirmaExclusao(){
+                if(confirm("Tem certeza que deseja deletar excluir esse funcionario?")){
+                    document.getElementById(idConfirma).value = 1;
+                } else {
+                    document.getElementById(idConfirma).value = 0;
+                }                
+            }
+            
         </script>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -83,7 +92,7 @@
         <main>
             <section id="produtos" class="pb-5">
                 <div class="container">
-                    <c:forEach items="${listaFuncAtt}" var="listaFunc">
+                    <c:forEach items="${ListaFuncAtt}" var="listaFunc">
                         <article class="card mt-3">
                             <div class="card-body justify-content-between">
                                 <div class="d-flex flex-row">
@@ -96,7 +105,9 @@
                                     <form class="d-flex ml-1" id="SalvarImagem" name="FuncionarioExcluir" method="post"
                                           action="${pageContext.request.contextPath}/FuncionarioExcluir" novalidate>
                                         <input type="hidden" value="${listaFunc.getIdFuncionario()}" name="idFunc" id="idFunc" />
-                                        <input type="submit" class="btn btn-danger" value="Excluir" class="btn btn-cor-especial">
+                                        <input type="hidden" name="idConfirma" id="idConfirma" />
+                                        <input type="submit" id="confirmarExclusao" class="btn btn-danger" value="Excluir" class="btn btn-cor-especial" onclick="confirmaExclusao()">                                       
+                                        
                                     </form>
                                 </div>
                             </div>
@@ -120,6 +131,8 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        
+        
     </body>
 
 </html>

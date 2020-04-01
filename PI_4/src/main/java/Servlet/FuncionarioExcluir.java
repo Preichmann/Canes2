@@ -36,14 +36,25 @@ public class FuncionarioExcluir extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String idConfirma = request.getParameter("idConfirma");
+        int confirmaExclusao = Integer.parseInt(idConfirma);
         String idFuncionario = request.getParameter("idFunc");
         int idfunc = Integer.parseInt(idFuncionario);
 
-        boolean retorno = new Controller.Controller_Funcionario().disableFuncionario(idfunc);
-        ArrayList<Funcionario> listaFunc = new Controller.Controller_Funcionario().getFuncionario();
-        request.setAttribute("ListaFuncAtt", listaFunc);
+        if (confirmaExclusao == 1) {
+            boolean retorno = new Controller.Controller_Funcionario().disableFuncionario(idfunc);
+            ArrayList<Funcionario> listaFunc = new Controller.Controller_Funcionario().getFuncionario();
+            request.setAttribute("ListaFuncAtt", listaFunc);
 
-        request.getRequestDispatcher("/WEB-INF/FuncionarioListar.jsp")
-                .forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/FuncionarioListar.jsp")
+                    .forward(request, response);
+        } else {
+            ArrayList<Funcionario> listaFunc = new Controller.Controller_Funcionario().getFuncionario();
+            request.setAttribute("ListaFuncAtt", listaFunc);
+
+            request.getRequestDispatcher("/WEB-INF/FuncionarioListar.jsp")
+                    .forward(request, response);
+
+        }
     }
 }

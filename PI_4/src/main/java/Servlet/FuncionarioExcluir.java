@@ -26,7 +26,7 @@ public class FuncionarioExcluir extends HttpServlet {
             throws ServletException, IOException {
 
         ArrayList<Funcionario> listaFunc = new Controller.Controller_Funcionario().getFuncionario();
-        request.setAttribute("ListaFuncAtt", listaFunc);
+        request.setAttribute("listaFuncAtt", listaFunc);
 
         request.getRequestDispatcher("/WEB-INF/FuncionarioListar.jsp")
                 .forward(request, response);
@@ -44,13 +44,13 @@ public class FuncionarioExcluir extends HttpServlet {
         if (confirmaExclusao == 1) {
             boolean retorno = new Controller.Controller_Funcionario().disableFuncionario(idfunc);
             ArrayList<Funcionario> listaFunc = new Controller.Controller_Funcionario().getFuncionario();
-            request.setAttribute("ListaFuncAtt", listaFunc);
+            request.setAttribute("listaFuncAtt", listaFunc);
 
             request.getRequestDispatcher("/WEB-INF/FuncionarioListar.jsp")
                     .forward(request, response);
         } else {
             ArrayList<Funcionario> listaFunc = new Controller.Controller_Funcionario().getFuncionario();
-            request.setAttribute("ListaFuncAtt", listaFunc);
+            request.setAttribute("listaFuncAtt", listaFunc);
 
             request.getRequestDispatcher("/WEB-INF/FuncionarioListar.jsp")
                     .forward(request, response);

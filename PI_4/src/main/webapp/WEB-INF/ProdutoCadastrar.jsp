@@ -136,7 +136,7 @@
                 <input type="submit" value="Adicionar Imagens" class="btn btn-success col-2" />
             </form>
 
-            <form method="post" action="${pageContext.request.contextPath}/menu-principal" novalidate>
+            <form method="get" action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
 

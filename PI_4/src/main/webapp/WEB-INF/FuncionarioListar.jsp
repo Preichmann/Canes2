@@ -78,7 +78,7 @@
         <main>
             <section id="produtos" class="pb-5">
                 <div class="container">
-                    <c:forEach items="${ListaFuncAtt}" var="listaFunc">
+                    <c:forEach items="${listaFuncAtt}" var="listaFunc">
                         <article class="card mt-3">
                             <div class="card-body justify-content-between">
                                 <div class="d-flex flex-row">
@@ -93,7 +93,6 @@
                                         <input type="hidden" value="${listaFunc.getIdFuncionario()}" name="idFunc" id="idFunc" />
                                         <input type="hidden" name="idConfirma" id="idConfirma" />
                                         <input type="submit" id="confirmarExclusao" class="btn btn-danger" value="Excluir" class="btn btn-cor-especial" onclick="confirmaExclusao()">                                       
-                                        
                                     </form>
                                 </div>
                             </div>

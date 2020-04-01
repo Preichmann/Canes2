@@ -59,16 +59,16 @@ public class FuncionarioAlterar extends HttpServlet {
                 request.setAttribute("tipoFalha", falhaTipo);
             }
             boolean falhanome = false;
-                request.setAttribute("NomeFalha", falhanome);
-                request.setAttribute("idFunc", idFuncionario);
-                Funcionario func = new Controller.Controller_Funcionario().getFuncionarioId(idFuncionario);
-                request.setAttribute("FuncionarioAtt", func);
-                if (func.getTipo().equals("Administrador")) {
-                    request.setAttribute("TipoAtt", 0);
-                } else {
-                    request.setAttribute("TipoAtt", 1);
+            request.setAttribute("NomeFalha", falhanome);
+            request.setAttribute("idFunc", idFuncionario);
+            Funcionario func = new Controller.Controller_Funcionario().getFuncionarioId(idFuncionario);
+            request.setAttribute("FuncionarioAtt", func);
+            if (func.getTipo().equals("Administrador")) {
+                request.setAttribute("TipoAtt", 0);
+            } else {
+                request.setAttribute("TipoAtt", 1);
 
-                }
+            }
 
             request.getRequestDispatcher("/WEB-INF/FuncionarioAlterar.jsp")
                     .forward(request, response);
@@ -101,13 +101,14 @@ public class FuncionarioAlterar extends HttpServlet {
                 Funcionario func = new Funcionario(idFuncionario, user, userSenha, userTipo, userNome, userEmail, validador);
                 boolean retorno = new Controller.Controller_Funcionario().alterarFuncionario(func);
                 request.setAttribute("retornoAlterar", retorno);
-
+                ArrayList<Funcionario> listaFunc = new Controller.Controller_Funcionario().getFuncionario();
+                request.setAttribute("listaFuncAtt", listaFunc);
                 request.getRequestDispatcher("/WEB-INF/FuncionarioListar.jsp")
                         .forward(request, response);
             } else {
                 boolean falhaEmail = false;
                 request.setAttribute("EmailFalha", falhaEmail);
-                
+
                 boolean falhanome = false;
                 request.setAttribute("NomeFalha", falhanome);
                 request.setAttribute("idFunc", idFuncionario);
@@ -119,7 +120,7 @@ public class FuncionarioAlterar extends HttpServlet {
                     request.setAttribute("TipoAtt", 1);
 
                 }
-                
+
                 request.getRequestDispatcher("/WEB-INF/FuncionarioAlterar.jsp")
                         .forward(request, response);
             }

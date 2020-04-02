@@ -35,7 +35,7 @@ public class ProdutoExcluir extends HttpServlet {
         int idConfirma = Integer.parseInt(confirmaExclusao);
         String prodId = request.getParameter("idProd");
         int idProd = Integer.parseInt(prodId);
-        
+
         if (idConfirma == 1) {
             boolean retorno = new Controller.Controller_Produto().disableProduto(idProd);
             ArrayList<Produto> listaProd = new Controller.ControllerListarProduto().getProdutos();
@@ -44,6 +44,8 @@ public class ProdutoExcluir extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/ProdutoListarBackoffice.jsp")
                     .forward(request, response);
         } else {
+            ArrayList<Produto> listaProd = new Controller.ControllerListarProduto().getProdutos();
+            request.setAttribute("ListaProdAtt", listaProd);
             request.getRequestDispatcher("/WEB-INF/ProdutoListarBackoffice.jsp")
                     .forward(request, response);
         }

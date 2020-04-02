@@ -33,4 +33,10 @@ public class Controller_Funcionario {
     public Boolean disableFuncionario(int idFuncionario){
         return new DAO.DAO_Funcionario().excluirFuncionario(idFuncionario);
     }
+    
+    public Funcionario getFuncionarioLogin(String login){
+        
+        Funcionario funcionario = new DAO.DAO_Funcionario().getFuncionarioLogin(login);
+        return funcionario;        
+    }
 }

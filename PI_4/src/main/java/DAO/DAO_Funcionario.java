@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -147,4 +146,41 @@ public class DAO_Funcionario {
         }
         return retorno;
     }
+    
+    public Funcionario getFuncionarioLogin(String login){
+        
+        Conexao conec = new Conexao();
+        
+        try(Connection conexao = conec.obterConexao()){
+            
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * FROM "
+                    + "SUPLEMENTOS.FUNCIONARIO WHERE USUARIO = ?");
+            
+            comandoSQL.setString(1, login);
+            
+            ResultSet rs = comandoSQL.executeQuery();
+            
+            if(rs != null){                
+                while(rs.next()){                    
+                    Funcionario funcionario = new Funcionario();
+                    funcionario.setIdFuncionario(rs.getInt("ID_FUNCIONARIO"));
+                    funcionario.setNome(rs.getString("NOME_FUNCIONARIO"));
+                    funcionario.setEmail(rs.getString("EMAIL"));
+                    funcionario.setUsuario(rs.getString("USUARIO"));
+                    funcionario.setSenha(rs.getString("SENHA"));
+                    funcionario.setStatus(rs.getBoolean("STATUS"));
+                    funcionario.setTipo(rs.getString("TIPO"));
+                    return funcionario;
+                }
+            } 
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();                    
+        }
+        return null;        
+    }    
 }
+        
+        
+    
+    
+

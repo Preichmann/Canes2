@@ -99,6 +99,10 @@ public class FuncionarioAlterar extends HttpServlet {
                     validador = true;
                 }
                 Funcionario func = new Funcionario(idFuncionario, user, userSenha, userTipo, userNome, userEmail, validador);
+                Funcionario comparaSenha = new Controller.Controller_Funcionario().getFuncionarioLogin(user);
+                if(!comparaSenha.getSenha().equals(userSenha)){
+                    func.setSenhaHash(userSenha);
+                }
                 boolean retorno = new Controller.Controller_Funcionario().alterarFuncionario(func);
                 request.setAttribute("retornoAlterar", retorno);
                 ArrayList<Funcionario> listaFunc = new Controller.Controller_Funcionario().getFuncionario();
@@ -118,9 +122,7 @@ public class FuncionarioAlterar extends HttpServlet {
                     request.setAttribute("TipoAtt", 0);
                 } else {
                     request.setAttribute("TipoAtt", 1);
-
                 }
-
                 request.getRequestDispatcher("/WEB-INF/FuncionarioAlterar.jsp")
                         .forward(request, response);
             }

@@ -57,6 +57,10 @@ public class Funcionario {
     public void setStatus(boolean status) {
         this.status = status;
     }
+    
+    public boolean validarSenha(String usuarioSenha){
+        return BCrypt.checkpw(usuarioSenha, senha);
+    }
 
     public final void setSenhaHash(String senha) {
         this.senha = BCrypt.hashpw(senha, BCrypt.gensalt());
@@ -64,6 +68,14 @@ public class Funcionario {
 
     public boolean getSenhaHash(String senhaUsuario) {
         return BCrypt.checkpw(senhaUsuario, senha);
+    }
+    
+     public String getSenha() {
+        return senha;
+    }
+     
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getUsuario() {
@@ -74,14 +86,7 @@ public class Funcionario {
         this.usuario = usuario;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
+   
     public String getTipo() {
         return tipo;
     }

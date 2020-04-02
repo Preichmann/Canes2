@@ -8,7 +8,6 @@ package Servlet;
 import Classes.Funcionario;
 import Classes.ValidarEmail;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +27,7 @@ public class FuncionarioCadastrar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String user = request.getParameter("funcionarioUser");
         String userSenha = request.getParameter("funcionarioSenha");
         String userTipo = request.getParameter("tipo");
@@ -71,6 +71,7 @@ public class FuncionarioCadastrar extends HttpServlet {
                     validador = true;
                 }
                 Funcionario func = new Funcionario(user, userSenha, userTipo, userNome, userEmail, validador);
+                func.setSenhaHash(userSenha);
                 boolean retorno = new Controller.Controller_Funcionario().cadastrarFuncionario(func);
                 request.setAttribute("retorno", retorno);
                 request.getRequestDispatcher("/WEB-INF/FuncionarioCadastrar.jsp")

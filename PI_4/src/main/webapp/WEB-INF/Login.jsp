@@ -96,7 +96,7 @@
             <div class="d-flex justify-content-center">
                 <div class="login_card mt-5 mb-5">
                     <article class="card-body">
-                        <form method="post" action="${pageContext.request.contextPath}/" novalidate></form>
+                        <form method="post" action="${pageContext.request.contextPath}/Login" novalidate></form>
                         <h4 class="card-title mb-4 mt-1">Fazer login</h4>
                         <div class="form-group">
                             <label for="usuario">Usuário</label>

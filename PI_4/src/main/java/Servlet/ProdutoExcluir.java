@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import Classes.Funcionario;
 import Classes.Produto;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,12 +27,19 @@ public class ProdutoExcluir extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
+        
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
         String confirmaExclusao = request.getParameter("idConfirma");
         int idConfirma = Integer.parseInt(confirmaExclusao);
         String prodId = request.getParameter("idProd");

@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import Classes.Funcionario;
 import Classes.ImagemProduto;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,7 +32,9 @@ public class ExcluirImagem extends HttpServlet {
         ArrayList<ImagemProduto> imagens = new Controller.ControllerListarProduto().getImagens(prodId);
         request.setAttribute("listaImagensAtt", imagens);
         request.setAttribute("resultAtt", prodId);
-
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
         request.getRequestDispatcher("/WEB-INF/ProdutoListarBackoffice.jsp")
                 .forward(request, response);
 
@@ -48,6 +52,9 @@ public class ExcluirImagem extends HttpServlet {
         request.setAttribute("listaImagensAtt", imagens);
         int idimagem = Integer.parseInt(idImagem);
         boolean retorno = new Controller.ControllerAlterarProduto().excluirImagem(nameImagem, idimagem);
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
         request.getRequestDispatcher("/WEB-INF/AlterarImagemProd.jsp")
                 .forward(request, response);
     }

@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "FuncionarioCadastrar", urlPatterns = {"/FuncionarioCadastrar"})
 public class FuncionarioCadastrar extends HttpServlet {
@@ -20,6 +21,11 @@ public class FuncionarioCadastrar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
+        
         request.getRequestDispatcher("/WEB-INF/FuncionarioCadastrar.jsp")
                 .forward(request, response);
     }
@@ -36,6 +42,9 @@ public class FuncionarioCadastrar extends HttpServlet {
         String userStatus = request.getParameter("FuncionarioDisponivel");
         int tamanhoUser = user.length();
         int senha = userSenha.length();
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
         
         if (tamanhoUser == 0 || senha == 0 || userTipo == null) {
             boolean falhaUser = false;

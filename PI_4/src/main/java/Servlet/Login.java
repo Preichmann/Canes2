@@ -39,7 +39,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        request.setCharacterEncoding("UTF-8");
         String login = request.getParameter("usuario");
         String senha = request.getParameter("senha");
         
@@ -50,15 +50,19 @@ public class Login extends HttpServlet {
             if(funcionario.validarSenha(senha)){
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("usuarioLogado", funcionario);
-                response.sendRedirect(request.getContextPath() + "/Index");
-                return;                
+                Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+                if(f.getTipo().equals("Administrador")){
+                    response.sendRedirect(request.getContextPath() + "/ProdutoListarBackoffice");
+                }else{
+                    response.sendRedirect(request.getContextPath() + "/Index");
+                }
             } else {
                 request.setAttribute("senhaAtt", true);
                 request.getRequestDispatcher("/WEB-INF/Login.jsp")
                         .forward(request, response);
            }         
         } else {
-            request.setAttribute("usuarioAtt", true);
+            request.setAttribute("senhaAtt", true);
             request.getRequestDispatcher("/WEB-INF/Login.jsp")
                         .forward(request, response);
 

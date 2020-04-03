@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author diego
  */
-@WebFilter(filterName = "UsuarioLogado", servletNames = {"Carrinho", "Creditos", "ExcluirImagem", "FuncionarioAlterar", "FuncionarioCadastrar", "FuncionarioExcluir", "FuncionarioListar", "Index", "Login", "ProdutoAlterar", "ProdutoCadastrar", "ProdutoDetalhar", "ProdutoExcluir", "ProdutoListarBackoffice", "SalvarImagem"})
+@WebFilter(filterName = "UsuarioLogado", servletNames = {"Carrinho", "Creditos", "ExcluirImagem", "FuncionarioAlterar", "FuncionarioCadastrar", "FuncionarioExcluir", "FuncionarioListar", "ProdutoAlterar", "ProdutoCadastrar", "ProdutoExcluir", "ProdutoListarBackoffice", "SalvarImagem"})
 public class UsuarioLogado implements Filter {
     
     private String contextPath;

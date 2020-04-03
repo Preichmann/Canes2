@@ -44,23 +44,13 @@
                               novalidate>
                             <input type="submit" value="Recuperação Muscular" class="nav-link">
                         </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/ProdutoCadastrar" class="nav-item active" novalidate>
-                            <input type="submit" value="Cadastrar Produto" class="nav-link active">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/ProdutoListarBackoffice" class="nav-item" novalidate>
-                            <input type="submit" value="Listar Produtos" class="nav-link">
-                        </form>	
-                        <form method="get" action="${pageContext.request.contextPath}/FuncionarioCadastrar" class="nav-item" novalidate>
-                            <input type="submit" value="Cadastrar Funcionario" class="nav-link">
-                        </form>
-                        <form method="get" action="${pageContext.request.contextPath}/FuncionarioListar" class="nav-item" novalidate>
-                            <input type="submit" value="Listar Funcionarios" class="nav-link">
-                        </form>
                     </div>
 
                     <div class="d-flex user-options">
+                        <form method="get" action="${pageContext.request.contextPath}/Login" class="nav-item"
+                              novalidate>
+                            <input type="submit" value="Login" class="nav-link">
+                        </form>
                         <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
                             <input type="submit" value="Carrinho" class="nav-link">
                         </form>

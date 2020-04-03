@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,6 +30,9 @@ public class FuncionarioListar extends HttpServlet {
             throws ServletException, IOException {
         ArrayList<Funcionario> listaFunc = new Controller.Controller_Funcionario().getFuncionario();
         request.setAttribute("listaFuncAtt", listaFunc);
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
 
         request.getRequestDispatcher("/WEB-INF/FuncionarioListar.jsp")
                 .forward(request, response);
@@ -49,6 +53,10 @@ public class FuncionarioListar extends HttpServlet {
             request.setAttribute("TipoAtt", 1);
             
         }
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
+        
         request.getRequestDispatcher("/WEB-INF/FuncionarioAlterar.jsp")
                 .forward(request, response);
     }

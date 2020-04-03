@@ -164,7 +164,7 @@ public class DAO_Funcionario {
                 while(rs.next()){                    
                     Funcionario funcionario = new Funcionario();
                     funcionario.setIdFuncionario(rs.getInt("ID_FUNCIONARIO"));
-                    funcionario.setNome(rs.getString("NOME_FUNCIONARIO"));
+                    funcionario.setNome(rs.getString("NOME"));
                     funcionario.setEmail(rs.getString("EMAIL"));
                     funcionario.setUsuario(rs.getString("USUARIO"));
                     funcionario.setSenha(rs.getString("SENHA"));

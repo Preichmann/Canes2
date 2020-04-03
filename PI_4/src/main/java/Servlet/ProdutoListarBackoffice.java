@@ -6,6 +6,7 @@
 package Servlet;
 
 import Classes.Categorias;
+import Classes.Funcionario;
 import Classes.ImagemProduto;
 import Classes.Objetivo;
 import Classes.Pergunta;
@@ -19,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,7 +34,9 @@ public class ProdutoListarBackoffice extends HttpServlet {
             throws ServletException, IOException {
         ArrayList<Produto> listaProd = new Controller.ControllerListarProduto().getProdutos();
         request.setAttribute("ListaProdAtt", listaProd);
-
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
         request.getRequestDispatcher("/WEB-INF/ProdutoListarBackoffice.jsp")
                 .forward(request, response);
 
@@ -40,6 +44,9 @@ public class ProdutoListarBackoffice extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
         String idProd = request.getParameter("idProd");
         int idProduto = Integer.parseInt(idProd);
         Produto p = new Controller.ControllerAlterarProduto().getProduto(idProduto);

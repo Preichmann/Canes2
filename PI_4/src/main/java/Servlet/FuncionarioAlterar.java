@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,7 +27,9 @@ public class FuncionarioAlterar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
         request.getRequestDispatcher("/WEB-INF/FuncionarioListar.jsp")
                 .forward(request, response);
     }
@@ -44,7 +47,10 @@ public class FuncionarioAlterar extends HttpServlet {
         int tamanhoUser = user.length();
         int senha = userSenha.length();
         int idFuncionario = Integer.parseInt(idFunci);
-
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
+        
         if (tamanhoUser == 0 || senha == 0 || userTipo == null) {
             boolean falhaUser = false;
             boolean falhaSenha = false;
@@ -100,7 +106,7 @@ public class FuncionarioAlterar extends HttpServlet {
                 }
                 Funcionario func = new Funcionario(idFuncionario, user, userSenha, userTipo, userNome, userEmail, validador);
                 Funcionario comparaSenha = new Controller.Controller_Funcionario().getFuncionarioLogin(user);
-                if(!comparaSenha.getSenha().equals(userSenha)){
+                if (!comparaSenha.getSenha().equals(userSenha)) {
                     func.setSenhaHash(userSenha);
                 }
                 boolean retorno = new Controller.Controller_Funcionario().alterarFuncionario(func);

@@ -6,6 +6,7 @@
 package Servlet;
 
 import Classes.Categorias;
+import Classes.Funcionario;
 import Classes.ImagemProduto;
 import Classes.Objetivo;
 import Classes.Pergunta;
@@ -19,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,6 +32,9 @@ public class ProdutoAlterar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
         String idProd = request.getParameter("idProd");
         int idProduto = Integer.parseInt(idProd);
         Produto p = new Controller.ControllerAlterarProduto().getProduto(idProduto);
@@ -53,7 +58,9 @@ public class ProdutoAlterar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	
+    	HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
         ArrayList<Pergunta> listaPergunta = new Controller.Controller_Produto().getPergunta();
         ArrayList<Objetivo> listaObjetivo = new Controller.Controller_Produto().getObjetivo();
         ArrayList<Categorias> listaCategoria = new Controller.Controller_Produto().getCategoria();

@@ -6,6 +6,7 @@
 package Servlet;
 
 import Classes.Categorias;
+import Classes.Funcionario;
 import Classes.Objetivo;
 import Classes.Pergunta;
 import Classes.Produto;
@@ -24,6 +25,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import Classes.Upload;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,6 +37,9 @@ public class ProdutoCadastrar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
         ArrayList<Pergunta> listaPergunta = new Controller.Controller_Produto().getPergunta();
         ArrayList<Objetivo> listaObjetivo = new Controller.Controller_Produto().getObjetivo();
         ArrayList<Categorias> listaCategoria = new Controller.Controller_Produto().getCategoria();
@@ -51,7 +56,9 @@ public class ProdutoCadastrar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
         ArrayList<Pergunta> listaPergunta = new Controller.Controller_Produto().getPergunta();
         ArrayList<Objetivo> listaObjetivo = new Controller.Controller_Produto().getObjetivo();
         ArrayList<Categorias> listaCategoria = new Controller.Controller_Produto().getCategoria();
@@ -117,7 +124,7 @@ public class ProdutoCadastrar extends HttpServlet {
             request.setAttribute("resultAtt", false);
             request.getRequestDispatcher("/WEB-INF/ProdutoCadastrar.jsp")
                     .forward(request, response);
-        }else{
+        } else {
             request.setAttribute("resultAtt", result);
             request.getRequestDispatcher("/WEB-INF/SalvarImagemProd.jsp")
                     .forward(request, response);

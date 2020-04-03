@@ -86,11 +86,13 @@
 
                         <div class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Nome do Usuário
+                                ${NomeLogadoAtt}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="#">Trocar Senha</a>
-                                <a class="dropdown-item" href="#">Sair</a>
+                                <form method="get" action="${pageContext.request.contextPath}/Logout" class="nav-item" novalidate>
+                                    <input type="submit" value="Sair" class="nav-link">
+                                </form>
                             </div>
                         </div>
                     </div>          
@@ -135,7 +137,7 @@
                 </div>
 
                 <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" name="FuncionarioDisponivel" id="FuncionarioDisponivel">
+                    <input type="checkbox" class="custom-control-input" name="FuncionarioDisponivel" id="FuncionarioDisponivel" checked="true">
                     <label class="custom-control-label" for="FuncionarioDisponivel">Disponível</label>
                 </div>
 

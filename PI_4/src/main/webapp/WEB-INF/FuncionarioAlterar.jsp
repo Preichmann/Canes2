@@ -83,11 +83,13 @@
 
                         <div class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Nome do Usuário
+                                ${NomeLogadoAtt}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="#">Trocar Senha</a>
-                                <a class="dropdown-item" href="#">Sair</a>
+                                <form method="get" action="${pageContext.request.contextPath}/Logout" class="nav-item" novalidate>
+                                    <input type="submit" value="Sair" class="nav-link">
+                                </form>
                             </div>
                         </div>
                     </div>          
@@ -166,7 +168,7 @@
                 <input type="hidden" value="${FuncionarioAtt.getIdFuncionario()}" name="idFunci" id="idFunci" />
                 <input type="submit" value="Cadastrar" class="btn btn-success col-2" />
             </form>
-            <form method="post" action="${pageContext.request.contextPath}/menu-principal" novalidate>
+            <form method="get" action="${pageContext.request.contextPath}/FuncionarioListar" novalidate>
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
             <%-- 

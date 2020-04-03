@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,6 +29,10 @@ public class FuncionarioExcluir extends HttpServlet {
         ArrayList<Funcionario> listaFunc = new Controller.Controller_Funcionario().getFuncionario();
         request.setAttribute("listaFuncAtt", listaFunc);
 
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
+
         request.getRequestDispatcher("/WEB-INF/FuncionarioListar.jsp")
                 .forward(request, response);
     }
@@ -40,7 +45,9 @@ public class FuncionarioExcluir extends HttpServlet {
         int confirmaExclusao = Integer.parseInt(idConfirma);
         String idFuncionario = request.getParameter("idFunc");
         int idfunc = Integer.parseInt(idFuncionario);
-
+        HttpSession sessao = request.getSession();
+        Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
+        request.setAttribute("NomeLogadoAtt", f.getNome());
         if (confirmaExclusao == 1) {
             boolean retorno = new Controller.Controller_Funcionario().disableFuncionario(idfunc);
             ArrayList<Funcionario> listaFunc = new Controller.Controller_Funcionario().getFuncionario();

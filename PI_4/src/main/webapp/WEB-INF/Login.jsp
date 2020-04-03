@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Produtos</title>
+        <title>Login</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="src/style.css">
@@ -50,72 +50,56 @@
                             <input type="submit" value="Recuperação Muscular" class="nav-link">
                         </form>
 
-                        <form method="get" action="${pageContext.request.contextPath}/ProdutoCadastrar"
-                              class="nav-item active" novalidate>
-                            <input type="submit" value="Cadastrar Produto" class="nav-link active">
-                        </form>
+                        <div class="d-flex user-options">
+                            <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
+                                <input type="submit" value="Carrinho" class="nav-link">
+                            </form>
 
-                        <form method="get" action="${pageContext.request.contextPath}/ProdutoListarBackoffice"
-                              class="nav-item" novalidate>
-                            <input type="submit" value="Listar Produtos" class="nav-link">
-                        </form>
-                    </div>
-
-                    <div class="d-flex user-options">
-                        <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
-                            <input type="submit" value="Carrinho" class="nav-link">
-                        </form>
-
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Nome do Usuário
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Trocar Senha</a>
-                                <a class="dropdown-item" href="#">Sair</a>
+                            <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Nome do Usuário
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Trocar Senha</a>
+                                    <a class="dropdown-item" href="#">Sair</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </nav>
         </header>
 
         <main>
             <script>
-            if (${ usuarioAtt } === true) {
-                alert("Usuário Inválido");
-            }
-            </script>
-            <script>
-            if (${ senhaAtt } === true) {
-                alert("Senha Inválida");
-            }
+                if (${ senhaAtt } === true) {
+                    alert("Senha ou usuario Inválidos");
+                }
             </script>
 
             <div class="d-flex justify-content-center">
                 <div class="login_card mt-5 mb-5">
                     <article class="card-body">
-                        <form method="post" action="${pageContext.request.contextPath}/Login" novalidate></form>
-                        <h4 class="card-title mb-4 mt-1">Fazer login</h4>
-                        <div class="form-group">
-                            <label for="usuario">Usuário</label>
-                            <input name="usuario" id="usuario" class="form-control" placeholder="Usuário" type="email">
-                            <span class="error">
-                                <p id="user_error"></p>
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <a class="float-right" href="#">Esqueceu a senha?</a>
-                            <label for="senha">Senha</label>
-                            <input name="senha" id="senha" class="form-control" placeholder="******" type="password">
-                            <span class="error">
-                                <p id="senha_error"></p>
-                            </span>            
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" name="loginBtn" value="Login" class="btn btn-cor-especial btn-block">
-                        </div>
+                        <form method="post" action="${pageContext.request.contextPath}/Login" novalidate>
+                            <h4 class="card-title mb-4 mt-1">Fazer login</h4>
+                            <div class="form-group">
+                                <label for="usuario">Usuário</label>
+                                <input name="usuario" id="usuario" class="form-control" placeholder="Usuário" type="email">
+                                <span class="error">
+                                    <p id="user_error"></p>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <a class="float-right" href="#">Esqueceu a senha?</a>
+                                <label for="senha">Senha</label>
+                                <input name="senha" id="senha" class="form-control" placeholder="******" type="password">
+                                <span class="error">
+                                    <p id="senha_error"></p>
+                                </span>            
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="loginBtn" value="Login" class="btn btn-cor-especial btn-block">
+                            </div>
                         </form>
                         <form method="post" action="${pageContext.request.contextPath}/" novalidate>
                             <input type="submit" name="" value="Criar sua conta na Canes Suplementos" class="btn btn-secondary btn-block">

@@ -24,6 +24,30 @@ import java.util.ArrayList;
  */
 public class DAO_Produto {
 
+    public boolean daoAlterarQtd(int idProd, int qtd) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.PRODUTO\n"
+                    + "SET QUANTIDADE = ? \n"
+                    + "WHERE ID_PRODUTO = ?;");
+
+            comandoSQL.setInt(1, qtd);
+            comandoSQL.setInt(2, idProd);
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return retorno;
+    }
+
     public int daoSalvarProduto(Produto produto) {
         int idProd = 0;
 
@@ -355,7 +379,7 @@ public class DAO_Produto {
         ArrayList<Produto> listaProduto = new ArrayList<Produto>();
         try (Connection conexao = conec.obterConexao()) {
 
-            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT ID_PRODUTO, NOME, VALOR_UNIT FROM SUPLEMENTOS.PRODUTO WHERE STATUS = 1;");
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT ID_PRODUTO, NOME, VALOR_UNIT, QUANTIDADE FROM SUPLEMENTOS.PRODUTO WHERE STATUS = 1;");
 
             ResultSet rs = comandoSQL.executeQuery();
 
@@ -365,6 +389,7 @@ public class DAO_Produto {
                     p.setIdProd(rs.getInt("ID_PRODUTO"));
                     p.setNome(rs.getString("NOME"));
                     p.setPreco(rs.getDouble("VALOR_UNIT"));
+                    p.setQuantidade(rs.getInt("QUANTIDADE"));
                     listaProduto.add(p);
                 }
             }
@@ -482,7 +507,6 @@ public class DAO_Produto {
         }
         return img;
     }
-
 
     public ArrayList<Resposta> getRespostas(int idProd) {
         Conexao conec = new Conexao();

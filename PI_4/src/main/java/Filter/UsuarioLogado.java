@@ -25,49 +25,49 @@ import javax.servlet.http.HttpSession;
  *
  * @author diego
  */
-@WebFilter(filterName = "UsuarioLogado", servletNames = {"Carrinho", "Creditos", "ExcluirImagem", "FuncionarioAlterar", "FuncionarioCadastrar", "FuncionarioExcluir", "FuncionarioListar", "ProdutoAlterar", "ProdutoCadastrar", "ProdutoExcluir", "ProdutoListarBackoffice", "SalvarImagem"})
+@WebFilter(filterName = "UsuarioLogado", servletNames = {"Carrinho", "EstoquistaAlterar", "EstoquistaListar", "Creditos", "ExcluirImagem", "FuncionarioAlterar", "FuncionarioCadastrar", "FuncionarioExcluir", "FuncionarioListar", "ProdutoAlterar", "ProdutoCadastrar", "ProdutoExcluir", "ProdutoListarBackoffice", "SalvarImagem"})
 public class UsuarioLogado implements Filter {
-    
+
     private String contextPath;
-    
+
     public UsuarioLogado() {
-    }    
+    }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-        
+
         HttpServletResponse res = (HttpServletResponse) response;
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession();
-        
-        if(session.getAttribute("usuarioLogado") == null){
+
+        if (session.getAttribute("usuarioLogado") == null) {
             session.invalidate();
             res.sendRedirect(req.getContextPath() + "/Login");
             return;
         }
-        
+
         Funcionario funcionario = (Funcionario) session.getAttribute("usuarioLogado");
-        
-        if(verificaAutorizacao(funcionario, req)){
+
+        if (verificaAutorizacao(funcionario, req)) {
             chain.doFilter(request, response);
         } else {
             //Criar uma página de retorno informando que não tem acesso
             res.sendRedirect(req.getContextPath() + "/Login");
         }
-       
+
     }
-    
+
     private boolean verificaAutorizacao(
-        Funcionario funcionario,
-        HttpServletRequest httpRequest){
-        
+            Funcionario funcionario,
+            HttpServletRequest httpRequest) {
+
         String urlAcessada = httpRequest.getRequestURI();
-        
-        if(urlAcessada.endsWith("/Login") || urlAcessada.endsWith("/Creditos")){
+
+        if (urlAcessada.endsWith("/Login") || urlAcessada.endsWith("/Creditos")) {
             return true;
-        } else if((urlAcessada.endsWith("/Index") 
+        } else if ((urlAcessada.endsWith("/Index")
                 || urlAcessada.endsWith("/Carrinho")
                 || urlAcessada.endsWith("/ExcluirMensagem")
                 || urlAcessada.endsWith("/FuncionarioAlterar")
@@ -80,17 +80,20 @@ public class UsuarioLogado implements Filter {
                 || urlAcessada.endsWith("/ProdutoExcluir")
                 || urlAcessada.endsWith("/ProdutoListarBackoffice")
                 || urlAcessada.endsWith("/SalvarImagem"))
-                && funcionario.getTipo().equals("Administrador")){
+                && funcionario.getTipo().equals("Administrador")) {
             return true;
-        } 
-          return false;                         
+        } else if (urlAcessada.endsWith("/EstoquistaListar")
+                || urlAcessada.endsWith("EstoquistaAlterar")
+                && funcionario.getTipo().equals("Estoquista")) {
+            return true;
+        }
+        return false;
     }
 
-  
-    public void destroy() {        
+    public void destroy() {
     }
 
-    public void init(FilterConfig filterConfig) {        
+    public void init(FilterConfig filterConfig) {
     }
-     
+
 }

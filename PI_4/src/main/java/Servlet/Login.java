@@ -53,6 +53,8 @@ public class Login extends HttpServlet {
                 Funcionario f = (Funcionario) sessao.getAttribute("usuarioLogado");
                 if(f.getTipo().equals("Administrador")){
                     response.sendRedirect(request.getContextPath() + "/ProdutoListarBackoffice");
+                }else if (f.getTipo().equals("Estoquista")){
+                    response.sendRedirect(request.getContextPath() + "/EstoquistaListar");
                 }else{
                     response.sendRedirect(request.getContextPath() + "/Index");
                 }

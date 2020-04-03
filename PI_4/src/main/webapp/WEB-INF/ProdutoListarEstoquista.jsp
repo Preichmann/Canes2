@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
     <head>
@@ -60,29 +61,17 @@
                 background-color: #8b0000 !important;
             }
 
-            /*Prevent text selection
-            span{
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-            }
-            input{  
-                border: 0;
-                width: 2%;
-            }
-            nput::-webkit-outer-spin-button,
-            input::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
-            }
-            input:disabled{
-                background-color:white;
-            }
-            */
         </style>
     </head>
 
     <body>
+        <script>
+            if (${retornoAtt} === true) {
+                alert('Quantidade atualizada Com sucesso!');
+            } else {
+                alert('Falha ao atualizar a Quantidade!');
+            }
+        </script>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">
@@ -95,27 +84,12 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="navbar-nav mr-auto">
-                        <form method="get" action="${pageContext.request.contextPath}/ProdutoCadastrar"
-                              class="nav-item active" novalidate>
-                            <input type="submit" value="Cadastrar Produto" class="nav-link active">
-                        </form>
-                        <form method="get" action="${pageContext.request.contextPath}/ProdutoListarBackoffice"
-                              class="nav-item" novalidate>
+                        <form method="get" action="${pageContext.request.contextPath}/EstoquistaListar" class="nav-item" novalidate>
                             <input type="submit" value="Listar Produtos" class="nav-link">
-                        </form>
-                        <form method="get" action="${pageContext.request.contextPath}/FuncionarioCadastrar" class="nav-item" novalidate>
-                            <input type="submit" value="Cadastrar Funcionario" class="nav-link">
-                        </form>
-                        <form method="get" action="${pageContext.request.contextPath}/FuncionarioListar" class="nav-item" novalidate>
-                            <input type="submit" value="Listar Funcionarios" class="nav-link">
                         </form>
                     </div>
 
                     <div class="d-flex user-options">
-                        <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
-                            <input type="submit" value="Carrinho" class="nav-link">
-                        </form>
-
                         <div class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -142,40 +116,19 @@
                                 <div class="d-flex flex-row">
                                     <form class="d-flex flex-row justify-content-between" style="width: 100%;"
                                           name="ProdutoListar" method="post"
-                                          action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
+                                          action="${pageContext.request.contextPath}/EstoquistaListar" novalidate>
                                         <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
                                         <h5 class="card-title"
                                             style="width:200px;margin: 0;display: flex;align-items: center;">
                                             <c:out value="${listaProd.getNome()}" />
                                         </h5>
                                         <p class="card-text" style="margin: 0;display: flex;align-items: center;">
-                                            <span>R$</span>
-                                        <c:out value="${listaProd.getPreco()}" />
+                                            <span>Qtd </span>
+                                            <c:out value="${listaProd.getQuantidade()}" />
                                         </p>
-                                        <!--<script>
-                                                $(document).ready(function () {
-                                                    $('.count').prop('disabled', true);
-                                                    $(document).on('click', '.plus', function () {
-                                                        $('.count').val(parseInt($('.count').val()) + 1);
-                                                    });
-                                                    $(document).on('click', '.minus', function () {
-                                                        $('.count').val(parseInt($('.count').val()) - 1);
-                                                        if ($('.count').val() == 0) {
-                                                            $('.count').val(1);
-                                                        }
-                                                    });
-                                                });
-                                            </script>
-                                        -->
-                                        <div class="qty mt-5">
-                                            <!--<span class="minus bg-dark">-</span>-->
-                                            <input type="number" class="count" name="qty" value="1" min="0">
-                                            <!--<span class="plus bg-dark">+</span>-->
-                                        </div>
+                                        <input type="submit" value="Atualizar estoque" class="btn btn-cor-especial">
+                                    </form>
                                 </div>
-                                <input type="submit" value="Atualizar estoque" class="btn btn-cor-especial">
-                                </form>
-                            </div>
                             </div>
                         </article>
                     </c:forEach>
@@ -183,10 +136,7 @@
             </section>
         </main>
 
-        <footer class="fixed-bottom text-center footer p-2">
-            <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
-            <p>2020 - Todos os direitos reservados</p>
-        </footer>
+
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

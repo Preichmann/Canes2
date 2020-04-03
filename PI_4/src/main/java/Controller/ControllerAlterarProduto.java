@@ -49,4 +49,8 @@ public class ControllerAlterarProduto {
         delete.deleteFile(nomeImg);
         return new DAO.DAO_Produto().excluirImagem(idImg);
     }
+
+    public boolean AlterarQtd(int idProd, int qtd) {
+        return new DAO.DAO_Produto().daoAlterarQtd(idProd, qtd);
+    }
 }

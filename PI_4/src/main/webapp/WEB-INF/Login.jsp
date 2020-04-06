@@ -101,7 +101,7 @@
                                 <input type="submit" name="loginBtn" value="Login" class="btn btn-cor-especial btn-block">
                             </div>
                         </form>
-                        <form method="post" action="${pageContext.request.contextPath}/" novalidate>
+                        <form method="get" action="${pageContext.request.contextPath}/ClienteCadastrar" novalidate>
                             <input type="submit" name="" value="Criar sua conta na Canes Suplementos" class="btn btn-secondary btn-block">
                         </form>
                     </article>

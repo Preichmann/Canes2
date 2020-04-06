@@ -1,35 +1,36 @@
-
 package Classes;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public class Cliente {
-    
+
     private int id_cliente;
-    private String usuario;
-    private String senha;    
-    private String nome;    
+    private String senha;
+    private String nome;
     private String email;
+    private String cpf;
     private int id_end_entrega;
     private int id_end_fatura;
-    
-    public Cliente(){
-        
+
+    public Cliente() {
+
     }
-    
-    public Cliente(int id_cliente, String usuario, String senha, String nome, String email, int id_end_entrega, int id_end_fatura) {
+
+    public Cliente(int id_cliente, String senha, String nome, String email, String cpf, int id_end_entrega, int id_end_fatura) {
         this.id_cliente = id_cliente;
-        this.usuario = usuario;
         this.senha = senha;
         this.nome = nome;
         this.email = email;
+        this.cpf = cpf;
         this.id_end_entrega = id_end_entrega;
         this.id_end_fatura = id_end_fatura;
     }
-    
-    public Cliente(String usuario, String senha, String nome, String email, int id_end_entrega, int id_end_fatura) {
-        this.usuario = usuario;
+
+    public Cliente(String senha, String nome, String email, String cpf, int id_end_entrega, int id_end_fatura) {
         this.senha = senha;
         this.nome = nome;
         this.email = email;
+        this.cpf = cpf;
         this.id_end_entrega = id_end_entrega;
         this.id_end_fatura = id_end_fatura;
     }
@@ -42,12 +43,16 @@ public class Cliente {
         this.id_cliente = id_cliente;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public boolean validarSenha(String usuarioSenha) {
+        return BCrypt.checkpw(usuarioSenha, senha);
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public final void setSenhaHash(String senha) {
+        this.senha = BCrypt.hashpw(senha, BCrypt.gensalt());
+    }
+
+    public boolean getSenhaHash(String senhaUsuario) {
+        return BCrypt.checkpw(senhaUsuario, senha);
     }
 
     public String getSenha() {
@@ -72,6 +77,14 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public String getCPF(){
+        return cpf;
+    }
+    
+    public void setCPF(String cpf){
+        this.cpf = cpf;
     }
 
     public int getId_end_entrega() {

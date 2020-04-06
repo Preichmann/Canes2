@@ -59,7 +59,7 @@
                     <div class="d-flex user-options">
                         <form method="get" action="${pageContext.request.contextPath}/Login" class="nav-item"
                               novalidate>
-                            <input type="submit" value="Login " class="nav-link">
+                            <input type="submit" value="Login" class="nav-link">
                         </form>
                         <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
                             <input type="submit" value="Carrinho" class="nav-link">

@@ -5,6 +5,8 @@
  */
 package Servlet;
 
+import Classes.ValidaCPF;
+import Classes.ValidarEmail;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,7 +34,26 @@ public class ClienteCadastrar extends HttpServlet {
         if (!validarnome) {
             request.setAttribute("retornoNome", false);
         } else {
-            
+            String clienteEmail = request.getParameter("clienteEmail");
+            ValidarEmail validar = new ValidarEmail();
+            boolean emailValidar = validar.validarEmail(clienteEmail);
+            if(!emailValidar){
+                request.setAttribute("retornoEmail", false);
+            }else{
+                String senhaCliente = request.getParameter("clienteSenha");
+                if(senhaCliente.equals("")){
+                    request.setAttribute("retornoSenha", false);
+                }else{
+                    String CpfCliente = request.getParameter("clienteCPF");
+                    ValidaCPF validarCpf = new ValidaCPF();
+                    boolean validarCPF = validarCpf.isCPF(CpfCliente);
+                    if(!validarCPF){
+                        request.setAttribute("retornoCPF", false);
+                    }else{
+                        
+                    }
+                }
+            }
         }
         request.getRequestDispatcher("/WEB-INF/ClienteCadastrar.jsp")
                 .forward(request, response);

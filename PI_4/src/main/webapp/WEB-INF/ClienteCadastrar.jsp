@@ -10,17 +10,29 @@
         <title>Cadastrar Funcionario</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-          <!-- <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.svg" type="image/x-svg" /> -->
-          <!--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" /> -->
-          <!--<script src="${pageContext.request.contextPath}/javaScript/validar.js" type="text/javascript"></script> -->
+
     </head>
 
     <body>
-
         <script>
             if (${retornoNome} === false) {
-                alert('O campo nome precisa conter no minimo 2 palavras cada uma com no minimo 3 letras!');
-            } 
+                alert('O campo nome precisa conter no minimo 2 palavras cada uma com no minimo 3 letras');
+            }
+        </script>
+        <script>
+            if (${retornoEmail} === false) {
+                alert('Email digitado é invalido');
+            }
+        </script>
+        <script>
+            if (${retornoSenha} === false) {
+                alert('Senha não pode ser vazia');
+            }
+        </script>
+        <script>
+            if (${retornoCPF} === false) {
+                alert('CPF digitado invalido');
+            }
         </script>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -84,7 +96,7 @@
             <h3>Cadastro</h3>
             <hr>
 
-            <form method="post" action="${pageContext.request.contextPath}/ClienteCadastrar" novalidate>
+            <form method="post" action="${pageContext.request.contextPath}/ClienteCadastrar" name="form1" novalidate>
 
                 <div class="form-group">
                     <label for="clienteNome">Nome</label>
@@ -103,8 +115,9 @@
 
                 <div class="form-group">
                     <label for="clienteCPF">CPF</label>
-                    <input type="text" class="form-control" name="clienteCPF" id="clienteCPF" placeholder="Ex: 000.000.000-00">
+                    <input type="text" name="clienteCPF" id="clienteCPF" maxlength="11" placeholder="Somente os Números">
                 </div>
+
                 <label>Endereço de Entrega:</label>
                 <div class="form-group">
                     <label for="clienteCEP">CEP</label>

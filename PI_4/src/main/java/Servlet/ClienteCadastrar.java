@@ -22,7 +22,7 @@ public class ClienteCadastrar extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.getRequestDispatcher("/WEB-INF/ClienteCadastrar.jsp")
+        request.getRequestDispatcher("/WEB-INF/ClienteCadastrarr.jsp")
                 .forward(request, response);
     }
 
@@ -55,7 +55,7 @@ public class ClienteCadastrar extends HttpServlet {
                 }
             }
         }
-        request.getRequestDispatcher("/WEB-INF/ClienteCadastrar.jsp")
+        request.getRequestDispatcher("/WEB-INF/ClienteCadastrarr.jsp")
                 .forward(request, response);
     }
 

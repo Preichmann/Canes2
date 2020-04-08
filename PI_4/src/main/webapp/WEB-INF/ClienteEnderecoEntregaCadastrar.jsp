@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
     <head>
@@ -42,49 +43,10 @@
                 });
             });
         </script>
-        <title>Cadastrar Cliente</title>
+        <title>Cadastrar Endereço de Entrega</title>
     </head>
     <body>
-        <script>
-            if (${retornoNome} == false) {
-                alert('O campo nome precisa conter no minimo 2 palavras cada uma com no minimo 3 letras');
-            }
-        </script>
-        <script>
-            if (${retornoEmail} == false) {
-                alert('Email digitado é invalido');
-            }
-        </script>
-        <script>
-            if (${retornoSenha} == false) {
-                alert('Senha não pode ser vazia');
-            }
-        </script>
-        <script>
-            if (${retornoCPF} == false) {
-                alert('CPF digitado invalido');
-            }
-        </script>
-        <script>
-            if (${retornoEndereço} == false) {
-                alert('Campos de Endereço obrigatórios não foram preenchidos corretamente');
-            }
-        </script>
-        <script>
-            if (${retornoCadastro} == false) {
-                alert('Falha com o banco de dados');
-            }
-        </script>
-        <script>
-            if (${retornoEmailCadastrado} == false) {
-                alert('Esse E-mail já está cadastrado');
-            }
-        </script>
-        <script>
-            if (${retornoCPFCadastrado} == false) {
-                alert('Já existe esse CPF cadastrado');
-            }
-        </script>
+        
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">
@@ -143,35 +105,52 @@
             </nav>
         </header>
         <div class="container">
-            <h3>Cadastro</h3>
+            <h3>Cadastro de Endereço de Entrega</h3>
             <hr>
 
-            <form method="post" action="${pageContext.request.contextPath}/ClienteCadastrar" novalidate>
+            <form method="post" action="${pageContext.request.contextPath}/ClienteCadastrarEnderecoEntrega" novalidate>
+                <label>Endereço de Entrega:</label>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label>CEP</label><span>*</span>
+                        <input type="number" class="form-control" name="cep" id="cep"><br>
+                    </div>
 
-                <div class="form-group">
-                    <label for="clienteNome">Nome</label><span>*</span>
-                    <input type="text" class="form-control" name="clienteNome" id="clienteNome" placeholder="Nome Completo">
+                    <div class="col-sm-4">
+                        <label>Endereço</label><span>*</span>
+                        <input type="text" class="form-control" name="logradouro" id="logradouro"><br>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label>Número</label><span>*</span>
+                        <input type="number" class="form-control" name="numero" id="numero"><br>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label>Complemento</label>
+                        <input type="text" class="form-control" name="complemento" id="complemento"><br>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>Bairro</label><span>*</span>
+                        <input type="text" class="form-control" name="bairro" id="bairro"><br>
+                    </div>
 
-                <div class="form-group">
-                    <label for="clienteEmail">E-mail</label><span>*</span>
-                    <input type="text" class="form-control" name="clienteEmail" id="clienteEmail" placeholder="Ex: Email@dominio.com">
+                    <div class="col-sm-4">
+                        <label>Cidade</label><span>*</span>
+                        <input type="text" class="form-control" name="cidade" id="cidade"><br>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label>Estado</label><span>*</span>
+                        <input type="text" class="form-control" name="estado" id="estado"><br>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="clienteSenha">Senha</label><span>*</span>
-                    <input type="password" class="form-control" name="clienteSenha" id="clienteSenha" placeholder="Senha">
-                </div>
-
-                <div class="form-group">
-                    <label for="clienteCPF">CPF</label><span>*</span>
-
-                    <input type="text" class="form-control" name="clienteCPF" id="clienteCPF" maxlength="11" placeholder="Somente os Números">
-                </div>
-
+                <input type="hidden" class="form-control" name="idCliente" id="idCliente" value="${idCliente}">
                 <input type="submit" value="Cadastrar" class="btn btn-success col-2" />
             </form>
-            <form method="get" action="${pageContext.request.contextPath}/Index" novalidate>
+            <form method="get" action="${pageContext.request.contextPath}/menu-FuncionarioListar" novalidate>
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
         </div>

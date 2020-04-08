@@ -38,8 +38,12 @@ public class ClienteCadastrar extends HttpServlet {
             String clienteEmail = request.getParameter("clienteEmail");
             ValidarEmail validar = new ValidarEmail();
             boolean emailValidar = validar.validarEmail(clienteEmail);
+            boolean emailCadastrado = new Controller.Controller_Cliente().validarEmail(clienteEmail);
+
             if (!emailValidar) {
                 request.setAttribute("retornoEmail", false);
+            } else if (!emailCadastrado) {
+                request.setAttribute("retornoEmailCadastrado", false);
             } else {
                 String senhaCliente = request.getParameter("clienteSenha");
                 if (senhaCliente.equals("")) {
@@ -48,29 +52,30 @@ public class ClienteCadastrar extends HttpServlet {
                     String CpfCliente = request.getParameter("clienteCPF");
                     ValidaCPF validarCpf = new ValidaCPF();
                     boolean validarCPF = validarCpf.isCPF(CpfCliente);
+                    boolean validarCPFExistente = new Controller.Controller_Cliente().validarCPF(CpfCliente);
+
                     if (!validarCPF) {
                         request.setAttribute("retornoCPF", false);
+                    } else if (!validarCPFExistente) {
+                        request.setAttribute("retornoCPFCadastrado", false);
                     } else {
-                        String clienteCep = request.getParameter("cep");
-                        String clienteRua = request.getParameter("logradouro");
-                        String clienteNum = request.getParameter("numero");
-                        String clienteBairro = request.getParameter("bairro");
-                        String clienteCidade = request.getParameter("cidade");
-                        String clienteEstado = request.getParameter("estado");
-                        String clienteComplemento = request.getParameter("complemento");
-
-                        if (clienteCep.equals("") || clienteRua.equals("") || clienteNum.equals("") || clienteBairro.equals("") || clienteCidade.equals("") || clienteEstado.equals("")) {
-                            request.setAttribute("retornoEndereço", false);
+                        Cliente c = new Cliente(senhaCliente, nomeCliente, clienteEmail, CpfCliente);
+                        c.setSenhaHash(senhaCliente);
+                        int retornoCadastro = new Controller.Controller_Cliente().cadastrarCliente(c);
+                        if (retornoCadastro == 0) {
+                            request.setAttribute("retornoCadastro", false);
                         } else {
-                            Cliente c = new Cliente(senhaCliente, nomeCliente, clienteEmail, CpfCliente);
-                            int retornoCadastro = new Controller.Controller_Cliente().cadastrarCliente(c);
-                            
+                            request.setAttribute("idCliente", retornoCadastro);
+                            request.getRequestDispatcher("/WEB-INF/ClienteEnderecoEntregaCadastrar.jsp")
+                                    .forward(request, response);
                         }
                     }
                 }
             }
         }
-        request.getRequestDispatcher("/WEB-INF/ClienteCadastrarr.jsp")
+
+        request.getRequestDispatcher(
+                "/WEB-INF/ClienteCadastrarr.jsp")
                 .forward(request, response);
     }
 

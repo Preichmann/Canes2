@@ -16,8 +16,8 @@ public class DAO_Cliente {
 
         try (Connection conexao = conec.obterConexao()) {
 
-            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.CLIENTE(NOME_CLIENTE,CPF,EMAIL,SENHA) \n"
-                    + "VALUES (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.CLIENTE (NOME_CLIENTE,CPF,EMAIL,SENHA) \n"
+                    + "VALUES (?,?,?,?);", Statement.RETURN_GENERATED_KEYS);
 
             comandoSQL.setString(1, c.getNome());
             comandoSQL.setString(2, c.getCPF());
@@ -69,4 +69,82 @@ public class DAO_Cliente {
         return null;
     }
 
+    public int validarEmail(String clienteEmail) {
+        Conexao conec = new Conexao();
+        int idCliente = 0;
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT ID_CLIENTE FROM "
+                    + "SUPLEMENTOS.CLIENTE WHERE EMAIL = ?");
+
+            comandoSQL.setString(1, clienteEmail);
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    idCliente = (rs.getInt("ID_CLIENTE"));
+
+                    return idCliente;
+                }
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return idCliente;
+    }
+
+    public int validarCPF(String clienteCPF) {
+        Conexao conec = new Conexao();
+        int idCliente = 0;
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT ID_CLIENTE FROM "
+                    + "SUPLEMENTOS.CLIENTE WHERE CPF = ?");
+
+            comandoSQL.setString(1, clienteCPF);
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    idCliente = (rs.getInt("ID_CLIENTE"));
+
+                    return idCliente;
+                }
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return idCliente;
+    }
+
+    public boolean cadastrarEnderecoEntrega(int idCliente, String clienteCEP, String clienteRua, String clienteNum, String clienteBairro, String clienteCidade, String clienteEstado) {
+
+        Conexao conec = new Conexao();
+        boolean retorno;
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.FUNCIONARIO(NOME, EMAIL,USUARIO,SENHA,STATUS,TIPO)\n"
+                    + "VALUES (?,?,?,?,?,?)");
+
+            comandoSQL.setString(1, f.getNome());
+            comandoSQL.setString(2, f.getEmail());
+            comandoSQL.setString(3, f.getUsuario());
+            comandoSQL.setString(4, f.getSenha());
+            comandoSQL.setBoolean(5, f.isStatus());
+            comandoSQL.setString(6, f.getTipo());
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            retorno = false;
+        }
+        return retorno;
+    }
 }

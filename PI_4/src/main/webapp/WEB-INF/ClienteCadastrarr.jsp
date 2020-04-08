@@ -65,6 +65,11 @@
                 alert('CPF digitado invalido');
             }
         </script>
+        <script>
+            if (${retornoEndereço} == false) {
+                alert('Campos de Endereço obrigatórios não foram preenchidos corretamente');
+            }
+        </script>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">
@@ -129,22 +134,22 @@
             <form method="post" action="${pageContext.request.contextPath}/ClienteCadastrar" novalidate>
 
                 <div class="form-group">
-                    <label for="clienteNome">Nome</label>
+                    <label for="clienteNome">Nome</label><span>*</span>
                     <input type="text" class="form-control" name="clienteNome" id="clienteNome" placeholder="Nome Completo">
                 </div>
 
                 <div class="form-group">
-                    <label for="clienteEmail">E-mail</label>
+                    <label for="clienteEmail">E-mail</label><span>*</span>
                     <input type="text" class="form-control" name="clienteEmail" id="clienteEmail" placeholder="Ex: Email@dominio.com">
                 </div>
 
                 <div class="form-group">
-                    <label for="clienteSenha">Senha</label>
+                    <label for="clienteSenha">Senha</label><span>*</span>
                     <input type="password" class="form-control" name="clienteSenha" id="clienteSenha" placeholder="Senha">
                 </div>
 
                 <div class="form-group">
-                    <label for="clienteCPF">CPF</label>
+                    <label for="clienteCPF">CPF</label><span>*</span>
 
                     <input type="text" class="form-control" name="clienteCPF" id="clienteCPF" maxlength="11" placeholder="Somente os Números">
                 </div>
@@ -152,17 +157,17 @@
                 <label>Endereço de Entrega:</label>
                 <div class="row">
                     <div class="col-sm-2">
-                        <label>CEP</label>
+                        <label>CEP</label><span>*</span>
                         <input type="number" class="form-control" name="cep" id="cep"><br>
                     </div>
 
                     <div class="col-sm-4">
-                        <label>Endereço</label>
+                        <label>Endereço</label><span>*</span>
                         <input type="text" class="form-control" name="logradouro" id="logradouro"><br>
                     </div>
 
                     <div class="col-sm-2">
-                        <label>Número</label>
+                        <label>Número</label><span>*</span>
                         <input type="number" class="form-control" name="numero" id="numero"><br>
                     </div>
 
@@ -173,17 +178,17 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
-                        <label>Bairro</label>
+                        <label>Bairro</label><span>*</span>
                         <input type="text" class="form-control" name="bairro" id="bairro"><br>
                     </div>
 
                     <div class="col-sm-4">
-                        <label>Cidade</label>
+                        <label>Cidade</label><span>*</span>
                         <input type="text" class="form-control" name="cidade" id="cidade"><br>
                     </div>
 
                     <div class="col-sm-2">
-                        <label>Estado</label>
+                        <label>Estado</label><span>*</span>
                         <input type="text" class="form-control" name="estado" id="estado"><br>
                     </div>
                 </div>

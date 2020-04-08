@@ -16,7 +16,7 @@ public class Cliente {
 
     }
 
-    public Cliente(int id_cliente, String senha, String nome, String email, String cpf, int id_end_entrega, int id_end_fatura) {
+    public Cliente(String senha, String nome, String email, String cpf) {
         this.id_cliente = id_cliente;
         this.senha = senha;
         this.nome = nome;

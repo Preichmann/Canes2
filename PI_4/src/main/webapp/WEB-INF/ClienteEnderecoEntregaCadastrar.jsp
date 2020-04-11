@@ -44,28 +44,58 @@
             });
         </script>
         <script>
+            $(document).ready(function () {
+                $("#cep2").on("change", function () {
+                    if (this.value) {
+                        $.ajax({
+                            url: 'http://api.postmon.com.br/v1/cep/' + this.value,
+                            dateType: "json",
+                            crossDomain: true,
+                            statusCode: {
+                                200: function (data) {
+                                    //console.log(data);
+
+                                    $("#cep2").addClass("is-valid");
+                                    $("#logradouro2").val(data.logradouro);
+                                    $("#bairro2").val(data.bairro);
+                                    $("#cidade2").val(data.cidade);
+                                    $("#estado2").val(data.estado);
+                                },
+                                400: function (msg) {
+                                    console.log(msg); //Request error
+                                },
+                                404: function (msg) {
+                                    console.log(msg); //Cep inválido
+                                }
+                            }
+                        })
+                    }
+                });
+            });
+        </script>
+        <script>
             function copyFromTextbox(id) {
                 var textToCopy = document.getElementById('cep').value;
                 var whereToCopy = document.getElementById("cep2");
-                whereToCopy.value += textToCopy;
+                whereToCopy.value = textToCopy;
                 var textToCopy = document.getElementById('logradouro').value;
                 var whereToCopy = document.getElementById("logradouro2");
-                whereToCopy.value += textToCopy;
+                whereToCopy.value = textToCopy;
                 var textToCopy = document.getElementById('numero').value;
                 var whereToCopy = document.getElementById("numero2");
-                whereToCopy.value += textToCopy;
+                whereToCopy.value = textToCopy;
                 var textToCopy = document.getElementById('complemento').value;
                 var whereToCopy = document.getElementById("complemento2");
-                whereToCopy.value += textToCopy;
+                whereToCopy.value = textToCopy;
                 var textToCopy = document.getElementById('bairro').value;
                 var whereToCopy = document.getElementById("bairro2");
-                whereToCopy.value += textToCopy;
+                whereToCopy.value = textToCopy;
                 var textToCopy = document.getElementById('cidade').value;
                 var whereToCopy = document.getElementById("cidade2");
-                whereToCopy.value += textToCopy;
+                whereToCopy.value = textToCopy;
                 var textToCopy = document.getElementById('estado').value;
                 var whereToCopy = document.getElementById("estado2");
-                whereToCopy.value += textToCopy;
+                whereToCopy.value = textToCopy;
             }
         </script>
         <title>Cadastrar Endereço de Entrega</title>

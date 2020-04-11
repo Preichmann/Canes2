@@ -9,8 +9,6 @@ public class Cliente {
     private String nome;
     private String email;
     private String cpf;
-    private int id_end_entrega;
-    private int id_end_fatura;
 
     public Cliente() {
 
@@ -22,17 +20,6 @@ public class Cliente {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
-        this.id_end_entrega = id_end_entrega;
-        this.id_end_fatura = id_end_fatura;
-    }
-
-    public Cliente(String senha, String nome, String email, String cpf, int id_end_entrega, int id_end_fatura) {
-        this.senha = senha;
-        this.nome = nome;
-        this.email = email;
-        this.cpf = cpf;
-        this.id_end_entrega = id_end_entrega;
-        this.id_end_fatura = id_end_fatura;
     }
 
     public int getId_cliente() {
@@ -78,28 +65,13 @@ public class Cliente {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    public String getCPF(){
+
+    public String getCPF() {
         return cpf;
     }
-    
-    public void setCPF(String cpf){
+
+    public void setCPF(String cpf) {
         this.cpf = cpf;
     }
 
-    public int getId_end_entrega() {
-        return id_end_entrega;
-    }
-
-    public void setId_end_entrega(int id_end_entrega) {
-        this.id_end_entrega = id_end_entrega;
-    }
-
-    public int getId_end_fatura() {
-        return id_end_fatura;
-    }
-
-    public void setId_end_fatura(int id_end_fatura) {
-        this.id_end_fatura = id_end_fatura;
-    }
 }

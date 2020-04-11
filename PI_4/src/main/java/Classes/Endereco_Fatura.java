@@ -4,6 +4,7 @@ package Classes;
 public class Endereco_Fatura {
     
     private int id_entrega;
+    private int id_cliente;
     private String rua;
     private String cep;
     private String numero;
@@ -34,6 +35,14 @@ public class Endereco_Fatura {
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
+    }
+
+    public int getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
     public int getId_entrega() {

@@ -1,9 +1,9 @@
-
 package Classes;
 
 public class Endereco_Entrega {
-    
+
     private int id_entrega;
+    private int id_cliente;
     private String rua;
     private String cep;
     private String numero;
@@ -15,8 +15,8 @@ public class Endereco_Entrega {
     public Endereco_Entrega() {
     }
 
-    public Endereco_Entrega(int id_entrega, String rua, String cep, String numero, String complemento, String bairro, String cidade, String estado) {
-        this.id_entrega = id_entrega;
+    public Endereco_Entrega(int id_cliente, String rua, String cep, String numero, String complemento, String bairro, String cidade, String estado) {
+        this.id_cliente = id_cliente;
         this.rua = rua;
         this.cep = cep;
         this.numero = numero;
@@ -26,14 +26,30 @@ public class Endereco_Entrega {
         this.estado = estado;
     }
 
-    public Endereco_Entrega(String rua, String cep, String numero, String complemento, String bairro, String cidade, String estado) {
+    public Endereco_Entrega(int id_cliente, String rua, String cep, String numero, String bairro, String cidade, String estado) {
         this.rua = rua;
         this.cep = cep;
         this.numero = numero;
-        this.complemento = complemento;
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
+    }
+
+    public Endereco_Entrega(String rua, String cep, String numero, String bairro, String cidade, String estado) {
+        this.rua = rua;
+        this.cep = cep;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+    }
+
+    public int getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
     public int getId_entrega() {

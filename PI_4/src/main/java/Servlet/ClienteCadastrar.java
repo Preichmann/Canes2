@@ -95,6 +95,6 @@ public class ClienteCadastrar extends HttpServlet {
                 contarLetra = 0;
             }
         }
-        return false;
+        return true;
     }
 }

@@ -43,10 +43,35 @@
                 });
             });
         </script>
+        <script>
+            function copyFromTextbox(id) {
+                var textToCopy = document.getElementById('cep').value;
+                var whereToCopy = document.getElementById("cep2");
+                whereToCopy.value += textToCopy;
+                var textToCopy = document.getElementById('logradouro').value;
+                var whereToCopy = document.getElementById("logradouro2");
+                whereToCopy.value += textToCopy;
+                var textToCopy = document.getElementById('numero').value;
+                var whereToCopy = document.getElementById("numero2");
+                whereToCopy.value += textToCopy;
+                var textToCopy = document.getElementById('complemento').value;
+                var whereToCopy = document.getElementById("complemento2");
+                whereToCopy.value += textToCopy;
+                var textToCopy = document.getElementById('bairro').value;
+                var whereToCopy = document.getElementById("bairro2");
+                whereToCopy.value += textToCopy;
+                var textToCopy = document.getElementById('cidade').value;
+                var whereToCopy = document.getElementById("cidade2");
+                whereToCopy.value += textToCopy;
+                var textToCopy = document.getElementById('estado').value;
+                var whereToCopy = document.getElementById("estado2");
+                whereToCopy.value += textToCopy;
+            }
+        </script>
         <title>Cadastrar Endereço de Entrega</title>
     </head>
     <body>
-        
+
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">
@@ -145,6 +170,52 @@
                     <div class="col-sm-2">
                         <label>Estado</label><span>*</span>
                         <input type="text" class="form-control" name="estado" id="estado"><br>
+                    </div>
+                </div>
+                <input type="hidden" class="form-control" name="idCliente" id="idCliente" value="${idCliente}">
+                <input type="submit" value="Cadastrar" class="btn btn-success col-2" />
+            </form>
+            <div class="col-sm-2" >
+                <label>Copiar dados de entrega para faturamento:</label>
+                <button class="btn-padrao" type="button" id="copiar" name="copiar" onClick="copyFromTextbox();">Copiar</button>
+            </div>
+            <form method="post" action="${pageContext.request.contextPath}/ClienteCadastrarEnderecoFaturamento" novalidate>
+                <label>Endereço de Faturamento:</label>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label>CEP</label><span>*</span>
+                        <input type="number" class="form-control" name="cep2" id="cep2"><br>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label>Endereço</label><span>*</span>
+                        <input type="text" class="form-control" name="logradouro2" id="logradouro2"><br>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label>Número</label><span>*</span>
+                        <input type="number" class="form-control" name="numero2" id="numero2"><br>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label>Complemento</label>
+                        <input type="text" class="form-control" name="complemento2" id="complemento2"><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>Bairro</label><span>*</span>
+                        <input type="text" class="form-control" name="bairro2" id="bairro2"><br>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label>Cidade</label><span>*</span>
+                        <input type="text" class="form-control" name="cidade2" id="cidade2"><br>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label>Estado</label><span>*</span>
+                        <input type="text" class="form-control" name="estado2" id="estado2"><br>
                     </div>
                 </div>
                 <input type="hidden" class="form-control" name="idCliente" id="idCliente" value="${idCliente}">

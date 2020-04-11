@@ -1,6 +1,7 @@
 package Controller;
 
 import Classes.Cliente;
+import Classes.Endereco_Entrega;
 
 public class Controller_Cliente {
 
@@ -32,7 +33,13 @@ public class Controller_Cliente {
         }
     }
 
-    public boolean cadastrarEndereco(int idCliente, String clienteCEP, String clienteRua, String clienteNum, String clienteBairro, String clienteCidade, String clienteEstado) {
-        return new DAO.DAO_Cliente().cadastrarEnderecoEntrega(idCliente,clienteCEP, clienteRua, clienteNum, clienteBairro, clienteCidade, clienteEstado);
+    public boolean cadastrarEnderecoEntregaNoComplemento(int idCliente, String clienteCEP, String clienteRua, String clienteNum, String clienteBairro, String clienteCidade, String clienteEstado) {
+        Endereco_Entrega endereco = new Endereco_Entrega(idCliente, clienteRua, clienteCEP, clienteNum, clienteBairro, clienteCidade, clienteEstado);
+        return new DAO.DAO_Cliente().cadastrarEnderecoEntregaNoComplemento(endereco);
+    }
+
+    public boolean cadastrarEnderecoEntrega(int idCliente, String clienteCEP, String clienteRua, String clienteNum, String clienteComplemento, String clienteBairro, String clienteCidade, String clienteEstado) {
+        Endereco_Entrega endereco = new Endereco_Entrega(idCliente, clienteRua, clienteCEP, clienteNum, clienteComplemento, clienteBairro, clienteCidade, clienteEstado);
+        return new DAO.DAO_Cliente().cadastrarEnderecoEntrega(endereco);
     }
 }

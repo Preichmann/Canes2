@@ -37,10 +37,38 @@ public class ClienteCadastrarEnderecoEntrega extends HttpServlet {
         String clienteComplemento = request.getParameter("complemento");
         String clienteID = request.getParameter("idCliente");
         int idCliente = Integer.parseInt(clienteID);
-        if (clienteComplemento.equals("")) {
-            Endereco_Entrega endereco = new Endereco_Entrega();
-                boolean retornoEndereco = new Controller.Controller_Cliente().cadastrarEndereco(idCliente,clienteCep, clienteRua, clienteNum, clienteBairro, clienteCidade, clienteEstado);
+        if (clienteCep.equals("")) {
+            request.setAttribute("RetornoCep", false);
+        } else {
+            if (clienteRua.equals("")) {
+                request.setAttribute("RetornoRua", false);
+            } else {
+                if (clienteNum.equals("")) {
+                    request.setAttribute("RetornoNum", false);
+                } else {
+                    if (clienteBairro.equals("")) {
+                        request.setAttribute("RetornoBairro", false);
+                    } else {
+                        if (clienteCidade.equals("")) {
+                            request.setAttribute("RetornoCidade", false);
+                        } else {
+                            if (clienteEstado.equals("")) {
+                                request.setAttribute("RetornoEstado", false);
+                            } else {
+                                if (clienteComplemento.equals("")) {
+                                    Endereco_Entrega endereco = new Endereco_Entrega();
+                                    boolean retornoEndereco = new Controller.Controller_Cliente().cadastrarEnderecoEntregaNoComplemento(idCliente, clienteCep, clienteRua, clienteNum, clienteBairro, clienteCidade, clienteEstado);
+                                    request.setAttribute("retornoCadastrarEntrega", retornoEndereco);
+                                } else {
+                                    boolean retornoEndereco = new Controller.Controller_Cliente().cadastrarEnderecoEntrega(idCliente, clienteCep, clienteRua, clienteNum, clienteComplemento, clienteBairro, clienteCidade, clienteEstado);
+                                    request.setAttribute("retornoCadastrarEntrega", retornoEndereco);
+                                }
+                            }
+                        }
+                    }
+                }
             }
+        }
 
         request.getRequestDispatcher("/WEB-INF/ClienteEnderecoEntregaCadastrar.jsp")
                 .forward(request, response);

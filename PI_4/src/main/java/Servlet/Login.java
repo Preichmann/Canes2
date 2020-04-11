@@ -7,8 +7,11 @@ package Servlet;
 
 import Classes.Cliente;
 import Classes.Funcionario;
+import Classes.ImagemProduto;
+import Classes.Produto;
 import Classes.ValidarEmail;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -86,8 +89,41 @@ public class Login extends HttpServlet {
 
                 if (cliente.validarSenha(senha)) {
                     HttpSession sessao = request.getSession();
-                    sessao.setAttribute("usuarioLogado", cliente.getNome());
-                    response.sendRedirect(request.getContextPath() + "/Index");
+                    sessao.setAttribute("usuarioLogado", cliente);
+                    request.setAttribute("NomeLogadoAtt", cliente.getNome());
+                    ArrayList<Produto> listaProd = new Controller.ControllerListarProduto().getProdutosCliente();
+                    ArrayList<ImagemProduto> listaImagens = new Controller.ControllerListarProduto().getImagensTotal();
+                    ArrayList<ImagemProduto> listaPrimeiraImagem = new ArrayList<>();
+
+                    for (ImagemProduto img : listaImagens) {
+                        int IdProd = img.getIdProd();
+                        if (listaPrimeiraImagem.isEmpty()) {
+                            listaPrimeiraImagem.add(img);
+                        } else {
+                            int validarImg = 0;
+                            for (ImagemProduto imgFirst : listaPrimeiraImagem) {
+                                if (IdProd == imgFirst.getIdProd()) {
+                                    validarImg++;
+                                }
+                            }
+                            if (validarImg == 0) {
+                                listaPrimeiraImagem.add(img);
+                            }
+                        }
+                    }
+                    for (Produto p : listaProd) {
+                        for (ImagemProduto img : listaPrimeiraImagem) {
+                            if (p.getIdProd() == img.getIdProd()) {
+                                p.setCaminho("https://storage.cloud.google.com/imagedb/" + img.getNome());
+                            }
+                        }
+                    }
+
+                    request.setAttribute("listaProdutoAtt", listaProd);
+                    request.setAttribute("listaImagensAtt", listaPrimeiraImagem);
+                    request.setAttribute("senhaAtt", true);
+                    request.getRequestDispatcher("/WEB-INF/Index.jsp")
+                            .forward(request, response);
                 } else {
                     request.setAttribute("senhaAtt", true);
                     request.getRequestDispatcher("/WEB-INF/Login.jsp")

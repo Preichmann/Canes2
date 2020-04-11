@@ -71,6 +71,76 @@
         <title>Cadastrar Endereço de Entrega</title>
     </head>
     <body>
+        <script>
+            if (${RetornoCep2} == false) {
+                alert('CEP do campo de faturamento é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${RetornoCep} == false) {
+                alert('CEP do campo de Entrega é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${RetornoRua2} == false) {
+                alert('RUA do campo de Entrega é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${RetornoRua} == false) {
+                alert('RUA do campo de Faturamento é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${RetornoNum2} == false) {
+                alert('Numero do campo de Faturamento é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${RetornoNum} == false) {
+                alert('Numero do campo de Entrega é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${RetornoBairro2} == false) {
+                alert('Bairro do campo de Faturamento é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${RetornoBairro} == false) {
+                alert('Bairro do campo de Entrega é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${RetornoCidade2} == false) {
+                alert('Cidade do campo de Faturamento é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${RetornoCidade} == false) {
+                alert('Cidade do campo de Entrega é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${RetornoEstado2} == false) {
+                alert('Estado do campo de Faturamento é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${RetornoEstado} == false) {
+                alert('Estado do campo de Entrega é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${retornoCadastrarFaturamento} == false) {
+                alert('Falha com o Banco de dados para cadastrar o endereço de Faturamento');
+            }
+        </script>
+        <script>
+            if (${retornoCadastrarEntrega} == false) {
+                alert('Falha com o Banco de dados para cadastrar o endereço de Entrega');
+            }
+        </script>
 
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -173,13 +243,12 @@
                     </div>
                 </div>
                 <input type="hidden" class="form-control" name="idCliente" id="idCliente" value="${idCliente}">
-                <input type="submit" value="Cadastrar" class="btn btn-success col-2" />
-            </form>
-            <div class="col-sm-2" >
-                <label>Copiar dados de entrega para faturamento:</label>
-                <button class="btn-padrao" type="button" id="copiar" name="copiar" onClick="copyFromTextbox();">Copiar</button>
-            </div>
-            <form method="post" action="${pageContext.request.contextPath}/ClienteCadastrarEnderecoFaturamento" novalidate>
+
+                <div class="col-sm-2" >
+                    <label>Copiar dados de entrega para faturamento:</label>
+                    <button class="btn-padrao" type="button" id="copiar" name="copiar" onClick="copyFromTextbox();">Copiar</button>
+                </div>
+
                 <label>Endereço de Faturamento:</label>
                 <div class="row">
                     <div class="col-sm-2">
@@ -218,7 +287,6 @@
                         <input type="text" class="form-control" name="estado2" id="estado2"><br>
                     </div>
                 </div>
-                <input type="hidden" class="form-control" name="idCliente" id="idCliente" value="${idCliente}">
                 <input type="submit" value="Cadastrar" class="btn btn-success col-2" />
             </form>
             <form method="get" action="${pageContext.request.contextPath}/menu-FuncionarioListar" novalidate>

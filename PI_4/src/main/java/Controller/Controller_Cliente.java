@@ -2,6 +2,7 @@ package Controller;
 
 import Classes.Cliente;
 import Classes.Endereco_Entrega;
+import Classes.Endereco_Fatura;
 
 public class Controller_Cliente {
 
@@ -41,5 +42,15 @@ public class Controller_Cliente {
     public boolean cadastrarEnderecoEntrega(int idCliente, String clienteCEP, String clienteRua, String clienteNum, String clienteComplemento, String clienteBairro, String clienteCidade, String clienteEstado) {
         Endereco_Entrega endereco = new Endereco_Entrega(idCliente, clienteRua, clienteCEP, clienteNum, clienteComplemento, clienteBairro, clienteCidade, clienteEstado);
         return new DAO.DAO_Cliente().cadastrarEnderecoEntrega(endereco);
+    }
+
+    public boolean cadastrarEnderecoFaturamentoNoComplemento(int idCliente, String clienteCEP, String clienteRua, String clienteNum, String clienteBairro, String clienteCidade, String clienteEstado) {
+        Endereco_Fatura endereco = new Endereco_Fatura(idCliente, clienteRua, clienteCEP, clienteNum, clienteBairro, clienteCidade, clienteEstado);
+        return new DAO.DAO_Cliente().cadastrarEnderecoFaturamentoNoComplemento(endereco);
+    }
+
+    public boolean cadastrarEnderecoFaturamento(int idCliente, String clienteCEP, String clienteRua, String clienteNum, String clienteComplemento, String clienteBairro, String clienteCidade, String clienteEstado) {
+        Endereco_Fatura endereco = new Endereco_Fatura(idCliente, clienteRua, clienteCEP, clienteNum, clienteComplemento, clienteBairro, clienteCidade, clienteEstado);
+        return new DAO.DAO_Cliente().cadastrarEnderecoFaturamento(endereco);
     }
 }

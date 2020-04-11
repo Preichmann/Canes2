@@ -1,8 +1,7 @@
-
 package Classes;
 
 public class Endereco_Fatura {
-    
+
     private int id_entrega;
     private int id_cliente;
     private String rua;
@@ -16,8 +15,8 @@ public class Endereco_Fatura {
     public Endereco_Fatura() {
     }
 
-    public Endereco_Fatura(int id_entrega, String rua, String cep, String numero, String complemento, String bairro, String cidade, String estado) {
-        this.id_entrega = id_entrega;
+    public Endereco_Fatura(int id_cliente, String rua, String cep, String numero, String complemento, String bairro, String cidade, String estado) {
+        this.id_cliente = id_cliente;
         this.rua = rua;
         this.cep = cep;
         this.numero = numero;
@@ -27,11 +26,11 @@ public class Endereco_Fatura {
         this.estado = estado;
     }
 
-    public Endereco_Fatura(String rua, String cep, String numero, String complemento, String bairro, String cidade, String estado) {
+    public Endereco_Fatura(int id_cliente, String rua, String cep, String numero, String bairro, String cidade, String estado) {
+        this.id_cliente = id_cliente;
         this.rua = rua;
         this.cep = cep;
         this.numero = numero;
-        this.complemento = complemento;
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;

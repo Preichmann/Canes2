@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "ClienteCadastrarEnderecoEntrega", urlPatterns = {"/ClienteCadastrarEnderecoEntrega"})
 public class ClienteCadastrarEnderecoEntrega extends HttpServlet {
@@ -28,6 +29,13 @@ public class ClienteCadastrarEnderecoEntrega extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        boolean retornoEnderecoFat = false;
+        boolean retornoEndereco = false;
+        boolean CadastroEntregaCompl = false;
+        boolean CadastroEntrega = false;
+        boolean CadastroFaturamentoComple = false;
+        boolean CadastroFaturamento = false;
+
         String clienteCep = request.getParameter("cep");
         String clienteRua = request.getParameter("logradouro");
         String clienteNum = request.getParameter("numero");
@@ -35,6 +43,13 @@ public class ClienteCadastrarEnderecoEntrega extends HttpServlet {
         String clienteCidade = request.getParameter("cidade");
         String clienteEstado = request.getParameter("estado");
         String clienteComplemento = request.getParameter("complemento");
+        String clienteCep2 = request.getParameter("cep2");
+        String clienteRua2 = request.getParameter("logradouro2");
+        String clienteNum2 = request.getParameter("numero2");
+        String clienteBairro2 = request.getParameter("bairro2");
+        String clienteCidade2 = request.getParameter("cidade2");
+        String clienteEstado2 = request.getParameter("estado2");
+        String clienteComplemento2 = request.getParameter("complemento2");
         String clienteID = request.getParameter("idCliente");
         int idCliente = Integer.parseInt(clienteID);
         if (clienteCep.equals("")) {
@@ -56,12 +71,13 @@ public class ClienteCadastrarEnderecoEntrega extends HttpServlet {
                                 request.setAttribute("RetornoEstado", false);
                             } else {
                                 if (clienteComplemento.equals("")) {
-                                    Endereco_Entrega endereco = new Endereco_Entrega();
-                                    boolean retornoEndereco = new Controller.Controller_Cliente().cadastrarEnderecoEntregaNoComplemento(idCliente, clienteCep, clienteRua, clienteNum, clienteBairro, clienteCidade, clienteEstado);
-                                    request.setAttribute("retornoCadastrarEntrega", retornoEndereco);
+                                    CadastroEntrega = true;
+                                    CadastroEntregaCompl = false;
+
                                 } else {
-                                    boolean retornoEndereco = new Controller.Controller_Cliente().cadastrarEnderecoEntrega(idCliente, clienteCep, clienteRua, clienteNum, clienteComplemento, clienteBairro, clienteCidade, clienteEstado);
-                                    request.setAttribute("retornoCadastrarEntrega", retornoEndereco);
+                                    CadastroEntregaCompl = true;
+                                    CadastroEntrega = false;
+
                                 }
                             }
                         }
@@ -69,9 +85,60 @@ public class ClienteCadastrarEnderecoEntrega extends HttpServlet {
                 }
             }
         }
+        if (clienteCep2.equals("")) {
+            request.setAttribute("RetornoCep2", false);
+        } else {
+            if (clienteRua2.equals("")) {
+                request.setAttribute("RetornoRua2", false);
+            } else {
+                if (clienteNum2.equals("")) {
+                    request.setAttribute("RetornoNum2", false);
+                } else {
+                    if (clienteBairro2.equals("")) {
+                        request.setAttribute("RetornoBairro2", false);
+                    } else {
+                        if (clienteCidade2.equals("")) {
+                            request.setAttribute("RetornoCidade2", false);
+                        } else {
+                            if (clienteEstado2.equals("")) {
+                                request.setAttribute("RetornoEstado2", false);
+                            } else {
+                                if (clienteComplemento2.equals("")) {
+                                    CadastroFaturamento = true;
+                                    CadastroFaturamentoComple = false;
 
-        request.getRequestDispatcher("/WEB-INF/ClienteEnderecoEntregaCadastrar.jsp")
-                .forward(request, response);
+                                } else {
+                                    CadastroFaturamento = false;
+                                    CadastroFaturamentoComple = true;
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (CadastroEntrega || CadastroEntregaCompl && CadastroFaturamento || CadastroFaturamentoComple) {
+            if (CadastroEntrega) {
+                retornoEndereco = new Controller.Controller_Cliente().cadastrarEnderecoEntregaNoComplemento(idCliente, clienteCep, clienteRua, clienteNum, clienteBairro, clienteCidade, clienteEstado);
+            } else {
+                retornoEndereco = new Controller.Controller_Cliente().cadastrarEnderecoEntrega(idCliente, clienteCep, clienteRua, clienteNum, clienteComplemento, clienteBairro, clienteCidade, clienteEstado);
+            }
+            if (CadastroFaturamento) {
+                retornoEnderecoFat = new Controller.Controller_Cliente().cadastrarEnderecoFaturamentoNoComplemento(idCliente, clienteCep2, clienteRua2, clienteNum2, clienteBairro2, clienteCidade2, clienteEstado2);
+            } else {
+                retornoEnderecoFat = new Controller.Controller_Cliente().cadastrarEnderecoFaturamento(idCliente, clienteCep2, clienteRua2, clienteNum2, clienteComplemento2, clienteBairro2, clienteCidade2, clienteEstado2);
+            }
+        } else {
+            request.setAttribute("retornoCadastrarEntrega", false);
+            request.setAttribute("retornoCadastrarFaturamento", false);
+            request.setAttribute("idCliente", idCliente);
+            request.getRequestDispatcher("/WEB-INF/ClienteEnderecoEntregaCadastrar.jsp")
+                    .forward(request, response);
+        }
+        
+        request.getRequestDispatcher("/WEB-INF/Login.jsp")
+                    .forward(request, response);
     }
 
 }

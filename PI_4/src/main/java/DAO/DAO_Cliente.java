@@ -2,6 +2,7 @@ package DAO;
 
 import Classes.Cliente;
 import Classes.Endereco_Entrega;
+import Classes.Endereco_Fatura;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,7 +46,7 @@ public class DAO_Cliente {
         try (Connection conexao = conec.obterConexao()) {
 
             PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * FROM "
-                    + "SUPLEMENTOS.CLIENTE WHERE CLIENTE.EMAIL LIKE '"+login+"';");
+                    + "SUPLEMENTOS.CLIENTE WHERE CLIENTE.EMAIL LIKE '" + login + "';");
 
             ResultSet rs = comandoSQL.executeQuery();
 
@@ -123,15 +124,15 @@ public class DAO_Cliente {
         try (Connection conexao = conec.obterConexao()) {
 
             PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.ENDERECO_ENTREGA(ID_CLIENTE,RUA,CEP,NUMERO,BAIRRO,CIDADE,ESTADO)\n"
-                    + "VALUES (?,?,?,?,?,?);");
+                    + "VALUES (?,?,?,?,?,?,?);");
 
             comandoSQL.setInt(1, endereco.getId_cliente());
-            comandoSQL.setString(1, endereco.getRua());
-            comandoSQL.setString(2, endereco.getCep());
-            comandoSQL.setString(3, endereco.getNumero());
-            comandoSQL.setString(4, endereco.getBairro());
-            comandoSQL.setString(5, endereco.getCidade());
-            comandoSQL.setString(6, endereco.getEstado());
+            comandoSQL.setString(2, endereco.getRua());
+            comandoSQL.setString(3, endereco.getCep());
+            comandoSQL.setString(4, endereco.getNumero());
+            comandoSQL.setString(5, endereco.getBairro());
+            comandoSQL.setString(6, endereco.getCidade());
+            comandoSQL.setString(7, endereco.getEstado());
 
             int linhaAfetada = comandoSQL.executeUpdate();
 
@@ -151,13 +152,70 @@ public class DAO_Cliente {
         try (Connection conexao = conec.obterConexao()) {
 
             PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.ENDERECO_ENTREGA(ID_CLIENTE,RUA,CEP,NUMERO,COMPLEMENTO,BAIRRO,CIDADE,ESTADO)\n"
-                    + " VALUES (?,?,?,?,?,?,?);");
+                    + " VALUES (?,?,?,?,?,?,?,?);");
 
             comandoSQL.setInt(1, endereco.getId_cliente());
-            comandoSQL.setString(1, endereco.getRua());
-            comandoSQL.setString(2, endereco.getCep());
-            comandoSQL.setString(3, endereco.getNumero());
-            comandoSQL.setString(4, endereco.getComplemento());
+            comandoSQL.setString(2, endereco.getRua());
+            comandoSQL.setString(3, endereco.getCep());
+            comandoSQL.setString(4, endereco.getNumero());
+            comandoSQL.setString(5, endereco.getComplemento());
+            comandoSQL.setString(6, endereco.getBairro());
+            comandoSQL.setString(7, endereco.getCidade());
+            comandoSQL.setString(8, endereco.getEstado());
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            retorno = false;
+        }
+        return retorno;
+    }
+
+    public boolean cadastrarEnderecoFaturamento(Endereco_Fatura endereco) {
+
+        Conexao conec = new Conexao();
+        boolean retorno;
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.ENDERECO_FATURAMENTO(ID_CLIENTE,RUA,CEP,NUMERO,COMPLEMENTO,BAIRRO,CIDADE,ESTADO)\n"
+                    + " VALUES (?,?,?,?,?,?,?,?);");
+
+            comandoSQL.setInt(1, endereco.getId_cliente());
+            comandoSQL.setString(2, endereco.getRua());
+            comandoSQL.setString(3, endereco.getCep());
+            comandoSQL.setString(4, endereco.getNumero());
+            comandoSQL.setString(5, endereco.getComplemento());
+            comandoSQL.setString(6, endereco.getBairro());
+            comandoSQL.setString(7, endereco.getCidade());
+            comandoSQL.setString(8, endereco.getEstado());
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            retorno = false;
+        }
+        return retorno;
+    }
+
+    public boolean cadastrarEnderecoFaturamentoNoComplemento(Endereco_Fatura endereco) {
+
+        Conexao conec = new Conexao();
+        boolean retorno;
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.ENDERECO_FATURAMENTO(ID_CLIENTE,RUA,CEP,NUMERO,BAIRRO,CIDADE,ESTADO)\n"
+                    + "VALUES (?,?,?,?,?,?,?);");
+
+            comandoSQL.setInt(1, endereco.getId_cliente());
+            comandoSQL.setString(2, endereco.getRua());
+            comandoSQL.setString(3, endereco.getCep());
+            comandoSQL.setString(4, endereco.getNumero());
             comandoSQL.setString(5, endereco.getBairro());
             comandoSQL.setString(6, endereco.getCidade());
             comandoSQL.setString(7, endereco.getEstado());

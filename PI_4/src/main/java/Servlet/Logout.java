@@ -26,7 +26,7 @@ public class Logout extends HttpServlet {
             HttpSession sessao = request.getSession();
             sessao.invalidate();
             sessao = request.getSession(true);
-            sessao.setAttribute("msg", "Voce saiu do sistema");
+            sessao.setAttribute("msg", true);
             response.sendRedirect(request.getContextPath() + "/Index");
     }
     @Override

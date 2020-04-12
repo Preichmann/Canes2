@@ -15,11 +15,16 @@ public class Cliente {
     }
 
     public Cliente(String senha, String nome, String email, String cpf) {
-        this.id_cliente = id_cliente;
         this.senha = senha;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
+    }
+
+    public Cliente(int id_cliente, String senha, String nome) {
+        this.id_cliente = id_cliente;
+        this.senha = senha;
+        this.nome = nome;
     }
 
     public int getId_cliente() {

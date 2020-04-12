@@ -9,12 +9,18 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="src/style.css">
+
     </head>
 
     <body>
         <script>
             if (${msg}) {
                 alert('Você saiu do Sistema!');
+            }
+        </script>
+        <script>
+            if (${retornoAlterar} == true) {
+                alert('Dados Pessoais alterados com sucesso');
             }
         </script>
         <header>
@@ -52,25 +58,41 @@
                     </div>
 
                     <div class="d-flex user-options">
-                        <form method="get" action="${pageContext.request.contextPath}/Login" class="nav-item"
+                        <form method="get" action="${pageContext.request.contextPath}/Login" class="nav-item "
                               novalidate>
-                            <input type="submit" value="Login " class="nav-link">
+                            <input type="submit" id="LoginCliente" value="Login " class="nav-link">
                         </form>
                         <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
                             <input type="submit" value="Carrinho" class="nav-link">
                         </form>
 
-                        <div class="nav-item dropdown">
+                        <div class="nav-item dropdown" id="menuUsuario">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 ${NomeLogadoAtt}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Trocar Senha</a>
+                                <form method="get" action="${pageContext.request.contextPath}/ClienteAlterarDados" class="nav-item" novalidate>
+                                    <input type="submit" value="Alterar Dados Pessoais" class="nav-link">
+                                </form>
+                                <form method="get" action="${pageContext.request.contextPath}/ClienteAlterarDados" class="nav-item" novalidate>
+                                    <input type="submit" value="Gerenciar dados de Entrega" class="nav-link">
+                                </form>
+                                <form method="get" action="${pageContext.request.contextPath}/ClienteAlterarDados" class="nav-item" novalidate>
+                                    <input type="submit" value="Gerenciar dados de Faturamento" class="nav-link">
+                                </form>
                                 <form method="get" action="${pageContext.request.contextPath}/Logout" class="nav-item" novalidate>
                                     <input type="submit" value="Sair" class="nav-link">
                                 </form>
                             </div>
                         </div>
+                        <script>
+                            var usuario = "${NomeLogadoAtt}";
+                            if (usuario === "false") {
+                                document.getElementById('menuUsuario').classList.add('d-none');
+                            } else {
+                                document.getElementById('LoginCliente').hidden = true;
+                            }
+                        </script>
                     </div>          
                 </div>
             </nav>

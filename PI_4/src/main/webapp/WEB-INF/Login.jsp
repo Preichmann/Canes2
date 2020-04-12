@@ -25,23 +25,19 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="navbar-nav mr-auto">
-                        <form method="get" action="${pageContext.request.contextPath}/top-10" class="nav-item active"
-                              novalidate>
+                        <form method="get" action="${pageContext.request.contextPath}/top-10" class="nav-item active" novalidate>
                             <input type="submit" value="Top 10" class="nav-link active">
                         </form>
 
-                        <form method="get" action="${pageContext.request.contextPath}/perdaDePeso" class="nav-item"
-                              novalidate>
+                        <form method="get" action="${pageContext.request.contextPath}/perdaDePeso" class="nav-item" novalidate>
                             <input type="submit" value="Perda de Peso" class="nav-link">
                         </form>
 
-                        <form method="get" action="${pageContext.request.contextPath}/preTreino" class="nav-item"
-                              novalidate>
+                        <form method="get" action="${pageContext.request.contextPath}/preTreino" class="nav-item" novalidate>
                             <input type="submit" value="Pré Treino" class="nav-link">
                         </form>
 
-                        <form method="get" action="${pageContext.request.contextPath}/ganhoDeMassa" class="nav-item"
-                              novalidate>
+                        <form method="get" action="${pageContext.request.contextPath}/ganhoDeMassa" class="nav-item" novalidate>
                             <input type="submit" value="Ganho de Massa" class="nav-link">
                         </form>
 
@@ -49,24 +45,15 @@
                               novalidate>
                             <input type="submit" value="Recuperação Muscular" class="nav-link">
                         </form>
-
-                        <div class="d-flex user-options">
-                            <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
-                                <input type="submit" value="Carrinho" class="nav-link">
-                            </form>
-
-                            <div class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Nome do Usuário
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Trocar Senha</a>
-                                    <a class="dropdown-item" href="#">Sair</a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
+
+                    <div class="d-flex user-options">
+
+                        <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
+                            <input type="submit" value="Carrinho" class="nav-link">
+                        </form>
+                    </div>          
+                </div>
             </nav>
         </header>
 

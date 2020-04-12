@@ -39,6 +39,31 @@ public class DAO_Cliente {
         return idCliente;
     }
 
+    public boolean alterarCliente(Cliente c) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.CLIENTE\n"
+                    + "SET NOME_CLIENTE = ?, SENHA = ? \n"
+                    + "WHERE ID_CLIENTE = ?;");
+
+            comandoSQL.setString(1, c.getNome());
+            comandoSQL.setString(2, c.getSenha());
+            comandoSQL.setInt(3, c.getId_cliente());
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return retorno;
+    }
+
     public Cliente getClienteLogin(String login) {
 
         Conexao conec = new Conexao();

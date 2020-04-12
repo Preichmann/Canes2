@@ -1,5 +1,6 @@
 package Servlet;
 
+import Classes.Cliente;
 import Classes.ImagemProduto;
 import Classes.Produto;
 import java.io.IOException;
@@ -10,20 +11,27 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /*
  * @author Beatriz
  */
 @WebServlet(name = "Index", urlPatterns = {"/Index"})
 public class Index extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ArrayList<Produto> listaProd = new Controller.ControllerListarProduto().getProdutosCliente();
         ArrayList<ImagemProduto> listaImagens = new Controller.ControllerListarProduto().getImagensTotal();
         ArrayList<ImagemProduto> listaPrimeiraImagem = new ArrayList<>();
-        
+        HttpSession sessao = request.getSession();
+        Cliente c = (Cliente) sessao.getAttribute("usuarioLogado");
+        if (c != null) {
+            request.setAttribute("NomeLogadoAtt", c.getNome());
+        }else {
+            request.setAttribute("NomeLogadoAtt", "false");
+        }
         for (ImagemProduto img : listaImagens) {
             int IdProd = img.getIdProd();
             if (listaPrimeiraImagem.isEmpty()) {
@@ -47,14 +55,14 @@ public class Index extends HttpServlet {
                 }
             }
         }
-        
+
         request.setAttribute("listaProdutoAtt", listaProd);
         request.setAttribute("listaImagensAtt", listaPrimeiraImagem);
-        
+
         request.getRequestDispatcher("/WEB-INF/Index.jsp")
                 .forward(request, response);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

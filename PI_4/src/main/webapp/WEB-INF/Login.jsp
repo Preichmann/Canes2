@@ -15,7 +15,7 @@
     <body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/Index">
                     <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -46,13 +46,6 @@
                             <input type="submit" value="Recuperação Muscular" class="nav-link">
                         </form>
                     </div>
-
-                    <div class="d-flex user-options">
-
-                        <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
-                            <input type="submit" value="Carrinho" class="nav-link">
-                        </form>
-                    </div>          
                 </div>
             </nav>
         </header>

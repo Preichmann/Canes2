@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import Classes.Cliente;
 import Classes.ImagemProduto;
 import Classes.Pergunta;
 import Classes.Produto;
@@ -17,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,6 +37,13 @@ public class ProdutoDetalhar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession sessao = request.getSession();
+        Cliente c = (Cliente) sessao.getAttribute("usuarioLogado");
+        if (c != null) {
+            request.setAttribute("NomeLogadoAtt", c.getNome());
+        }else {
+            request.setAttribute("NomeLogadoAtt", "false");
+        }
         ImagemProduto firtImg = new ImagemProduto();
         String ProdId = request.getParameter("idProd");
         int idProd = Integer.parseInt(ProdId);

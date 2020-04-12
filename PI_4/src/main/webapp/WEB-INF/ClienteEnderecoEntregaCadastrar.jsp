@@ -174,7 +174,7 @@
 
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/Index">
                     <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -211,20 +211,6 @@
                               novalidate>
                             <input type="submit" value="Login" class="nav-link">
                         </form>
-                        <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
-                            <input type="submit" value="Carrinho" class="nav-link">
-                        </form>
-
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Nome do Usuário
-                                ${sessionScope.usuarioLogado.nome}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Trocar Senha</a>
-                                <a class="dropdown-item" href="#">Sair</a>
-                            </div>
-                        </div>
                     </div>          
                 </div>
             </nav>

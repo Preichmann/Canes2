@@ -27,7 +27,8 @@ public class Logout extends HttpServlet {
             sessao.invalidate();
             sessao = request.getSession(true);
             sessao.setAttribute("msg", true);
-            response.sendRedirect(request.getContextPath() + "/Index");
+            request.getRequestDispatcher("/WEB-INF/Index.jsp")
+                        .forward(request, response);
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

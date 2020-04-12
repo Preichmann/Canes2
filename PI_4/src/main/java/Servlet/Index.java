@@ -29,7 +29,7 @@ public class Index extends HttpServlet {
         Cliente c = (Cliente) sessao.getAttribute("usuarioLogado");
         if (c != null) {
             request.setAttribute("NomeLogadoAtt", c.getNome());
-        }else {
+        } else {
             request.setAttribute("NomeLogadoAtt", "false");
         }
         for (ImagemProduto img : listaImagens) {
@@ -58,7 +58,7 @@ public class Index extends HttpServlet {
 
         request.setAttribute("listaProdutoAtt", listaProd);
         request.setAttribute("listaImagensAtt", listaPrimeiraImagem);
-
+        request.setAttribute("msg", false);
         request.getRequestDispatcher("/WEB-INF/Index.jsp")
                 .forward(request, response);
     }
@@ -66,6 +66,7 @@ public class Index extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("msg", false);
         request.getRequestDispatcher("/WEB-INF/Index.jsp")
                 .forward(request, response);
     }

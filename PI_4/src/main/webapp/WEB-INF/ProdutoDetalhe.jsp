@@ -14,7 +14,7 @@
     <body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/Index">
                     <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -45,27 +45,43 @@
                             <input type="submit" value="Recuperação Muscular" class="nav-link">
                         </form>
                     </div>
-                              
+
                     <div class="d-flex user-options">
-                        <form method="post" action="${pageContext.request.contextPath}/Login" class="nav-item"
+                        <form method="get" action="${pageContext.request.contextPath}/Login" class="nav-item "
                               novalidate>
-                            <input type="submit" value="Login" class="nav-link">
+                            <input type="submit" id="LoginCliente" value="Login " class="nav-link">
                         </form>
                         <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
                             <input type="submit" value="Carrinho" class="nav-link">
                         </form>
 
-                        <div class="nav-item dropdown">
+                        <div class="nav-item dropdown" id="menuUsuario">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Nome do Usuário
+                                ${NomeLogadoAtt}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Trocar Senha</a>
+                                <form method="get" action="${pageContext.request.contextPath}/ClienteAlterarDados" class="nav-item" novalidate>
+                                    <input type="submit" value="Alterar Dados Pessoais" class="nav-link">
+                                </form>
+                                <form method="get" action="${pageContext.request.contextPath}/ClienteAlterarDados" class="nav-item" novalidate>
+                                    <input type="submit" value="Gerenciar dados de Entrega" class="nav-link">
+                                </form>
+                                <form method="get" action="${pageContext.request.contextPath}/ClienteAlterarDados" class="nav-item" novalidate>
+                                    <input type="submit" value="Gerenciar dados de Faturamento" class="nav-link">
+                                </form>
                                 <form method="get" action="${pageContext.request.contextPath}/Logout" class="nav-item" novalidate>
                                     <input type="submit" value="Sair" class="nav-link">
                                 </form>
                             </div>
                         </div>
+                        <script>
+                            var usuario = "${NomeLogadoAtt}";
+                            if (usuario === "false") {
+                                document.getElementById('menuUsuario').classList.add('d-none');
+                            } else {
+                                document.getElementById('LoginCliente').hidden = true;
+                            }
+                        </script>
                     </div>          
                 </div>
             </nav>

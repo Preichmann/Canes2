@@ -35,6 +35,27 @@ public class Endereco_Entrega {
         this.estado = estado;
     }
 
+    public Endereco_Entrega(String rua, String cep, String numero, String complemento, String bairro, String cidade, String estado, int id_entrega) {
+        this.id_entrega = id_entrega;
+        this.rua = rua;
+        this.cep = cep;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+    }
+
+    public Endereco_Entrega(String rua, String cep, String numero, String bairro, String cidade, String estado, int id_entrega) {
+        this.id_entrega = id_entrega;
+        this.rua = rua;
+        this.cep = cep;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+    }
+
     public Endereco_Entrega(String rua, String cep, String numero, String bairro, String cidade, String estado) {
         this.rua = rua;
         this.cep = cep;

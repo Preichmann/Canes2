@@ -3,16 +3,18 @@ package Controller;
 import Classes.Cliente;
 import Classes.Endereco_Entrega;
 import Classes.Endereco_Fatura;
+import java.util.ArrayList;
 
 public class Controller_Cliente {
 
     public int cadastrarCliente(Cliente C) {
         return new DAO.DAO_Cliente().CadastrarCliente(C);
     }
-    
-    public boolean AlterarCliente(Cliente c){
+
+    public boolean AlterarCliente(Cliente c) {
         return new DAO.DAO_Cliente().alterarCliente(c);
     }
+
     public Cliente getClienteLogin(String login) {
 
         Cliente cliente = new DAO.DAO_Cliente().getClienteLogin(login);
@@ -55,5 +57,23 @@ public class Controller_Cliente {
     public boolean cadastrarEnderecoFaturamento(int idCliente, String clienteCEP, String clienteRua, String clienteNum, String clienteComplemento, String clienteBairro, String clienteCidade, String clienteEstado) {
         Endereco_Fatura endereco = new Endereco_Fatura(idCliente, clienteRua, clienteCEP, clienteNum, clienteComplemento, clienteBairro, clienteCidade, clienteEstado);
         return new DAO.DAO_Cliente().cadastrarEnderecoFaturamento(endereco);
+    }
+
+    public ArrayList<Endereco_Entrega> ListarEntrega(int id_cliente) {
+        return new DAO.DAO_Cliente().ListarEntrega(id_cliente);
+    }
+
+    public Endereco_Entrega getEntrega(int idEntrega) {
+        return new DAO.DAO_Cliente().getEntrega(idEntrega);
+    }
+
+    public boolean alterarEnderecoEntregaNoComplemento(int idEntrega, String clienteCEP, String clienteRua, String clienteNum, String clienteBairro, String clienteCidade, String clienteEstado) {
+        Endereco_Entrega endereco = new Endereco_Entrega(clienteRua, clienteCEP, clienteNum, clienteBairro, clienteCidade, clienteEstado, idEntrega);
+        return new DAO.DAO_Cliente().alterarEnderecoEntregaNoComplemento(endereco);
+    }
+
+    public boolean alterarEnderecoEntrega(int idEntrega, String clienteCEP, String clienteRua, String clienteNum, String clienteComplemento, String clienteBairro, String clienteCidade, String clienteEstado) {
+        Endereco_Entrega endereco = new Endereco_Entrega(clienteRua, clienteCEP, clienteNum, clienteComplemento, clienteBairro, clienteCidade, clienteEstado, idEntrega);
+        return new DAO.DAO_Cliente().alterarEnderecoEntrega(endereco);
     }
 }

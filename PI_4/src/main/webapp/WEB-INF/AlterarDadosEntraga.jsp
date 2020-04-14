@@ -1,5 +1,5 @@
-<!doctype html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!doctype html>
 <html lang="en">
     <head>
         <!-- Required meta tags -->
@@ -8,55 +8,86 @@
 
         <!--CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="src/style.css">
+
         <!-- JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="src/style.css">
-        <title>Alterar Dados Pessoais</title>
+        <title>Alterar Endereço de Entrega</title>
     </head>
     <body>
         <script>
-            if (${retornoNome} == false) {
-                alert('O campo nome precisa conter no minimo 2 palavras cada uma com no minimo 3 letras');
+            if (${RetornoCep2} == false) {
+                alert('CEP do campo de faturamento é Obrigatório');
             }
         </script>
         <script>
-            if (${retornoEmail} == false) {
-                alert('Email digitado é invalido');
+            if (${RetornoCep} == false) {
+                alert('CEP do campo de Entrega é Obrigatório');
             }
         </script>
         <script>
-            if (${retornoSenha} == false) {
-                alert('Senha não pode ser vazia');
+            if (${RetornoRua2} == false) {
+                alert('RUA do campo de Entrega é Obrigatório');
             }
         </script>
         <script>
-            if (${retornoCPF} == false) {
-                alert('CPF digitado invalido');
+            if (${RetornoRua} == false) {
+                alert('RUA do campo de Faturamento é Obrigatório');
             }
         </script>
         <script>
-            if (${retornoEndereço} == false) {
-                alert('Campos de Endereço obrigatórios não foram preenchidos corretamente');
+            if (${RetornoNum2} == false) {
+                alert('Numero do campo de Faturamento é Obrigatório');
             }
         </script>
         <script>
-            if (${retornoAlterar} == false) {
-                alert('Falha com o banco de dados');
+            if (${RetornoNum} == false) {
+                alert('Numero do campo de Entrega é Obrigatório');
             }
         </script>
         <script>
-            if (${retornoEmailCadastrado} == false) {
-                alert('Esse E-mail já está cadastrado');
+            if (${RetornoBairro2} == false) {
+                alert('Bairro do campo de Faturamento é Obrigatório');
             }
         </script>
         <script>
-            if (${retornoCPFCadastrado} == false) {
-                alert('Já existe esse CPF cadastrado');
+            if (${RetornoBairro} == false) {
+                alert('Bairro do campo de Entrega é Obrigatório');
             }
         </script>
+        <script>
+            if (${RetornoCidade2} == false) {
+                alert('Cidade do campo de Faturamento é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${RetornoCidade} == false) {
+                alert('Cidade do campo de Entrega é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${RetornoEstado2} == false) {
+                alert('Estado do campo de Faturamento é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${RetornoEstado} == false) {
+                alert('Estado do campo de Entrega é Obrigatório');
+            }
+        </script>
+        <script>
+            if (${retornoCadastrarFaturamento} == false) {
+                alert('Falha com o Banco de dados para cadastrar o endereço de Faturamento');
+            }
+        </script>
+        <script>
+            if (${retornoCadastrarEntrega} == false) {
+                alert('Falha com o Banco de dados para cadastrar o endereço de Entrega');
+            }
+        </script>
+
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/Index">
@@ -108,10 +139,10 @@
                                 <form method="get" action="${pageContext.request.contextPath}/ClienteAlterarDados" class="nav-item" novalidate>
                                     <input type="submit" value="Alterar Dados Pessoais" class="nav-link">
                                 </form>
-                                <form method="get" action="${pageContext.request.contextPath}/ClienteAlterarDados" class="nav-item" novalidate>
+                                <form method="get" action="${pageContext.request.contextPath}/ListarDadosEntrega" class="nav-item" novalidate>
                                     <input type="submit" value="Gerenciar dados de Entrega" class="nav-link">
                                 </form>
-                                <form method="get" action="${pageContext.request.contextPath}/ClienteAlterarDados" class="nav-item" novalidate>
+                                <form method="get" action="${pageContext.request.contextPath}/ListarDadosFaturamento" class="nav-item" novalidate>
                                     <input type="submit" value="Gerenciar dados de Faturamento" class="nav-link">
                                 </form>
                                 <form method="get" action="${pageContext.request.contextPath}/Logout" class="nav-item" novalidate>
@@ -132,35 +163,51 @@
             </nav>
         </header>
         <div class="container">
-            <h3>Alterar dados pessoais</h3>
+            <h3>Alterar de Endereço de Entrega</h3>
             <hr>
 
-            <form method="post" action="${pageContext.request.contextPath}/ClienteAlterarDados" novalidate>
+            <form method="post" action="${pageContext.request.contextPath}/AlterarEnderecoEntrega" novalidate>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label>CEP</label><span>*</span>
+                        <input type="number" class="form-control" name="cep" id="cep" value="${cep}"><br>
+                    </div>
 
-                <div class="form-group">
-                    <label for="clienteNome">Nome</label><span>*</span>
-                    <input type="text" class="form-control" name="clienteNome" id="clienteNome" value="${Cliente.getNome()}">
+                    <div class="col-sm-4">
+                        <label>Endereço</label><span>*</span>
+                        <input type="text" class="form-control" name="logradouro" id="logradouro" value="${rua}"><br>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label>Número</label><span>*</span>
+                        <input type="number" class="form-control" name="numero" id="numero" value="${numero}"><br>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label>Complemento</label>
+                        <input type="text" class="form-control" name="complemento" id="complemento" value="${complemento}"><br>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>Bairro</label><span>*</span>
+                        <input type="text" class="form-control" name="bairro" id="bairro" value="${bairro}"><br>
+                    </div>
 
-                <div class="form-group">
-                    <label for="clienteEmail">E-mail</label><span>*</span>
-                    <input type="text" class="form-control" name="clienteEmail" id="clienteEmail" value="${Cliente.getEmail()}" disabled="true">
+                    <div class="col-sm-4">
+                        <label>Cidade</label><span>*</span>
+                        <input type="text" class="form-control" name="cidade" id="cidade" value="${cidade}"><br>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label>Estado</label><span>*</span>
+                        <input type="text" class="form-control" name="estado" id="estado" value="${estado}"><br>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="clienteSenha">Senha</label><span>*</span>
-                    <input type="password" class="form-control" name="clienteSenha" id="clienteSenha" value="${Cliente.getSenha()}">
-                </div>
-
-                <div class="form-group">
-                    <label for="clienteCPF">CPF</label><span>*</span>
-
-                    <input type="text" class="form-control" name="clienteCPF" id="clienteCPF" maxlength="11" value="${Cliente.getCPF()}" disabled="true">
-                </div>
-
-                <input type="submit" value="Alterar" class="btn btn-success col-2" />
+                <input type="hidden" class="form-control" name="idEntrega" id="idEntrega" value="${idEntrega}">
+                <input type="submit" value="Cadastrar" class="btn btn-success col-2" />
             </form>
-            <form method="get" action="${pageContext.request.contextPath}/Index" novalidate>
+            <form method="get" action="${pageContext.request.contextPath}/ListarDadosEntrega" novalidate>
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
         </div>

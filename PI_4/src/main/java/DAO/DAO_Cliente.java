@@ -3,11 +3,13 @@ package DAO;
 import Classes.Cliente;
 import Classes.Endereco_Entrega;
 import Classes.Endereco_Fatura;
+import Classes.Funcionario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DAO_Cliente {
 
@@ -255,4 +257,128 @@ public class DAO_Cliente {
         }
         return retorno;
     }
+
+    public ArrayList<Endereco_Entrega> ListarEntrega(int id_cliente) {
+        ArrayList<Endereco_Entrega> listaEntrega = new ArrayList<>();
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * FROM "
+                    + "SUPLEMENTOS.ENDERECO_ENTREGA WHERE ID_CLIENTE = ?");
+
+            comandoSQL.setInt(1, id_cliente);
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Endereco_Entrega entrega = new Endereco_Entrega();
+                    entrega.setCep(rs.getString("CEP"));
+                    entrega.setRua(rs.getString("RUA"));
+                    entrega.setNumero(rs.getString("NUMERO"));
+                    entrega.setComplemento(rs.getString("COMPLEMENTO"));
+                    entrega.setBairro(rs.getString("BAIRRO"));
+                    entrega.setCidade(rs.getString("CIDADE"));
+                    entrega.setEstado(rs.getString("ESTADO"));
+                    entrega.setId_entrega(rs.getInt("ID_ENDERECO_ENT"));
+                    listaEntrega.add(entrega);
+                }
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaEntrega;
+    }
+
+    public Endereco_Entrega getEntrega(int idEntrega) {
+        Conexao conec = new Conexao();
+        Endereco_Entrega entrega = new Endereco_Entrega();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * FROM "
+                    + "SUPLEMENTOS.ENDERECO_ENTREGA WHERE ID_ENDERECO_ENT = ?");
+
+            comandoSQL.setInt(1, idEntrega);
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    entrega.setCep(rs.getString("CEP"));
+                    entrega.setRua(rs.getString("RUA"));
+                    entrega.setNumero(rs.getString("NUMERO"));
+                    entrega.setComplemento(rs.getString("COMPLEMENTO"));
+                    entrega.setBairro(rs.getString("BAIRRO"));
+                    entrega.setCidade(rs.getString("CIDADE"));
+                    entrega.setEstado(rs.getString("ESTADO"));
+                    entrega.setId_entrega(rs.getInt("ID_ENDERECO_ENT"));
+                }
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return entrega;
+    }
+
+    public boolean alterarEnderecoEntregaNoComplemento(Endereco_Entrega entrega) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.ENDERECO_ENTREGA \n"
+                    + "SET CEP = ?, RUA = ?, NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ?, CIDADE = ?, ESTADO = ? \n"
+                    + "WHERE ID_ENDERECO_ENT = ?;");
+
+            comandoSQL.setString(1, entrega.getCep());
+            comandoSQL.setString(2, entrega.getRua());
+            comandoSQL.setString(3, entrega.getNumero());
+            comandoSQL.setString(4, "");
+            comandoSQL.setString(5, entrega.getBairro());
+            comandoSQL.setString(6, entrega.getCidade());
+            comandoSQL.setString(7, entrega.getEstado());
+            comandoSQL.setInt(8, entrega.getId_entrega());
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return retorno;
+    }
+     public boolean alterarEnderecoEntrega(Endereco_Entrega entrega) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.ENDERECO_ENTREGA \n"
+                    + "SET CEP = ?, RUA = ?, NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ?, CIDADE = ?, ESTADO = ? \n"
+                    + "WHERE ID_ENDERECO_ENT = ?;");
+
+            comandoSQL.setString(1, entrega.getCep());
+            comandoSQL.setString(2, entrega.getRua());
+            comandoSQL.setString(3, entrega.getNumero());
+            comandoSQL.setString(4, entrega.getComplemento());
+            comandoSQL.setString(5, entrega.getBairro());
+            comandoSQL.setString(6, entrega.getCidade());
+            comandoSQL.setString(7, entrega.getEstado());
+            comandoSQL.setInt(8, entrega.getId_entrega());
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return retorno;
+    }
+     
 }

@@ -13,10 +13,10 @@
 
     <body>
         <script>
-            if (${retornoAlterar} === true) {
-                alert('Funcionario Alterado Com sucesso!');
+            if (${Retorno} === true) {
+                alert('Endereço alterado com sucesso');
             } else {
-                alert('Falha ao Alterar o Funcionario!');
+                alert('Falha ao Alterar o Endereço!');
             }
         </script>
         <header>
@@ -97,7 +97,12 @@
         <main>
             <section id="produtos" class="pb-5">
                 <div class="container">
-            <h2>Endereços de Entrega</h2>
+                    <h2>Endereços de Entrega</h2>
+                    <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="ClienteCadastrarEnderecoEntrega" method="get"
+                          action="${pageContext.request.contextPath}/ClienteCadastrarEnderecoEntrega" novalidate>
+                        <input type="hidden" value="${idCliente}" name="idCliente" id="idCliente" />
+                        <input type="submit" class="btn btn-primary" value="Cadastrar Endereço Entrega" class="btn btn-success col-2">
+                    </form>
                     <c:forEach items="${ListaEntrega}" var="listaEndereco">
                         <article class="card mt-3">
                             <div class="card-body justify-content-between">
@@ -126,8 +131,8 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        
-        
+
+
     </body>
 
 </html>

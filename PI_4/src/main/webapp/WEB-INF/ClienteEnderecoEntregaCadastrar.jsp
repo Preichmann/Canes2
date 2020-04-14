@@ -305,9 +305,6 @@
                 </div>
                 <input type="submit" value="Cadastrar" class="btn btn-success col-2" />
             </form>
-            <form method="get" action="${pageContext.request.contextPath}/menu-FuncionarioListar" novalidate>
-                <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
-            </form>
         </div>
     </body>
 </html>

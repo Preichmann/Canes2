@@ -31,6 +31,7 @@ public class ListarDadosEntrega extends HttpServlet {
         } else {
             request.setAttribute("NomeLogadoAtt", "false");
         }
+        request.setAttribute("idCliente", c.getId_cliente());
         ArrayList<Endereco_Entrega> listaEndereco = new Controller.Controller_Cliente().ListarEntrega(c.getId_cliente());
         request.setAttribute("ListaEntrega", listaEndereco);
 
@@ -60,7 +61,7 @@ public class ListarDadosEntrega extends HttpServlet {
         request.setAttribute("cidade", entrega.getCidade());
         request.setAttribute("estado", entrega.getEstado());
         request.setAttribute("idEntrega", entrega.getId_entrega());
-        
+
         request.getRequestDispatcher("/WEB-INF/AlterarDadosEntraga.jsp")
                 .forward(request, response);
     }

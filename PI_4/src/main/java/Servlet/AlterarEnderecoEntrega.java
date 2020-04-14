@@ -170,7 +170,7 @@ public class AlterarEnderecoEntrega extends HttpServlet {
         }
         ArrayList<Endereco_Entrega> listaEndereco = new Controller.Controller_Cliente().ListarEntrega(c.getId_cliente());
         request.setAttribute("ListaEntrega", listaEndereco);
-
+        request.setAttribute("Retorno", retornoEndereco);
         request.getRequestDispatcher("/WEB-INF/ListarDadosEntrega.jsp")
                 .forward(request, response);
     }

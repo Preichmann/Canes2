@@ -19,6 +19,13 @@
                 alert('Falha ao Alterar o Endereço!');
             }
         </script>
+        <script>
+            if (${retornoEndereco} === true) {
+                alert('Endereço Cadastrado com sucesso');
+            } else {
+                alert('Falha ao Cadastrar o Endereço!');
+            }
+        </script>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/Index">
@@ -98,9 +105,8 @@
             <section id="produtos" class="pb-5">
                 <div class="container">
                     <h2>Endereços de Entrega</h2>
-                    <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="ClienteCadastrarEnderecoEntrega" method="get"
-                          action="${pageContext.request.contextPath}/ClienteCadastrarEnderecoEntrega" novalidate>
-                        <input type="hidden" value="${idCliente}" name="idCliente" id="idCliente" />
+                    <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="CadastrarEntrega" method="get"
+                          action="${pageContext.request.contextPath}/CadastrarEntrega" novalidate>
                         <input type="submit" class="btn btn-primary" value="Cadastrar Endereço Entrega" class="btn btn-success col-2">
                     </form>
                     <c:forEach items="${ListaEntrega}" var="listaEndereco">

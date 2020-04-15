@@ -27,6 +27,7 @@ public class Endereco_Entrega {
     }
 
     public Endereco_Entrega(int id_cliente, String rua, String cep, String numero, String bairro, String cidade, String estado) {
+        this.id_cliente = id_cliente;
         this.rua = rua;
         this.cep = cep;
         this.numero = numero;

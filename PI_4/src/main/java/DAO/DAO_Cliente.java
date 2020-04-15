@@ -150,8 +150,8 @@ public class DAO_Cliente {
         boolean retorno;
         try (Connection conexao = conec.obterConexao()) {
 
-            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.ENDERECO_ENTREGA(ID_CLIENTE,RUA,CEP,NUMERO,BAIRRO,CIDADE,ESTADO)\n"
-                    + "VALUES (?,?,?,?,?,?,?);");
+            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.ENDERECO_ENTREGA (ID_CLIENTE, RUA, CEP, NUMERO, BAIRRO, CIDADE, ESTADO)\n"
+                    + "VALUES (?,?,?,?,?,?,?)");
 
             comandoSQL.setInt(1, endereco.getId_cliente());
             comandoSQL.setString(2, endereco.getRua());
@@ -178,8 +178,8 @@ public class DAO_Cliente {
         boolean retorno;
         try (Connection conexao = conec.obterConexao()) {
 
-            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.ENDERECO_ENTREGA(ID_CLIENTE,RUA,CEP,NUMERO,COMPLEMENTO,BAIRRO,CIDADE,ESTADO)\n"
-                    + " VALUES (?,?,?,?,?,?,?,?);");
+            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.ENDERECO_ENTREGA (ID_CLIENTE, RUA, CEP, NUMERO, COMPLEMENTO, BAIRRO, CIDADE, ESTADO) \n"
+                    + "VALUES (?,?,?,?,?,?,?,?)");
 
             comandoSQL.setInt(1, endereco.getId_cliente());
             comandoSQL.setString(2, endereco.getRua());

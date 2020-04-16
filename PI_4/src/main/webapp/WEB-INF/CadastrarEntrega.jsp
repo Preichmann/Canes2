@@ -30,11 +30,14 @@
                                     $("#bairro").val(data.bairro);
                                     $("#cidade").val(data.cidade);
                                     $("#estado").val(data.estado);
+                                    $("#cepValidar").val("");
                                 },
                                 400: function (msg) {
+                                    $("#cepValidar").val("falha");
                                     console.log(msg); //Request error
                                 },
                                 404: function (msg) {
+                                    $("#cepValidar").val("falha");
                                     console.log(msg); //Cep inválido
                                 }
                             }
@@ -46,6 +49,11 @@
         <title>Cadastrar Endereço de Entrega</title>
     </head>
     <body>
+        <script>
+            if (${RetornoCepVal} === false) {
+                alert('CEP Digitado Invalido');
+            }
+        </script>
         <script>
             if (${RetornoCep2} == false) {
                 alert('CEP do campo de faturamento é Obrigatório');
@@ -196,10 +204,11 @@
             <hr>
             <form method="post" action="${pageContext.request.contextPath}/CadastrarEntrega" novalidate>
                 <label>Endereço de Entrega:</label>
+                <input type="hidden" class="form-control" name="cepValidar" id="cepValidar" value=""><br>
                 <div class="row">
                     <div class="col-sm-2">
                         <label>CEP</label><span>*</span>
-                        <input type="number" class="form-control" name="cep" id="cep"><br>
+                        <input type="number" class="form-control" name="cep" id="cep" maxlength="8" placeholder="Somente números"><br>
                     </div>
 
                     <div class="col-sm-4">

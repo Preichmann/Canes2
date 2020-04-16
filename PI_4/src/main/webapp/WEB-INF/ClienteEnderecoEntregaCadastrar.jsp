@@ -30,11 +30,14 @@
                                     $("#bairro").val(data.bairro);
                                     $("#cidade").val(data.cidade);
                                     $("#estado").val(data.estado);
+                                    $("#cepValidar").val("");
                                 },
                                 400: function (msg) {
+                                    $("#cepValidar").val("falha");
                                     console.log(msg); //Request error
                                 },
                                 404: function (msg) {
+                                    $("#cepValidar").val("falha");
                                     console.log(msg); //Cep inválido
                                 }
                             }
@@ -60,11 +63,14 @@
                                     $("#bairro2").val(data.bairro);
                                     $("#cidade2").val(data.cidade);
                                     $("#estado2").val(data.estado);
+                                    $("#cepValidar2").val("");
                                 },
                                 400: function (msg) {
+                                    $("#cepValidar2").val("falha");
                                     console.log(msg); //Request error
                                 },
                                 404: function (msg) {
+                                    $("#cepValidar2").val("falha");
                                     console.log(msg); //Cep inválido
                                 }
                             }
@@ -102,72 +108,78 @@
     </head>
     <body>
         <script>
-            if (${RetornoCep2} == false) {
+            if (${RetornoCepVal} === false) {
+                alert('CEP Digitado Invalido');
+            }
+        </script>
+        
+        <script>
+            if (${RetornoCep2} === false) {
                 alert('CEP do campo de faturamento é Obrigatório');
             }
         </script>
         <script>
-            if (${RetornoCep} == false) {
+            if (${RetornoCep} === false) {
                 alert('CEP do campo de Entrega é Obrigatório');
             }
         </script>
         <script>
-            if (${RetornoRua2} == false) {
+            if (${RetornoRua2} === false) {
                 alert('RUA do campo de Entrega é Obrigatório');
             }
         </script>
         <script>
-            if (${RetornoRua} == false) {
+            if (${RetornoRua} === false) {
                 alert('RUA do campo de Faturamento é Obrigatório');
             }
         </script>
         <script>
-            if (${RetornoNum2} == false) {
+            if (${RetornoNum2} === false) {
                 alert('Numero do campo de Faturamento é Obrigatório');
             }
         </script>
         <script>
-            if (${RetornoNum} == false) {
+            if (${RetornoNum} === false) {
                 alert('Numero do campo de Entrega é Obrigatório');
             }
         </script>
         <script>
-            if (${RetornoBairro2} == false) {
+            if (${RetornoBairro2} === false) {
                 alert('Bairro do campo de Faturamento é Obrigatório');
             }
         </script>
         <script>
-            if (${RetornoBairro} == false) {
+            if (${RetornoBairro} === false) {
                 alert('Bairro do campo de Entrega é Obrigatório');
             }
         </script>
         <script>
-            if (${RetornoCidade2} == false) {
+            if (${RetornoCidade2} === false) {
                 alert('Cidade do campo de Faturamento é Obrigatório');
             }
         </script>
         <script>
-            if (${RetornoCidade} == false) {
+            if (${RetornoCidade} === false) {
                 alert('Cidade do campo de Entrega é Obrigatório');
             }
         </script>
         <script>
-            if (${RetornoEstado2} == false) {
+            if (${RetornoEstado2} === false) {
                 alert('Estado do campo de Faturamento é Obrigatório');
             }
         </script>
         <script>
-            if (${RetornoEstado} == false) {
+            if (${RetornoEstado} === false) {
                 alert('Estado do campo de Entrega é Obrigatório');
             }
         </script>
         <script>
-            if (${retornoCadastrarFaturamento} == false) {
+            if (${retornoCadastrarFaturamento} === false) {
                 alert('Falha com o Banco de dados para cadastrar o endereço de Faturamento');
             }
         </script>
         <script>
-            if (${retornoCadastrarEntrega} == false) {
+            if (${retornoCadastrarEntrega} === false) {
                 alert('Falha com o Banco de dados para cadastrar o endereço de Entrega');
             }
         </script>
@@ -222,9 +234,11 @@
             <form method="post" action="${pageContext.request.contextPath}/ClienteCadastrarEnderecoEntrega" novalidate>
                 <label>Endereço de Entrega:</label>
                 <div class="row">
+                    <input type="hidden" class="form-control" name="cepValidar" id="cepValidar"><br>
+                    <input type="hidden" class="form-control" name="cepValidar2" id="cepValidar2"><br>
                     <div class="col-sm-2">
                         <label>CEP</label><span>*</span>
-                        <input type="number" class="form-control" name="cep" id="cep"><br>
+                        <input type="number" class="form-control" name="cep" id="cep" maxlength="8" placeholder="Somente números"><br>
                     </div>
 
                     <div class="col-sm-4">

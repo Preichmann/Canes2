@@ -2,7 +2,7 @@ package Classes;
 
 public class Endereco_Fatura {
 
-    private int id_entrega;
+    private int id_faturamento;
     private int id_cliente;
     private String rua;
     private String cep;
@@ -44,12 +44,12 @@ public class Endereco_Fatura {
         this.id_cliente = id_cliente;
     }
 
-    public int getId_entrega() {
-        return id_entrega;
+    public int getId_faturamento() {
+        return id_faturamento;
     }
 
-    public void setId_entrega(int id_entrega) {
-        this.id_entrega = id_entrega;
+    public void setId_faturamento(int id_faturamento) {
+        this.id_faturamento = id_faturamento;
     }
 
     public String getRua() {

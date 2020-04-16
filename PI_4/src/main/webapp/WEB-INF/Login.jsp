@@ -56,6 +56,16 @@
                     alert("Senha ou usuario Inválidos");
                 }
             </script>
+            <script>
+                if (${ retornoCadastroEntrega } === true) {
+                    alert("Sucesso ao cadastrar Endereço de Entrega");
+                }
+            </script>
+            <script>
+                if (${ retornoCadastroFat } === true) {
+                    alert("Sucesso ao cadastrar Endereço de Faturamento");
+                }
+            </script>
 
             <div class="d-flex justify-content-center">
                 <div class="login_card mt-5 mb-5">
@@ -70,7 +80,6 @@
                                 </span>
                             </div>
                             <div class="form-group">
-                                <a class="float-right" href="#">Esqueceu a senha?</a>
                                 <label for="senha">Senha</label>
                                 <input name="senha" id="senha" class="form-control" placeholder="******" type="password">
                                 <span class="error">

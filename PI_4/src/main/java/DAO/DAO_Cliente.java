@@ -291,6 +291,39 @@ public class DAO_Cliente {
         return listaEntrega;
     }
 
+    public ArrayList<Endereco_Fatura> ListarFatura(int id_cliente) {
+        ArrayList<Endereco_Fatura> listaFatura = new ArrayList<>();
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * FROM "
+                    + "SUPLEMENTOS.ENDERECO_FATURAMENTO WHERE ID_CLIENTE = ?");
+
+            comandoSQL.setInt(1, id_cliente);
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Endereco_Fatura entrega = new Endereco_Fatura();
+                    entrega.setCep(rs.getString("CEP"));
+                    entrega.setRua(rs.getString("RUA"));
+                    entrega.setNumero(rs.getString("NUMERO"));
+                    entrega.setComplemento(rs.getString("COMPLEMENTO"));
+                    entrega.setBairro(rs.getString("BAIRRO"));
+                    entrega.setCidade(rs.getString("CIDADE"));
+                    entrega.setEstado(rs.getString("ESTADO"));
+                    entrega.setId_faturamento(rs.getInt("ID_ENDERECO_FAT"));
+                    listaFatura.add(entrega);
+                }
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaFatura;
+    }
+
     public Endereco_Entrega getEntrega(int idEntrega) {
         Conexao conec = new Conexao();
         Endereco_Entrega entrega = new Endereco_Entrega();
@@ -351,7 +384,8 @@ public class DAO_Cliente {
         }
         return retorno;
     }
-     public boolean alterarEnderecoEntrega(Endereco_Entrega entrega) {
+
+    public boolean alterarEnderecoEntrega(Endereco_Entrega entrega) {
         boolean retorno = false;
 
         Conexao conec = new Conexao();
@@ -380,5 +414,5 @@ public class DAO_Cliente {
         }
         return retorno;
     }
-     
+
 }

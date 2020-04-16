@@ -30,11 +30,14 @@
                                     $("#bairro").val(data.bairro);
                                     $("#cidade").val(data.cidade);
                                     $("#estado").val(data.estado);
+                                    $("#cepValidar").val("");
                                 },
                                 400: function (msg) {
+                                    $("#cepValidar").val("falha");
                                     console.log(msg); //Request error
                                 },
                                 404: function (msg) {
+                                    $("#cepValidar").val("falha");
                                     console.log(msg); //Cep inválido
                                 }
                             }
@@ -152,24 +155,56 @@
                     </div>
 
                     <div class="d-flex user-options">
-                        <form method="get" action="${pageContext.request.contextPath}/Login" class="nav-item"
+                        <form method="get" action="${pageContext.request.contextPath}/Login" class="nav-item "
                               novalidate>
-                            <input type="submit" value="Login" class="nav-link">
+                            <input type="submit" id="LoginCliente" value="Login " class="nav-link">
                         </form>
+                        <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
+                            <input type="submit" value="Carrinho" class="nav-link">
+                        </form>
+
+                        <div class="nav-item dropdown" id="menuUsuario">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                ${NomeLogadoAtt}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <form method="get" action="${pageContext.request.contextPath}/ClienteAlterarDados" class="nav-item" novalidate>
+                                    <input type="submit" value="Alterar Dados Pessoais" class="nav-link">
+                                </form>
+                                <form method="get" action="${pageContext.request.contextPath}/ListarDadosEntrega" class="nav-item" novalidate>
+                                    <input type="submit" value="Gerenciar dados de Entrega" class="nav-link">
+                                </form>
+                                <form method="get" action="${pageContext.request.contextPath}/ListarDadosFaturamento" class="nav-item" novalidate>
+                                    <input type="submit" value="Gerenciar dados de Faturamento" class="nav-link">
+                                </form>
+                                <form method="get" action="${pageContext.request.contextPath}/Logout" class="nav-item" novalidate>
+                                    <input type="submit" value="Sair" class="nav-link">
+                                </form>
+                            </div>
+                        </div>
+                        <script>
+                            var usuario = "${NomeLogadoAtt}";
+                            if (usuario === "false") {
+                                document.getElementById('menuUsuario').classList.add('d-none');
+                            } else {
+                                document.getElementById('LoginCliente').hidden = true;
+                            }
+                        </script>
                     </div>          
                 </div>
             </nav>
         </header>
         <div class="container">
-            <h3>Cadastro de Endereço de Entrega</h3>
+            <h3>Cadastro de Endereço de Faturamento</h3>
             <hr>
 
-            <form method="post" action="${pageContext.request.contextPath}/ClienteCadastrarEnderecoEntrega" novalidate>
+            <form method="post" action="${pageContext.request.contextPath}/CadastrarFaturamento" novalidate>
                 <label>Endereço de Faturamento:</label>
+                <input type="hidden" class="form-control" name="cepValidar" id="cepValidar" value=""><br>
                 <div class="row">
                     <div class="col-sm-2">
                         <label>CEP</label><span>*</span>
-                        <input type="number" class="form-control" name="cep" id="cep"><br>
+                        <input type="number" class="form-control" name="cep" id="cep" maxlength="8" placeholder="Somente números"><br>
                     </div>
 
                     <div class="col-sm-4">

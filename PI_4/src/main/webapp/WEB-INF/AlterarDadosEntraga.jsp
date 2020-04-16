@@ -8,12 +8,45 @@
 
         <!--CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="src/style.css">
 
         <!-- JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="src/style.css">
+        <script>
+            $(document).ready(function () {
+                $("#cep").on("change", function () {
+                    if (this.value) {
+                        $.ajax({
+                            url: 'http://api.postmon.com.br/v1/cep/' + this.value,
+                            dateType: "json",
+                            crossDomain: true,
+                            statusCode: {
+                                200: function (data) {
+                                    //console.log(data);
+
+                                    $("#cep").addClass("is-valid");
+                                    $("#logradouro").val(data.logradouro);
+                                    $("#bairro").val(data.bairro);
+                                    $("#cidade").val(data.cidade);
+                                    $("#estado").val(data.estado);
+                                    $("#cepValidar").val("");
+                                },
+                                400: function (msg) {
+                                    $("#cepValidar").val("falha");
+                                    console.log(msg); //Request error
+                                },
+                                404: function (msg) {
+                                    $("#cepValidar").val("falha");
+                                    console.log(msg); //Cep inválido
+                                }
+                            }
+                        })
+                    }
+                });
+            });
+        </script>
         <title>Alterar Endereço de Entrega</title>
     </head>
     <body>
@@ -167,10 +200,11 @@
             <hr>
 
             <form method="post" action="${pageContext.request.contextPath}/AlterarEnderecoEntrega" novalidate>
+                <input type="hidden" class="form-control" name="cepValidar" id="cepValidar" value=""><br>
                 <div class="row">
                     <div class="col-sm-2">
                         <label>CEP</label><span>*</span>
-                        <input type="number" class="form-control" name="cep" id="cep" value="${cep}"><br>
+                        <input type="number" class="form-control" name="cep" id="cep" value="${cep}"maxlength="8"><br>
                     </div>
 
                     <div class="col-sm-4">

@@ -122,14 +122,17 @@ public class Login extends HttpServlet {
                     request.setAttribute("listaProdutoAtt", listaProd);
                     request.setAttribute("listaImagensAtt", listaPrimeiraImagem);
                     request.setAttribute("senhaAtt", true);
+                    request.setAttribute("msg", false);
                     request.getRequestDispatcher("/WEB-INF/Index.jsp")
                             .forward(request, response);
                 } else {
+                    request.setAttribute("msg", false);
                     request.setAttribute("senhaAtt", true);
                     request.getRequestDispatcher("/WEB-INF/Login.jsp")
                             .forward(request, response);
                 }
             } else {
+                request.setAttribute("msg", false);
                 request.setAttribute("senhaAtt", true);
                 request.getRequestDispatcher("/WEB-INF/Login.jsp")
                         .forward(request, response);

@@ -71,6 +71,10 @@ public class Controller_Cliente {
         return new DAO.DAO_Cliente().getEntrega(idEntrega);
     }
 
+    public Endereco_Fatura getFatura(int idFatura) {
+        return new DAO.DAO_Cliente().getFaturamento(idFatura);
+    }
+
     public boolean alterarEnderecoEntregaNoComplemento(int idEntrega, String clienteCEP, String clienteRua, String clienteNum, String clienteBairro, String clienteCidade, String clienteEstado) {
         Endereco_Entrega endereco = new Endereco_Entrega(clienteRua, clienteCEP, clienteNum, clienteBairro, clienteCidade, clienteEstado, idEntrega);
         return new DAO.DAO_Cliente().alterarEnderecoEntregaNoComplemento(endereco);
@@ -79,5 +83,15 @@ public class Controller_Cliente {
     public boolean alterarEnderecoEntrega(int idEntrega, String clienteCEP, String clienteRua, String clienteNum, String clienteComplemento, String clienteBairro, String clienteCidade, String clienteEstado) {
         Endereco_Entrega endereco = new Endereco_Entrega(clienteRua, clienteCEP, clienteNum, clienteComplemento, clienteBairro, clienteCidade, clienteEstado, idEntrega);
         return new DAO.DAO_Cliente().alterarEnderecoEntrega(endereco);
+    }
+
+    public boolean alterarEnderecoFaturaNoComplemento(int idFatura, String clienteCEP, String clienteRua, String clienteNum, String clienteBairro, String clienteCidade, String clienteEstado) {
+        Endereco_Fatura endereco = new Endereco_Fatura(clienteRua, clienteCEP, clienteNum, clienteBairro, clienteCidade, clienteEstado, idFatura);
+        return new DAO.DAO_Cliente().alterarEnderecoFaturaNoComplemento(endereco);
+    }
+
+    public boolean alterarEnderecoFatura(int idFatura, String clienteCEP, String clienteRua, String clienteNum, String clienteComplemento, String clienteBairro, String clienteCidade, String clienteEstado) {
+        Endereco_Fatura endereco = new Endereco_Fatura(clienteRua, clienteCEP, clienteNum, clienteComplemento, clienteBairro, clienteCidade, clienteEstado, idFatura);
+        return new DAO.DAO_Cliente().alterarEnderecoFatura(endereco);
     }
 }

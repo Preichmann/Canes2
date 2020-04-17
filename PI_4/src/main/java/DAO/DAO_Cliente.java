@@ -355,6 +355,37 @@ public class DAO_Cliente {
         return entrega;
     }
 
+    public Endereco_Fatura getFaturamento(int idFatura) {
+        Conexao conec = new Conexao();
+        Endereco_Fatura fatura = new Endereco_Fatura();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * FROM "
+                    + "SUPLEMENTOS.ENDERECO_FATURAMENTO WHERE ID_ENDERECO_FAT = ?");
+
+            comandoSQL.setInt(1, idFatura);
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    fatura.setCep(rs.getString("CEP"));
+                    fatura.setRua(rs.getString("RUA"));
+                    fatura.setNumero(rs.getString("NUMERO"));
+                    fatura.setComplemento(rs.getString("COMPLEMENTO"));
+                    fatura.setBairro(rs.getString("BAIRRO"));
+                    fatura.setCidade(rs.getString("CIDADE"));
+                    fatura.setEstado(rs.getString("ESTADO"));
+                    fatura.setId_faturamento(rs.getInt("ID_ENDERECO_FAT"));
+                }
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return fatura;
+    }
+
     public boolean alterarEnderecoEntregaNoComplemento(Endereco_Entrega entrega) {
         boolean retorno = false;
 
@@ -385,6 +416,36 @@ public class DAO_Cliente {
         return retorno;
     }
 
+    public boolean alterarEnderecoFaturaNoComplemento(Endereco_Fatura fatura) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.ENDERECO_FATURAMENTO \n"
+                    + "SET CEP = ?, RUA = ?, NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ?, CIDADE = ?, ESTADO = ? \n"
+                    + "WHERE ID_ENDERECO_FAT = ?;");
+
+            comandoSQL.setString(1, fatura.getCep());
+            comandoSQL.setString(2, fatura.getRua());
+            comandoSQL.setString(3, fatura.getNumero());
+            comandoSQL.setString(4, "");
+            comandoSQL.setString(5, fatura.getBairro());
+            comandoSQL.setString(6, fatura.getCidade());
+            comandoSQL.setString(7, fatura.getEstado());
+            comandoSQL.setInt(8, fatura.getId_faturamento());
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return retorno;
+    }
+
     public boolean alterarEnderecoEntrega(Endereco_Entrega entrega) {
         boolean retorno = false;
 
@@ -404,6 +465,36 @@ public class DAO_Cliente {
             comandoSQL.setString(6, entrega.getCidade());
             comandoSQL.setString(7, entrega.getEstado());
             comandoSQL.setInt(8, entrega.getId_entrega());
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return retorno;
+    }
+
+    public boolean alterarEnderecoFatura(Endereco_Fatura fatura) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.ENDERECO_FATURAMENTO \n"
+                    + "SET CEP = ?, RUA = ?, NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ?, CIDADE = ?, ESTADO = ? \n"
+                    + "WHERE ID_ENDERECO_FAT = ?;");
+
+            comandoSQL.setString(1, fatura.getCep());
+            comandoSQL.setString(2, fatura.getRua());
+            comandoSQL.setString(3, fatura.getNumero());
+            comandoSQL.setString(4, fatura.getComplemento());
+            comandoSQL.setString(5, fatura.getBairro());
+            comandoSQL.setString(6, fatura.getCidade());
+            comandoSQL.setString(7, fatura.getEstado());
+            comandoSQL.setInt(8, fatura.getId_faturamento());
 
             int linhaAfetada = comandoSQL.executeUpdate();
 

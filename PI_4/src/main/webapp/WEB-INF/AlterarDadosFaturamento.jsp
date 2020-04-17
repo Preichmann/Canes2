@@ -47,7 +47,7 @@
                 });
             });
         </script>
-        <title>Alterar Endereço de Entrega</title>
+        <title>Alterar Endereço de Faturamento</title>
     </head>
     <body>
         <script>
@@ -116,11 +116,10 @@
             }
         </script>
         <script>
-            if (${retornoCadastrarEntrega} === false) {
-                alert('Falha com o Banco de dados para cadastrar o endereço de Entrega');
+            if (${retornoCadastrarFaturamento} === false) {
+                alert('Falha com o Banco de dados para cadastrar o endereço de Faturamento');
             }
         </script>
-
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/Index">
@@ -196,10 +195,10 @@
             </nav>
         </header>
         <div class="container">
-            <h3>Alterar de Endereço de Entrega</h3>
+            <h3>Alterar de Endereço de Faturamento</h3>
             <hr>
 
-            <form method="post" action="${pageContext.request.contextPath}/AlterarEnderecoEntrega" novalidate>
+            <form method="post" action="${pageContext.request.contextPath}/AlterarEnderecoFaturamento" novalidate>
                 <input type="hidden" class="form-control" name="cepValidar" id="cepValidar" value=""><br>
                 <div class="row">
                     <div class="col-sm-2">
@@ -238,10 +237,10 @@
                         <input type="text" class="form-control" name="estado" id="estado" value="${estado}"><br>
                     </div>
                 </div>
-                <input type="hidden" class="form-control" name="idEntrega" id="idEntrega" value="${idEntrega}">
-                <input type="submit" value="Cadastrar" class="btn btn-success col-2" />
+                <input type="hidden" class="form-control" name="idFatura" id="idFatura" value="${idFatura}">
+                <input type="submit" value="Alterar" class="btn btn-success col-2" />
             </form>
-            <form method="get" action="${pageContext.request.contextPath}/ListarDadosEntrega" novalidate>
+            <form method="get" action="${pageContext.request.contextPath}/ListarDadosFaturamento" novalidate>
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
         </div>

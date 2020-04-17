@@ -48,7 +48,26 @@ public class ListarDadosFaturamento extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-    }
+        HttpSession sessao = request.getSession();
+        Cliente c = (Cliente) sessao.getAttribute("usuarioLogado");
+        if (c != null) {
+            request.setAttribute("NomeLogadoAtt", c.getNome());
+        } else {
+            request.setAttribute("NomeLogadoAtt", "false");
+        }
+        String fatura = request.getParameter("idFatura");
+        int idFatura = Integer.parseInt(fatura);
+        Endereco_Fatura faturaObj = new Controller.Controller_Cliente().getFatura(idFatura);
+        request.setAttribute("cep", faturaObj.getCep());
+        request.setAttribute("rua", faturaObj.getRua());
+        request.setAttribute("numero", faturaObj.getNumero());
+        request.setAttribute("bairro", faturaObj.getBairro());
+        request.setAttribute("complemento", faturaObj.getComplemento());
+        request.setAttribute("cidade", faturaObj.getCidade());
+        request.setAttribute("estado", faturaObj.getEstado());
+        request.setAttribute("idFatura", faturaObj.getId_faturamento());
 
+        request.getRequestDispatcher("/WEB-INF/AlterarDadosFaturamento.jsp")
+                .forward(request, response);
+    }
 }

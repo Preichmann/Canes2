@@ -26,8 +26,29 @@ public class Endereco_Fatura {
         this.estado = estado;
     }
 
+    public Endereco_Fatura(String rua, String cep, String numero, String complemento, String bairro, String cidade, String estado, int id_Fatura) {
+        this.id_faturamento = id_Fatura;
+        this.rua = rua;
+        this.cep = cep;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+    }
+
     public Endereco_Fatura(int id_cliente, String rua, String cep, String numero, String bairro, String cidade, String estado) {
         this.id_cliente = id_cliente;
+        this.rua = rua;
+        this.cep = cep;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+    }
+
+    public Endereco_Fatura(String rua, String cep, String numero, String bairro, String cidade, String estado, int id_Fatura) {
+        this.id_faturamento = id_Fatura;
         this.rua = rua;
         this.cep = cep;
         this.numero = numero;

@@ -44,6 +44,12 @@ public class AlterarEnderecoEntrega extends HttpServlet {
         String clienteComplemento = request.getParameter("complemento");
         String Entrega = request.getParameter("idEntrega");
         int idEntrega = Integer.parseInt(Entrega);
+        String cepValidar = request.getParameter("cepValidar");
+        if (cepValidar.equals("falha")) {
+            request.setAttribute("RetornoCepVal", false);
+            request.getRequestDispatcher("/WEB-INF/AlterarDadosEntraga.jsp")
+                    .forward(request, response);
+        }
         if (clienteCep.equals("")) {
             request.setAttribute("RetornoCep", false);
             request.setAttribute("retornoCadastrarEntrega", false);

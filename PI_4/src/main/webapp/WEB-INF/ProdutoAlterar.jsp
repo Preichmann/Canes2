@@ -205,7 +205,7 @@
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
 
-            <footer class="fixed-bottom text-center footer p-2">
+            <footer class="text-center footer p-2">
                 <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
                 <p>2020 - Todos os direitos reservados</p>
             </footer>
@@ -219,8 +219,5 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
                     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
-
-
     </body>
-
 </html>

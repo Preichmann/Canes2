@@ -83,7 +83,7 @@
                                     <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="FuncionarioListar" method="post"
                                           action="${pageContext.request.contextPath}/FuncionarioListar" novalidate>
                                         <input type="hidden" value="${listaFunc.getIdFuncionario()}" name="idFunc" id="idProd" />
-                                        <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaFunc.getNome()}" /></h5>
+                                        <h5 class="card-title" style="width:500px;margin: 0;display: flex;align-items: center;"><c:out value="${listaFunc.getNome()}" /></h5>
                                         <input type="submit" class="btn btn-primary" value="Editar" class="btn btn-cor-especial">
                                     </form>
                                     <form class="d-flex ml-1" id="SalvarImagem" name="FuncionarioExcluir" method="post"
@@ -100,7 +100,7 @@
             </section>
         </main>
 
-        <footer class="fixed-bottom text-center footer p-2">
+        <footer class="text-center footer p-2">
             <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
             <p>2020 - Todos os direitos reservados</p>
         </footer>
@@ -114,8 +114,5 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        
-        
     </body>
-
 </html>

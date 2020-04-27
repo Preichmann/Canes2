@@ -138,22 +138,22 @@
             <form method="post" action="${pageContext.request.contextPath}/ClienteAlterarDados" novalidate>
 
                 <div class="form-group">
-                    <label for="clienteNome">Nome</label><span>*</span>
+                    <label for="clienteNome">Nome</label><span class="obrigatorio">*</span>
                     <input type="text" class="form-control" name="clienteNome" id="clienteNome" value="${Cliente.getNome()}">
                 </div>
 
                 <div class="form-group">
-                    <label for="clienteEmail">E-mail</label><span>*</span>
+                    <label for="clienteEmail">E-mail</label><span class="obrigatorio">*</span>
                     <input type="text" class="form-control" name="clienteEmail" id="clienteEmail" value="${Cliente.getEmail()}" disabled="true">
                 </div>
 
                 <div class="form-group">
-                    <label for="clienteSenha">Senha</label><span>*</span>
+                    <label for="clienteSenha">Senha</label><span class="obrigatorio">*</span>
                     <input type="password" class="form-control" name="clienteSenha" id="clienteSenha" value="${Cliente.getSenha()}">
                 </div>
 
                 <div class="form-group">
-                    <label for="clienteCPF">CPF</label><span>*</span>
+                    <label for="clienteCPF">CPF</label><span class="obrigatorio">*</span>
 
                     <input type="text" class="form-control" name="clienteCPF" id="clienteCPF" maxlength="11" value="${Cliente.getCPF()}" disabled="true">
                 </div>
@@ -164,5 +164,10 @@
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
         </div>
+                
+        <footer class="text-center footer p-2">
+            <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
+            <p>2020 - Todos os direitos reservados</p>
+        </footer>        
     </body>
 </html>

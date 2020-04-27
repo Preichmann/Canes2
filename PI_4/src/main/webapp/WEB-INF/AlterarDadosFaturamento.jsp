@@ -202,17 +202,17 @@
                 <input type="hidden" class="form-control" name="cepValidar" id="cepValidar" value=""><br>
                 <div class="row">
                     <div class="col-sm-2">
-                        <label>CEP</label><span>*</span>
+                        <label>CEP</label><span class="obrigatorio">*</span>
                         <input type="number" class="form-control" name="cep" id="cep" value="${cep}"maxlength="8"><br>
                     </div>
 
                     <div class="col-sm-4">
-                        <label>Endereço</label><span>*</span>
+                        <label>Endereço</label><span class="obrigatorio">*</span>
                         <input type="text" class="form-control" name="logradouro" id="logradouro" value="${rua}"><br>
                     </div>
 
                     <div class="col-sm-2">
-                        <label>Número</label><span>*</span>
+                        <label>Número</label><span class="obrigatorio">*</span>
                         <input type="number" class="form-control" name="numero" id="numero" value="${numero}"><br>
                     </div>
 
@@ -223,17 +223,17 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
-                        <label>Bairro</label><span>*</span>
+                        <label>Bairro</label><span class="obrigatorio">*</span>
                         <input type="text" class="form-control" name="bairro" id="bairro" value="${bairro}"><br>
                     </div>
 
                     <div class="col-sm-4">
-                        <label>Cidade</label><span>*</span>
+                        <label>Cidade</label><span class="obrigatorio">*</span>
                         <input type="text" class="form-control" name="cidade" id="cidade" value="${cidade}"><br>
                     </div>
 
                     <div class="col-sm-2">
-                        <label>Estado</label><span>*</span>
+                        <label>Estado</label><span class="obrigatorio">*</span>
                         <input type="text" class="form-control" name="estado" id="estado" value="${estado}"><br>
                     </div>
                 </div>
@@ -244,5 +244,10 @@
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
         </div>
+                
+        <footer class="text-center footer p-2">
+            <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
+            <p>2020 - Todos os direitos reservados</p>
+        </footer>        
     </body>
 </html>

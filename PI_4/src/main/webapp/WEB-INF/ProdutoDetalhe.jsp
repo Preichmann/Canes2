@@ -114,14 +114,14 @@
                     <div class="col-md-6">
                         <div class="row">
                             <!-- Colocar variável pra receber dados do produto do banco -->
-                            <h2>${ProdutoAtt.getNome()}</h2>
+                            <h3>${ProdutoAtt.getNome()}</h3>
                         </div>
                         <div class="row">
                             <h4>R$ ${ProdutoAtt.getPreco()}</h4>
                         </div>
                         <div class="row">
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button class="btn btn-secondary dropdown-toggle mt-2 mb-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Escolha o Sabor
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -139,6 +139,7 @@
                     </div>
                 </div>
             </div>
+                                
             <div class="container">
                 <c:forEach items="${ListaPerguntaAtt}" var="listaPergunta" varStatus="theCount">
                     <input type="hidden" value="${listaPergunta.getIdPergunta()}" name="idPergunta${theCount.index}" id="idPergunta${theCount.index}" />
@@ -165,7 +166,7 @@
             </div>
         </main>
 
-        <footer class="fixed-bottom text-center footer p-2">
+        <footer class="text-center footer p-2">
             <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
             <p>2020 - Todos os direitos reservados</p>
         </footer>
@@ -180,5 +181,4 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     </body>
-
 </html>

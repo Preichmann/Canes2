@@ -75,8 +75,8 @@
                                     <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="ProdutoListar" method="post"
                                           action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
                                         <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
-                                        <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaProd.getNome()}" /></h5>
-                                        <p class="card-text" style="margin: 0;display: flex;align-items: center;"><span>R$</span><c:out value="${listaProd.getPreco()}" /></p>
+                                        <h5 class="card-title" style="width:470px;margin: 0;display: flex;align-items: center;"><c:out value="${listaProd.getNome()}" /></h5>
+                                        <h6 class="card-text" style="margin: 0;display: flex;align-items: center;">R$ <c:out value="${listaProd.getPreco()}" /></h6>
                                         <input type="submit" class="btn btn-primary" value="Editar" class="btn btn-cor-especial">
                                     </form>
                                     <form class="d-flex ml-1" id="SalvarImagem" name="ProdutoExcluir" method="post"
@@ -93,7 +93,7 @@
             </section>
         </main>
 
-        <footer class="fixed-bottom text-center footer p-2">
+        <footer class="text-center footer p-2 mt-5">
             <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
             <p>2020 - Todos os direitos reservados</p>
         </footer>
@@ -108,5 +108,4 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     </body>
-
 </html>

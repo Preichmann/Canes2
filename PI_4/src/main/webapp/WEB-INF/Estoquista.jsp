@@ -13,5 +13,10 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        
+        <footer class="text-center footer p-2">
+            <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
+            <p>2020 - Todos os direitos reservados</p>
+        </footer>
     </body>
 </html>

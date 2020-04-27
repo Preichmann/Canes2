@@ -41,47 +41,41 @@
                 });
             });
         </script>
-
     </head>
 
     <body>
-
-        
-
         <div class="container">
             <h3>Cadastro</h3>
             <hr>
 
             <form method="post" action="${pageContext.request.contextPath}/ClienteCadastrar" name="form1" novalidate>
-
                 <div class="form-group">
-                    <label for="clienteNome">Nome</label>
+                    <label for="clienteNome">Nome</label><span class="obrigatorio">*</span>
                     <input type="text" class="form-control" name="clienteNome" id="clienteNome" placeholder="Nome Completo">
                 </div>
 
                 <div class="form-group">
-                    <label for="clienteEmail">E-mail</label>
+                    <label for="clienteEmail">E-mail</label><span class="obrigatorio">*</span>
                     <input type="text" class="form-control" name="clienteEmail" id="clienteEmail" placeholder="Ex: Email@dominio.com">
                 </div>
 
                 <div class="form-group">
-                    <label for="clienteSenha">Senha</label>
+                    <label for="clienteSenha">Senha</label><span class="obrigatorio">*</span>
                     <input type="password" class="form-control" name="clienteSenha" id="clienteSenha" placeholder="Senha">
                 </div>
 
                 <div class="form-group">
-                    <label for="clienteCPF">CPF</label>
-
+                    <label for="clienteCPF">CPF</label><span class="obrigatorio">*</span>
                     <input type="text" class="form-control" name="clienteCPF" id="clienteCPF" maxlength="11" placeholder="Somente os Números">
                 </div>
 
                 <label>Endereço de Entrega:</label>
                 <div class="form-group">
-                    <label for="clienteCEP">CEP</label>
+                    <label for="clienteCEP">CEP</label><span class="obrigatorio">*</span>
                     <input type="number" id="clienteCEP" name="clienteCEP"/>
                 </div>
                 <div class="form-group">
-                    <label for="clienteRua">Rua</label>
+                    <label for="clienteRua">Rua</label><span class="obrigatorio">*</span>
                     <input type="text" class="form-control" name="clienteRua" id="clienteRua" placeholder="Rua">
                 </div>
                 <div class="form-group">
@@ -89,15 +83,15 @@
                     <input type="text" class="form-control" name="clienteComplemento" id="clienteComplemento" placeholder="Complemento">
                 </div>
                 <div class="form-group">
-                    <label for="clienteBairro">Bairro</label>
+                    <label for="clienteBairro">Bairro</label><span class="obrigatorio">*</span>
                     <input type="text" class="form-control" name="clienteBairro" id="clienteBairro" placeholder="Bairro">
                 </div>
                 <div class="form-group">
-                    <label for="clienteCidade">Cidade</label>
+                    <label for="clienteCidade">Cidade</label><span class="obrigatorio">*</span>
                     <input type="text" class="form-control" name="clienteCidade" id="clienteCidade" placeholder="Cidade">
                 </div>
                 <div class="form-group">
-                    <label for="estado">Estado</label>
+                    <label for="estado">Estado</label><span class="obrigatorio">*</span>
                     <select id="estado" name="estado">
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
@@ -130,8 +124,10 @@
                     </select>
                 </div>
 
-                <label>Endereço de Faturamento:</label>
-                <button id="copEndereco" name="copEndereco" onclick="copDados()">Copiar dados de Entrega</button>
+                <label>Deseja usar o mesmo endereço para faturamento?</label>
+                <button id="copEndereco" name="copEndereco" onclick="copDados()">Copiar Endereço</button>
+                
+                <label>Endereço de Faturamento:</label>                
                 <div class="form-group">
                     <label for="clienteCEP">CEP</label>
                     <input type="text" class="form-control" name="clienteCEP2" id="clienteCEP2" placeholder="Ex: 00000-00">
@@ -192,6 +188,11 @@
             <form method="get" action="${pageContext.request.contextPath}/menu-FuncionarioListar" novalidate>
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
-
+        </div>
+                
+        <footer class="text-center footer p-2">
+            <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
+            <p>2020 - Todos os direitos reservados</p>
+        </footer>
     </body>
 </html>

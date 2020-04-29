@@ -184,49 +184,7 @@
             }
         </script>
 
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/Index">
-                    <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="navbar-nav mr-auto">
-                        <form method="get" action="${pageContext.request.contextPath}/top-10" class="nav-item active" novalidate>
-                            <input type="submit" value="Top 10" class="nav-link active">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/perdaDePeso" class="nav-item" novalidate>
-                            <input type="submit" value="Perda de Peso" class="nav-link">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/preTreino" class="nav-item" novalidate>
-                            <input type="submit" value="Pré Treino" class="nav-link">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/ganhoDeMassa" class="nav-item" novalidate>
-                            <input type="submit" value="Ganho de Massa" class="nav-link">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/recuperacaoMuscular" class="nav-item"
-                              novalidate>
-                            <input type="submit" value="Recuperação Muscular" class="nav-link">
-                        </form>
-                    </div>
-
-                    <div class="d-flex user-options">
-                        <form method="get" action="${pageContext.request.contextPath}/Login" class="nav-item"
-                              novalidate>
-                            <input type="submit" value="Login" class="nav-link">
-                        </form>
-                    </div>          
-                </div>
-            </nav>
-        </header>
+        <%@ include file="./Components/Header.jspf" %>
                               
         <div class="container">
             <h3>Cadastro de Endereço de Entrega</h3>

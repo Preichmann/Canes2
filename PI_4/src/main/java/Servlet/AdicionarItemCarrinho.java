@@ -49,6 +49,12 @@ public class AdicionarItemCarrinho extends HttpServlet {
                         request.setAttribute("listaItemPedido", listaItemPedido);
                     }
                 }
+                double subtotal = 0;
+                for (ItemPedido item : listaItemPedido) {
+                    subtotal = subtotal + item.getValorTotal();
+                }
+                subtotal = subtotal + 10;
+                request.setAttribute("SubTotal", subtotal);
             } else {
                 Produto p = new Controller.ControllerAlterarProduto().getProduto(idProd);
                 ItemPedido item = new ItemPedido();
@@ -58,9 +64,21 @@ public class AdicionarItemCarrinho extends HttpServlet {
                 item.setValorTotal(item.getQuantidade() * item.getValorUnitario());
                 item.setNomeProduto(p.getNome());
                 listaItemPedido.add(item);
+                if (listaItemPedido == null) {
+                    request.setAttribute("listaVazia", true);
+                } else {
+                    request.setAttribute("listaVazia", false);
+                }
+                double subtotal = 0;
+                for (ItemPedido items : listaItemPedido) {
+                    subtotal = subtotal + items.getValorTotal();
+                }
+                subtotal = subtotal + 10;
+                request.setAttribute("SubTotal", subtotal);
                 request.setAttribute("listaItemPedido", listaItemPedido);
             }
         }
+
         request.getRequestDispatcher("/WEB-INF/Carrinho.jsp")
                 .forward(request, response);
 

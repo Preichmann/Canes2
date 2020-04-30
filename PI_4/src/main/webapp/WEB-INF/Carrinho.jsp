@@ -22,7 +22,7 @@
                 <h3>Meu Carrinho</h3>
                 <hr>
             </div>
-            <div class="container">
+            <div class="container" id="lista">
                 <div class="mt-5" style="width:100%">
                     <ul class="cart-label-row">
                         <li class="cart-label __large">Produto</li>
@@ -47,10 +47,12 @@
                                     <input type="hidden" value="${listaItemPedido.getIdProduto()}" name="idProd" id="idProd" />
                                     <input type="image" src="src/img/Mais.png" width="45" height=45" style="padding:10px" class="d-inline-block align-top" alt="" />
                                 </form>
-                                <input type="number" id="#qtde" value="${listaItemPedido.getQuantidade()}" />
-                                <a class="navbar-brand" href="${pageContext.request.contextPath}/AdicionarItemCarrinho">
-                                    <img src="src/img/menos.png" width="45" height=45" style="padding:10px" class="d-inline-block align-top" alt="">
-                                </a>
+                                <input type="number" id="#qtde" value="${listaItemPedido.getQuantidade()}" disabled="true"/>
+                                <form name="QuantidadeDiminuir" method="post"
+                                      action="${pageContext.request.contextPath}/QuantidadeDiminuir" novalidate>
+                                    <input type="hidden" value="${listaItemPedido.getIdProduto()}" name="idProd" id="idProd" />
+                                    <input type="image" src="src/img/menos.png" width="45" height=45" style="padding:10px" class="d-inline-block align-top" alt="" />
+                                </form>
                             </div>
 
                             <div class="product__total">
@@ -59,8 +61,17 @@
                         </div>
                     </c:forEach>
                 </div>
+                <div>
+                    <label>Frete: R$ 10,00</label>
+                </div>
+                <div>
+                <label>SubTotal: </label>
+                <label> ${SubTotal}</label>
+                </div>
             </div>
+
         </main>
+
 
         <!-- <%@ include file="./Components/Footer.jspf" %>-->
 

@@ -29,6 +29,17 @@ public class Carrinho extends HttpServlet {
         } else {
             request.setAttribute("NomeLogadoAtt", "false");
             ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");
+            if (listaItemPedido.isEmpty()) {
+                request.setAttribute("listaVazia", true);
+            } else {
+                request.setAttribute("listaVazia", false);
+            }
+            double subtotal = 0;
+            for (ItemPedido item : listaItemPedido) {
+                subtotal = subtotal + item.getValorTotal();
+            }
+            subtotal = subtotal + 10;
+            request.setAttribute("SubTotal", subtotal);
             request.setAttribute("listaItemPedido", listaItemPedido);
         }
         request.getRequestDispatcher("/WEB-INF/Carrinho.jsp")

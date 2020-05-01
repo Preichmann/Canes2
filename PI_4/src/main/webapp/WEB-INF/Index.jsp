@@ -149,9 +149,8 @@
             <section id="produtos" class="pb-5">
                 <div class="container d-flex flex-wrap">
                     <c:forEach items="${listaProdutoAtt}" var="listaProd" varStatus="theCounter"> 
-                        <div class="card-produto">
-                        <form name="ProdutoDetalhar" method="post" class=""
-                                  action="${pageContext.request.contextPath}/ProdutoDetalhar" novalidate>
+
+                        <form name="ProdutoDetalhar" method="post" class="card-produto" action="${pageContext.request.contextPath}/ProdutoDetalhar" novalidate>
                             <input type="hidden" value="${listaProd.getIdProd()}" name="idProd"
                                    id="idProd${theCounter.index}" />
                             
@@ -160,6 +159,31 @@
                                      id="imgProd${theCounterImg.index}">
                             </div>
                             
+                            <div class="card-body">
+                                <p class="product-name">
+                                    ${listaProd.getNome()}
+                                </p>
+                                <p class="product-price">
+                                    ${listaProd.getPreco()}
+                                </p>
+                            </div>
+                            
+                            <input type="submit" class="card-cta">
+                        </form>
+
+
+<!--                        <form name="ProdutoDetalhar" method="post" class="card-produto"
+                              action="${pageContext.request.contextPath}/ProdutoDetalhar" novalidate>
+
+                            <input type="hidden" value="${listaProd.getIdProd()}" name="idProd"
+                                   id="idProd${theCounter.index}" />
+
+                            <div class="card-image">
+                                <img src="${listaProd.getCaminho()}" alt="${listaProd.getNome()}"
+                                     id="imgProd${theCounterImg.index}">
+                            </div>
+
+
                             <div class="card-body">
                                 <input type="hidden" value="${listaProd.getIdProd()}" name="idProd"
                                        id="idProd${theCounter.index}" />
@@ -170,11 +194,13 @@
                                     ${listaProd.getPreco()}
                                 </p>
                             </div>
+
                         </form>
+
                         <form name="" method="post" class="" action="${pageContext.request.contextPath}/" novalidate>
-                            <input type="submit" class="card-cta" value="Comprar"> <!--Adiciona produto ao carrinho -->
-                        </form>
-                        </div>
+                            <input type="submit" class="card-cta" value="Comprar"> Adiciona produto ao carrinho 
+                        </form>-->
+
                     </c:forEach>
                 </div>
             </section>

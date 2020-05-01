@@ -148,17 +148,19 @@
 
             <section id="produtos" class="pb-5">
                 <div class="container d-flex flex-wrap">
-                    <c:forEach items="${listaProdutoAtt}" var="listaProd" varStatus="theCounter">   
+                    <c:forEach items="${listaProdutoAtt}" var="listaProd" varStatus="theCounter"> 
                         <div class="card-produto">
+                        <form name="ProdutoDetalhar" method="post" class=""
+                                  action="${pageContext.request.contextPath}/ProdutoDetalhar" novalidate>
                             <input type="hidden" value="${listaProd.getIdProd()}" name="idProd"
                                    id="idProd${theCounter.index}" />
+                            
                             <div class="card-image">
                                 <img src="${listaProd.getCaminho()}" alt="${listaProd.getNome()}"
                                      id="imgProd${theCounterImg.index}">
                             </div>
-                            <form name="ProdutoDetalhar" method="post" class="card-body"
-                                  action="${pageContext.request.contextPath}/ProdutoDetalhar" novalidate>
-
+                            
+                            <div class="card-body">
                                 <input type="hidden" value="${listaProd.getIdProd()}" name="idProd"
                                        id="idProd${theCounter.index}" />
                                 <p class="product-name">
@@ -167,19 +169,18 @@
                                 <p class="product-price">
                                     ${listaProd.getPreco()}
                                 </p>
-                                <input type="submit" class="card-cta" value="Comprar">
-                            </form>                 
-                            <!-- cta => call to action => acao que vc deseja que o usuario execute -->
+                            </div>
+                        </form>
+                        <form name="" method="post" class="" action="${pageContext.request.contextPath}/" novalidate>
+                            <input type="submit" class="card-cta" value="Comprar"> <!--Adiciona produto ao carrinho -->
+                        </form>
                         </div>
                     </c:forEach>
                 </div>
             </section>
         </main>
 
-        <footer class="text-center footer p-2">
-            <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
-            <p>2020 - Todos os direitos reservados</p>
-        </footer>
+        <%@ include file="./Components/Footer.jspf" %>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

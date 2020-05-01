@@ -2,6 +2,7 @@ package Servlet;
 
 import Classes.Cliente;
 import Classes.ImagemProduto;
+import Classes.ItemPedido;
 import Classes.Produto;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,6 +27,13 @@ public class Index extends HttpServlet {
         ArrayList<ImagemProduto> listaImagens = new Controller.ControllerListarProduto().getImagensTotal();
         ArrayList<ImagemProduto> listaPrimeiraImagem = new ArrayList<>();
         HttpSession sessao = request.getSession();
+        ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");
+        if (listaItemPedido != null) {
+            sessao.setAttribute("listaItemPedido", listaItemPedido);
+        } else {
+            listaItemPedido = new ArrayList<>();
+            sessao.setAttribute("listaItemPedido", listaItemPedido);
+        }
         Cliente c = (Cliente) sessao.getAttribute("usuarioLogado");
         if (c != null) {
             request.setAttribute("NomeLogadoAtt", c.getNome());

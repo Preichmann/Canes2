@@ -32,9 +32,10 @@ public class Login extends HttpServlet {
 
         HttpSession sessao = request.getSession();
         if (sessao.getAttribute("usuarioLogado") != null) {
-
             response.sendRedirect(request.getContextPath() + "/Index");
             return;
+        } else {
+            request.setAttribute("NomeLogadoAtt", "false");
         }
 
         request.getRequestDispatcher("/WEB-INF/Login.jsp")

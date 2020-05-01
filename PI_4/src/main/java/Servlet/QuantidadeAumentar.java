@@ -1,8 +1,15 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Servlet;
 
 import Classes.Cliente;
 import Classes.ItemPedido;
+import Classes.Produto;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,37 +19,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Carrinho
+ *
+ * @author nik_r
  */
-@WebServlet("/Carrinho")
-public class Carrinho extends HttpServlet {
-
-    private static final long serialVersionUID = 1L;
+@WebServlet(name = "QuantidadeAumentar", urlPatterns = {"/QuantidadeAumentar"})
+public class QuantidadeAumentar extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sessao = request.getSession();
-        Cliente c = (Cliente) sessao.getAttribute("usuarioLogado");
-        if (c != null) {
-            request.setAttribute("NomeLogadoAtt", c.getNome());
-        } else {
-            request.setAttribute("NomeLogadoAtt", "false");
-            ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");
-            if (listaItemPedido.isEmpty()) {
-                request.setAttribute("listaVazia", true);
-            } else {
-                request.setAttribute("listaVazia", false);
-            }
-            double subtotal = 0;
-            for (ItemPedido item : listaItemPedido) {
-                subtotal = subtotal + item.getValorTotal();
-            }
-            subtotal = subtotal + 10;
-            request.setAttribute("SubTotal", subtotal);
-            request.setAttribute("listaItemPedido", listaItemPedido);
-        }
-        request.getRequestDispatcher("/WEB-INF/Carrinho.jsp")
+
+        request.getRequestDispatcher("/WEB-INF/Index.jsp")
                 .forward(request, response);
     }
 
@@ -55,9 +42,27 @@ public class Carrinho extends HttpServlet {
             request.setAttribute("NomeLogadoAtt", c.getNome());
         } else {
             request.setAttribute("NomeLogadoAtt", "false");
+            ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");
+            String produtoId = request.getParameter("idProd");
+            int idProd = Integer.parseInt(produtoId);
+            for (ItemPedido item : listaItemPedido) {
+                if (item.getIdProduto() == idProd) {
+                    item.setQuantidade(item.getQuantidade() + 1);
+                    item.setValorTotal(item.getQuantidade() * item.getValorUnitario());
+                }
+            }
+            double subtotal = 0;
+            for (ItemPedido items : listaItemPedido) {
+                subtotal = subtotal + items.getValorTotal();
+            }
+            subtotal = subtotal + 10;
+            request.setAttribute("SubTotal", subtotal);
+            request.setAttribute("listaItemPedido", listaItemPedido);
+
         }
         request.getRequestDispatcher("/WEB-INF/Carrinho.jsp")
                 .forward(request, response);
+
     }
 
 }

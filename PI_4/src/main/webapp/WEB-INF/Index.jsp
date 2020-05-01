@@ -14,7 +14,7 @@
     <body>
         <script>
             if (${ msg }) {
-                alert('Vocï¿½ saiu do Sistema!');
+                alert('Você saiu do Sistema!');
             }
         </script>
         <script>
@@ -23,88 +23,7 @@
             }
         </script>
 
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/Index">
-                    <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="navbar-nav mr-auto">
-                        <form method="get" action="${pageContext.request.contextPath}/top-10" class="nav-item active"
-                              novalidate>
-                            <input type="submit" value="Top 10" class="nav-link active">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/perdaDePeso" class="nav-item"
-                              novalidate>
-                            <input type="submit" value="Perda de Peso" class="nav-link">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/preTreino" class="nav-item"
-                              novalidate>
-                            <input type="submit" value="Pré Treino" class="nav-link">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/ganhoDeMassa" class="nav-item"
-                              novalidate>
-                            <input type="submit" value="Ganho de Massa" class="nav-link">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/recuperacaoMuscular" class="nav-item"
-                              novalidate>
-                            <input type="submit" value="Recuperação Muscular" class="nav-link">
-                        </form>
-                    </div>
-
-                    <div class="d-flex user-options">
-                        <form method="get" action="${pageContext.request.contextPath}/Login" class="nav-item " novalidate>
-                            <input type="submit" id="LoginCliente" value="Login " class="nav-link">
-                        </form>
-                        <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
-                            <input type="submit" value="Carrinho" class="nav-link">
-                        </form>
-
-                        <div class="nav-item dropdown" id="menuUsuario">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                ${NomeLogadoAtt}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <form method="get" action="${pageContext.request.contextPath}/ClienteAlterarDados"
-                                      class="nav-item" novalidate>
-                                    <input type="submit" value="Alterar Dados Pessoais" class="nav-link">
-                                </form>
-                                <form method="get" action="${pageContext.request.contextPath}/ListarDadosEntrega"
-                                      class="nav-item" novalidate>
-                                    <input type="submit" value="Gerenciar dados de Entrega" class="nav-link">
-                                </form>
-                                <form method="get" action="${pageContext.request.contextPath}/ListarDadosFaturamento"
-                                      class="nav-item" novalidate>
-                                    <input type="submit" value="Gerenciar dados de Faturamento" class="nav-link">
-                                </form>
-                                <form method="get" action="${pageContext.request.contextPath}/Logout" class="nav-item"
-                                      novalidate>
-                                    <input type="submit" value="Sair" class="nav-link">
-                                </form>
-                            </div>
-                        </div>
-                        <script>
-                            var usuario = "${NomeLogadoAtt}";
-                            if (usuario === "false") {
-                                document.getElementById('menuUsuario').classList.add('d-none');
-                            } else {
-                                document.getElementById('LoginCliente').hidden = true;
-                            }
-                        </script>
-                    </div>
-                </div>
-            </nav>
-        </header>
+        <%@ include file="./Components/Header.jspf" %>
 
         <main>
             <section id="carrossel">
@@ -115,15 +34,13 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="src/img/carrossel-img1.jpg" class="imagem-carrossel d-block w-100"
-                                 alt="barraca de frutas e verduras em uma feira livre">
+                            <img src="src/img/carrossel-img1.jpg" class="imagem-carrossel d-block w-100">
                             <div class="carousel-caption h-50 d-none d-md-block">
                                 <h2 class="fonte-titulo display-4"></h2> <!-- Frase 1 -->
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="src/img/carrossel-img2.jpg" class="imagem-carrossel d-block w-100"
-                                 alt="tigelas com ingredientes culinï¿½rios sendo manuseadas por pessoas, vistas de cima">
+                            <img src="src/img/carrossel-img2.jpg" class="imagem-carrossel d-block w-100">
                             <div class="carousel-caption h-50 d-none d-md-block">
                                 <h2 class="fonte-titulo display-4"></h2> <!-- Frase 2 -->
                             </div>
@@ -149,7 +66,6 @@
             <section id="produtos" class="pb-5">
                 <div class="container d-flex flex-wrap">
                     <c:forEach items="${listaProdutoAtt}" var="listaProd" varStatus="theCounter"> 
-
                         <form name="ProdutoDetalhar" method="post" class="card-produto" action="${pageContext.request.contextPath}/ProdutoDetalhar" novalidate>
                             <input type="hidden" value="${listaProd.getIdProd()}" name="idProd"
                                    id="idProd${theCounter.index}" />
@@ -168,39 +84,8 @@
                                 </p>
                             </div>
                             
-                            <input type="submit" class="card-cta">
+                            <input type="submit" class="card-cta" value="Comprar">
                         </form>
-
-
-<!--                        <form name="ProdutoDetalhar" method="post" class="card-produto"
-                              action="${pageContext.request.contextPath}/ProdutoDetalhar" novalidate>
-
-                            <input type="hidden" value="${listaProd.getIdProd()}" name="idProd"
-                                   id="idProd${theCounter.index}" />
-
-                            <div class="card-image">
-                                <img src="${listaProd.getCaminho()}" alt="${listaProd.getNome()}"
-                                     id="imgProd${theCounterImg.index}">
-                            </div>
-
-
-                            <div class="card-body">
-                                <input type="hidden" value="${listaProd.getIdProd()}" name="idProd"
-                                       id="idProd${theCounter.index}" />
-                                <p class="product-name">
-                                    ${listaProd.getNome()}
-                                </p>
-                                <p class="product-price">
-                                    ${listaProd.getPreco()}
-                                </p>
-                            </div>
-
-                        </form>
-
-                        <form name="" method="post" class="" action="${pageContext.request.contextPath}/" novalidate>
-                            <input type="submit" class="card-cta" value="Comprar"> Adiciona produto ao carrinho 
-                        </form>-->
-
                     </c:forEach>
                 </div>
             </section>
@@ -218,5 +103,4 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     </body>
-
 </html>

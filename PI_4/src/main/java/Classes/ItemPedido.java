@@ -8,6 +8,7 @@ public class ItemPedido {
     private double valorUnitario;
     private double valorTotal;
     private String nomeProduto;
+    private int idCliente;
 
     public ItemPedido() {
     }
@@ -25,6 +26,23 @@ public class ItemPedido {
         this.quantidade = quantidade;
         this.valorUnitario = valorUnitario;
         this.valorTotal = valorTotal;
+    }
+
+    public ItemPedido(int idItemPedido, int idProduto, int quantidade, double valorUnitario, double valorTotal, int idCliente) {
+        this.idItemPedido = idItemPedido;
+        this.idProduto = idProduto;
+        this.quantidade = quantidade;
+        this.valorUnitario = valorUnitario;
+        this.valorTotal = valorTotal;
+        this.idCliente = idCliente;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public int getIdItemPedido() {

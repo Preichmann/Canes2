@@ -30,6 +30,36 @@ public class AdicionarItemCarrinho extends HttpServlet {
         Cliente c = (Cliente) sessao.getAttribute("usuarioLogado");
         if (c != null) {
             request.setAttribute("NomeLogadoAtt", c.getNome());
+            ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");
+            if (listaItemPedido != null) {
+                //Adicionar a lista vazia no banco de dados
+            } else {
+                //Adicionar o item no banco de dados pois a lista anonima está vazia
+                String produtoId = request.getParameter("idProd");
+                int idProd = Integer.parseInt(produtoId);
+                ItemPedido validarRepeticao = new Controller.ControllerItemPedido().validarRepeticao(idProd);
+                if (validarRepeticao != null) {
+                    validarRepeticao.setQuantidade(validarRepeticao.getQuantidade() + 1);
+                    validarRepeticao.setValorTotal(validarRepeticao.getQuantidade() * validarRepeticao.getValorUnitario());
+                    validarRepeticao.setIdCliente(c.getId_cliente());
+                    boolean adicionarItem = new Controller.ControllerItemPedido().adicionarItem(validarRepeticao);
+                    ArrayList<ItemPedido> listaItemPedidoBD = new Controller.ControllerItemPedido().getListaItemPedido();
+                    request.setAttribute("listaItemPedido", listaItemPedidoBD);
+                } else {
+                    //Adicionar novo na lista
+                    Produto p = new Controller.ControllerAlterarProduto().getProduto(idProd);
+                    ItemPedido item = new ItemPedido();
+                    item.setIdProduto(p.getIdProd());
+                    item.setQuantidade(1);
+                    item.setValorUnitario(p.getPreco());
+                    item.setValorTotal(item.getQuantidade() * item.getValorUnitario());
+                    item.setNomeProduto(p.getNome());
+                    item.setIdCliente(c.getId_cliente());
+                    boolean adicionarItem = new Controller.ControllerItemPedido().adicionarItem(item);
+                    ArrayList<ItemPedido> listaItemPedidoBD = new Controller.ControllerItemPedido().getListaItemPedido();
+                    request.setAttribute("listaItemPedido", listaItemPedidoBD);
+                }
+            }
         } else {
             request.setAttribute("NomeLogadoAtt", "false");
             ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");

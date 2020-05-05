@@ -32,21 +32,51 @@ public class AdicionarItemCarrinho extends HttpServlet {
             request.setAttribute("NomeLogadoAtt", c.getNome());
             ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");
             if (listaItemPedido != null) {
-                //Adicionar a lista vazia no banco de dados
+                //Adicionar a lista EXISTENTE no banco de dados
             } else {
                 //Adicionar o item no banco de dados pois a lista anonima está vazia
                 String produtoId = request.getParameter("idProd");
                 int idProd = Integer.parseInt(produtoId);
-                ItemPedido validarRepeticao = new Controller.ControllerItemPedido().validarRepeticao(idProd);
-                if (validarRepeticao != null) {
-                    validarRepeticao.setQuantidade(validarRepeticao.getQuantidade() + 1);
-                    validarRepeticao.setValorTotal(validarRepeticao.getQuantidade() * validarRepeticao.getValorUnitario());
-                    validarRepeticao.setIdCliente(c.getId_cliente());
-                    boolean adicionarItem = new Controller.ControllerItemPedido().adicionarItem(validarRepeticao);
-                    ArrayList<ItemPedido> listaItemPedidoBD = new Controller.ControllerItemPedido().getListaItemPedido();
-                    request.setAttribute("listaItemPedido", listaItemPedidoBD);
+                //obtem a lista de itens atrelada ao cliente
+                ArrayList<ItemPedido> ListaItens = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
+                //caso a lista não tenha nenhum item ele adiciona o item ao BD
+                if (ListaItens != null) {
+                    //varrer a lista e caso ja exista o produto na lista alterar a quantidade se nao adicionar a BD o novo item
+                    boolean existe = false;
+                    for (ItemPedido item : ListaItens) {
+                        if (idProd == item.getIdProduto()) {
+                            existe = true;
+                        }
+                    }
+                    //Caso ja exista esse produto no banco de dados adicionar mais 1 a quantidade
+                    if (existe) {
+                        for (ItemPedido item : ListaItens) {
+                            if (idProd == item.getIdProduto()) {
+                                item.setQuantidade(item.getQuantidade() + 1);
+                                item.setValorTotal(item.getQuantidade() * item.getValorUnitario());
+                                boolean adicionarItem = new Controller.ControllerItemPedido().adicionarItem(item);
+                                ArrayList<ItemPedido> listaItemPedidoBD = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
+                                request.setAttribute("listaItemPedido", listaItemPedidoBD);
+                            }
+                        }
+                    } else {
+                        //caso nao exista esse item na lista do cliente adicionar o item
+                        Produto p = new Controller.ControllerAlterarProduto().getProduto(idProd);
+                        ItemPedido item = new ItemPedido();
+                        item.setIdProduto(p.getIdProd());
+                        item.setQuantidade(1);
+                        item.setValorUnitario(p.getPreco());
+                        item.setValorTotal(item.getQuantidade() * item.getValorUnitario());
+                        item.setNomeProduto(p.getNome());
+                        item.setIdCliente(c.getId_cliente());
+                        boolean adicionarItem = new Controller.ControllerItemPedido().adicionarItem(item);
+                        ArrayList<ItemPedido> listaItemPedidoBD = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
+                        request.setAttribute("listaItemPedido", listaItemPedidoBD);
+                    }
+
                 } else {
-                    //Adicionar novo na lista
+                    //O BD nao possui registro de itens para esse cliente
+                    //Adicionar novo ao BD
                     Produto p = new Controller.ControllerAlterarProduto().getProduto(idProd);
                     ItemPedido item = new ItemPedido();
                     item.setIdProduto(p.getIdProd());
@@ -56,7 +86,7 @@ public class AdicionarItemCarrinho extends HttpServlet {
                     item.setNomeProduto(p.getNome());
                     item.setIdCliente(c.getId_cliente());
                     boolean adicionarItem = new Controller.ControllerItemPedido().adicionarItem(item);
-                    ArrayList<ItemPedido> listaItemPedidoBD = new Controller.ControllerItemPedido().getListaItemPedido();
+                    ArrayList<ItemPedido> listaItemPedidoBD = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
                     request.setAttribute("listaItemPedido", listaItemPedidoBD);
                 }
             }

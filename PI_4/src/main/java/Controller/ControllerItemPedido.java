@@ -13,7 +13,7 @@ public class ControllerItemPedido {
         return new DAO.DAO_Carrinho().adicionarItem(item);
     }
 
-    public ArrayList<ItemPedido> getListaItemPedido() {
-        return new DAO.DAO_Carrinho().getListaItemPedido();
+    public ArrayList<ItemPedido> getListaItemPedido(int idCliente) {
+        return new DAO.DAO_Carrinho().getListaItemPedido(idCliente);
     }
 }

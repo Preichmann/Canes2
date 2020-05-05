@@ -38,15 +38,16 @@ public class DAO_Carrinho {
         return false;
     }
 
-    public ArrayList<ItemPedido> getListaItemPedido() {
+    public ArrayList<ItemPedido> getListaItemPedido(int idCliente) {
         ArrayList<ItemPedido> listaItemPedido = new ArrayList<>();
         Conexao conec = new Conexao();
 
         try (Connection conexao = conec.obterConexao()) {
 
             PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * FROM "
-                    + "SUPLEMENTOS.ITEM_PEDIDO;");
+                    + "SUPLEMENTOS.ITEM_PEDIDO WHERE SUPLEMENTOS.ID_CLIENTE = ?;");
 
+            comandoSQL.setInt(1, idCliente);
             ResultSet rs = comandoSQL.executeQuery();
 
             if (rs != null) {
@@ -89,6 +90,7 @@ public class DAO_Carrinho {
                     item.setValorUnitario(rs.getDouble("VALOR_UNITARIO"));
                     item.setValorTotal(rs.getDouble("VALOR_TOTAL"));
                     item.setNomeProduto(rs.getString("NOME_PRODUTO"));
+                    item.setIdCliente(rs.getInt("ID_CLIENTE"));
                 }
             }
         } catch (ClassNotFoundException | SQLException ex) {

@@ -8,6 +8,7 @@ package Servlet;
 import Classes.Cliente;
 import Classes.Funcionario;
 import Classes.ImagemProduto;
+import Classes.ItemPedido;
 import Classes.Produto;
 import Classes.ValidarEmail;
 import java.io.IOException;
@@ -90,6 +91,45 @@ public class Login extends HttpServlet {
 
                 if (cliente.validarSenha(senha)) {
                     HttpSession sessao = request.getSession();
+                    ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");
+                    if (listaItemPedido != null) {
+                        //Adicionar a lista EXISTENTE no banco de dados
+                        ArrayList<ItemPedido> listaItemPedidoBD = new Controller.ControllerItemPedido().getListaItemPedido(cliente.getId_cliente());
+                        //verifica se já existe algum item no carrinho desse cliente
+                        if (listaItemPedidoBD != null) {
+                            //caso positivo varre os itens e e a onde o ID do produto for igual ele incrementa na quantidade e atualiza o valor no banco
+                            for (ItemPedido items : listaItemPedido) {
+                                boolean repetido = false;
+                                for (ItemPedido itens : listaItemPedidoBD) {
+                                    if (items.getIdProduto() == itens.getIdProduto()) {
+                                        repetido = true;
+                                    }
+                                }
+                                //Caso exista esse produto na lista ele atualiza no banco
+                                if (repetido) {
+                                    for (ItemPedido itens : listaItemPedidoBD) {
+                                        if (items.getIdProduto() == itens.getIdProduto()) {
+                                            itens.setQuantidade(itens.getQuantidade() + items.getQuantidade());
+                                            itens.setValorTotal(itens.getValorUnitario() * itens.getQuantidade());
+                                            new Controller.ControllerItemPedido().atualizarQuantidade(itens);
+                                        }
+                                    }
+                                } else {
+                                    //ele atrela o id do cliente e salva no banco
+                                    items.setIdCliente(cliente.getId_cliente());
+                                    new Controller.ControllerItemPedido().adicionarItem(items);
+                                }
+                            }
+                        } else {
+                            //armazenar no banco os itens da lista anonima atrelando ao ID do cliente
+                            for (ItemPedido items : listaItemPedido) {
+                                items.setIdCliente(cliente.getId_cliente());
+                                new Controller.ControllerItemPedido().adicionarItem(items);
+                            }
+                            listaItemPedido.clear();
+                        }
+
+                    }
                     sessao.setAttribute("usuarioLogado", cliente);
                     request.setAttribute("NomeLogadoAtt", cliente.getNome());
                     ArrayList<Produto> listaProd = new Controller.ControllerListarProduto().getProdutosCliente();

@@ -7,6 +7,7 @@ package Servlet;
 
 import Classes.Cliente;
 import Classes.ImagemProduto;
+import Classes.ItemPedido;
 import Classes.Produto;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -63,7 +64,13 @@ public class Logout extends HttpServlet {
                 }
             }
         }
-
+        ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");
+        if (listaItemPedido != null) {
+            sessao.setAttribute("listaItemPedido", listaItemPedido);
+        } else {
+            listaItemPedido = new ArrayList<>();
+            sessao.setAttribute("listaItemPedido", listaItemPedido);
+        }
         request.setAttribute("listaProdutoAtt", listaProd);
         request.setAttribute("listaImagensAtt", listaPrimeiraImagem);
         request.getRequestDispatcher("/WEB-INF/Index.jsp")

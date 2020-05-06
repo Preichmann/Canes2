@@ -12,7 +12,7 @@ public class DAO_Carrinho {
 
     public boolean adicionarItem(ItemPedido item) {
         Conexao conec = new Conexao();
-
+        boolean retorno;
         try (Connection conexao = conec.obterConexao()) {
 
             PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.ITEM_PEDIDO (ID_PRODUTO,QUANTIDADE,VALOR_UNITARIO,VALOR_TOTAL,NOME_PRODUTO,ID_CLIENTE) \n"
@@ -25,17 +25,15 @@ public class DAO_Carrinho {
             comandoSQL.setString(5, item.getNomeProduto());
             comandoSQL.setInt(6, item.getIdCliente());
 
-            comandoSQL.executeUpdate();
-            ResultSet getId = comandoSQL.getGeneratedKeys();
-            while (getId.next()) {
-                return true;
-            }
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
 
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
             return false;
         }
-        return false;
+        return retorno;
     }
 
     public ArrayList<ItemPedido> getListaItemPedido(int idCliente) {
@@ -45,7 +43,7 @@ public class DAO_Carrinho {
         try (Connection conexao = conec.obterConexao()) {
 
             PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * FROM "
-                    + "SUPLEMENTOS.ITEM_PEDIDO WHERE SUPLEMENTOS.ID_CLIENTE = ?;");
+                    + "SUPLEMENTOS.ITEM_PEDIDO WHERE ITEM_PEDIDO.ID_CLIENTE = ?;");
 
             comandoSQL.setInt(1, idCliente);
             ResultSet rs = comandoSQL.executeQuery();
@@ -58,7 +56,7 @@ public class DAO_Carrinho {
                     item.setValorUnitario(rs.getDouble("VALOR_UNITARIO"));
                     item.setValorTotal(rs.getDouble("VALOR_TOTAL"));
                     item.setNomeProduto(rs.getString("NOME_PRODUTO"));
-                    item.setNomeProduto(rs.getString("ID_CLIENTE"));
+                    item.setIdCliente(rs.getInt("ID_CLIENTE"));
                     listaItemPedido.add(item);
                 }
             }
@@ -98,5 +96,27 @@ public class DAO_Carrinho {
             return null;
         }
         return item;
+    }
+
+    public boolean atualizarQuantidade(ItemPedido item) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.ITEM_PEDIDO SET QUANTIDADE = ? WHERE ITEM_PEDIDO.ID_PRODUTO = ?;");
+
+            comandoSQL.setInt(1, item.getQuantidade());
+            comandoSQL.setInt(2, item.getIdProduto());
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return retorno;
     }
 }

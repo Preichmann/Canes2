@@ -16,4 +16,8 @@ public class ControllerItemPedido {
     public ArrayList<ItemPedido> getListaItemPedido(int idCliente) {
         return new DAO.DAO_Carrinho().getListaItemPedido(idCliente);
     }
+
+    public void atualizarQuantidade(ItemPedido item) {
+        new DAO.DAO_Carrinho().atualizarQuantidade(item);
+    }
 }

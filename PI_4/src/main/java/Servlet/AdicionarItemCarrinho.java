@@ -32,7 +32,7 @@ public class AdicionarItemCarrinho extends HttpServlet {
             request.setAttribute("NomeLogadoAtt", c.getNome());
             ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");
             if (listaItemPedido != null) {
-                //Adicionar a lista EXISTENTE no banco de dados
+                //Adicionar a lista EXISTENTE no banco de dados será feito na servlet de Login
             } else {
                 //Adicionar o item no banco de dados pois a lista anonima está vazia
                 String produtoId = request.getParameter("idProd");
@@ -91,6 +91,7 @@ public class AdicionarItemCarrinho extends HttpServlet {
                 }
             }
         } else {
+            //Caso nao tenha ninguem logado ele adiciona ao um arrayList em uma sessão.
             request.setAttribute("NomeLogadoAtt", "false");
             ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");
             String produtoId = request.getParameter("idProd");
@@ -101,6 +102,7 @@ public class AdicionarItemCarrinho extends HttpServlet {
                     existir = true;
                 }
             }
+            //Caso já exista um produto igual a lista ele incrementa na quantidade
             if (existir) {
                 for (ItemPedido item : listaItemPedido) {
                     if (item.getIdProduto() == idProd) {
@@ -116,6 +118,7 @@ public class AdicionarItemCarrinho extends HttpServlet {
                 subtotal = subtotal + 10;
                 request.setAttribute("SubTotal", subtotal);
             } else {
+                //Caso a lista nao tenha esse produto na lista ele adiciona
                 Produto p = new Controller.ControllerAlterarProduto().getProduto(idProd);
                 ItemPedido item = new ItemPedido();
                 item.setIdProduto(p.getIdProd());

@@ -51,6 +51,7 @@ public class DAO_Carrinho {
             if (rs != null) {
                 while (rs.next()) {
                     ItemPedido item = new ItemPedido();
+                    item.setIdItemPedido(rs.getInt("ID_ITEM_PEDIDO"));
                     item.setIdProduto(rs.getInt("ID_PRODUTO"));
                     item.setQuantidade(rs.getInt("QUANTIDADE"));
                     item.setValorUnitario(rs.getDouble("VALOR_UNITARIO"));
@@ -109,6 +110,27 @@ public class DAO_Carrinho {
 
             comandoSQL.setInt(1, item.getQuantidade());
             comandoSQL.setInt(2, item.getIdProduto());
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return retorno;
+    }
+
+    public boolean diminuirQuantidade(ItemPedido item) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM SUPLEMENTOS.ITEM_PEDIDO WHERE ITEM_PEDIDO.ID_ITEM_PEDIDO = ?;");
+
+            comandoSQL.setInt(1, item.getIdItemPedido());
 
             int linhaAfetada = comandoSQL.executeUpdate();
 

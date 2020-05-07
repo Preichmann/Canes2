@@ -20,4 +20,9 @@ public class ControllerItemPedido {
     public void atualizarQuantidade(ItemPedido item) {
         new DAO.DAO_Carrinho().atualizarQuantidade(item);
     }
+
+    public void diminuirQuantidade(ItemPedido item) {
+        new DAO.DAO_Carrinho().diminuirQuantidade(item);
+        
+    }
 }

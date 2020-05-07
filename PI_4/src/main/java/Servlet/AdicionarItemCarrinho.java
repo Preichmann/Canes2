@@ -31,10 +31,8 @@ public class AdicionarItemCarrinho extends HttpServlet {
         if (c != null) {
             request.setAttribute("NomeLogadoAtt", c.getNome());
             ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");
-            if (listaItemPedido != null) {
-                //Adicionar a lista EXISTENTE no banco de dados será feito na servlet de Login
-            } else {
-                //Adicionar o item no banco de dados pois a lista anonima está vazia
+            if (listaItemPedido.isEmpty()) {
+                //Adicionar o item no banco de dados pois a lista anonima está vazia e o cliente esta logado
                 String produtoId = request.getParameter("idProd");
                 int idProd = Integer.parseInt(produtoId);
                 //obtem a lista de itens atrelada ao cliente
@@ -54,7 +52,7 @@ public class AdicionarItemCarrinho extends HttpServlet {
                             if (idProd == item.getIdProduto()) {
                                 item.setQuantidade(item.getQuantidade() + 1);
                                 item.setValorTotal(item.getQuantidade() * item.getValorUnitario());
-                                boolean adicionarItem = new Controller.ControllerItemPedido().adicionarItem(item);
+                                new Controller.ControllerItemPedido().atualizarQuantidade(item);
                                 ArrayList<ItemPedido> listaItemPedidoBD = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
                                 request.setAttribute("listaItemPedido", listaItemPedidoBD);
                             }

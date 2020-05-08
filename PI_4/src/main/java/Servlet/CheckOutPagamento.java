@@ -9,7 +9,6 @@ import Classes.Cliente;
 import Classes.Endereco_Entrega;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,24 +20,13 @@ import javax.servlet.http.HttpSession;
  *
  * @author nik_r
  */
-@WebServlet(name = "CheckOutEntrega", urlPatterns = {"/CheckOutEntrega"})
-public class CheckOutEntrega extends HttpServlet {
+@WebServlet(name = "CheckOutPagamento", urlPatterns = {"/CheckOutPagamento"})
+public class CheckOutPagamento extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sessao = request.getSession();
-        Cliente c = (Cliente) sessao.getAttribute("usuarioLogado");
-        if (c != null) {
-            request.setAttribute("NomeLogadoAtt", c.getNome());
-        } else {
-            request.setAttribute("NomeLogadoAtt", "false");
-        }
-        request.setAttribute("idCliente", c.getId_cliente());
-        ArrayList<Endereco_Entrega> listaEndereco = new Controller.Controller_Cliente().ListarEntrega(c.getId_cliente());
-        request.setAttribute("ListaEntrega", listaEndereco);
-
-        request.getRequestDispatcher("/WEB-INF/CheckOutEntrega.jsp")
+        request.getRequestDispatcher("/WEB-INF/Index.jsp")
                 .forward(request, response);
     }
 
@@ -52,11 +40,19 @@ public class CheckOutEntrega extends HttpServlet {
         } else {
             request.setAttribute("NomeLogadoAtt", "false");
         }
-        String Entrega = request.getParameter("idEntrega");
-        int idEntrega = Integer.parseInt(Entrega);
-        Endereco_Entrega entrega = new Controller.Controller_Cliente().getEntrega(idEntrega);
+        int idEntrega = (int) sessao.getAttribute("idEntrega");
+        String metodoPagamento = request.getParameter("paymentMethod");
+        if (metodoPagamento.equals("boleto")) {
+            //Seguir para o fluxo com a confimaçao do pedido e mandar a informacao de metodo pela sessao.
+        } else {
+            //salvar em um objeto do tipo cartao as informaçoes obtidas e mandar pora a tela de confirmaçao
+            String nomeCartao = request.getParameter("cc-name");
+            String numeroCartao = request.getParameter("cc-number");
+            String vencimento = request.getParameter("cc-expiration");
+            String cvv = request.getParameter("cc-cvv");
+        }
 
-        request.getRequestDispatcher("/WEB-INF/CheckOutPagamento.jsp")
+        request.getRequestDispatcher("/WEB-INF/Index.jsp")
                 .forward(request, response);
     }
 

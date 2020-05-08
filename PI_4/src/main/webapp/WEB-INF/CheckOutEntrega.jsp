@@ -40,7 +40,7 @@
                         <article class="card mt-3">
                             <div class="card-body justify-content-between">
                                 <div class="d-flex flex-row">
-                                    <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="FuncionarioListar" method="post"
+                                    <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="CheckOutEntrega" method="post"
                                           action="${pageContext.request.contextPath}/CheckOutEntrega" novalidate>
                                         <input type="hidden" value="${listaEndereco.getId_entrega()}" name="idEntrega" id="idEntrega" />
                                         <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaEndereco.getCep()}" /></h5>

@@ -18,6 +18,11 @@
             }
         </script>
         <script>
+            if (${ msgCarrinhoVazio }) {
+                alert('Adicione Produtos a sua lista para Finalizar a Compra');
+            }
+        </script>
+        <script>
             if (${ retornoAlterar } == true) {
                 alert('Dados Pessoais alterados com sucesso');
             }

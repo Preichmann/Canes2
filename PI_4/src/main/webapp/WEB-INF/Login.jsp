@@ -32,8 +32,9 @@
                 }
             </script>
             <script>
-                if (${ MsgCarrinho } !== null) {
-                    alert(${ MsgCarrinho });
+                if (${ MsgCarrinho } === true) {
+                    alert("Para finalizar as compras é necessário estar logado no site!\n"
+                            + "Por favor faça o cadastro ou o login para seguir com as compras.");
                 }
             </script>
 

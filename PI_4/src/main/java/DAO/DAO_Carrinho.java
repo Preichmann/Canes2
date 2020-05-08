@@ -106,10 +106,11 @@ public class DAO_Carrinho {
 
         try (Connection conexao = conec.obterConexao()) {
 
-            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.ITEM_PEDIDO SET QUANTIDADE = ? WHERE ITEM_PEDIDO.ID_PRODUTO = ?;");
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.ITEM_PEDIDO SET QUANTIDADE = ?, VALOR_TOTAL = ? WHERE ITEM_PEDIDO.ID_PRODUTO = ?;");
 
             comandoSQL.setInt(1, item.getQuantidade());
-            comandoSQL.setInt(2, item.getIdProduto());
+            comandoSQL.setDouble(2, item.getValorTotal());
+            comandoSQL.setInt(3, item.getIdProduto());
 
             int linhaAfetada = comandoSQL.executeUpdate();
 

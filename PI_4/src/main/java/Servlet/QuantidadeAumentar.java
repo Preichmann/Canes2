@@ -58,7 +58,7 @@ public class QuantidadeAumentar extends HttpServlet {
             }
             subtotal = subtotal + 10;
             request.setAttribute("SubTotal", subtotal);
-            request.setAttribute("listaItemPedido", listaItemPedido);
+            request.setAttribute("listaItemPedido", listaItemPedidoBDAtt);
 
         } else {
             request.setAttribute("NomeLogadoAtt", "false");

@@ -54,9 +54,17 @@ public class AdicionarItemCarrinho extends HttpServlet {
                                 item.setValorTotal(item.getQuantidade() * item.getValorUnitario());
                                 new Controller.ControllerItemPedido().atualizarQuantidade(item);
                                 ArrayList<ItemPedido> listaItemPedidoBD = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
+                                double subtotal = 0;
+                                for (ItemPedido itens : listaItemPedidoBD) {
+                                    subtotal = subtotal + itens.getValorTotal();
+                                }
+                                subtotal = subtotal + 10;
+                                request.setAttribute("SubTotal", subtotal);
                                 request.setAttribute("listaItemPedido", listaItemPedidoBD);
+
                             }
                         }
+
                     } else {
                         //caso nao exista esse item na lista do cliente adicionar o item
                         Produto p = new Controller.ControllerAlterarProduto().getProduto(idProd);
@@ -69,6 +77,12 @@ public class AdicionarItemCarrinho extends HttpServlet {
                         item.setIdCliente(c.getId_cliente());
                         boolean adicionarItem = new Controller.ControllerItemPedido().adicionarItem(item);
                         ArrayList<ItemPedido> listaItemPedidoBD = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
+                        double subtotal = 0;
+                        for (ItemPedido itens : listaItemPedidoBD) {
+                            subtotal = subtotal + itens.getValorTotal();
+                        }
+                        subtotal = subtotal + 10;
+                        request.setAttribute("SubTotal", subtotal);
                         request.setAttribute("listaItemPedido", listaItemPedidoBD);
                     }
 
@@ -85,6 +99,12 @@ public class AdicionarItemCarrinho extends HttpServlet {
                     item.setIdCliente(c.getId_cliente());
                     boolean adicionarItem = new Controller.ControllerItemPedido().adicionarItem(item);
                     ArrayList<ItemPedido> listaItemPedidoBD = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
+                    double subtotal = 0;
+                    for (ItemPedido itens : listaItemPedidoBD) {
+                        subtotal = subtotal + itens.getValorTotal();
+                    }
+                    subtotal = subtotal + 10;
+                    request.setAttribute("SubTotal", subtotal);
                     request.setAttribute("listaItemPedido", listaItemPedidoBD);
                 }
             }

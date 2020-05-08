@@ -31,6 +31,11 @@
                     alert("Sucesso ao cadastrar Endereço de Faturamento");
                 }
             </script>
+            <script>
+                if (${ MsgCarrinho } !== null) {
+                    alert(${ MsgCarrinho });
+                }
+            </script>
 
             <div class="d-flex justify-content-center">
                 <div class="login_card mt-5 mb-5">

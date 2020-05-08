@@ -34,6 +34,8 @@ public class ClienteCadastrar extends HttpServlet {
         boolean validarnome = validarNome(nomeCliente);
         if (!validarnome) {
             request.setAttribute("retornoNome", false);
+            request.getRequestDispatcher("/WEB-INF/ClienteCadastrarr.jsp")
+                    .forward(request, response);
         } else {
             String clienteEmail = request.getParameter("clienteEmail");
             ValidarEmail validar = new ValidarEmail();
@@ -42,12 +44,18 @@ public class ClienteCadastrar extends HttpServlet {
 
             if (!emailValidar) {
                 request.setAttribute("retornoEmail", false);
+                request.getRequestDispatcher("/WEB-INF/ClienteCadastrarr.jsp")
+                        .forward(request, response);
             } else if (!emailCadastrado) {
                 request.setAttribute("retornoEmailCadastrado", false);
+                request.getRequestDispatcher("/WEB-INF/ClienteCadastrarr.jsp")
+                        .forward(request, response);
             } else {
                 String senhaCliente = request.getParameter("clienteSenha");
                 if (senhaCliente.equals("")) {
                     request.setAttribute("retornoSenha", false);
+                    request.getRequestDispatcher("/WEB-INF/ClienteCadastrarr.jsp")
+                            .forward(request, response);
                 } else {
                     String CpfCliente = request.getParameter("clienteCPF");
                     ValidaCPF validarCpf = new ValidaCPF();
@@ -56,14 +64,20 @@ public class ClienteCadastrar extends HttpServlet {
 
                     if (!validarCPF) {
                         request.setAttribute("retornoCPF", false);
+                        request.getRequestDispatcher("/WEB-INF/ClienteCadastrarr.jsp")
+                                .forward(request, response);
                     } else if (!validarCPFExistente) {
                         request.setAttribute("retornoCPFCadastrado", false);
+                        request.getRequestDispatcher("/WEB-INF/ClienteCadastrarr.jsp")
+                                .forward(request, response);
                     } else {
                         Cliente c = new Cliente(senhaCliente, nomeCliente, clienteEmail, CpfCliente);
                         c.setSenhaHash(senhaCliente);
                         int retornoCadastro = new Controller.Controller_Cliente().cadastrarCliente(c);
                         if (retornoCadastro == 0) {
                             request.setAttribute("retornoCadastro", false);
+                            request.getRequestDispatcher("/WEB-INF/ClienteCadastrarr.jsp")
+                                    .forward(request, response);
                         } else {
                             request.setAttribute("idCliente", retornoCadastro);
                             request.getRequestDispatcher("/WEB-INF/ClienteEnderecoEntregaCadastrar.jsp")
@@ -74,9 +88,6 @@ public class ClienteCadastrar extends HttpServlet {
             }
         }
 
-        request.getRequestDispatcher(
-                "/WEB-INF/ClienteCadastrarr.jsp")
-                .forward(request, response);
     }
 
     public boolean validarNome(String nome) {

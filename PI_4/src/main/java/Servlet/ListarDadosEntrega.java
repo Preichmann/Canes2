@@ -52,10 +52,17 @@ public class ListarDadosEntrega extends HttpServlet {
         }
         String Entrega = request.getParameter("idEntrega");
         int idEntrega = Integer.parseInt(Entrega);
-        
-        request.setAttribute("idEntrega", idEntrega);
+        Endereco_Entrega entrega = new Controller.Controller_Cliente().getEntrega(idEntrega);
+        request.setAttribute("cep", entrega.getCep());
+        request.setAttribute("rua", entrega.getRua());
+        request.setAttribute("numero", entrega.getNumero());
+        request.setAttribute("bairro", entrega.getBairro());
+        request.setAttribute("complemento", entrega.getComplemento());
+        request.setAttribute("cidade", entrega.getCidade());
+        request.setAttribute("estado", entrega.getEstado());
+        request.setAttribute("idEntrega", entrega.getId_entrega());
 
-        request.getRequestDispatcher("/WEB-INF/CheckOutPagamento.jsp")
+        request.getRequestDispatcher("/WEB-INF/AlterarDadosEntraga.jsp")
                 .forward(request, response);
     }
 }

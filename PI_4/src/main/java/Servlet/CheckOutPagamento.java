@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import Classes.Cartao;
 import Classes.Cliente;
 import Classes.Endereco_Entrega;
 import java.io.IOException;
@@ -44,16 +45,38 @@ public class CheckOutPagamento extends HttpServlet {
         String metodoPagamento = request.getParameter("paymentMethod");
         if (metodoPagamento.equals("boleto")) {
             //Seguir para o fluxo com a confimaçao do pedido e mandar a informacao de metodo pela sessao.
+            request.getRequestDispatcher("/WEB-INF/ValidarPedido.jsp")
+                    .forward(request, response);
         } else {
             //salvar em um objeto do tipo cartao as informaçoes obtidas e mandar pora a tela de confirmaçao
             String nomeCartao = request.getParameter("cc-name");
             String numeroCartao = request.getParameter("cc-number");
             String vencimento = request.getParameter("cc-expiration");
             String cvv = request.getParameter("cc-cvv");
+            String parcelas = request.getParameter("cc-parcelas");
+            if (nomeCartao.isEmpty()) {
+                request.setAttribute("msgName", true);
+                request.getRequestDispatcher("/WEB-INF/CheckOutPagamento.jsp").forward(request, response);
+            } else if (numeroCartao.isEmpty()) {
+                request.setAttribute("msgNumCartao", true);
+                request.getRequestDispatcher("/WEB-INF/CheckOutPagamento.jsp").forward(request, response);
+            } else if (vencimento.isEmpty()) {
+                request.setAttribute("msgVenci", true);
+                request.getRequestDispatcher("/WEB-INF/CheckOutPagamento.jsp").forward(request, response);
+            } else if (cvv.isEmpty()) {
+                request.setAttribute("msgCVV", true);
+                request.getRequestDispatcher("/WEB-INF/CheckOutPagamento.jsp").forward(request, response);
+            } else if (parcelas == null) {
+                request.setAttribute("msgParcelas", true);
+                request.getRequestDispatcher("/WEB-INF/CheckOutPagamento.jsp").forward(request, response);
+            } else {
+                int qtdParcelas = Integer.parseInt(parcelas);
+                Cartao cartao = new Cartao(nomeCartao, numeroCartao, cvv, vencimento, qtdParcelas);
+                sessao.setAttribute("DadosCartao", cartao);
+                request.getRequestDispatcher("/WEB-INF/ValidarPedido.jsp")
+                        .forward(request, response);
+            }
         }
-
-        request.getRequestDispatcher("/WEB-INF/Index.jsp")
-                .forward(request, response);
     }
 
 }

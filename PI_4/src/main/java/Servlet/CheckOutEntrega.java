@@ -54,8 +54,7 @@ public class CheckOutEntrega extends HttpServlet {
         }
         String Entrega = request.getParameter("idEntrega");
         int idEntrega = Integer.parseInt(Entrega);
-        Endereco_Entrega entrega = new Controller.Controller_Cliente().getEntrega(idEntrega);
-
+        sessao.setAttribute("idEntrega", idEntrega);
         request.getRequestDispatcher("/WEB-INF/CheckOutPagamento.jsp")
                 .forward(request, response);
     }

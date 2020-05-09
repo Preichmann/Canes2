@@ -11,6 +11,31 @@
     </head>
     <%@ include file="./Components/Header.jspf" %>
     <body class="bg-light">
+        <script>
+            if (${msgName} === true) {
+                alert('O campo Nome é obrigatório quando selecionado Cartão');
+            }
+        </script>
+        <script>
+            if (${msgNumCartao} === true) {
+                alert('O campo Numero do cartao é obrigatório quando selecionado Cartão');
+            }
+        </script>
+        <script>
+            if (${msgVenci} === true) {
+                alert('O campo Vencimento é obrigatório quando selecionado Cartão');
+            }
+        </script>
+        <script>
+            if (${msgCVV} === true) {
+                alert('O campo CVV é obrigatório quando selecionado Cartão');
+            }
+        </script>
+        <script>
+            if (${msgParcelas} === true) {
+                alert('O campo Parcelas é obrigatório quando selecionado Cartão');
+            }
+        </script>
         <div class="container">
             <div class="py-5 text-center">
                 <h2>Forma de Pagamento</h2>
@@ -18,7 +43,8 @@
 
             <div class="row">
                 <div class="col-md-8 order-md-1">
-                    <form class="needs-validation" >
+                    <form class="needs-validation"   name="CadastrarEntrega" method="post"
+                          action="${pageContext.request.contextPath}/CheckOutPagamento" novalidate>
                         <h4 class="mb-3">Pagamento</h4>
 
                         <div class="d-block my-3">
@@ -62,6 +88,23 @@
                                 <div class="invalid-feedback">
                                     Código de segurança é obrigatório
                                 </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-parcelas">Parcelas</label>
+                                <select id="cc-parcelas" name="cc-parcelas">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
                             </div>
                         </div>
                         <hr class="mb-4">

@@ -8,8 +8,10 @@ package Servlet;
 import Classes.Cartao;
 import Classes.Cliente;
 import Classes.Endereco_Entrega;
+import Classes.ItemPedido;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,9 +44,28 @@ public class CheckOutPagamento extends HttpServlet {
             request.setAttribute("NomeLogadoAtt", "false");
         }
         int idEntrega = (int) sessao.getAttribute("idEntrega");
+        request.setAttribute("idEntrega", idEntrega);
         String metodoPagamento = request.getParameter("paymentMethod");
         if (metodoPagamento.equals("boleto")) {
             //Seguir para o fluxo com a confimaçao do pedido e mandar a informacao de metodo pela sessao.
+            ArrayList<ItemPedido> listaItemPedido = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
+            Endereco_Entrega listaEndereco = new Controller.Controller_Cliente().getEntrega(idEntrega);
+            if (listaItemPedido != null) {
+                double subtotal = 0;
+                for (ItemPedido item : listaItemPedido) {
+                    subtotal = subtotal + item.getValorTotal();
+                }
+                subtotal = subtotal + 10;
+                request.setAttribute("SubTotal", subtotal);
+                request.setAttribute("listaItemPedido", listaItemPedido);
+            } else {
+                double subtotal = 0;
+                subtotal = subtotal + 10;
+                request.setAttribute("SubTotal", subtotal);
+            }
+            request.setAttribute("listaEndereco", listaEndereco);
+            request.setAttribute("pagamento", "Boleto");
+            sessao.setAttribute("dadosBoleto", "Boleto");
             request.getRequestDispatcher("/WEB-INF/ValidarPedido.jsp")
                     .forward(request, response);
         } else {
@@ -70,8 +91,26 @@ public class CheckOutPagamento extends HttpServlet {
                 request.setAttribute("msgParcelas", true);
                 request.getRequestDispatcher("/WEB-INF/CheckOutPagamento.jsp").forward(request, response);
             } else {
+                ArrayList<ItemPedido> listaItemPedido = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
+                Endereco_Entrega listaEndereco = new Controller.Controller_Cliente().getEntrega(idEntrega);
                 int qtdParcelas = Integer.parseInt(parcelas);
                 Cartao cartao = new Cartao(nomeCartao, numeroCartao, cvv, vencimento, qtdParcelas);
+                if (listaItemPedido != null) {
+                    double subtotal = 0;
+                    for (ItemPedido item : listaItemPedido) {
+                        subtotal = subtotal + item.getValorTotal();
+                    }
+                    subtotal = subtotal + 10;
+                    request.setAttribute("SubTotal", subtotal);
+                    request.setAttribute("listaItemPedido", listaItemPedido);
+                } else {
+                    double subtotal = 0;
+                    subtotal = subtotal + 10;
+                    request.setAttribute("SubTotal", subtotal);
+                }
+                request.setAttribute("listaEndereco", listaEndereco);
+                sessao.setAttribute("dadosBoleto", "False");
+                request.setAttribute("pagamento", "Cartão");
                 sessao.setAttribute("DadosCartao", cartao);
                 request.getRequestDispatcher("/WEB-INF/ValidarPedido.jsp")
                         .forward(request, response);

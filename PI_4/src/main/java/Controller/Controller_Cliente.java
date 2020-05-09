@@ -62,6 +62,7 @@ public class Controller_Cliente {
     public ArrayList<Endereco_Entrega> ListarEntrega(int id_cliente) {
         return new DAO.DAO_Cliente().ListarEntrega(id_cliente);
     }
+    
 
     public ArrayList<Endereco_Fatura> ListarFatura(int id_cliente) {
         return new DAO.DAO_Cliente().ListarFatura(id_cliente);

@@ -31,10 +31,10 @@
         <main>
             <section id="produtos" class="pb-5">
                 <div class="container">
-                    <h2>Endereços de Entrega</h2>
+                    <h2>Escolha o Endereço de Entrega</h2>
                     <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="CadastrarEntrega" method="get"
                           action="${pageContext.request.contextPath}/CadastrarEntrega" novalidate>
-                        <input type="submit" class="btn btn-primary" value="Cadastrar Endereço Entrega" class="btn btn-success col-2">
+                        <input type="submit" class="btn btn-primary" value="Cadastrar outro Endereço" class="btn btn-success col-2">
                     </form>
                     <c:forEach items="${ListaEntrega}" var="listaEndereco">
                         <article class="card mt-3">

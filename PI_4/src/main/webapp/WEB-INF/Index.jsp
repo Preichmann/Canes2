@@ -23,8 +23,15 @@
             }
         </script>
         <script>
-            if (${ retornoAlterar } == true) {
+            if (${ retornoAlterar } === true) {
                 alert('Dados Pessoais alterados com sucesso');
+            }
+        </script>
+        <script>
+            if (${ msgFimCompra } === false) {
+                alert('Falha ao concluir a inclusao do Pedido no Banco de dados');
+            }else{
+                alert('Numero do pedido' + ${numPedido} + ' ' + 'Valor Total da Compra: ' + ${valorTotal});
             }
         </script>
 

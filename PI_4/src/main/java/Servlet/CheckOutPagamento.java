@@ -65,6 +65,7 @@ public class CheckOutPagamento extends HttpServlet {
             }
             request.setAttribute("listaEndereco", listaEndereco);
             request.setAttribute("pagamento", "Boleto");
+            sessao.setAttribute("pagamento", "Boleto");
             sessao.setAttribute("dadosBoleto", "Boleto");
             request.getRequestDispatcher("/WEB-INF/ValidarPedido.jsp")
                     .forward(request, response);
@@ -111,6 +112,7 @@ public class CheckOutPagamento extends HttpServlet {
                 request.setAttribute("listaEndereco", listaEndereco);
                 sessao.setAttribute("dadosBoleto", "False");
                 request.setAttribute("pagamento", "Cartão");
+                sessao.setAttribute("pagamento", "Cartão");
                 sessao.setAttribute("DadosCartao", cartao);
                 request.getRequestDispatcher("/WEB-INF/ValidarPedido.jsp")
                         .forward(request, response);

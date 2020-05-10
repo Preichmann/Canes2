@@ -37,6 +37,9 @@
                       novalidate>
                     <input type="submit" id="LoginCliente" value="Login " class="nav-link">
                 </form>
+                <form method="post" action="${pageContext.request.contextPath}/ListarPedidos" class="nav-item" id="cartIcon" novalidate>
+                    <input type="submit" value="Pedidos " class="nav-link">
+                </form>
                 <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" id="cartIcon" novalidate>
                     <input type="submit" value="Carrinho" class="nav-link">
                 </form>

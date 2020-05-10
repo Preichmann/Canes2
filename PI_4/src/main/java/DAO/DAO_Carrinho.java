@@ -159,6 +159,36 @@ public class DAO_Carrinho {
         return listaItemPedido;
     }
 
+    public ArrayList<Pedido> getListaPedidos(int idCliente) {
+        ArrayList<Pedido> listaPedidos = new ArrayList<>();
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * FROM "
+                    + "SUPLEMENTOS.PEDIDO WHERE PEDIDO.ID_CLIENTE = ?;");
+
+            comandoSQL.setInt(1, idCliente);
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Pedido p = new Pedido();
+                    p.setIdPedido(rs.getInt("ID_PEDIDO"));
+                    p.setIdCliente(rs.getInt("ID_CLIENTE"));
+                    p.setIdEntrega(rs.getInt("ID_ENTREGA"));
+                    p.setMetodoPagamento(rs.getString("METODO_PAGAMENTO"));
+                    p.setStatus(rs.getString("STATUS"));
+                    listaPedidos.add(p);
+                }
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return listaPedidos;
+    }
+
     public ItemPedido validarRepeticao(int idProd) {
         Conexao conec = new Conexao();
         ItemPedido item = new ItemPedido();

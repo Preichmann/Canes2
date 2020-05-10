@@ -70,6 +70,7 @@ public class ValidarPedido extends HttpServlet {
                         for (ItemPedidoVendido it : listaItensVenda) {
                             valorTotal = valorTotal + it.getValorTotal();
                         }
+                        valorTotal = valorTotal + 10;
                         request.setAttribute("valorTotal", valorTotal);
                         request.getRequestDispatcher("/WEB-INF/Index.jsp")
                                 .forward(request, response);

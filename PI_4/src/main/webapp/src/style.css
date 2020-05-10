@@ -78,7 +78,8 @@
 
 .header .nav-link {
     color: #fff !important;
-    font-weight: 500 !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
 }
 
 .header .nav-link:hover {
@@ -155,6 +156,7 @@ footer a:hover {
     box-sizing: border-box;
     width: 25%;
     list-style: none;
+    text-transform: uppercase;
 }
 
 .cart-label:nth-child(even) {
@@ -240,7 +242,7 @@ footer a:hover {
     width: 190px;
     display: flex;
     flex-direction: column;
-    margin: 5px;
+    margin: 13px;
     border: 1px solid #999;
     border-radius: 6px;
     overflow: hidden;

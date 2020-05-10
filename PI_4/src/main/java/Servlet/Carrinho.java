@@ -26,6 +26,21 @@ public class Carrinho extends HttpServlet {
         Cliente c = (Cliente) sessao.getAttribute("usuarioLogado");
         if (c != null) {
             request.setAttribute("NomeLogadoAtt", c.getNome());
+            ArrayList<ItemPedido> listaItemPedido = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
+            if (listaItemPedido != null) {
+                double subtotal = 0;
+                for (ItemPedido item : listaItemPedido) {
+                    subtotal = subtotal + item.getValorTotal();
+                }
+                subtotal = subtotal + 10;
+                request.setAttribute("SubTotal", subtotal);
+                request.setAttribute("listaItemPedido", listaItemPedido);
+            } else {
+                double subtotal = 0;
+                subtotal = subtotal + 10;
+                request.setAttribute("SubTotal", subtotal);
+            }
+
         } else {
             request.setAttribute("NomeLogadoAtt", "false");
             ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");

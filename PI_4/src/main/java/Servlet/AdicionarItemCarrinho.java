@@ -31,10 +31,8 @@ public class AdicionarItemCarrinho extends HttpServlet {
         if (c != null) {
             request.setAttribute("NomeLogadoAtt", c.getNome());
             ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");
-            if (listaItemPedido != null) {
-                //Adicionar a lista EXISTENTE no banco de dados
-            } else {
-                //Adicionar o item no banco de dados pois a lista anonima está vazia
+            if (listaItemPedido.isEmpty()) {
+                //Adicionar o item no banco de dados pois a lista anonima está vazia e o cliente esta logado
                 String produtoId = request.getParameter("idProd");
                 int idProd = Integer.parseInt(produtoId);
                 //obtem a lista de itens atrelada ao cliente
@@ -54,11 +52,19 @@ public class AdicionarItemCarrinho extends HttpServlet {
                             if (idProd == item.getIdProduto()) {
                                 item.setQuantidade(item.getQuantidade() + 1);
                                 item.setValorTotal(item.getQuantidade() * item.getValorUnitario());
-                                boolean adicionarItem = new Controller.ControllerItemPedido().adicionarItem(item);
+                                new Controller.ControllerItemPedido().atualizarQuantidade(item);
                                 ArrayList<ItemPedido> listaItemPedidoBD = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
+                                double subtotal = 0;
+                                for (ItemPedido itens : listaItemPedidoBD) {
+                                    subtotal = subtotal + itens.getValorTotal();
+                                }
+                                subtotal = subtotal + 10;
+                                request.setAttribute("SubTotal", subtotal);
                                 request.setAttribute("listaItemPedido", listaItemPedidoBD);
+
                             }
                         }
+
                     } else {
                         //caso nao exista esse item na lista do cliente adicionar o item
                         Produto p = new Controller.ControllerAlterarProduto().getProduto(idProd);
@@ -71,6 +77,12 @@ public class AdicionarItemCarrinho extends HttpServlet {
                         item.setIdCliente(c.getId_cliente());
                         boolean adicionarItem = new Controller.ControllerItemPedido().adicionarItem(item);
                         ArrayList<ItemPedido> listaItemPedidoBD = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
+                        double subtotal = 0;
+                        for (ItemPedido itens : listaItemPedidoBD) {
+                            subtotal = subtotal + itens.getValorTotal();
+                        }
+                        subtotal = subtotal + 10;
+                        request.setAttribute("SubTotal", subtotal);
                         request.setAttribute("listaItemPedido", listaItemPedidoBD);
                     }
 
@@ -87,10 +99,17 @@ public class AdicionarItemCarrinho extends HttpServlet {
                     item.setIdCliente(c.getId_cliente());
                     boolean adicionarItem = new Controller.ControllerItemPedido().adicionarItem(item);
                     ArrayList<ItemPedido> listaItemPedidoBD = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
+                    double subtotal = 0;
+                    for (ItemPedido itens : listaItemPedidoBD) {
+                        subtotal = subtotal + itens.getValorTotal();
+                    }
+                    subtotal = subtotal + 10;
+                    request.setAttribute("SubTotal", subtotal);
                     request.setAttribute("listaItemPedido", listaItemPedidoBD);
                 }
             }
         } else {
+            //Caso nao tenha ninguem logado ele adiciona ao um arrayList em uma sessão.
             request.setAttribute("NomeLogadoAtt", "false");
             ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");
             String produtoId = request.getParameter("idProd");
@@ -101,6 +120,7 @@ public class AdicionarItemCarrinho extends HttpServlet {
                     existir = true;
                 }
             }
+            //Caso já exista um produto igual a lista ele incrementa na quantidade
             if (existir) {
                 for (ItemPedido item : listaItemPedido) {
                     if (item.getIdProduto() == idProd) {
@@ -116,6 +136,7 @@ public class AdicionarItemCarrinho extends HttpServlet {
                 subtotal = subtotal + 10;
                 request.setAttribute("SubTotal", subtotal);
             } else {
+                //Caso a lista nao tenha esse produto na lista ele adiciona
                 Produto p = new Controller.ControllerAlterarProduto().getProduto(idProd);
                 ItemPedido item = new ItemPedido();
                 item.setIdProduto(p.getIdProd());

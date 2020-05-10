@@ -129,17 +129,10 @@ public class CadastrarEntrega extends HttpServlet {
             }
         } else {
             ArrayList<Endereco_Entrega> listaEndereco = new Controller.Controller_Cliente().ListarEntrega(c.getId_cliente());
-            request.setAttribute("ListaEntrega", listaEndereco);
-            request.setAttribute("retornoCadastrarEntrega", false);
-            request.setAttribute("idCliente", idCliente);
-            request.setAttribute("retornoEndereco", retornoEndereco);
-            request.getRequestDispatcher("/WEB-INF/ListarDadosEntrega.jsp")
+            request.getRequestDispatcher("/WEB-INF/Index.jsp")
                     .forward(request, response);
         }
-        ArrayList<Endereco_Entrega> listaEndereco = new Controller.Controller_Cliente().ListarEntrega(c.getId_cliente());
-        request.setAttribute("ListaEntrega", listaEndereco);
-        request.setAttribute("retornoEndereco", retornoEndereco);
-        request.getRequestDispatcher("/WEB-INF/ListarDadosEntrega.jsp")
+        request.getRequestDispatcher("/WEB-INF/Index.jsp")
                 .forward(request, response);
     }
 

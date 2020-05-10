@@ -40,6 +40,26 @@ public class QuantidadeAumentar extends HttpServlet {
         Cliente c = (Cliente) sessao.getAttribute("usuarioLogado");
         if (c != null) {
             request.setAttribute("NomeLogadoAtt", c.getNome());
+            String produtoId = request.getParameter("idProd");
+            int idProd = Integer.parseInt(produtoId);
+            ArrayList<ItemPedido> listaItemPedido = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
+            for (ItemPedido itens : listaItemPedido) {
+                if (idProd == itens.getIdProduto()) {
+                    itens.setQuantidade(itens.getQuantidade() + 1);
+                    itens.setValorTotal(itens.getValorUnitario() * itens.getQuantidade());
+                    new Controller.ControllerItemPedido().atualizarQuantidade(itens);
+                }
+            }
+            ArrayList<ItemPedido> listaItemPedidoBDAtt = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
+
+            double subtotal = 0;
+            for (ItemPedido items : listaItemPedidoBDAtt) {
+                subtotal = subtotal + items.getValorTotal();
+            }
+            subtotal = subtotal + 10;
+            request.setAttribute("SubTotal", subtotal);
+            request.setAttribute("listaItemPedido", listaItemPedidoBDAtt);
+
         } else {
             request.setAttribute("NomeLogadoAtt", "false");
             ArrayList<ItemPedido> listaItemPedido = (ArrayList<ItemPedido>) sessao.getAttribute("listaItemPedido");

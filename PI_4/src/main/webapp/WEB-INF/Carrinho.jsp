@@ -61,15 +61,23 @@
                         </div>
                     </c:forEach>
                 </div>
-                <div>
-                    <label>Frete: R$ 10,00</label>
+                <div class="row">
+                    <div class="col">
+                        <label>Frete: R$ 10,00</label>
+                    </div>
+                    <div class="col">
+                        <label>SubTotal: </label>
+                        <label> ${SubTotal}</label>
+                    </div>
                 </div>
-                <div>
-                <label>SubTotal: </label>
-                <label> ${SubTotal}</label>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <form name="QuantidadeDiminuir" method="post"
+                              action="${pageContext.request.contextPath}/FinalizarCompras" novalidate>
+                            <button type="submit" class="btn btn-primary">Finalizar Compra</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-
         </main>
 
 

@@ -132,18 +132,10 @@ public class CadastrarFaturamento extends HttpServlet {
                 retornoEndereco = new Controller.Controller_Cliente().cadastrarEnderecoFaturamento(idCliente, clienteCep, clienteRua, clienteNum, clienteComplemento, clienteBairro, clienteCidade, clienteEstado);
             }
         } else {
-            ArrayList<Endereco_Fatura> listaFatu = new Controller.Controller_Cliente().ListarFatura(idCliente);
-            request.setAttribute("ListaFaturamento", listaFatu);
-            request.setAttribute("retornoCadastrarEntrega", false);
-            request.setAttribute("idCliente", idCliente);
-            request.setAttribute("retornoEndereco", retornoEndereco);
-            request.getRequestDispatcher("/WEB-INF/ListarDadosFaturamento.jsp")
+            request.getRequestDispatcher("/WEB-INF/Index.jsp")
                     .forward(request, response);
         }
-        ArrayList<Endereco_Fatura> listaFatu = new Controller.Controller_Cliente().ListarFatura(idCliente);
-        request.setAttribute("ListaFaturamento", listaFatu);
-        request.setAttribute("retornoEndereco", retornoEndereco);
-        request.getRequestDispatcher("/WEB-INF/ListarDadosFaturamento.jsp")
+        request.getRequestDispatcher("/WEB-INF/Index.jsp")
                 .forward(request, response);
     }
 

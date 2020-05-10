@@ -101,9 +101,9 @@ public class DAO_Cliente {
         try (Connection conexao = conec.obterConexao()) {
 
             PreparedStatement comandoSQL = conexao.prepareStatement("SELECT ID_CLIENTE FROM "
-                    + "SUPLEMENTOS.CLIENTE WHERE CLIENTE.EMAIL LIKE '?';");
+                    + "SUPLEMENTOS.CLIENTE WHERE CLIENTE.EMAIL LIKE ?;");
 
-            comandoSQL.setString(1, clienteEmail);
+            comandoSQL.setString(1, "'%" + clienteEmail + "'%");
 
             ResultSet rs = comandoSQL.executeQuery();
 

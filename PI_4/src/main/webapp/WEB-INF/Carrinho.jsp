@@ -68,8 +68,8 @@
                 </div>
                 <div class="form-group row">
                     <div class="col">
-                        <form name="" method="post"
-                              action="${pageContext.request.contextPath}/" novalidate>
+                        <form name="" method="get"
+                              action="${pageContext.request.contextPath}/Index" novalidate>
                             <button type="submit" class="btn btn-secondary">Escolher mais produtos</button>
                         </form>
                     </div>

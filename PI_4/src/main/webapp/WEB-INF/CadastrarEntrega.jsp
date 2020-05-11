@@ -126,6 +126,7 @@
         </script>
 
         <%@ include file="./Components/Header.jspf" %>
+        
         <div class="container">
             <h3>Cadastro de Endereço de Entrega</h3>
             <hr>
@@ -174,9 +175,6 @@
             </form>
         </div>
 
-        <footer class="text-center footer p-2">
-            <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
-            <p>2020 - Todos os direitos reservados</p>
-        </footer>
+        <%@ include file="./Components/Footer.jspf" %>
     </body>
 </html>

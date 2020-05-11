@@ -71,7 +71,7 @@
 
             <section id="titulo">
                 <div class="bg-light text-center py-5 px-2 mb-4">
-                    <h1 class="fonte-titulo texto-cor-especial">O suplemento ideal para seu esporte</h1>
+                    <h2 class="fonte-titulo">O suplemento ideal para seu esporte</h2>
                 </div>
             </section>
 
@@ -91,7 +91,7 @@
                                 <p class="product-name">
                                     ${listaProd.getNome()}
                                 </p>
-                                <p class="product-price">
+                                <p class="product-price">R$ 
                                     ${listaProd.getPreco()}
                                 </p>
                             </div>

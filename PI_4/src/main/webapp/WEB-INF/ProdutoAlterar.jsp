@@ -2,7 +2,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>-->
 <!DOCTYPE html>
 <html lang="pt-BR">
-
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,9 +29,9 @@
                 }
             </script> 
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/ProdutoListarBackoffice">
-                    <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
+            <nav class="navbar navbar-expand-lg header">
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/Index">
+                    <img src="src/img/logoCanesWhite.png" width="150" height=90" style="padding:10px" class="d-inline-block align-top" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +58,8 @@
 
                     <div class="d-flex user-options">
                         <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 ${NomeLogadoAtt}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -68,8 +68,8 @@
                                 </form>
                             </div>
                         </div>
-                    </div>          
-                </div>
+                    </div>
+                </div>             
             </nav>
         </header>
 
@@ -125,6 +125,7 @@
                     <input type="hidden" value="${listaPergunta.getIdPergunta()}" name="idPergunta${theCount.index}" id="idPergunta${theCount.index}" />
                     <label>${listaPergunta.getPergunta()}</label>
                     <textarea class="form-control" name="resposta${theCount.index}" id="resposta${theCount.index}" rows="3"></textarea>
+
                     <c:forEach items="${ListaRespostaProd}" var="listaResposta" varStatus="theCountResp">
                         <input type="hidden" value="${listaResposta.getIdPergunta()}" name="idPergunta${theCountResp.index}" id="idPergunta${theCountResp.index}" />
                         <script>
@@ -143,6 +144,7 @@
                         </script>
                     </c:forEach>
                 </c:forEach>
+
                 <fieldset>
                     <legend>Objetivos</legend>
                     <c:forEach items="${listaObjetivoAtt}" var="listaObjetivo" varStatus="theCounter">
@@ -170,6 +172,7 @@
                         </c:forEach>
                     </c:forEach>
                 </fieldset>
+
                 <fieldset>
                     <legend>Categorias</legend>
                     <c:forEach items="${listaCategoriaAtt}" var="listaCategoria" varStatus="theCounters">
@@ -204,20 +207,18 @@
             <form method="get" action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
+        </div>
 
-            <footer class="text-center footer p-2">
-                <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
-                <p>2020 - Todos os direitos reservados</p>
-            </footer>
+        <%@ include file="./Components/Footer.jspf" %>
 
-            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-                    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-            crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-                    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-                    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+                integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+                integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
     </body>
 </html>

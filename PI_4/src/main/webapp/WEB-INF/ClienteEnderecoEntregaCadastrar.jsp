@@ -106,6 +106,7 @@
         </script>
         <title>Cadastrar Endereço de Entrega</title>
     </head>
+    
     <body>
         <script>
             if (${RetornoCepVal} === false) {
@@ -280,9 +281,6 @@
             </form>
         </div>
                 
-        <footer class="text-center footer p-2">
-            <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
-            <p>2020 - Todos os direitos reservados</p>
-        </footer>
+        <%@ include file="./Components/Footer.jspf" %>
     </body>
 </html>

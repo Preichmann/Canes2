@@ -1,30 +1,38 @@
+.fonte-titulo {
+    font-family: Montserrat,sans-serif;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
 .imagem-carrossel {
     object-fit: cover;
     object-position: 0 80%;
     height: 400px;
 }
 
-.fonte-titulo {
-    font-family: "Times New Roman";
-}
-
-.texto-cor-especial {
-    color: #8d0606 !important;
+.texto-vermelho {
+    color: #9c0000 !important;
 }
 
 .login_card {
-    height: 400px;
-    width: 400px;
+    height: 370px;
+    width: 380px;
     position: relative;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 10px;
+    padding: 25px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
         0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
         0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* background de ícone de menu com cor clara pra aparecer no menu preto */
+.navbar-toggler {
+    background-color: #f0f0f0 !important;
 }
 
 .card-largura {
@@ -37,17 +45,13 @@
     object-position: 0 60%;
 }
 
-.borda :hover {
-    border: none;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
 .btn-cor-especial {
-    background-color: #8d0606;
+    background-color: #bd2130;
     color: white;
 }
 
-.btn-cor-especial :hover {
+.btn-cor-especial:hover {
+    background-color: #8d0606;
     color: white;
 }
 
@@ -68,22 +72,27 @@
     margin: 0;
 }
 
-.navbar form input:hover {
+/*.navbar form input:hover {
     color: red;
-}
+}*/
 
 .header {
+    font-family: Montserrat,sans-serif;
     background-color: #111 !important;
 }
 
 .header .nav-link {
     color: #fff !important;
-    font-weight: 400 !important;
+    font-weight: 300 !important;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 28px;
+    padding: 0 10px;
     text-transform: uppercase !important;
 }
 
 .header .nav-link:hover {
-    color: #007bff !important;
+    color: #898989!important;
 }
 
 .header .dropdown-menu {
@@ -121,58 +130,79 @@ article.card:hover {
 
 .footer {
     background-color: #000;
-    color: #7f796e;
+    color: #898989;
 }
 
 footer a {
     text-decoration: none;
+    color: #898989;
+    font-weight: 600;
     font-size: 17px;
-    color: #7f796e;
+    letter-spacing: 1px;
 }
 
 footer a:hover {
     text-decoration: none;
-    color: #7f796e;
+    color: #898989;
 }
 
 .obrigatorio {
     color: #ff0000;
     font-size: 15px;
 }
+
+.cart-title {
+    font-weight: 400;
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 2px;
+    color: #000;
+}
+
+.cart-text {
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #000;
+}
+
 .cart-label-row {
-    border: 1px solid darkgrey;
     padding: 0;
     display: flex;
     width: 100%;
     margin-block-start: 0;
     margin-block-end: 0em;
 }
-.cart-label:not(:last-child) {
-    border-right: 1px solid darkgrey;
-}
 
 .cart-label {
+    font-family: Montserrat,sans-serif;
+    font-size: 12px;
+    color: #211915;
+    font-weight: 900;
+    letter-spacing: 1px;
     padding: 15px 10px;
     box-sizing: border-box;
     width: 25%;
     list-style: none;
     text-transform: uppercase;
-}
-
-.cart-label:nth-child(even) {
-    background-color: #f5f8f8;
+    background-color: #ededed;
 }
 
 .cart-label.__large {
     width: 35%;
 }
+
 .cart-label.__small {
     width: 15%;
 }
 
 .product-list {
     display: flex;
+    border-bottom: 1px solid #D6D6D6;
 }
+
 .product {
     display: flex;
     width: 100%;
@@ -273,17 +303,23 @@ footer a:hover {
 .product-name {
     margin: 0 !important;
     padding: 5px 10px;
+    font-family: Montserrat,sans-serif;
     font-size: 14px;
+    color: #777;
+    font-weight: 700;
 }
 
 .product-price {
     padding: 5px 10px;
     width: 100%;
     margin: 0 !important;
+    color: #333;
+    font-weight: 700;
 }
 
 .card-cta {
-    font-size: 16px;
+    font-family: Montserrat,sans-serif;
+    font-size: 12px;
     padding: 10px;
     width: 100%;
     background-color: #bd2130;
@@ -291,12 +327,19 @@ footer a:hover {
     color: #fff;
     font-weight: 600;
     text-align: center;
+    text-transform: uppercase;
+}
+
+.card-cta:hover {
+    background-color: #8d0606;
 }
 
 
-
-
-
+.carousel-detalhe img {
+    width: 50%;
+    max-width: 80%;
+    max-height: 80%;
+}
 
 
 @media (max-width: 992px) {
@@ -305,5 +348,12 @@ footer a:hover {
     }
     .navbar .user-options {
         flex-direction: column;
+    }
+}
+
+/* Criar regra pra cards de produto ficar centralizados */
+@media (max-width: 722px) {
+    .container {
+        
     }
 }

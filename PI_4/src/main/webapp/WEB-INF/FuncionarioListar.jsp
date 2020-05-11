@@ -20,19 +20,20 @@
             }
         </script>
         <script>
-            function confirmaExclusao(){
-                if(confirm("Tem certeza que deseja deletar excluir esse funcionario?")){
+            function confirmaExclusao() {
+                if (confirm("Tem certeza que deseja deletar excluir esse funcionario?")) {
                     document.getElementById("idConfirma").value = 1;
                 } else {
                     document.getElementById("idConfirma").value = 0;
-                }                
+                }
             }
-            
+
         </script>
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/FuncionarioListar">
-                    <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
+
+        <header>            
+            <nav class="navbar navbar-expand-lg header">
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/Index">
+                    <img src="src/img/logoCanesWhite.png" width="150" height=90" style="padding:10px" class="d-inline-block align-top" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +60,8 @@
 
                     <div class="d-flex user-options">
                         <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 ${NomeLogadoAtt}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -68,8 +70,8 @@
                                 </form>
                             </div>
                         </div>
-                    </div>          
-                </div>
+                    </div>
+                </div>             
             </nav>
         </header>
 
@@ -100,10 +102,7 @@
             </section>
         </main>
 
-        <footer class="text-center footer p-2">
-            <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
-            <p>2020 - Todos os direitos reservados</p>
-        </footer>
+        <%@ include file="./Components/Footer.jspf" %>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

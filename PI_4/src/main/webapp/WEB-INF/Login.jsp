@@ -2,7 +2,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,31 +39,29 @@
 
             <div class="d-flex justify-content-center">
                 <div class="login_card mt-5 mb-5">
-                    <article class="card-body">
-                        <form method="post" action="${pageContext.request.contextPath}/Login" novalidate>
-                            <h4 class="card-title mb-4 mt-1">Fazer login</h4>
-                            <div class="form-group">
-                                <label for="usuario">Usuário</label>
-                                <input name="usuario" id="usuario" class="form-control" placeholder="Usuário" type="email">
-                                <span class="error">
-                                    <p id="user_error"></p>
-                                </span>
-                            </div>
-                            <div class="form-group">
-                                <label for="senha">Senha</label>
-                                <input name="senha" id="senha" class="form-control" placeholder="******" type="password">
-                                <span class="error">
-                                    <p id="senha_error"></p>
-                                </span>            
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" name="loginBtn" value="Login" class="btn btn-cor-especial btn-block">
-                            </div>
-                        </form>
-                        <form method="get" action="${pageContext.request.contextPath}/ClienteCadastrar" novalidate>
-                            <input type="submit" name="" value="Criar sua conta na Canes Suplementos" class="btn btn-secondary btn-block">
-                        </form>
-                    </article>
+                    <form method="post" action="${pageContext.request.contextPath}/Login" novalidate>
+                        <h4 class="card-title mb-4 mt-1">Fazer login</h4>
+                        <div class="form-group">
+                            <label for="usuario">E-mail</label>
+                            <input name="usuario" id="usuario" class="form-control" placeholder="usuario@email.com" type="email">
+                            <span class="error">
+                                <p id="user_error"></p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input name="senha" id="senha" class="form-control" placeholder="******" type="password">
+                            <span class="error">
+                                <p id="senha_error"></p>
+                            </span>            
+                        </div>
+                        <div class="form-group mt-4">
+                            <input type="submit" name="loginBtn" value="Login" class="btn btn-cor-especial btn-block">
+                        </div>
+                    </form>
+                    <form method="get" action="${pageContext.request.contextPath}/ClienteCadastrar" novalidate>
+                        <input type="submit" name="" value="Criar sua conta na Canes Suplementos" class="btn btn-secondary btn-block">
+                    </form>
                 </div>
             </div>
         </main>

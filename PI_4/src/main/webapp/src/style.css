@@ -56,8 +56,29 @@
 }
 
 .produto-detalhe {
-    width: 60%;
-    height: 90%;
+    width: 50%;
+    height: 100%;
+    margin: auto;
+}
+
+.name-detail {
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
+.name-detail h3 {
+    font-family: Montserrat,sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.price-detail {
+    margin-left: 5px;
+}
+
+.price-detail p {
+    font-family: Montserrat,sans-serif;
+    font-size: 26px;
 }
 
 .navbar .nav-link {

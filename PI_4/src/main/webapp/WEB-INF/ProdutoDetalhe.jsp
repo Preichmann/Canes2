@@ -15,10 +15,10 @@
         <%@ include file="./Components/Header.jspf" %>
 
         <main>
-            <div class="container">
+            <div class="container mt-5">
                 <div class="row">
                     <div id="carouselExampleControls" class="carousel slide col-md-6" data-ride="carousel">
-                        <div class="carousel-inner">
+                        <div class="carousel-inner produto-detalhe">
                             <div class="carousel-item active">
                                 <img src="${ActiveImgAtt.getCaminho()}" class="d-block w-100" alt="...">
                             </div>
@@ -39,31 +39,25 @@
                     </div>                
 
                     <div class="col-md-6">
-                        <div class="row">
-                            <!-- Colocar variável pra receber dados do produto do banco -->
+                        <div class="row name-detail">
                             <h3>${ProdutoAtt.getNome()}</h3>
                         </div>
-                        <div class="row">
-                            <h4>R$ ${ProdutoAtt.getPreco()}</h4>
+                        <div class="row price-detail">
+                            <p>R$ ${ProdutoAtt.getPreco()}</p>
                         </div>
                         <form method="post" action="${pageContext.request.contextPath}/AdicionarItemCarrinho" novalidate>
                             <input type="hidden" value="${ProdutoAtt.getIdProd()}" name="idProd" id="idProd">
-                            <input type="submit" value="Adicionar Ao Carrinho" class="btn btn-cor-especial" />
+                            <input type="submit" value="Adicionar ao Carrinho" class="btn btn-cor-especial" />
                         </form>
-                            <div class="p-2">
-                            <p>
-                                ${ProdutoAtt.getDescricao()}
-                            </p>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container">
+        <div class="container mb-5">
             <c:forEach items="${ListaPerguntaAtt}" var="listaPergunta" varStatus="theCount">
                 <input type="hidden" value="${listaPergunta.getIdPergunta()}" name="idPergunta${theCount.index}" id="idPergunta${theCount.index}" />
-                <label>${listaPergunta.getPergunta()}</label>
+                <label class="mt-4">${listaPergunta.getPergunta()}</label>
                 <textarea class="form-control" name="resposta${theCount.index}" id="resposta${theCount.index}" rows="3" readonly="true"></textarea>
                 <c:forEach items="${ListaRespostaProd}" var="listaResposta" varStatus="theCountResp">
                     <input type="hidden" value="${listaResposta.getIdPergunta()}" name="idPergunta${theCountResp.index}" id="idPergunta${theCountResp.index}" />

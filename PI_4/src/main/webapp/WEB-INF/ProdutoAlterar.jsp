@@ -132,13 +132,11 @@
                             var r2 = document.getElementById("idPergunta${theCountResp.index}").value;
                             getResposta(r1, r2);
                             function getResposta(r1, r2) {
-                                try {
+                               
                                     if (r1 === r2) {
                                         document.getElementById("resposta${theCount.index}").value = "${listaResposta.getResposta()}";
                                     }
-                                } catch (err) {
-                                    alert(err);
-                                }
+                                
                             }
                         </script>
                     </c:forEach>

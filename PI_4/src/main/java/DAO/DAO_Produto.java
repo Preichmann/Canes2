@@ -459,7 +459,7 @@ public class DAO_Produto {
 
     public ArrayList<ImagemProduto> getImagem(int idProd) {
         Conexao conec = new Conexao();
-        ArrayList<ImagemProduto> img = new ArrayList<ImagemProduto>();
+        ArrayList<ImagemProduto> img = new ArrayList<>();
         try (Connection conexao = conec.obterConexao()) {
 
             PreparedStatement comandoSQL = conexao.prepareStatement("SELECT ID_IMG, FK_ID_PRODUTO, NOME FROM SUPLEMENTOS.PROD_IMG PROD WHERE FK_ID_PRODUTO = " + idProd + ";");

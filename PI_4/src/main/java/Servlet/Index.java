@@ -5,7 +5,6 @@ import Classes.ImagemProduto;
 import Classes.ItemPedido;
 import Classes.Produto;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +33,8 @@ public class Index extends HttpServlet {
             listaItemPedido = new ArrayList<>();
             sessao.setAttribute("listaItemPedido", listaItemPedido);
         }
-        Cliente c = (Cliente) sessao.getAttribute("usuarioLogado");
+            Cliente c = (Cliente) sessao.getAttribute("usuarioLogado");
+        
         if (c != null) {
             request.setAttribute("NomeLogadoAtt", c.getNome());
         } else {

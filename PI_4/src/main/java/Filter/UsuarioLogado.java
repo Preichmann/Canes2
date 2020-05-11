@@ -65,11 +65,10 @@ public class UsuarioLogado implements Filter {
 
         String urlAcessada = httpRequest.getRequestURI();
 
-        if (urlAcessada.endsWith("/Login") || urlAcessada.endsWith("/Creditos")) {
+        if (urlAcessada.endsWith("/Login") || urlAcessada.endsWith("/Creditos") || urlAcessada.endsWith("/Index")
+                || urlAcessada.endsWith("/Carrinho")) {
             return true;
-        } else if ((urlAcessada.endsWith("/Index")
-                || urlAcessada.endsWith("/Carrinho")
-                || urlAcessada.endsWith("/ExcluirMensagem")
+        } else if ((urlAcessada.endsWith("/ExcluirMensagem")
                 || urlAcessada.endsWith("/FuncionarioAlterar")
                 || urlAcessada.endsWith("/FuncionarioCadastrar")
                 || urlAcessada.endsWith("/FuncionarioExcluir")

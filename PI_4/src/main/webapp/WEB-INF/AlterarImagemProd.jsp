@@ -61,8 +61,7 @@
                 <fieldset>
                     <legend>Imagens do Produto</legend>
                     <c:forEach items="${listaImagensAtt}" var="imagens" varStatus="theCounter">
-                        <form id="SalvarImagem" name="ExcluirImagem" method="post"
-                              action="${pageContext.request.contextPath}/ExcluirImagem" novalidate>
+                        <form method="post" action="${pageContext.request.contextPath}/ExcluirImagem" novalidate>
                             <input type="hidden" value="${resultAtt}" name="idProd" id="idProd${theCounter.index}" />
                             <input type="hidden" value="${imagens.getIdImg()}" name="idImagem"
                                    id="idImagem${theCounter.index}" />

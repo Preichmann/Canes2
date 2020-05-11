@@ -40,6 +40,7 @@ public class ValidarPedido extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         Cliente c = (Cliente) sessao.getAttribute("usuarioLogado");
+        boolean result = false;
         if (c != null) {
             request.setAttribute("NomeLogadoAtt", c.getNome());
         } else {
@@ -57,24 +58,27 @@ public class ValidarPedido extends HttpServlet {
                 for (ItemPedido item : listaItemPedido) {
                     ItemPedidoVendido i = new ItemPedidoVendido(item.getIdItemPedido(), item.getIdProduto(), item.getQuantidade(), item.getValorUnitario(),
                             item.getValorTotal(), item.getNomeProduto(), item.getIdCliente(), idPedido);
-                    boolean result = new Controller.ControllerItemPedido().AtrelarItemsAoPedido(i);
+                    result = new Controller.ControllerItemPedido().AtrelarItemsAoPedido(i);
                     if (!result) {
-                        request.setAttribute("msgFimCompra", false);
-                        request.getRequestDispatcher("/WEB-INF/Index.jsp")
-                                .forward(request, response);
-                    } else {
-                        request.setAttribute("msgFimCompra", true);
-                        request.setAttribute("numPedido", idPedido);
-                        ArrayList<ItemPedidoVendido> listaItensVenda = new Controller.ControllerItemPedido().getListaItemPedidoVenda(idPedido);
-                        double valorTotal = 0;
-                        for (ItemPedidoVendido it : listaItensVenda) {
-                            valorTotal = valorTotal + it.getValorTotal();
-                        }
-                        valorTotal = valorTotal + 10;
-                        request.setAttribute("valorTotal", valorTotal);
-                        request.getRequestDispatcher("/WEB-INF/Index.jsp")
-                                .forward(request, response);
+                        break;
                     }
+                }
+                if (!result) {
+                    request.setAttribute("msgFimCompra", false);
+                    request.getRequestDispatcher("/WEB-INF/Index.jsp")
+                            .forward(request, response);
+                } else {
+                    request.setAttribute("msgFimCompra", true);
+                    request.setAttribute("numPedido", idPedido);
+                    ArrayList<ItemPedidoVendido> listaItensVenda = new Controller.ControllerItemPedido().getListaItemPedidoVenda(idPedido);
+                    double valorTotal = 0;
+                    for (ItemPedidoVendido it : listaItensVenda) {
+                        valorTotal = valorTotal + it.getValorTotal();
+                    }
+                    valorTotal = valorTotal + 10;
+                    request.setAttribute("valorTotal", valorTotal);
+                    request.getRequestDispatcher("/WEB-INF/Index.jsp")
+                            .forward(request, response);
                 }
             }
         }

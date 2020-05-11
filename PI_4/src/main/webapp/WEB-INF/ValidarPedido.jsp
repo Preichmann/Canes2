@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +13,6 @@
     </head>
 
     <body>
-
         <%@ include file="./Components/Header.jspf" %>
 
         <main>
@@ -90,7 +88,6 @@
             </form>
         </main>
 
-
         <%@ include file="./Components/Footer.jspf" %>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -103,5 +100,4 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     </body>
-
 </html>

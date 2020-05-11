@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,6 +25,7 @@
                 alert('Falha ao Cadastrar o Endereço!');
             }
         </script>
+        
         <%@ include file="./Components/Header.jspf" %>
 
         <main>
@@ -55,10 +55,7 @@
             </section>
         </main>
 
-        <footer class="text-center footer p-2">
-            <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
-            <p>2020 - Todos os direitos reservados</p>
-        </footer>
+        <%@ include file="./Components/Footer.jspf" %>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,59 +8,6 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="src/style.css">
-        <style>
-            .qty .count {
-                color: #000;
-                display: inline-block;
-                vertical-align: top;
-                font-size: 25px;
-                font-weight: 700;
-                line-height: 30px;
-                height: 50px;
-                width: 120px;
-                padding: 0 2px;
-                min-width: 35px;
-                text-align: center;
-            }
-
-            .qty .plus {
-                cursor: pointer;
-                display: inline-block;
-                vertical-align: top;
-                color: white;
-                width: 30px;
-                height: 30px;
-                font: 30px/1 Arial, sans-serif;
-                text-align: center;
-                border-radius: 3px;
-            }
-
-            .qty .minus {
-                cursor: pointer;
-                display: inline-block;
-                vertical-align: top;
-                color: white;
-                width: 30px;
-                height: 30px;
-                font: 30px/1 Arial, sans-serif;
-                text-align: center;
-                border-radius: 3px;
-                background-clip: padding-box;
-            }
-
-            div {
-                text-align: center;
-            }
-
-            .minus:hover {
-                background-color: #8b0000 !important;
-            }
-
-            .plus:hover {
-                background-color: #8b0000 !important;
-            }
-
-        </style>
     </head>
 
     <body>
@@ -135,10 +81,7 @@
             </section>
         </main>
 
-        <footer class="text-center footer p-2">
-            <a href="${pageContext.request.contextPath}/Creditos">CANES SUPLEMENTOS</a>
-            <p>2020 - Todos os direitos reservados</p>
-        </footer>
+        <%@ include file="./Components/Footer.jspf" %>
                                     
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

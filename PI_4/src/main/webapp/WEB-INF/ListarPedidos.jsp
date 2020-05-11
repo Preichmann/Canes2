@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +12,7 @@
 
     <body>
         <%@ include file="./Components/Header.jspf" %>
+
         <main>
             <section id="produtos" class="pb-5">
                 <div class="container">
@@ -35,6 +35,8 @@
                 </div>
             </section>
         </main>
+
+        <%@ include file="./Components/Footer.jspf" %>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,13 +13,11 @@
     </head>
 
     <body>
-
         <%@ include file="./Components/Header.jspf" %>
 
         <main>
-            <div class="container">
-                <h3>Meu Carrinho</h3>
-                <hr>
+            <div class="container mt-5">
+                <h3 class="cart-title">Meu Carrinho</h3>
             </div>
             <div class="container" id="lista">
                 <div class="mt-5" style="width:100%">
@@ -39,7 +36,7 @@
                                 </p>
                             </div>
                             <div class="product__price">
-                                <c:out value = "${listaItemPedido.getValorUnitario()}"/>
+                                <c:out value = "R$ ${listaItemPedido.getValorUnitario()}"/>
                             </div>
                             <div class="product__ammount">
                                 <form name="QuantidadeAumentar" method="post"
@@ -54,32 +51,37 @@
                                     <input type="image" src="src/img/menos.png" width="45" height=45" style="padding:10px" class="d-inline-block align-top" alt="" />
                                 </form>
                             </div>
-
                             <div class="product__total">
-                                <c:out value = "${listaItemPedido.getValorTotal()}"/>
+                                <c:out value = "R$ ${listaItemPedido.getValorTotal()}"/>
                             </div>
                         </div>
                     </c:forEach>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <label>Frete: R$ 10,00</label>
+                <div class="row mt-5">
+                    <div class="col cart-text">
+                        <p>Frete: R$ 10,00</p>
                     </div>
-                    <div class="col">
+                    <div class="col cart-text">
                         <label>SubTotal: </label>
-                        <label> ${SubTotal}</label>
+                        <label>R$ ${SubTotal}</label>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-10">
-                        <form name="QuantidadeDiminuir" method="post"
+                    <div class="col">
+                        <form name="" method="post"
+                              action="${pageContext.request.contextPath}/" novalidate>
+                            <button type="submit" class="btn btn-secondary">Escolher mais produtos</button>
+                        </form>
+                    </div>
+                    <div class="col">
+                        <form name="" method="post"
                               action="${pageContext.request.contextPath}/FinalizarCompras" novalidate>
-                            <button type="submit" class="btn btn-primary">Finalizar Compra</button>
+                            <button type="submit" class="btn btn-secondary">Fechar pedido</button>
                         </form>
                     </div>
                 </div>
+            </div>
         </main>
-
 
         <%@ include file="./Components/Footer.jspf" %>
 
@@ -93,5 +95,4 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     </body>
-
 </html>

@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Carrinho</title>
+        <title>Canes Suplementos</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="src/style.css">
@@ -16,70 +14,70 @@
         <%@ include file="./Components/Header.jspf" %>
 
         <main>
-            <div class="container mt-5">
-                <h3 class="cart-title">Meu Carrinho</h3>
-            </div>
-            <div class="container" id="lista">
-                <div class="mt-5" style="width:100%">
-                    <ul class="cart-label-row">
-                        <li class="cart-label __large">Produto</li>
-                        <li class="cart-label __small">Preço</li>
-                        <li class="cart-label">Quantidade</li>
-                        <li class="cart-label">Total</li>
-                    </ul>
-                    <c:forEach items="${listaItemPedido}" var="listaItemPedido" >
-                        <div class="product-list">
-                            <input type="hidden" value="${listaItemPedido.getIdProduto()}" name="idProd" id="idProd" />
-                            <div class="product__image">
-                                <p class="product__name">
-                                    <c:out value = "${listaItemPedido.getNomeProduto()}"/>
-                                </p>
+            <div class="container">
+                <div class="row">
+                    <div id="carouselExampleControls" class="carousel slide col-md-6" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item carousel-detalhe active">
+                                <img src="${ActiveImgAtt.getCaminho()}" class="d-block" alt="${ProdutoAtt.getNome()}">
                             </div>
-                            <div class="product__price">
-                                <c:out value = "R$ ${listaItemPedido.getValorUnitario()}"/>
-                            </div>
-                            <div class="product__ammount">
-                                <form name="QuantidadeAumentar" method="post"
-                                      action="${pageContext.request.contextPath}/QuantidadeAumentar" novalidate>
-                                    <input type="hidden" value="${listaItemPedido.getIdProduto()}" name="idProd" id="idProd" />
-                                    <input type="image" src="src/img/Mais.png" width="45" height=45" style="padding:10px" class="d-inline-block align-top" alt="" />
-                                </form>
-                                <input type="number" id="#qtde" value="${listaItemPedido.getQuantidade()}" disabled="true"/>
-                                <form name="QuantidadeDiminuir" method="post"
-                                      action="${pageContext.request.contextPath}/QuantidadeDiminuir" novalidate>
-                                    <input type="hidden" value="${listaItemPedido.getIdProduto()}" name="idProd" id="idProd" />
-                                    <input type="image" src="src/img/menos.png" width="45" height=45" style="padding:10px" class="d-inline-block align-top" alt="" />
-                                </form>
-                            </div>
-                            <div class="product__total">
-                                <c:out value = "R$ ${listaItemPedido.getValorTotal()}"/>
-                            </div>
+                            <c:forEach items="${ImagensAddAtt}" var="imagensAdicionais" varStatus="theCounters">
+                                <div class="carousel-item carousel-detalhe">
+                                    <img src="${imagensAdicionais.getCaminho()}" class="d-block w-100" alt="${ProdutoAtt.getNome()}">
+                                </div>
+                            </c:forEach>
                         </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>                
+
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h3>${ProdutoAtt.getNome()}</h3>
+                        </div>
+                        <div class="row">
+                            <h4>R$ ${ProdutoAtt.getPreco()}</h4>
+                        </div>
+                        <form method="post" action="${pageContext.request.contextPath}/AdicionarItemCarrinho" novalidate>
+                            <input type="hidden" value="${ProdutoAtt.getIdProd()}" name="idProd" id="idProd">
+                            <input type="submit" value="Adicionar ao Carrinho" class="btn btn-cor-especial" />
+                        </form>
+                        <div class="p-2">
+                            <p>${ProdutoAtt.getDescricao()}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <c:forEach items="${ListaPerguntaAtt}" var="listaPergunta" varStatus="theCount">
+                    <input type="hidden" value="${listaPergunta.getIdPergunta()}" name="idPergunta${theCount.index}" id="idPergunta${theCount.index}" />
+                    <label>${listaPergunta.getPergunta()}</label>
+                    <textarea class="form-control" name="resposta${theCount.index}" id="resposta${theCount.index}" rows="3" readonly="true"></textarea>
+                    <c:forEach items="${ListaRespostaProd}" var="listaResposta" varStatus="theCountResp">
+                        <input type="hidden" value="${listaResposta.getIdPergunta()}" name="idPergunta${theCountResp.index}" id="idPergunta${theCountResp.index}" />
+                        <script>
+                            var r1 = document.getElementById("idPergunta${theCount.index}").value;
+                            var r2 = document.getElementById("idPergunta${theCountResp.index}").value;
+                            getResposta(r1, r2);
+                            function getResposta(r1, r2) {
+                                try {
+                                    if (r1 === r2) {
+                                        document.getElementById("resposta${theCount.index}").value = "${listaResposta.getResposta()}";
+                                    }
+                                } catch (err) {
+                                    alert(err);
+                                }
+                            }
+                        </script>
                     </c:forEach>
-                </div>
-                <div class="row mt-5">
-                    <div class="col cart-text">
-                        <p>Frete: R$ 10,00</p>
-                    </div>
-                    <div class="col cart-text">
-                        <label>SubTotal: </label>
-                        <label>R$ ${SubTotal}</label>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col">
-                        <form name="" method="post"
-                              action="${pageContext.request.contextPath}/" novalidate>
-                            <button type="submit" class="btn btn-secondary">Escolher mais produtos</button>
-                        </form>
-                    </div>
-                    <div class="col">
-                        <form name="" method="post"
-                              action="${pageContext.request.contextPath}/FinalizarCompras" novalidate>
-                            <button type="submit" class="btn btn-secondary">Fechar pedido</button>
-                        </form>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </main>
 

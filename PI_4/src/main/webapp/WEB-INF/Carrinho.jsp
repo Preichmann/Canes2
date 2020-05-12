@@ -22,10 +22,10 @@
             <div class="container" id="lista">
                 <div class="mt-5" style="width:100%">
                     <ul class="cart-label-row">
-                        <li class="cart-label __large">Produto</li>
-                        <li class="cart-label __small">Preço</li>
-                        <li class="cart-label">Quantidade</li>
-                        <li class="cart-label">Total</li>
+                        <li class="cart-label __large produto">Produto</li>
+                        <li class="cart-label __small preco">Preço</li>
+                        <li class="cart-label quantidade">Quantidade</li>
+                        <li class="cart-label total">Total</li>
                     </ul>
                     <c:forEach items="${listaItemPedido}" var="listaItemPedido" >
                         <div class="product-list">
@@ -42,13 +42,13 @@
                                 <form name="QuantidadeAumentar" method="post"
                                       action="${pageContext.request.contextPath}/QuantidadeAumentar" novalidate>
                                     <input type="hidden" value="${listaItemPedido.getIdProduto()}" name="idProd" id="idProd" />
-                                    <input type="image" src="src/img/Mais.png" width="45" height=45" style="padding:10px" class="d-inline-block align-top" alt="" />
+                                    <input type="image" src="src/img/Mais.png" width="40" height=40" style="padding:5px" class="d-inline-block align-top" alt="Aumentar quantidade" />
                                 </form>
                                 <input type="number" id="#qtde" value="${listaItemPedido.getQuantidade()}" disabled="true"/>
                                 <form name="QuantidadeDiminuir" method="post"
                                       action="${pageContext.request.contextPath}/QuantidadeDiminuir" novalidate>
                                     <input type="hidden" value="${listaItemPedido.getIdProduto()}" name="idProd" id="idProd" />
-                                    <input type="image" src="src/img/menos.png" width="45" height=45" style="padding:10px" class="d-inline-block align-top" alt="" />
+                                    <input type="image" src="src/img/menos.png" width="40" height=40" style="padding:5px" class="d-inline-block align-top" alt="Diminuir quantidade" />
                                 </form>
                             </div>
                             <div class="product__total">

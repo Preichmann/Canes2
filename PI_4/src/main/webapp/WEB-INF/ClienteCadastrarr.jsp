@@ -1,14 +1,10 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <!--CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="src/style.css">
-        <!-- JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -89,35 +85,33 @@
         
         <%@ include file="./Components/Header.jspf" %>
         
-        <div class="container">
-            <h3>Cadastro</h3>
-            <hr>
+        <div class="container mt-5">
+            <h3 class="title-default mb-4">Cadastro</h3>
 
             <form method="post" action="${pageContext.request.contextPath}/ClienteCadastrar" novalidate>
-
                 <div class="form-group">
-                    <label for="clienteNome">Nome</label><span>*</span>
-                    <input type="text" class="form-control" name="clienteNome" id="clienteNome" placeholder="Nome Completo">
+                    <label for="clienteNome">Nome</label><span class="obrigatorio">*</span>
+                    <input type="text" class="form-control" name="clienteNome" id="clienteNome" placeholder="Nome completo">
                 </div>
 
                 <div class="form-group">
-                    <label for="clienteEmail">E-mail</label><span>*</span>
-                    <input type="text" class="form-control" name="clienteEmail" id="clienteEmail" placeholder="Ex: Email@dominio.com">
+                    <label for="clienteEmail">E-mail</label><span class="obrigatorio">*</span>
+                    <input type="text" class="form-control" name="clienteEmail" id="clienteEmail" placeholder="Ex: nome@email.com">
                 </div>
 
                 <div class="form-group">
-                    <label for="clienteSenha">Senha</label><span>*</span>
+                    <label for="clienteSenha">Senha</label><span class="obrigatorio">*</span>
                     <input type="password" class="form-control" name="clienteSenha" id="clienteSenha" placeholder="Senha">
                 </div>
 
                 <div class="form-group">
-                    <label for="clienteCPF">CPF</label><span>*</span>
-
-                    <input type="text" class="form-control" name="clienteCPF" id="clienteCPF" maxlength="11" placeholder="Somente os Números">
+                    <label for="clienteCPF">CPF</label><span class="obrigatorio">*</span>
+                    <input type="text" class="form-control" name="clienteCPF" id="clienteCPF" maxlength="11" placeholder="Somente números">
                 </div>
 
                 <input type="submit" value="Cadastrar" class="btn btn-success col-2" />
             </form>
+                
             <form method="get" action="${pageContext.request.contextPath}/Index" novalidate>
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>

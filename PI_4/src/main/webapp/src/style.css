@@ -128,9 +128,10 @@
 }
 
 .header .dropdown-menu .nav-link:hover {
-    color: #007bff !important;
+    color: #898989 !important;
 }
 
+/* bd2130 */
 
 article.card {
     transition: box-shadow 300ms ease;
@@ -172,7 +173,7 @@ footer a:hover {
     font-size: 15px;
 }
 
-.cart-title {
+.title-default {
     font-weight: 400;
     font-size: 20px;
     text-transform: uppercase;

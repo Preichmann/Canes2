@@ -10,123 +10,33 @@
     </head>
 
     <body>
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">
-                    <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="navbar-nav mr-auto">
-                        <form method="get" action="${pageContext.request.contextPath}/top-10" class="nav-item active" novalidate>
-                            <input type="submit" value="Top 10" class="nav-link active">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/perdaDePeso" class="nav-item" novalidate>
-                            <input type="submit" value="Perda de Peso" class="nav-link">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/preTreino" class="nav-item" novalidate>
-                            <input type="submit" value="Pré Treino" class="nav-link">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/ganhoDeMassa" class="nav-item" novalidate>
-                            <input type="submit" value="Ganho de Massa" class="nav-link">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/recuperacaoMuscular" class="nav-item"
-                              novalidate>
-                            <input type="submit" value="Recuperação Muscular" class="nav-link">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/ProdutoCadastrar" class="nav-item active" novalidate>
-                            <input type="submit" value="Cadastrar Produto" class="nav-link active">
-                        </form>
-
-                        <form method="get" action="${pageContext.request.contextPath}/ProdutoListarBackoffice" class="nav-item" novalidate>
-                            <input type="submit" value="Listar Produtos" class="nav-link">
-                        </form>	
-                    </div>
-
-                    <div class="d-flex user-options">
-                        <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" novalidate>
-                            <input type="submit" value="Carrinho" class="nav-link">
-                        </form>
-
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Nome do Usuário
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Trocar Senha</a>
-                                <a class="dropdown-item" href="#">Sair</a>
-                            </div>
-                        </div>
-                    </div>          
-                </div>
-            </nav>
-        </header>
+        <%@ include file="./Components/Header.jspf" %>
 
         <main>
-            <section id="produtos" class="bg-light pb-5">
-                <div class="container d-flex flex-wrap justify-content-md-around justify-content-center">
-                    <article class="card borda-cor-especial card-largura mt-5">
-                        <img src="src/img/wheyProtein.png" class="card-img-top card-imagem-posicao" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Produto</h5>
-                            <p class="card-text">R$</p>
-                            <a href="#" class="btn btn-cor-especial">Comprar</a>
-                        </div>
-                    </article>
-
-                    <article class="card borda-cor-especial card-largura mt-5">
-                        <img src="src/img/wheyProtein.png" class="card-img-top card-imagem-posicao" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Produto</h5>
-                            <p class="card-text">R$</p>
-                            <a href="#" class="btn btn-cor-especial">Comprar</a>
-                        </div>
-                    </article>
-
-                    <article class="card borda-cor-especial card-largura mt-5">
-                        <img src="src/img/wheyProtein.png" class="card-img-top card-imagem-posicao" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Produto</h5>
-                            <p class="card-text">R$</p>
-                            <a href="#" class="btn btn-cor-especial">Comprar</a>
-                        </div>
-                    </article>
-
-                    <article class="card borda-cor-especial card-largura mt-5">
-                        <img src="src/img/wheyProtein.png" class="card-img-top card-imagem-posicao" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Produto</h5>
-                            <p class="card-text">R$</p>
-                            <a href="#" class="btn btn-cor-especial">Comprar</a>
-                        </div>
-                    </article>
-
-                    <article class="card borda-cor-especial card-largura mt-5">
-                        <img src="src/img/wheyProtein.png" class="card-img-top card-imagem-posicao" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Produto</h5>
-                            <p class="card-text">R$</p>
-                            <a href="#" class="btn btn-cor-especial">Comprar</a>
-                        </div>
-                    </article>
-
-                    <article class="card borda-cor-especial card-largura mt-5">
-                        <img src="src/img/wheyProtein.png" class="card-img-top card-imagem-posicao" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Produto</h5>
-                            <p class="card-text">R$</p>
-                            <a href="#" class="btn btn-cor-especial">Comprar</a>
-                        </div>
-                    </article>
+            <section id="produtos" class="pb-5">
+                <div class="container d-flex flex-wrap">
+                    <c:forEach items="${listaProdutoAtt}" var="listaProd" varStatus="theCounter"> 
+                        <form name="ProdutoDetalhar" method="post" class="card-produto" action="${pageContext.request.contextPath}/ProdutoDetalhar" novalidate>
+                            <input type="hidden" value="${listaProd.getIdProd()}" name="idProd"
+                                   id="idProd${theCounter.index}" />
+                            
+                            <div class="card-image">
+                                <img src="${listaProd.getCaminho()}" alt="${listaProd.getNome()}"
+                                     id="imgProd${theCounterImg.index}">
+                            </div>
+                            
+                            <div class="card-body">
+                                <p class="product-name">
+                                    ${listaProd.getNome()}
+                                </p>
+                                <p class="product-price">R$ 
+                                    ${listaProd.getPreco()}
+                                </p>
+                            </div>
+                            
+                            <input type="submit" class="card-cta" value="Comprar">
+                        </form>
+                    </c:forEach>
                 </div>
             </section>
         </main>

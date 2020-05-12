@@ -80,7 +80,6 @@
                     </div>
                     <div class="form-group row">
                         <div class="col">
-
                             <button type="submit" class="btn btn-success">Concluir Compra</button>
                         </div>
                     </div>

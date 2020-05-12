@@ -125,8 +125,7 @@
         <%@ include file="./Components/Header.jspf" %>
                             
         <div class="container">
-            <h3>Alterar de Endereço de Entrega</h3>
-            <hr>
+            <h3 class="title-default">Alterar Endereço de Entrega</h3>
 
             <form method="post" action="${pageContext.request.contextPath}/AlterarEnderecoEntrega" novalidate>
                 <input type="hidden" class="form-control" name="cepValidar" id="cepValidar" value=""><br>

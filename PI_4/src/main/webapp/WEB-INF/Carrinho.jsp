@@ -17,7 +17,7 @@
 
         <main>
             <div class="container mt-5">
-                <h3 class="cart-title">Meu Carrinho</h3>
+                <h3 class="title-default">Meu Carrinho</h3>
             </div>
             <div class="container" id="lista">
                 <div class="mt-5" style="width:100%">

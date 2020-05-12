@@ -73,8 +73,7 @@
         </header>
 
         <div class="container">
-            <h3>Atualizar Estoque</h3>
-            <hr>
+            <h3 class="title-default">Atualizar Estoque</h3>
 
             <form id="SalvarImagem" name="AlterarProduto" method="post"
                   action="${pageContext.request.contextPath}/EstoquistaAlterar" novalidate>

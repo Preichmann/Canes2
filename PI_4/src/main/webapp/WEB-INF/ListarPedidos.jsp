@@ -14,26 +14,24 @@
         <%@ include file="./Components/Header.jspf" %>
 
         <main>
-            <section id="produtos" class="pb-5">
-                <div class="container">
-                    <h2>Pedidos</h2>
-                    <c:forEach items="${ListaPedidos}" var="listaPedidos">
-                        <article class="card mt-3">
-                            <div class="card-body justify-content-between">
-                                <div class="d-flex flex-row">
-                                    <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="DetalhePedido" method="post"
-                                          action="${pageContext.request.contextPath}/DetalhePedido" novalidate>
-                                        <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getIdPedido()}" /></h5>
-                                        <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getMetodoPagamento()}" /></h6>
-                                        <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getStatus()}" /></h6>
-                                        <input type="submit" class="btn btn-primary" value="Detalhe" class="btn btn-cor-especial">
-                                    </form>
-                                </div>
+            <div class="container mt-5" id="produtos">
+                <h3 class="title-default mb-5">Meus Pedidos</h3>
+                <c:forEach items="${ListaPedidos}" var="listaPedidos">
+                    <article class="card mt-3">
+                        <div class="card-body justify-content-between">
+                            <div class="d-flex flex-row">
+                                <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="DetalhePedido" method="post"
+                                      action="${pageContext.request.contextPath}/DetalhePedido" novalidate>
+                                    <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getIdPedido()}" /></h5>
+                                    <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getMetodoPagamento()}" /></h6>
+                                    <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getStatus()}" /></h6>
+                                    <input type="submit" class="btn btn-primary" value="Detalhe" class="btn btn-cor-especial">
+                                </form>
                             </div>
-                        </article>
-                    </c:forEach>
-                </div>
-            </section>
+                        </div>
+                    </article>
+                </c:forEach>
+            </div>
         </main>
 
         <%@ include file="./Components/Footer.jspf" %>

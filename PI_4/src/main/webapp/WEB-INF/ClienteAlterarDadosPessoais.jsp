@@ -61,30 +61,24 @@
         
         <%@ include file="./Components/Header.jspf" %>
         
-        <div class="container">
-            <h3>Alterar dados pessoais</h3>
-            <hr>
+        <div class="container mt-5">
+            <h3 class="title-default mb-5">Alterar dados pessoais</h3>
 
             <form method="post" action="${pageContext.request.contextPath}/ClienteAlterarDados" novalidate>
-
                 <div class="form-group">
                     <label for="clienteNome">Nome</label><span class="obrigatorio">*</span>
-                    <input type="text" class="form-control" name="clienteNome" id="clienteNome" value="${Cliente.getNome()}">
+                    <input type="text" class="form-control" name="clienteNome" id="clienteNome" value="${Cliente.getNome()}" required>
                 </div>
-
                 <div class="form-group">
                     <label for="clienteEmail">E-mail</label><span class="obrigatorio">*</span>
                     <input type="text" class="form-control" name="clienteEmail" id="clienteEmail" value="${Cliente.getEmail()}" disabled="true">
                 </div>
-
                 <div class="form-group">
                     <label for="clienteSenha">Senha</label><span class="obrigatorio">*</span>
-                    <input type="password" class="form-control" name="clienteSenha" id="clienteSenha" value="${Cliente.getSenha()}">
+                    <input type="password" class="form-control" name="clienteSenha" id="clienteSenha" value="${Cliente.getSenha()}" required>
                 </div>
-
                 <div class="form-group">
                     <label for="clienteCPF">CPF</label><span class="obrigatorio">*</span>
-
                     <input type="text" class="form-control" name="clienteCPF" id="clienteCPF" maxlength="11" value="${Cliente.getCPF()}" disabled="true">
                 </div>
 

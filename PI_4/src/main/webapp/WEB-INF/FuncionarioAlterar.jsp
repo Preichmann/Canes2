@@ -95,8 +95,7 @@
         </header>
 
         <div class="container">
-            <h3>Alterar Funcionario</h3>
-            <hr>
+            <h3 class="title-default">Alterar dados de Funcionario</h3>
 
             <form method="post" action="${pageContext.request.contextPath}/FuncionarioAlterar" novalidate>
                 <div class="form-group">

@@ -53,6 +53,8 @@
         </header>
 
         <main>
+            <h3 class="title-default">Produtos</h3>
+            
             <section id="produtos" class="pb-5">
                 <div class="container">
                     <c:forEach items="${ListaProdAtt}" var="listaProd">

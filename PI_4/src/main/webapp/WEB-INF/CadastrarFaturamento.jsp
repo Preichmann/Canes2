@@ -124,7 +124,7 @@
         <%@ include file="./Components/Header.jspf" %>
         
         <div class="container">
-            <h3>Cadastro de Endereço de Faturamento</h3>
+            <h3 class="title-default">Cadastrar Endereço de Faturamento</h3>
             <hr>
 
             <form method="post" action="${pageContext.request.contextPath}/CadastrarFaturamento" novalidate>

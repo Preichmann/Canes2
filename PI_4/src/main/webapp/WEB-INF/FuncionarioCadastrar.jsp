@@ -92,8 +92,7 @@
         </header>
 
         <div class="container">
-            <h3>Cadastrar Funcionario</h3>
-            <hr>
+            <h3 class="title-default">Cadastrar Funcionário</h3>
 
             <form method="post" action="${pageContext.request.contextPath}/FuncionarioCadastrar" novalidate>
 

@@ -209,7 +209,7 @@
                         <input type="number" class="form-control" name="numero" id="numero" required>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-sm-5">
                         <label for="complemento">Complemento</label>
                         <input type="text" class="form-control" name="complemento" id="complemento">
@@ -248,7 +248,7 @@
                         <input type="number" class="form-control" name="numero2" id="numero2" required>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-sm-5">
                         <label for="complemento2">Complemento</label>
                         <input type="text" class="form-control" name="complemento2" id="complemento2">
@@ -266,7 +266,7 @@
                         <input type="text" class="form-control" name="estado2" id="estado2" required>
                     </div>
                 </div>
-                <input type="submit" value="Cadastrar" class="btn btn-cor-especial col-2 mb-5" />
+                <input type="submit" value="Cadastrar" class="btn btn-cor-especial col-2 mt-5 mb-5" />
             </form>
         </div>
                 

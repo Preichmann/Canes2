@@ -71,8 +71,8 @@
             </nav>
         </header>
 
-        <div class="container">
-            <h3 class="title-default">Cadastrar Produto</h3>
+        <div class="container mt-5">
+            <h3 class="title-default mb-5">Cadastrar Produto</h3>
 
             <form id="SalvarImagem" name="ProdutoCadastrar" method="post"
                   action="${pageContext.request.contextPath}/ProdutoCadastrar" novalidate>

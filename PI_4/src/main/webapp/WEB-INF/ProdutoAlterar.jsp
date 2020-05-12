@@ -1,19 +1,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>-->
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Cadastrar Produtos</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="src/style.css">
+        <script src="${pageContext.request.contextPath}/javaScript/validar.js" type="text/javascript"></script>
           <!-- <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.svg" type="image/x-svg" /> -->
-          <!--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" /> -->
-          <!--<script src="${pageContext.request.contextPath}/javaScript/validar.js" type="text/javascript"></script> -->
     </head>
 
+    <head>
+    </head>
+    
     <body>
         <header>
             <script>
@@ -73,8 +76,8 @@
             </nav>
         </header>
 
-        <div class="container">
-            <h3 class="title-default">Alterar Produto</h3>
+        <div class="container mt-5">
+            <h3 class="title-default mb-5">Alterar Produto</h3>
 
             <form id="SalvarImagem" name="AlterarProduto" method="post"
                   action="${pageContext.request.contextPath}/ProdutoAlterar" novalidate>

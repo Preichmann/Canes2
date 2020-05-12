@@ -67,33 +67,29 @@
         </header>
 
         <main>
-            <h3 class="title-default">Produtos</h3>
+            <div class="container mt-5 mb-5" id="produtos">
+                <h3 class="title-default mb-4">Produtos</h3>
 
-            <section id="produtos" class="pb-5">
-                <div class="container">
-                    <c:forEach items="${ListaProdAtt}" var="listaProd">
-                        <article class="card mt-3">
-                            <div class="card-body justify-content-between">
-                                <div class="d-flex flex-row">
-                                    <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="ProdutoListar" method="post"
-                                          action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
-                                        <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
-                                        <h5 class="card-title" style="width:470px;margin: 0;display: flex;align-items: center;"><c:out value="${listaProd.getNome()}" /></h5>
-                                        <h6 class="card-text" style="margin: 0;display: flex;align-items: center;">R$ <c:out value="${listaProd.getPreco()}" /></h6>
-                                        <input type="submit" class="btn btn-primary" value="Editar" class="btn btn-cor-especial">
-                                    </form>
-                                    <form class="d-flex ml-1" id="SalvarImagem" name="ProdutoExcluir" method="post"
-                                          action="${pageContext.request.contextPath}/ProdutoExcluir" novalidate>
-                                        <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
-                                        <input type="hidden" name="idConfirma" id="idConfirma" />
-                                        <input type="submit" class="btn btn-danger" value="Excluir" class="btn btn-cor-especial" onclick="confirmaExclusao()">
-                                    </form>
-                                </div>
-                            </div>
-                        </article>
-                    </c:forEach>
-                </div>
-            </section>
+                <c:forEach items="${ListaProdAtt}" var="listaProd">
+                    <div class="card card-body justify-content-between mt-3">
+                        <div class="d-flex flex-row">
+                            <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="ProdutoListar" method="post"
+                                  action="${pageContext.request.contextPath}/ProdutoListarBackoffice" novalidate>
+                                <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
+                                <h5 class="card-title" style="width:550px;margin: 0;display: flex;align-items: center;"><c:out value="${listaProd.getNome()}" /></h5>
+                                <h6 class="card-text" style="margin: 0;display: flex;align-items: center;">R$ <c:out value="${listaProd.getPreco()}" /></h6>
+                                <input type="submit" class="btn btn-primary" value="Editar" class="btn btn-cor-especial">
+                            </form>
+                            <form class="d-flex ml-1" id="SalvarImagem" name="ProdutoExcluir" method="post"
+                                  action="${pageContext.request.contextPath}/ProdutoExcluir" novalidate>
+                                <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
+                                <input type="hidden" name="idConfirma" id="idConfirma" />
+                                <input type="submit" class="btn btn-danger" value="Excluir" class="btn btn-cor-especial" onclick="confirmaExclusao()">
+                            </form>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
         </main>
 
         <%@ include file="./Components/Footer.jspf" %>

@@ -46,14 +46,16 @@ public class DAO_Carrinho {
 
         try (Connection conexao = conec.obterConexao()) {
 
-            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.PEDIDO(ID_PEDIDO,ID_CLIENTE,ID_ENTREGA,METODO_PAGAMENTO,STATUS)\n"
-                    + "VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO SUPLEMENTOS.PEDIDO(ID_PEDIDO,ID_CLIENTE,ID_ENTREGA,METODO_PAGAMENTO,STATUS,DATA_DE_COMPRA,VALOR_TOTAL)\n"
+                    + "VALUES (?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
             comandoSQL.setInt(1, p.getIdPedido());
             comandoSQL.setInt(2, p.getIdCliente());
             comandoSQL.setInt(3, p.getIdEntrega());
             comandoSQL.setString(4, p.getMetodoPagamento());
             comandoSQL.setString(5, p.getStatus());
+            comandoSQL.setString(6, p.getHoraPedido());
+            comandoSQL.setDouble(7, p.getValorPedido());
 
             comandoSQL.executeUpdate();
             ResultSet getId = comandoSQL.getGeneratedKeys();
@@ -179,6 +181,8 @@ public class DAO_Carrinho {
                     p.setIdEntrega(rs.getInt("ID_ENTREGA"));
                     p.setMetodoPagamento(rs.getString("METODO_PAGAMENTO"));
                     p.setStatus(rs.getString("STATUS"));
+                    p.setHoraPedido(rs.getString("DATA_DE_COMPRA"));
+                    p.setValorPedido(rs.getDouble("VALOR_TOTAL"));
                     listaPedidos.add(p);
                 }
             }

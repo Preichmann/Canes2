@@ -23,7 +23,8 @@
                                 <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="DetalhePedido" method="post"
                                       action="${pageContext.request.contextPath}/DetalhePedido" novalidate>
                                     <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getIdPedido()}" /></h5>
-                                    <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getMetodoPagamento()}" /></h6>
+                                    <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getHoraPedido()}" /></h5>
+                                    <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getValorPedido()}" /></h6>
                                     <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getStatus()}" /></h6>
                                     <input type="submit" class="btn btn-primary" value="Detalhe" class="btn btn-cor-especial">
                                 </form>

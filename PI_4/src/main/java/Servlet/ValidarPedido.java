@@ -13,6 +13,8 @@ import Classes.ItemPedidoVendido;
 import Classes.Pedido;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,7 +52,16 @@ public class ValidarPedido extends HttpServlet {
         ArrayList<ItemPedido> listaItemPedido = new Controller.ControllerItemPedido().getListaItemPedido(c.getId_cliente());
         Endereco_Entrega listaEndereco = new Controller.Controller_Cliente().getEntrega(idEntrega);
         String pagamento = (String) sessao.getAttribute("pagamento");
-        Pedido p = new Pedido(c.getId_cliente(), idEntrega, pagamento, "Aguardando Pagamento");
+        double total = 0;
+        for (ItemPedido ite : listaItemPedido) {
+            total = total + ite.getValorTotal();
+        }
+        total = total + 10;
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        String agoraFormatado = localDateTime.format(formatter);
+
+        Pedido p = new Pedido(c.getId_cliente(), idEntrega, pagamento, "Aguardando Pagamento", total, agoraFormatado);
         if (!pagamento.isEmpty()) {
             int idPedido = new Controller.ControllerItemPedido().salvarPedido(p);
             if (idPedido != 0) {
@@ -71,12 +82,7 @@ public class ValidarPedido extends HttpServlet {
                     request.setAttribute("msgFimCompra", true);
                     request.setAttribute("numPedido", idPedido);
                     ArrayList<ItemPedidoVendido> listaItensVenda = new Controller.ControllerItemPedido().getListaItemPedidoVenda(idPedido);
-                    double valorTotal = 0;
-                    for (ItemPedidoVendido it : listaItensVenda) {
-                        valorTotal = valorTotal + it.getValorTotal();
-                    }
-                    valorTotal = valorTotal + 10;
-                    request.setAttribute("valorTotal", valorTotal);
+                    request.setAttribute("valorTotal", p.getValorPedido());
                     request.getRequestDispatcher("/WEB-INF/Index.jsp")
                             .forward(request, response);
                 }

@@ -1,5 +1,8 @@
 package Classes;
 
+import java.time.format.DateTimeFormatter;
+import org.threeten.bp.LocalDateTime;
+
 /**
  *
  * @author Gabriel Ribeiro Vital
@@ -11,15 +14,19 @@ public class Pedido {
     private int idEntrega;
     private String metodoPagamento;
     private String status;
+    private String horaPedido;
+    private double valorPedido;
 
     public Pedido() {
     }
 
-    public Pedido(int idCliente, int idEntrega, String metodoPagamento, String status) {
+    public Pedido(int idCliente, int idEntrega, String metodoPagamento, String status, double valorPedido, String HoraPedido) {
         this.idCliente = idCliente;
         this.idEntrega = idEntrega;
         this.metodoPagamento = metodoPagamento;
         this.status = status;
+        this.valorPedido = valorPedido;
+        this.horaPedido = HoraPedido;
     }
 
     public Pedido(int idPedido, int idCliente, int idEntrega, String metodoPagamento, String status) {
@@ -28,6 +35,22 @@ public class Pedido {
         this.idEntrega = idEntrega;
         this.metodoPagamento = metodoPagamento;
         this.status = status;
+    }
+
+    public String getHoraPedido() {
+        return horaPedido;
+    }
+
+    public void setHoraPedido(String horaPedido) {
+        this.horaPedido = horaPedido;
+    }
+
+    public double getValorPedido() {
+        return valorPedido;
+    }
+
+    public void setValorPedido(double valorPedido) {
+        this.valorPedido = valorPedido;
     }
 
     public int getIdPedido() {

@@ -12,6 +12,37 @@ import java.util.ArrayList;
 
 public class DAO_Carrinho {
 
+    public Pedido getPedido(int idPedido) {
+        Conexao conec = new Conexao();
+        Pedido p = new Pedido();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * FROM "
+                    + "SUPLEMENTOS.PEDIDO WHERE ID_PEDIDO = ?");
+
+            comandoSQL.setInt(1, idPedido);
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    p.setIdPedido(rs.getInt("ID_PEDIDO"));
+                    p.setIdCliente(rs.getInt("ID_CLIENTE"));
+                    p.setIdEntrega(rs.getInt("ID_ENTREGA"));
+                    p.setMetodoPagamento(rs.getString("METODO_PAGAMENTO"));
+                    p.setStatus(rs.getString("STATUS"));
+                    p.setHoraPedido(rs.getString("DATA_DE_COMPRA"));
+                    p.setValorPedido(rs.getDouble("VALOR_TOTAL"));
+                }
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return p;
+    }
+
     public boolean AtrelarItemVendido(ItemPedidoVendido item) {
         Conexao conec = new Conexao();
         boolean retorno;

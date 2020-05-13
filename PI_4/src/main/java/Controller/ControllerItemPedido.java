@@ -16,6 +16,10 @@ public class ControllerItemPedido {
         return new DAO.DAO_Carrinho().adicionarItem(item);
     }
 
+    public Pedido getPedido(int idPedido) {
+        return new DAO.DAO_Carrinho().getPedido(idPedido);
+    }
+
     public ArrayList<ItemPedido> getListaItemPedido(int idCliente) {
         return new DAO.DAO_Carrinho().getListaItemPedido(idCliente);
     }
@@ -23,6 +27,7 @@ public class ControllerItemPedido {
     public ArrayList<ItemPedidoVendido> getListaItemPedidoVenda(int idPedido) {
         return new DAO.DAO_Carrinho().getListaItemPedidoVendidos(idPedido);
     }
+
     public ArrayList<Pedido> getListaPedidos(int idCliente) {
         return new DAO.DAO_Carrinho().getListaPedidos(idCliente);
     }

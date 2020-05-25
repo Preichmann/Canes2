@@ -37,9 +37,6 @@
                       novalidate>
                     <input type="submit" id="LoginCliente" value="Login " class="nav-link">
                 </form>
-                <form method="post" action="${pageContext.request.contextPath}/ListarPedidos" class="nav-item" id="cartIcon" novalidate>
-                    <input type="submit" value="Pedidos " class="nav-link">
-                </form>
                 <form method="get" action="${pageContext.request.contextPath}/Carrinho" class="nav-item" id="cartIcon" novalidate>
                     <input type="submit" value="Carrinho" class="nav-link">
                 </form>
@@ -51,6 +48,9 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <form method="get" action="${pageContext.request.contextPath}/ClienteAlterarDados" class="nav-item" novalidate>
                             <input type="submit" value="Minha conta" class="nav-link">
+                        </form>
+                        <form method="post" action="${pageContext.request.contextPath}/ListarPedidos" class="nav-item" id="cartIcon" novalidate>
+                            <input type="submit" value="Meus Pedidos " class="nav-link">
                         </form>
                         <form method="get" action="${pageContext.request.contextPath}/ListarDadosEntrega" class="nav-item" novalidate>
                             <input type="submit" value="Gerenciar Entrega" class="nav-link">

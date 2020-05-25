@@ -43,34 +43,43 @@
         </div>             
     </nav>
 </head>
+<body>
+    <main>
+        <div class="container mt-5" id="produtos">
+            <h3 class="title-default mb-5">Meus Pedidos</h3>
+            <article class="card mt-3">
+                <div class="card-body justify-content-between">
+                    <div class="d-flex flex-row">
+                        <h5 class="card-title" style="width:250px;margin: 0;display: flex;align-items: center;"><c:out value="ID Pedido" /></h5>
+                        <h5 class="card-title" style="width:240px;margin: 0;display: flex;align-items: center;"><c:out value="Horario da Compra" /></h5>
+                        <h6 class="card-title" style="width:255px;margin: 0;display: flex;align-items: center;"><c:out value="Valor Pedido" /></h6>
+                        <h6 class="card-title" style="width:100px;margin: 0;display: flex;align-items: center;"><c:out value="Status" /></h6>
 
-        <div class="container">
-            <h3 class="title-default">Atualizar Estoque</h3>
-
-            <form id="SalvarImagem" name="AlterarProduto" method="post"
-                  action="${pageContext.request.contextPath}/EstoquistaAlterar" novalidate>
-
-                <div class="form-group">
-                    <label for="produtoNome">Produto</label>
-                    <input type="text" class="form-control" name="produtoNome" id="produtoNome" value="${ProdutoAtt.getNome()}" disabled="true">
-                    <input type="hidden" value="${ProdutoAtt.getIdProd()}" name="idProd" id="idProd" />
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="produtoQuantidadeEstoque">Quantidade em Estoque</label>
-                        <input type="text" class="form-control" name="quantidade" value="${ProdutoAtt.getQuantidade()}" id="quantidade">
                     </div>
                 </div>
-                <input type="submit" value="Atualizar Estoque" class="btn btn-success col-2" />
-            </form>
+            </article>
+            <c:forEach items="${ListaPedidos}" var="listaPedidos">
+                <article class="card mt-3">
+                    <div class="card-body justify-content-between">
+                        <div class="d-flex flex-row">
 
-            <form method="get" action="${pageContext.request.contextPath}/EstoquistaListar" novalidate>
-                <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
-            </form>
+                            <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="AtualizarPedido" method="post"
+                                  action="${pageContext.request.contextPath}/AtualizarPedido" novalidate>
+                                <input type="hidden" name="idPedido" value="${listaPedidos.getIdPedido()}">
+                                <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getIdPedido()}" /></h5>
+                                <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getHoraPedido()}" /></h5>
+                                <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getValorPedido()}" /></h6>
+                                <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getStatus()}" /></h6>
+                                <input type="submit" class="btn btn-primary" value="Editar Status" class="btn btn-cor-especial">
+                            </form>
+                        </div>
+                    </div>
+                </article>
+            </c:forEach>
         </div>
+    </main>
 
-       <%@ include file="./Components/Footer.jspf" %>
+    <%@ include file="./Components/Footer.jspf" %>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -81,5 +90,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-    </body>
+</body>
 </html>

@@ -1,60 +1,52 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html lang="en">
+<html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Produtos</title>
+        <title>Canes Suplementos</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="src/style.css">
-    </head>
+    <nav class="navbar navbar-expand-lg header">
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/Index">
+            <img src="src/img/logoCanesWhite.png" width="150" height=90" style="padding:10px" class="d-inline-block align-top" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <body>
-        <script>
-            if (${retornoAtt} === true) {
-                alert('Quantidade atualizada Com sucesso!');
-            } else {
-                alert('Falha ao atualizar a Quantidade!');
-            }
-        </script>
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/EstoquistaListar">
-                    <img src="src/img/logoCanesBlack.png" width="150" height="90" class="d-inline-block align-top" alt="">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav mr-auto">
+                <form method="get" action="${pageContext.request.contextPath}/EstoquistaListar" class="nav-item" novalidate>
+                    <input type="submit" value="Listar Produtos" class="nav-link">
+                </form>
+                <form method="post" action="${pageContext.request.contextPath}/ListarPedidosEstoque" class="nav-item" novalidate>
+                    <input type="submit" value="Listar Pedidos" class="nav-link">
+                </form>
+            </div>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="navbar-nav mr-auto">
-                        <form method="get" action="${pageContext.request.contextPath}/EstoquistaListar" class="nav-item" novalidate>
-                            <input type="submit" value="Listar Produtos" class="nav-link">
+            <div class="d-flex user-options">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ${NomeLogadoAtt}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <form method="get" action="${pageContext.request.contextPath}/Logout" class="nav-item" novalidate>
+                            <input type="submit" value="Sair" class="nav-link">
                         </form>
                     </div>
-
-                    <div class="d-flex user-options">
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                ${NomeLogadoAtt}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <form method="get" action="${pageContext.request.contextPath}/Logout" class="nav-item" novalidate>
-                                    <input type="submit" value="Sair" class="nav-link">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </nav>
-        </header>
+            </div>
+        </div>             
+    </nav>
+</head>
 
         <main>
             <h3 class="title-default">Produtos</h3>
-            
+
             <section id="produtos" class="pb-5">
                 <div class="container">
                     <c:forEach items="${ListaProdAtt}" var="listaProd">
@@ -84,7 +76,7 @@
         </main>
 
         <%@ include file="./Components/Footer.jspf" %>
-                                    
+
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

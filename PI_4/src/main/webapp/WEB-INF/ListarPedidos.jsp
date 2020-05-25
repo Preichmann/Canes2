@@ -16,6 +16,17 @@
         <main>
             <div class="container mt-5" id="produtos">
                 <h3 class="title-default mb-5">Meus Pedidos</h3>
+                <article class="card mt-3">
+                    <div class="card-body justify-content-between">
+                        <div class="d-flex flex-row">
+                            <h5 class="card-title" style="width:260px;margin: 0;display: flex;align-items: center;"><c:out value="ID Pedido" /></h5>
+                            <h5 class="card-title" style="width:250px;margin: 0;display: flex;align-items: center;"><c:out value="Horario da Compra" /></h5>
+                            <h6 class="card-title" style="width:260px;margin: 0;display: flex;align-items: center;"><c:out value="Valor Pedido" /></h6>
+                            <h6 class="card-title" style="width:100px;margin: 0;display: flex;align-items: center;"><c:out value="Status" /></h6>
+
+                        </div>
+                    </div>
+                </article>
                 <c:forEach items="${ListaPedidos}" var="listaPedidos">
                     <article class="card mt-3">
                         <div class="card-body justify-content-between">

@@ -82,7 +82,9 @@ public class UsuarioLogado implements Filter {
                 && funcionario.getTipo().equals("Administrador")) {
             return true;
         } else if (urlAcessada.endsWith("/EstoquistaListar")
-                || urlAcessada.endsWith("EstoquistaAlterar")
+                || urlAcessada.endsWith("EstoquistaAlterar") 
+                || urlAcessada.endsWith("ListarPedidosEstoque")
+                || urlAcessada.endsWith("AtualizarPedido")
                 && funcionario.getTipo().equals("Estoquista")) {
             return true;
         }

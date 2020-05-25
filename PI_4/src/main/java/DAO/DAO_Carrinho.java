@@ -42,6 +42,36 @@ public class DAO_Carrinho {
         }
         return p;
     }
+    public ArrayList<Pedido> getListaPedidosEstoque() {
+        ArrayList<Pedido> listaPedidos = new ArrayList<>();
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * FROM "
+                    + "SUPLEMENTOS.PEDIDO;");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Pedido p = new Pedido();
+                    p.setIdPedido(rs.getInt("ID_PEDIDO"));
+                    p.setIdCliente(rs.getInt("ID_CLIENTE"));
+                    p.setIdEntrega(rs.getInt("ID_ENTREGA"));
+                    p.setMetodoPagamento(rs.getString("METODO_PAGAMENTO"));
+                    p.setStatus(rs.getString("STATUS"));
+                    p.setHoraPedido(rs.getString("DATA_DE_COMPRA"));
+                    p.setValorPedido(rs.getDouble("VALOR_TOTAL"));
+                    listaPedidos.add(p);
+                }
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return listaPedidos;
+    }
 
     public boolean AtrelarItemVendido(ItemPedidoVendido item) {
         Conexao conec = new Conexao();

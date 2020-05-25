@@ -5,6 +5,7 @@ import Classes.Pedido;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +35,7 @@ public class ListarPedidos extends HttpServlet {
         if (c != null) {
             request.setAttribute("NomeLogadoAtt", c.getNome());
             ArrayList<Pedido> listaPedidos = new Controller.ControllerItemPedido().getListaPedidos(c.getId_cliente());
+            Collections.reverse(listaPedidos);
             request.setAttribute("ListaPedidos", listaPedidos);
             request.getRequestDispatcher("/WEB-INF/ListarPedidos.jsp")
                     .forward(request, response);

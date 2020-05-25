@@ -12,6 +12,28 @@ import java.util.ArrayList;
 
 public class DAO_Carrinho {
 
+    public boolean AtualizarStatus(int idPedido, String status) {
+        boolean retorno = false;
+
+        Conexao conec = new Conexao();
+
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE SUPLEMENTOS.PEDIDO SET STATUS = ? WHERE PEDIDO.ID_PEDIDO = ?;");
+
+            comandoSQL.setString(1, status);
+            comandoSQL.setInt(2, idPedido);
+
+            int linhaAfetada = comandoSQL.executeUpdate();
+
+            retorno = linhaAfetada > 0;
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return retorno;
+    }
+
     public Pedido getPedido(int idPedido) {
         Conexao conec = new Conexao();
         Pedido p = new Pedido();
@@ -42,6 +64,7 @@ public class DAO_Carrinho {
         }
         return p;
     }
+
     public ArrayList<Pedido> getListaPedidosEstoque() {
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
         Conexao conec = new Conexao();

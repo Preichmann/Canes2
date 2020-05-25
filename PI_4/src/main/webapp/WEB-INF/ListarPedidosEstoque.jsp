@@ -44,6 +44,13 @@
     </nav>
 </head>
 <body>
+    <script>
+        if (${result} === true) {
+            alert('Status Alterado com sucesso');
+        } else {
+            alert('Falha ao Atualizar Status');
+        }
+    </script>
     <main>
         <div class="container mt-5" id="produtos">
             <h3 class="title-default mb-5">Meus Pedidos</h3>
@@ -63,7 +70,7 @@
                     <div class="card-body justify-content-between">
                         <div class="d-flex flex-row">
 
-                            <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="AtualizarPedido" method="post"
+                            <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="AtualizarPedido" method="get"
                                   action="${pageContext.request.contextPath}/AtualizarPedido" novalidate>
                                 <input type="hidden" name="idPedido" value="${listaPedidos.getIdPedido()}">
                                 <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getIdPedido()}" /></h5>

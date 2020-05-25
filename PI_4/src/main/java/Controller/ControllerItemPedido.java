@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 public class ControllerItemPedido {
 
+    public boolean alterarPedido(int idPedido, String status) {
+       return new DAO.DAO_Carrinho().AtualizarStatus(idPedido,status);
+    }
+
     public ItemPedido validarRepeticao(int idProd) {
         return new DAO.DAO_Carrinho().validarRepeticao(idProd);
     }
@@ -31,6 +35,7 @@ public class ControllerItemPedido {
     public ArrayList<Pedido> getListaPedidos(int idCliente) {
         return new DAO.DAO_Carrinho().getListaPedidos(idCliente);
     }
+
     public ArrayList<Pedido> getListaPedidosEstoque() {
         return new DAO.DAO_Carrinho().getListaPedidosEstoque();
     }

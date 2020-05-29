@@ -83,6 +83,7 @@ public class ValidarPedido extends HttpServlet {
                     request.setAttribute("numPedido", idPedido);
                     ArrayList<ItemPedidoVendido> listaItensVenda = new Controller.ControllerItemPedido().getListaItemPedidoVenda(idPedido);
                     request.setAttribute("valorTotal", p.getValorPedido());
+                    sessao.setAttribute("msg", false);
                     request.getRequestDispatcher("/WEB-INF/Index.jsp")
                             .forward(request, response);
                 }

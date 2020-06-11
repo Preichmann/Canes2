@@ -37,82 +37,78 @@
                 alert('O campo Parcelas é obrigatório quando selecionado Cartão');
             }
         </script>
-        <div class="container">
-            <div class="py-5 text-center">
-                <h2>Forma de Pagamento</h2>
-            </div>
 
-            <div class="row">
-                <div class="col-md-8 order-md-1">
-                    <form class="needs-validation"   name="CadastrarEntrega" method="post"
-                          action="${pageContext.request.contextPath}/CheckOutPagamento" novalidate>
-                        <h4 class="mb-3">Pagamento</h4>
 
-                        <div class="d-block my-3">
-                            <div class="custom-control custom-radio">
-                                <input id="boleto" name="paymentMethod" type="radio" value="boleto" class="custom-control-input" checked required>
-                                <label class="custom-control-label" for="boleto">Boleto</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input id="credito" name="paymentMethod" type="radio" value="credito" class="custom-control-input" required>
-                                <label class="custom-control-label" for="credito">Cartão de Crédito</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="cc-name">Nome no Cartão</label>
-                                <input type="text" class="form-control" id="cc-name" name="cc-name" placeholder="" required>
-                                <small class="text-muted">O nome completo que aparece no cartão</small>
-                                <div class="invalid-feedback">
-                                    O Nome é obrigatório
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="cc-number">Número do cartão de crédito</label>
-                                <input type="text" class="form-control" id="cc-number" name="cc-number" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Número do cartão é obrigatório
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3 mb-3">
-                                <label for="cc-expiration">Vencimento</label>
-                                <input type="text" class="form-control" id="cc-expiration" name="cc-expiration" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Data de Vencimento é obrigatória
-                                </div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="cc-cvv">CVV</label>
-                                <input type="text" class="form-control" id="cc-cvv" name="cc-cvv"placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Código de segurança é obrigatório
-                                </div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="cc-parcelas">Parcelas</label>
-                                <select id="cc-parcelas" name="cc-parcelas">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                            </div>
-                        </div>
-                        <hr class="mb-4">
-                        <button class="btn btn-primary btn-lg btn-block" type="submit">Seguir</button>
-                    </form>
+        <div class="container mt-5">
+            <h3 class="title-default mb-5">Forma de Pagamento</h3>
+            <form class="needs-validation"   name="CadastrarEntrega" method="post"
+                  action="${pageContext.request.contextPath}/CheckOutPagamento" novalidate>
+
+                <div class="mt-5 mb-4">
+                    <div class="custom-control custom-radio">
+                        <input id="boleto" name="paymentMethod" type="radio" value="boleto" class="custom-control-input" checked required>
+                        <label class="custom-control-label" for="boleto">Boleto</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="credito" name="paymentMethod" type="radio" value="credito" class="custom-control-input" required>
+                        <label class="custom-control-label" for="credito">Cartão de Crédito</label>
+                    </div>
                 </div>
-            </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label for="cc-name">Nome no cartão</label>
+                        <input type="text" class="form-control" id="cc-name" name="cc-name" placeholder="" required>
+                        <small class="text-muted">Nome completo do titular do cartão</small>
+                        <div class="invalid-feedback">
+                            O Nome é obrigatório
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-number">Número do cartão</label>
+                        <input type="text" class="form-control" id="cc-number" name="cc-number" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Número do cartão é obrigatório
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-5">
+                    <div class="col-md-3">
+                        <label for="cc-expiration">Vencimento</label>
+                        <input type="text" class="form-control" id="cc-expiration" name="cc-expiration" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Data de Vencimento é obrigatória
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="cc-cvv">CVV</label>
+                        <input type="text" class="form-control" id="cc-cvv" name="cc-cvv"placeholder="" required>
+                        <div class="invalid-feedback">
+                            Código de segurança é obrigatório
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="cc-parcelas">Parcelas</label>
+                        <select id="cc-parcelas" name="cc-parcelas">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="btn btn-secondary mt-2 mb-5" type="submit">Seguir</button>
+            </form>
         </div>
 
         <%@ include file="./Components/Footer.jspf" %>

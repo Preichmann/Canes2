@@ -98,10 +98,6 @@
     margin: 0;
 }
 
-/*.navbar form input:hover {
-    color: red;
-}*/
-
 .header {
     font-family: Montserrat,sans-serif;
     background-color: #111 !important;
@@ -136,8 +132,6 @@
     color: #898989 !important;
 }
 
-/* bd2130 */
-
 article.card {
     transition: box-shadow 300ms ease;
 }
@@ -153,29 +147,6 @@ article.card:hover {
 
 .btn-padrao {
     width: 130px !important;
-}
-
-.footer {
-    background-color: #000;
-    color: #898989;
-}
-
-footer a {
-    text-decoration: none;
-    color: #898989;
-    font-weight: 600;
-    font-size: 17px;
-    letter-spacing: 1px;
-}
-
-footer a:hover {
-    text-decoration: none;
-    color: #898989;
-}
-
-.obrigatorio {
-    color: #ff0000;
-    font-size: 15px;
 }
 
 .title-default {
@@ -368,6 +339,29 @@ footer a:hover {
     max-height: 80%;
 }
 
+.obrigatorio {
+    color: #ff0000;
+    font-size: 15px;
+}
+
+.footer {
+    background-color: #000;
+    color: #898989;
+}
+
+footer a {
+    text-decoration: none;
+    color: #898989;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 1px;
+}
+
+footer a:hover {
+    text-decoration: none;
+    color: #898989;
+}
+
 @media (max-width: 992px) {
     .navbar .nav-link {
         padding: 0.5em;
@@ -376,16 +370,3 @@ footer a:hover {
         flex-direction: column;
     }
 }
-
-/* Criar regra pra cards de produto ficar centralizados
-@media (max-height: 720px) {
-    .container {
-        
-    }
-    
-    .preco,
-    .product-price {
-        display: none;
-    }
-}
-*/

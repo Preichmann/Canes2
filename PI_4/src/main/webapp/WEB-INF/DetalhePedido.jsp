@@ -16,63 +16,52 @@
         <%@ include file="./Components/Header.jspf" %>
 
         <main>
-            <div class="container">
-                <h3>Pedido: ${numPedido}</h3>
-                <hr>
-            </div>
-            <div class="container" id="lista">
-                <div class="row">
-                    <div class="col">
-                        <h4>Endereço de Entrega</h4>
-                        <article class="card mt-3">
-                            <div class="card-body justify-content-between">
-                                <div class="d-flex flex-row" disabled>
-                                    <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaEndereco.getCep()}" /></h5>
-                                    <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaEndereco.getRua()}" /></h6>
-                                </div>
+            <div class="container mt-5" id="lista">                                
+                <h4>Pedido: ${numPedido}</h4>
+                
+                <h5 class="mt-4">Endereço de Entrega:</h5>
+                <p><c:out value="${listaEndereco.getCep()}" /> - <c:out value="${listaEndereco.getRua()}" /></p>
+
+                <h5 class="mt-4">Hora da Solicitação:</h5>
+                <p>${horaAcesso}</p>
+
+                <h5 class="mt-4">Metodo de pagamento:</h5>
+                <p>${pagamento}</p>                    
+
+                <div class="mt-5" style="width:100%">
+                    <ul class="cart-label-row">
+                        <li class="cart-label __large">Produto</li>
+                        <li class="cart-label __small">Preço</li>
+                        <li class="cart-label">Quantidade</li>
+                        <li class="cart-label">Total</li>
+                    </ul>
+
+                    <c:forEach items="${listaItemPedido}" var="listaItemPedido" >
+                        <div class="product-list">
+                            <input type="hidden" value="${listaItemPedido.getIdProduto()}" name="idProd" id="idProd" />
+                            <div class="product__image">
+                                <p class="product__name">
+                                    <c:out value = "${listaItemPedido.getNomeProduto()}"/>
+                                </p>
                             </div>
-                        </article>
-                    </div>
-                </div>
-                <br>
-                <div>
-                    <h5>Hora da Solicitação : ${horaAcesso}</h5>
-                </div>
-                <h5>Metodo de pagamento : ${pagamento}</h5>
-                    <div class="row">
-                        <div class="mt-5" style="width:100%">
-                            <ul class="cart-label-row">
-                                <li class="cart-label __large">Produto</li>
-                                <li class="cart-label __small">Preço</li>
-                                <li class="cart-label">Quantidade</li>
-                                <li class="cart-label">Total</li>
-                            </ul>
-                        <c:forEach items="${listaItemPedido}" var="listaItemPedido" >
-                            <div class="product-list">
-                                <input type="hidden" value="${listaItemPedido.getIdProduto()}" name="idProd" id="idProd" />
-                                <div class="product__image">
-                                    <p class="product__name">
-                                        <c:out value = "${listaItemPedido.getNomeProduto()}"/>
-                                    </p>
-                                </div>
-                                <div class="product__price">
-                                    <c:out value = "${listaItemPedido.getValorUnitario()}"/>
-                                </div>
-                                <div class="product__ammount">
-                                    <c:out value="${listaItemPedido.getQuantidade()}"/>
-                                </div>
-                                <div class="product__total">
-                                    <c:out value = "${listaItemPedido.getValorTotal()}"/>
-                                </div>
+                            <div class="product__price">
+                                <c:out value = "${listaItemPedido.getValorUnitario()}"/>
                             </div>
-                        </c:forEach>
-                    </div>
+                            <div class="product__ammount">
+                                <c:out value="${listaItemPedido.getQuantidade()}"/>
+                            </div>
+                            <div class="product__total">
+                                <c:out value = "${listaItemPedido.getValorTotal()}"/>
+                            </div>
+                        </div>
+                    </c:forEach>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <label>Frete: R$ 10,00</label>
+
+                <div class="row mt-5 mb-5">
+                    <div class="col cart-text">
+                        <label>FRETE: R$ 10,00</label>
                     </div>
-                    <div class="col">
+                    <div class="col cart-text">
                         <label>TOTAL: </label>
                         <label> ${SubTotal}</label>
                     </div>

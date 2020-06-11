@@ -8,71 +8,69 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="src/style.css">
-    <nav class="navbar navbar-expand-lg header">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/Index">
-            <img src="src/img/logoCanesWhite.png" width="150" height=90" style="padding:10px" class="d-inline-block align-top" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    </head>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="navbar-nav mr-auto">
-                <form method="get" action="${pageContext.request.contextPath}/EstoquistaListar" class="nav-item" novalidate>
-                    <input type="submit" value="Listar Produtos" class="nav-link">
-                </form>
-                <form method="post" action="${pageContext.request.contextPath}/ListarPedidosEstoque" class="nav-item" novalidate>
-                    <input type="submit" value="Listar Pedidos" class="nav-link">
-                </form>
-            </div>
+    <body>
+        <nav class="navbar navbar-expand-lg header">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/Index">
+                <img src="src/img/logoCanesWhite.png" width="150" height=90" style="padding:10px" class="d-inline-block align-top" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <div class="d-flex user-options">
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        ${NomeLogadoAtt}
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <form method="get" action="${pageContext.request.contextPath}/Logout" class="nav-item" novalidate>
-                            <input type="submit" value="Sair" class="nav-link">
-                        </form>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav mr-auto">
+                    <form method="get" action="${pageContext.request.contextPath}/EstoquistaListar" class="nav-item" novalidate>
+                        <input type="submit" value="Listar Produtos" class="nav-link">
+                    </form>
+                    <form method="post" action="${pageContext.request.contextPath}/ListarPedidosEstoque" class="nav-item" novalidate>
+                        <input type="submit" value="Listar Pedidos" class="nav-link">
+                    </form>
+                </div>
+
+                <div class="d-flex user-options">
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            ${NomeLogadoAtt}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <form method="get" action="${pageContext.request.contextPath}/Logout" class="nav-item" novalidate>
+                                <input type="submit" value="Sair" class="nav-link">
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>             
-    </nav>
-</head>
+            </div>             
+        </nav>
 
         <main>
-            <h3 class="title-default">Produtos</h3>
-
-            <section id="produtos" class="pb-5">
-                <div class="container">
-                    <c:forEach items="${ListaProdAtt}" var="listaProd">
-                        <article class="card mt-3">
-                            <div class="card-body justify-content-between">
-                                <div class="d-flex flex-row">
-                                    <form class="d-flex flex-row justify-content-between" style="width: 100%;"
-                                          name="ProdutoListar" method="post"
-                                          action="${pageContext.request.contextPath}/EstoquistaListar" novalidate>
-                                        <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
-                                        <h5 class="card-title"
-                                            style="width:200px;margin: 0;display: flex;align-items: center;">
-                                            <c:out value="${listaProd.getNome()}" />
-                                        </h5>
-                                        <p class="card-text" style="margin: 0;display: flex;align-items: center;">
-                                            <span>Qtd </span>
-                                            <c:out value="${listaProd.getQuantidade()}" />
-                                        </p>
-                                        <input type="submit" value="Atualizar estoque" class="btn btn-cor-especial">
-                                    </form>
-                                </div>
+            <div class="container mt-5 mb-5" id="produtos">
+                <h3 class="title-default mb-5">Produtos</h3>
+                <c:forEach items="${ListaProdAtt}" var="listaProd">
+                    <article class="card mt-3">
+                        <div class="card-body justify-content-between">
+                            <div class="d-flex flex-row">
+                                <form class="d-flex flex-row justify-content-between" style="width: 100%;"
+                                      name="ProdutoListar" method="post"
+                                      action="${pageContext.request.contextPath}/EstoquistaListar" novalidate>
+                                    <input type="hidden" value="${listaProd.getIdProd()}" name="idProd" id="idProd" />
+                                    <h5 class="card-title" style="width:550px;margin: 0;display: flex;align-items: center;">
+                                        <c:out value="${listaProd.getNome()}" />
+                                    </h5>
+                                    <p class="card-text" style="margin: 0;display: flex;align-items: center;">
+                                        <span>Qtd </span>
+                                        <c:out value="${listaProd.getQuantidade()}" />
+                                    </p>
+                                    <input type="submit" value="Atualizar estoque" class="btn btn-cor-especial">
+                                </form>
                             </div>
-                        </article>
-                    </c:forEach>
-                </div>
-            </section>
+                        </div>
+                    </article>
+                </c:forEach>
+            </div>
         </main>
 
         <%@ include file="./Components/Footer.jspf" %>

@@ -16,26 +16,23 @@
         <main>
             <div class="container mt-5" id="produtos">
                 <h3 class="title-default mb-5">Meus Pedidos</h3>
-                <article class="card mt-3">
-                    <div class="card-body justify-content-between">
+                <article>
                         <div class="d-flex flex-row">
-                            <h5 class="card-title" style="width:260px;margin: 0;display: flex;align-items: center;"><c:out value="ID Pedido" /></h5>
-                            <h5 class="card-title" style="width:250px;margin: 0;display: flex;align-items: center;"><c:out value="Horario da Compra" /></h5>
-                            <h6 class="card-title" style="width:260px;margin: 0;display: flex;align-items: center;"><c:out value="Valor Pedido" /></h6>
-                            <h6 class="card-title" style="width:100px;margin: 0;display: flex;align-items: center;"><c:out value="Status" /></h6>
-
+                            <h6 class="cart-label"><c:out value="ID Pedido" /></h6>
+                            <h6 class="cart-label"><c:out value="Horario da Compra" /></h6>
+                            <h6 class="cart-label"><c:out value="Valor Pedido" /></h6>
+                            <h6 class="cart-label"><c:out value="Status" /></h6>
                         </div>
-                    </div>
                 </article>
                 <c:forEach items="${ListaPedidos}" var="listaPedidos">
-                    <article class="card mt-3">
+                    <article class="mb-5">
                         <div class="card-body justify-content-between">
                             <div class="d-flex flex-row">
                                 <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="DetalhePedido" method="post"
                                       action="${pageContext.request.contextPath}/DetalhePedido" novalidate>
                                     <input type="hidden" name="idPedido" value="${listaPedidos.getIdPedido()}">
-                                    <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getIdPedido()}" /></h5>
-                                    <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getHoraPedido()}" /></h5>
+                                    <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getIdPedido()}" /></h6>
+                                    <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getHoraPedido()}" /></h6>
                                     <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getValorPedido()}" /></h6>
                                     <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaPedidos.getStatus()}" /></h6>
                                     <input type="submit" class="btn btn-primary" value="Detalhe" class="btn btn-cor-especial">

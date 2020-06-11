@@ -39,7 +39,7 @@
                                 <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="ListarDadosFaturamento" method="post"
                                       action="${pageContext.request.contextPath}/ListarDadosFaturamento" novalidate>
                                     <input type="hidden" value="${listaFatu.getId_faturamento()}" name="idFatura" id="idFatura" />
-                                    <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaFatu.getCep()}" /></h5>
+                                    <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaFatu.getCep()}" /></h6>
                                     <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaFatu.getRua()}" /></h6>
                                     <input type="submit" class="btn btn-primary" value="Editar" class="btn btn-cor-especial">
                                 </form>

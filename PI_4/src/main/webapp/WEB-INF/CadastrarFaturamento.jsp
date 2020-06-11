@@ -123,51 +123,50 @@
 
         <%@ include file="./Components/Header.jspf" %>
         
-        <div class="container">
-            <h3 class="title-default">Cadastrar Endereço de Faturamento</h3>
-            <hr>
-
+        
+        <div class="container mt-5">
+            <h3 class="title-default mb-5">Cadastrar Endereço de Faturamento</h3>
+            
+            
             <form method="post" action="${pageContext.request.contextPath}/CadastrarFaturamento" novalidate>
-                <label>Endereço de Faturamento:</label>
-                <input type="hidden" class="form-control" name="cepValidar" id="cepValidar" value=""><br>
-                <div class="row">
-                    <div class="col-sm-2">
-                        <label>CEP</label><span class="obrigatorio">*</span>
-                        <input type="number" class="form-control" name="cep" id="cep" maxlength="8" placeholder="Somente números"><br>
+                <div class="row mt-3">
+                    <input type="hidden" class="form-control" name="cepValidar" id="cepValidar">
+                    <div class="col-sm-3">
+                        <label for="cep">CEP</label><span class="obrigatorio">*</span>
+                        <input type="number" class="form-control" name="cep" id="cep" maxlength="8" placeholder="Somente números" required>
                     </div>
-
-                    <div class="col-sm-4">
-                        <label>Endereço</label><span class="obrigatorio">*</span>
-                        <input type="text" class="form-control" name="logradouro" id="logradouro"><br>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <label>Número</label><span class="obrigatorio">*</span>
-                        <input type="number" class="form-control" name="numero" id="numero"><br>
+                    
+                    <div class="col-sm-7">
+                        <label for="logradouro">Logradouro</label><span class="obrigatorio">*</span>
+                        <input type="text" class="form-control" name="logradouro" id="logradouro" required>
                     </div>
 
                     <div class="col-sm-2">
-                        <label>Complemento</label>
-                        <input type="text" class="form-control" name="complemento" id="complemento"><br>
+                        <label for="numero">Número</label><span class="obrigatorio">*</span>
+                        <input type="number" class="form-control" name="numero" id="numero" required>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <label>Bairro</label><span class="obrigatorio">*</span>
-                        <input type="text" class="form-control" name="bairro" id="bairro"><br>
+                
+                <div class="row mt-4">
+                    <div class="col-sm-5">
+                        <label for="complemento">Complemento</label>
+                        <input type="text" class="form-control" name="complemento" id="complemento">
                     </div>
-
-                    <div class="col-sm-4">
-                        <label>Cidade</label><span class="obrigatorio">*</span>
-                        <input type="text" class="form-control" name="cidade" id="cidade"><br>
+                    <div class="col-sm-3">
+                        <label for="bairro">Bairro</label><span class="obrigatorio">*</span>
+                        <input type="text" class="form-control" name="bairro" id="bairro" required>
                     </div>
-
-                    <div class="col-sm-2">
-                        <label>Estado</label><span class="obrigatorio">*</span>
-                        <input type="text" class="form-control" name="estado" id="estado"><br>
+                    <div class="col-sm-3">
+                        <label for="cidade">Cidade</label><span class="obrigatorio">*</span>
+                        <input type="text" class="form-control" name="cidade" id="cidade" required>
+                    </div>
+                    <div class="col-sm-1">
+                        <label for="estado">Estado</label><span class="obrigatorio">*</span>
+                        <input type="text" class="form-control" name="estado" id="estado" required>
                     </div>
                 </div>
-                <input type="submit" value="Cadastrar" class="btn btn-success col-2" />
+                <input type="hidden" class="form-control" name="idCliente" id="idCliente" value="${idCliente}">
+                <input type="submit" value="Cadastrar" class="btn btn-cor-especial col-2 mt-5 mb-5" />
             </form>
         </div>
 

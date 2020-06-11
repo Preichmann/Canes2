@@ -2,14 +2,10 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <!--CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="src/style.css">
-        <!-- JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -48,6 +44,7 @@
         </script>
         <title>Cadastrar Endereço de Entrega</title>
     </head>
+    
     <body>
         <script>
             if (${RetornoCepVal} === false) {
@@ -126,52 +123,51 @@
         </script>
 
         <%@ include file="./Components/Header.jspf" %>
+
         
-        <div class="container">
-            <h3 class="title-default">Cadastrar Endereço de Entrega</h3>
+        <div class="container mt-5">
+            <h3 class="title-default mb-5">Cadastrar Endereço de Entrega</h3>
 
             <form method="post" action="${pageContext.request.contextPath}/CadastrarEntrega" novalidate>
-                <label>Endereço de Entrega:</label>
-                <input type="hidden" class="form-control" name="cepValidar" id="cepValidar" value=""><br>
-                <div class="row">
-                    <div class="col-sm-2">
-                        <label>CEP</label><span class="obrigatorio">*</span>
-                        <input type="number" class="form-control" name="cep" id="cep" maxlength="8" placeholder="Somente números"><br>
+                <div class="row mt-3">
+                    <input type="hidden" class="form-control" name="cepValidar" id="cepValidar">
+                    <div class="col-sm-3">
+                        <label for="cep">CEP</label><span class="obrigatorio">*</span>
+                        <input type="number" class="form-control" name="cep" id="cep" maxlength="8" placeholder="Somente números" required>
                     </div>
-
-                    <div class="col-sm-4">
-                        <label>Endereço</label><span class="obrigatorio">*</span>
-                        <input type="text" class="form-control" name="logradouro" id="logradouro"><br>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <label>Número</label><span class="obrigatorio">*</span>
-                        <input type="number" class="form-control" name="numero" id="numero"><br>
+                    
+                    <div class="col-sm-7">
+                        <label for="logradouro">Logradouro</label><span class="obrigatorio">*</span>
+                        <input type="text" class="form-control" name="logradouro" id="logradouro" required>
                     </div>
 
                     <div class="col-sm-2">
-                        <label>Complemento</label>
-                        <input type="text" class="form-control" name="complemento" id="complemento"><br>
+                        <label for="numero">Número</label><span class="obrigatorio">*</span>
+                        <input type="number" class="form-control" name="numero" id="numero" required>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <label>Bairro</label><span class="obrigatorio">*</span>
-                        <input type="text" class="form-control" name="bairro" id="bairro"><br>
+                
+                <div class="row mt-4">
+                    <div class="col-sm-5">
+                        <label for="complemento">Complemento</label>
+                        <input type="text" class="form-control" name="complemento" id="complemento">
                     </div>
-
-                    <div class="col-sm-4">
-                        <label>Cidade</label><span class="obrigatorio">*</span>
-                        <input type="text" class="form-control" name="cidade" id="cidade"><br>
+                    <div class="col-sm-3">
+                        <label for="bairro">Bairro</label><span class="obrigatorio">*</span>
+                        <input type="text" class="form-control" name="bairro" id="bairro" required>
                     </div>
-
-                    <div class="col-sm-2">
-                        <label>Estado</label><span class="obrigatorio">*</span>
-                        <input type="text" class="form-control" name="estado" id="estado"><br>
+                    <div class="col-sm-3">
+                        <label for="cidade">Cidade</label><span class="obrigatorio">*</span>
+                        <input type="text" class="form-control" name="cidade" id="cidade" required>
+                    </div>
+                    <div class="col-sm-1">
+                        <label for="estado">Estado</label><span class="obrigatorio">*</span>
+                        <input type="text" class="form-control" name="estado" id="estado" required>
                     </div>
                 </div>
                 <input type="hidden" class="form-control" name="idCliente" id="idCliente" value="${idCliente}">
-                <input type="submit" value="Cadastrar" class="btn btn-success col-2" />
+                
+                <input type="submit" value="Cadastrar" class="btn btn-cor-especial col-2 mt-5 mb-5" />
             </form>
         </div>
 

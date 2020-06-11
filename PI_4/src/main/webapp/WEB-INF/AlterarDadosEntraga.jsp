@@ -124,52 +124,53 @@
 
         <%@ include file="./Components/Header.jspf" %>
                             
-        <div class="container">
-            <h3 class="title-default">Alterar Endereço de Entrega</h3>
+        <div class="container mt-5">
+            <h3 class="title-default mb-5">Alterar Endereço de Entrega</h3>
 
             <form method="post" action="${pageContext.request.contextPath}/AlterarEnderecoEntrega" novalidate>
-                <input type="hidden" class="form-control" name="cepValidar" id="cepValidar" value=""><br>
-                <div class="row">
-                    <div class="col-sm-2">
-                        <label>CEP</label><span class="obrigatorio">*</span>
-                        <input type="number" class="form-control" name="cep" id="cep" value="${cep}"maxlength="8"><br>
+                <input type="hidden" class="form-control" name="cepValidar" id="cepValidar" value="">
+                <div class="row mt-3">
+                    <div class="col-sm-3">
+                        <label for="cep">CEP</label><span class="obrigatorio">*</span>
+                        <input type="number" class="form-control" name="cep" id="cep" value="${cep}"maxlength="8">
                     </div>
-
-                    <div class="col-sm-4">
-                        <label>Endereço</label><span class="obrigatorio">*</span>
-                        <input type="text" class="form-control" name="logradouro" id="logradouro" value="${rua}"><br>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <label>Número</label><span class="obrigatorio">*</span>
-                        <input type="number" class="form-control" name="numero" id="numero" value="${numero}"><br>
+                
+                    <div class="col-sm-7">
+                        <label for="logradouro">Logradouro</label><span class="obrigatorio">*</span>
+                        <input type="text" class="form-control" name="logradouro" id="logradouro" value="${rua}">
                     </div>
 
                     <div class="col-sm-2">
-                        <label>Complemento</label>
-                        <input type="text" class="form-control" name="complemento" id="complemento" value="${complemento}"><br>
+                        <label for="numero">Número</label><span class="obrigatorio">*</span>
+                        <input type="number" class="form-control" name="numero" id="numero" value="${numero}">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <label>Bairro</label><span class="obrigatorio">*</span>
-                        <input type="text" class="form-control" name="bairro" id="bairro" value="${bairro}"><br>
+                    
+                <div class="row mt-4 mb-5">
+                    <div class="col-sm-5">
+                        <label for="complemento">Complemento</label>
+                        <input type="text" class="form-control" name="complemento" id="complemento" value="${complemento}">
+                    </div>
+                    
+                    <div class="col-sm-3">
+                        <label for="bairro">Bairro</label><span class="obrigatorio">*</span>
+                        <input type="text" class="form-control" name="bairro" id="bairro" value="${bairro}">
                     </div>
 
-                    <div class="col-sm-4">
-                        <label>Cidade</label><span class="obrigatorio">*</span>
-                        <input type="text" class="form-control" name="cidade" id="cidade" value="${cidade}"><br>
+                    <div class="col-sm-3">
+                        <label for="cidade">Cidade</label><span class="obrigatorio">*</span>
+                        <input type="text" class="form-control" name="cidade" id="cidade" value="${cidade}">
                     </div>
 
-                    <div class="col-sm-2">
-                        <label>Estado</label><span class="obrigatorio">*</span>
-                        <input type="text" class="form-control" name="estado" id="estado" value="${estado}"><br>
+                    <div class="col-sm-1">
+                        <label for="estado">Estado</label><span class="obrigatorio">*</span>
+                        <input type="text" class="form-control" name="estado" id="estado" value="${estado}">
                     </div>
                 </div>
                 <input type="hidden" class="form-control" name="idEntrega" id="idEntrega" value="${idEntrega}">
                 <input type="submit" value="Cadastrar" class="btn btn-success col-2" />
             </form>
-            <form method="get" action="${pageContext.request.contextPath}/ListarDadosEntrega" novalidate>
+            <form class="mb-5 mt-3" method="get" action="${pageContext.request.contextPath}/ListarDadosEntrega" novalidate>
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
         </div>

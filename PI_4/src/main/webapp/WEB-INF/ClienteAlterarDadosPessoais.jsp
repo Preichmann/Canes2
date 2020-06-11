@@ -84,7 +84,7 @@
 
                 <input type="submit" value="Alterar" class="btn btn-success col-2" />
             </form>
-            <form method="get" action="${pageContext.request.contextPath}/Index" novalidate>
+            <form class="mb-5 mt-3" method="get" action="${pageContext.request.contextPath}/Index" novalidate>
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
         </div>

@@ -91,11 +91,20 @@
             </nav>
         </header>
 
-        <div class="container">
-            <h3 class="title-default">Cadastrar Funcionário</h3>
+        <div class="container mt-5">
+            <h3 class="title-default mb-5">Cadastrar Funcionário</h3>
 
             <form method="post" action="${pageContext.request.contextPath}/FuncionarioCadastrar" novalidate>
-
+                <div class="form-group">
+                    <label for="funcionarioNome">Nome</label>
+                    <input type="text" class="form-control" name="funcionarioNome" id="funcionarioNome" placeholder="Nome">
+                </div>
+                
+                <div class="form-group">
+                    <label for="funcionarioEmail">Email</label>
+                    <input type="text" class="form-control" name="funcionarioEmail" id="funcionarioEmail" placeholder="Email">
+                </div>
+                
                 <div class="form-group">
                     <label for="funcionarioUser">Usuário</label>
                     <input type="text" class="form-control" name="funcionarioUser" id="funcionarioUser" placeholder="Usuário">
@@ -117,16 +126,7 @@
                     <span class="error"><p id="sexo_error"></p></span>
                 </div>
 
-                <div class="form-group">
-                    <label for="funcionarioNome">Nome</label>
-                    <input type="text" class="form-control" name="funcionarioNome" id="funcionarioNome" placeholder="Nome">
-                </div>
-                <div class="form-group">
-                    <label for="funcionarioEmail">Email</label>
-                    <input type="text" class="form-control" name="funcionarioEmail" id="funcionarioEmail" placeholder="Email">
-                </div>
-
-                <div class="custom-control custom-switch">
+                <div class="custom-control custom-switch mb-5">
                     <input type="checkbox" class="custom-control-input" name="FuncionarioDisponivel" id="FuncionarioDisponivel" checked="true">
                     <label class="custom-control-label" for="FuncionarioDisponivel">Disponível</label>
                 </div>
@@ -134,7 +134,7 @@
                 <input type="submit" value="Cadastrar" class="btn btn-success col-2" />
             </form>
 
-            <form method="get" action="${pageContext.request.contextPath}/menu-FuncionarioListar" novalidate>
+            <form class="mb-5 mt-3" method="get" action="${pageContext.request.contextPath}/menu-FuncionarioListar" novalidate>
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
         </div>

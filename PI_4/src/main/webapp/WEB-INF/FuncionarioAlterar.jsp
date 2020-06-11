@@ -2,7 +2,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-BR">
-
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,9 +9,7 @@
         <title>Alterar Funcionario</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-          <!-- <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.svg" type="image/x-svg" /> -->
-          <!--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" /> -->
-          <!--<script src="${pageContext.request.contextPath}/javaScript/validar.js" type="text/javascript"></script> -->
+        <link rel="stylesheet" type="text/css" href="src/style.css">
     </head>
 
     <body>
@@ -94,10 +91,20 @@
             </nav>
         </header>
 
-        <div class="container">
-            <h3 class="title-default">Alterar dados de Funcionario</h3>
+        <div class="container mt-5">
+            <h3 class="title-default mb-5">Alterar dados de Funcionario</h3>
 
             <form method="post" action="${pageContext.request.contextPath}/FuncionarioAlterar" novalidate>
+                <div class="form-group">
+                    <label for="funcionarioNome">Nome</label>
+                    <input type="text" class="form-control" name="funcionarioNome" id="funcionarioNome" placeholder="Nome" value="${FuncionarioAtt.getNome()}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="funcionarioEmail">Email</label>
+                    <input type="text" class="form-control" name="funcionarioEmail" id="funcionarioEmail" value="${FuncionarioAtt.getEmail()}">
+                </div>
+                
                 <div class="form-group">
                     <label for="funcionarioUser">Usuário</label>
                     <input type="text" class="form-control" name="funcionarioUserDis" id="funcionarioUserDis" placeholder="Usuário" value="${FuncionarioAtt.getUsuario()}" disabled="true">
@@ -134,16 +141,7 @@
                     setTipo(${TipoAtt});
                 </script>
 
-                <div class="form-group">
-                    <label for="funcionarioNome">Nome</label>
-                    <input type="text" class="form-control" name="funcionarioNome" id="funcionarioNome" placeholder="Nome" value="${FuncionarioAtt.getNome()}">
-                </div>
-                <div class="form-group">
-                    <label for="funcionarioEmail">Email</label>
-                    <input type="text" class="form-control" name="funcionarioEmail" id="funcionarioEmail" value="${FuncionarioAtt.getEmail()}">
-                </div>
-
-                <div class="custom-control custom-switch">
+                <div class="custom-control custom-switch mb-5">
                     <input type="checkbox" class="custom-control-input" name="FuncionarioDisponivel" id="FuncionarioDisponivel">
                     <label class="custom-control-label" for="FuncionarioDisponivel">Disponível</label>
                 </div>
@@ -165,7 +163,7 @@
                 <input type="submit" value="Cadastrar" class="btn btn-success col-2" />
             </form>
 
-            <form method="get" action="${pageContext.request.contextPath}/FuncionarioListar" novalidate>
+            <form class="mb-5 mt-3" method="get" action="${pageContext.request.contextPath}/FuncionarioListar" novalidate>
                 <input type="submit" value="Cancelar" class="btn btn-danger col-2" />
             </form>
         </div>

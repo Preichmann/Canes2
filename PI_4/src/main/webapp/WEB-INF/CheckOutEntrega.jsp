@@ -30,27 +30,28 @@
 
         <main>
             <section id="produtos" class="pb-5">
-                <div class="container">
-                    <h2>Selecione o Endereço de Entrega</h2>
-                    <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="CadastrarEntrega" method="get"
-                          action="${pageContext.request.contextPath}/CadastrarEntrega" novalidate>
-                        <input type="submit" class="btn btn-primary" value="Cadastrar outro Endereço" class="btn btn-success col-2">
-                    </form>
+                <div class="container mt-5">
+                    <h3 class="title-default">Selecione o Endereço de Entrega</h3>
+                </div>
+                
+                <div class="container mt-5">
                     <c:forEach items="${ListaEntrega}" var="listaEndereco">
-                        <article class="card mt-3">
                             <div class="card-body justify-content-between">
                                 <div class="d-flex flex-row">
                                     <form class="d-flex flex-row justify-content-between" style="width: 100%;" name="CheckOutEntrega" method="post"
                                           action="${pageContext.request.contextPath}/CheckOutEntrega" novalidate>
                                         <input type="hidden" value="${listaEndereco.getId_entrega()}" name="idEntrega" id="idEntrega" />
                                         <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaEndereco.getCep()}" /></h5>
-                                        <h6 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaEndereco.getRua()}" /></h6>
-                                        <input type="submit" class="btn btn-info" value="SELECIONAR" class="btn btn-cor-especial">
+                                        <h5 class="card-title" style="width:200px;margin: 0;display: flex;align-items: center;"><c:out value="${listaEndereco.getRua()}" /></h5>
+                                        <input type="submit" value="SELECIONAR" class="btn btn-secondary">
                                     </form>
                                 </div>
                             </div>
-                        </article>
                     </c:forEach>
+                    
+                    <form class="mt-5" name="CadastrarEntrega" method="get" action="${pageContext.request.contextPath}/CadastrarEntrega" novalidate>
+                        <input type="submit" class="btn btn-primary" value="Cadastrar outro Endereço" class="btn btn-success col-2">
+                    </form>
                 </div>
             </section>
         </main>

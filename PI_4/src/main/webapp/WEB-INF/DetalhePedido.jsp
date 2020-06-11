@@ -18,7 +18,7 @@
         <main>
             <div class="container mt-5" id="lista">                                
                 <h4>Pedido: ${numPedido}</h4>
-                
+
                 <h5 class="mt-4">Endereço de Entrega:</h5>
                 <p><c:out value="${listaEndereco.getCep()}" /> - <c:out value="${listaEndereco.getRua()}" /></p>
 

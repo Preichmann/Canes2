@@ -60,10 +60,10 @@
                 <label class="mt-4">${listaPergunta.getPergunta()}</label>
                 <textarea class="form-control" name="resposta${theCount.index}" id="resposta${theCount.index}" rows="3" readonly="true"></textarea>
                 <c:forEach items="${ListaRespostaProd}" var="listaResposta" varStatus="theCountResp">
-                    <input type="hidden" value="${listaResposta.getIdPergunta()}" name="idPergunta${theCountResp.index}" id="idPergunta${theCountResp.index}" />
+                    <input type="hidden" value="${listaResposta.getIdPergunta()}" name="idPerguntaResp${theCountResp.index}" id="idPerguntaResp${theCountResp.index}" />
                     <script>
                         var r1 = document.getElementById("idPergunta${theCount.index}").value;
-                        var r2 = document.getElementById("idPergunta${theCountResp.index}").value;
+                        var r2 = document.getElementById("idPerguntaResp${theCountResp.index}").value;
                         getResposta(r1, r2);
                         function getResposta(r1, r2) {
                             try {

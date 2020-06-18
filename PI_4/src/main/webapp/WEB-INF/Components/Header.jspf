@@ -10,10 +10,6 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav mr-auto">
-                <form method="get" action="${pageContext.request.contextPath}/top-10" class="nav-item active" novalidate>
-                    <input type="submit" value="Top 10" class="nav-link active">
-                </form>
-
                 <form method="get" action="${pageContext.request.contextPath}/perdaDePeso" class="nav-item" novalidate>
                     <input type="submit" value="Perda de Peso" class="nav-link">
                 </form>

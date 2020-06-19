@@ -55,7 +55,10 @@ public class ClienteAlterarDados extends HttpServlet {
                     request.setAttribute("retornoAlterar", false);
                 } else {
                     request.setAttribute("retornoAlterar", true);
-                    request.setAttribute("NomeLogadoAtt", c.getNome());
+                    Cliente clien = new Controller.Controller_Cliente().getClienteLogin(c.getEmail());
+                    sessao.setAttribute("usuarioLogado", clien);
+                    Cliente ci = (Cliente) sessao.getAttribute("usuarioLogado");
+                    request.setAttribute("NomeLogadoAtt", ci.getNome());
                     request.getRequestDispatcher("/WEB-INF/Index.jsp")
                             .forward(request, response);
                 }

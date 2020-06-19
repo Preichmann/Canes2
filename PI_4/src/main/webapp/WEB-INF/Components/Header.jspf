@@ -22,10 +22,6 @@
                     <input type="submit" value="Ganho de Massa" class="nav-link">
                 </form>
 
-                <form method="get" action="${pageContext.request.contextPath}/recuperacaoMuscular" class="nav-item"
-                      novalidate>
-                    <input type="submit" value="Recuperação Muscular" class="nav-link">
-                </form>
             </div>
 
             <div class="d-flex user-options">

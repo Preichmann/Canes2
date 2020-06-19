@@ -130,7 +130,137 @@ public class DAO_Produto {
         }
         return retorno;
     }
+ public ArrayList<Produto> getProdutosClientePerdaPeso() {
+        Conexao conec = new Conexao();
+        ArrayList<Produto> listaProduto = new ArrayList<Produto>();
+        try (Connection conexao = conec.obterConexao()) {
 
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT \n"
+                    + "    PRODUTO.ID_PRODUTO,\n"
+                    + "    PRODUTO.NOME AS NOME_PRODUTO,\n"
+                    + "    PRODUTO.DESCRICAO,\n"
+                    + "    PRODUTO.VALOR_UNIT,\n"
+                    + "    PRODUTO.QUANTIDADE,\n"
+                    + "    PRODUTO.FK_ID_USUARIO,\n"
+                    + "    PRODUTO.STATUS,\n"
+                    + "    OBJETIVO.ID_OBJETIVO,\n"
+                    + "    OBJETIVO.NOME AS NOME_OBJETIVO\n"
+                    + "FROM\n"
+                    + "    PRODUTO\n"
+                    + "        LEFT JOIN\n"
+                    + "    PROD_OBJETIVO ON PRODUTO.ID_PRODUTO = PROD_OBJETIVO.FK_ID_PRODUTO\n"
+                    + "        LEFT JOIN\n"
+                    + "    OBJETIVO ON PROD_OBJETIVO.FK_ID_OBJETIVO = OBJETIVO.ID_OBJETIVO\n"
+                    + "WHERE\n"
+                    + "    OBJETIVO.ID_OBJETIVO = 2\n"
+                    + "	AND PRODUTO.STATUS = 1;");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Produto p = new Produto();
+                    p.setIdProd(rs.getInt("ID_PRODUTO"));
+                    p.setNome(rs.getString("NOME_PRODUTO"));
+                    p.setPreco(rs.getDouble("VALOR_UNIT"));
+                    p.setQuantidade(rs.getInt("QUANTIDADE"));
+                    listaProduto.add(p);
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaProduto;
+    }
+
+    public ArrayList<Produto> getProdutosClientePreTreino() {
+        Conexao conec = new Conexao();
+        ArrayList<Produto> listaProduto = new ArrayList<Produto>();
+        try (Connection conexao = conec.obterConexao()) {
+
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT \n"
+                    + "    PRODUTO.ID_PRODUTO, \n"
+                    + "    PRODUTO.NOME NOME_PRODUTO, \n"
+                    + "    PRODUTO.DESCRICAO, \n"
+                    + "    PRODUTO.VALOR_UNIT, \n"
+                    + "    PRODUTO.QUANTIDADE, \n"
+                    + "    PRODUTO.FK_ID_USUARIO, \n"
+                    + "    PRODUTO.STATUS, \n"
+                    + "    CATEGORIA.ID_CATEGORIA, \n"
+                    + "    CATEGORIA.NOME NOME_CATEGORIA\n"
+                    + "FROM\n"
+                    + "    PRODUTO\n"
+                    + "        LEFT JOIN\n"
+                    + "    PROD_CATEGORIA ON PROD_CATEGORIA.FK_ID_PRODUTO = PRODUTO.ID_PRODUTO\n"
+                    + "        LEFT JOIN\n"
+                    + "    CATEGORIA ON PROD_CATEGORIA.FK_ID_CATEGORIA = CATEGORIA.ID_CATEGORIA\n"
+                    + "WHERE\n"
+                    + "    CATEGORIA.ID_CATEGORIA = 2\n"
+                    + "    AND PRODUTO.STATUS = 1;");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Produto p = new Produto();
+                    p.setIdProd(rs.getInt("ID_PRODUTO"));
+                    p.setNome(rs.getString("NOME_PRODUTO"));
+                    p.setPreco(rs.getDouble("VALOR_UNIT"));
+                    p.setQuantidade(rs.getInt("QUANTIDADE"));
+                    listaProduto.add(p);
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaProduto;
+    }
+
+    public ArrayList<Produto> getProdutosClienteGanharMassa() {
+        Conexao conec = new Conexao();
+        ArrayList<Produto> listaProduto = new ArrayList<Produto>();
+        try (Connection conexao = conec.obterConexao()) {
+
+           PreparedStatement comandoSQL = conexao.prepareStatement("SELECT \n"
+                    + "    PRODUTO.ID_PRODUTO,\n"
+                    + "    PRODUTO.NOME AS NOME_PRODUTO,\n"
+                    + "    PRODUTO.DESCRICAO,\n"
+                    + "    PRODUTO.VALOR_UNIT,\n"
+                    + "    PRODUTO.QUANTIDADE,\n"
+                    + "    PRODUTO.FK_ID_USUARIO,\n"
+                    + "    PRODUTO.STATUS,\n"
+                    + "    OBJETIVO.ID_OBJETIVO,\n"
+                    + "    OBJETIVO.NOME AS NOME_OBJETIVO\n"
+                    + "FROM\n"
+                    + "    PRODUTO\n"
+                    + "        LEFT JOIN\n"
+                    + "    PROD_OBJETIVO ON PRODUTO.ID_PRODUTO = PROD_OBJETIVO.FK_ID_PRODUTO\n"
+                    + "        LEFT JOIN\n"
+                    + "    OBJETIVO ON PROD_OBJETIVO.FK_ID_OBJETIVO = OBJETIVO.ID_OBJETIVO\n"
+                    + "WHERE\n"
+                    + "    OBJETIVO.ID_OBJETIVO = 1\n"
+                    + "	AND PRODUTO.STATUS = 1;");
+
+            ResultSet rs = comandoSQL.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    Produto p = new Produto();
+                    p.setIdProd(rs.getInt("ID_PRODUTO"));
+                    p.setNome(rs.getString("NOME_PRODUTO"));
+                    p.setPreco(rs.getDouble("VALOR_UNIT"));
+                    p.setQuantidade(rs.getInt("QUANTIDADE"));
+                    listaProduto.add(p);
+                }
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaProduto;
+    }
     public boolean alterarRespostas(Resposta r, int idProd) {
         boolean retorno = false;
 

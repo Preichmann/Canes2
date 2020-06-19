@@ -22,6 +22,18 @@ public class ControllerListarProduto {
     public ArrayList<Produto> getProdutosCliente() {
         return new DAO.DAO_Produto().getProdutosDisponiveis();
     }
+    
+    public ArrayList<Produto> getProdutosClientePerdaPeso() {
+        return new DAO.DAO_Produto().getProdutosClientePerdaPeso();
+    }
+
+    public ArrayList<Produto> getProdutosClientePreTreino() {
+        return new DAO.DAO_Produto().getProdutosClientePreTreino();
+    }
+
+    public ArrayList<Produto> getProdutosClienteGanharMassa() {
+        return new DAO.DAO_Produto().getProdutosClienteGanharMassa();
+    }
 
     public ArrayList<ImagemProduto> getImagens(int idProduto) {
         return new DAO.DAO_Produto().getImagem(idProduto);
